@@ -9,6 +9,7 @@ import ImmersiveArtForms from "../components/ImmersiveArtForms";
 import NavarasaWheel from "../components/NavarasaWheel";
 import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
+import GoldDivider from "../components/GoldDivider";
 import { playGhungrooChime } from "../utils/talamAudio";
 import { FAQS, TESTIMONIALS } from "../data/initialData";
 import {
@@ -403,10 +404,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Theatrical Antique Gold Transition Divider */}
+      <div className="bg-[#151515] py-2">
+        <GoldDivider />
+      </div>
+
       {/* ─────────────────────────────────────────────────────────────
           2. STORYTELLING THROUGH SCROLL: The Artistic Journey Timeline
       ───────────────────────────────────────────────────────────── */}
       <ArtisticJourneyTimeline />
+
+      <div className="bg-[#FAF7F2] py-2">
+        <GoldDivider />
+      </div>
 
       {/* ─────────────────────────────────────────────────────────────
           3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
@@ -503,15 +513,27 @@ export default function Home() {
       ───────────────────────────────────────────────────────────── */}
       <InteractiveServiceCards onSelectServiceForBooking={selectServiceForBooking} />
 
+      <div className="bg-[#151515] py-2">
+        <GoldDivider />
+      </div>
+
       {/* ─────────────────────────────────────────────────────────────
           5. IMMERSIVE ART-FORM TRANSITIONS: 4 Interactive Disciplines
       ───────────────────────────────────────────────────────────── */}
       <ImmersiveArtForms />
 
+      <div className="bg-[#151515] py-2">
+        <GoldDivider />
+      </div>
+
       {/* ─────────────────────────────────────────────────────────────
           5B. INTERACTIVE NAVARASA EMOTION WHEEL: The 9 Sentiments of Abhinaya
       ───────────────────────────────────────────────────────────── */}
       <NavarasaWheel />
+
+      <div className="bg-[#FAF7F2] py-2">
+        <GoldDivider />
+      </div>
 
       {/* ─────────────────────────────────────────────────────────────
           6. THE 1-TO-1 EXPERIENCE: The Process Explained
@@ -639,6 +661,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="bg-[#151515] py-2">
+        <GoldDivider />
+      </div>
 
       {/* ─────────────────────────────────────────────────────────────
           9. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
@@ -857,6 +883,10 @@ export default function Home() {
         </div>
       </section>
       </StageSpotlightOverlay>
+
+      <div className="bg-[#FAF7F2] py-2">
+        <GoldDivider />
+      </div>
 
       {/* ─────────────────────────────────────────────────────────────
           10. FAQS & REASSURANCE

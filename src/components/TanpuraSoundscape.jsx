@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Volume2, Music, Bell, BellOff, ChevronUp, ChevronDown } from "lucide-react";
 import GamakaWaveform from "./GamakaWaveform";
 import { playGhungrooChime, toggleTalamSound, isTalamSoundEnabled } from "../utils/talamAudio";
@@ -8,6 +8,16 @@ import { playGhungrooChime, toggleTalamSound, isTalamSoundEnabled } from "../uti
  * Synthesizes an authentic Indian classical drone (Sa - Pa - Sa')
  * with real-time Carnatic Gamaka harmonic oscillations.
  */
+
+// Frequencies for C# (typical classical Indian concert pitch, Sa = 138.59 Hz)
+const BASE_FREQ = 138.59;
+const TANPURA_NOTES = [
+  { freq: BASE_FREQ * 1.5, name: "Pa (Fifth)", detune: -4 },
+  { freq: BASE_FREQ * 2.0, name: "Sa' (Higher Octave)", detune: 2 },
+  { freq: BASE_FREQ * 2.0, name: "Sa (Middle)", detune: -2 },
+  { freq: BASE_FREQ, name: "Kharaj Sa (Root)", detune: 0 }
+];
+
 export default function TanpuraSoundscape() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -17,16 +27,7 @@ export default function TanpuraSoundscape() {
   const oscillatorsRef = useRef([]);
   const gainNodeRef = useRef(null);
 
-  // Frequencies for C# (typical classical Indian concert pitch, Sa = 138.59 Hz)
-  const baseFreq = 138.59;
-  const notes = [
-    { freq: baseFreq * 1.5, name: "Pa (Fifth)", detune: -4 },
-    { freq: baseFreq * 2.0, name: "Sa' (Higher Octave)", detune: 2 },
-    { freq: baseFreq * 2.0, name: "Sa (Middle)", detune: -2 },
-    { freq: baseFreq, name: "Kharaj Sa (Root)", detune: 0 }
-  ];
-
-  const stopDrone = () => {
+  const stopDrone = useCallback(() => {
     if (gainNodeRef.current && audioCtxRef.current) {
       gainNodeRef.current.gain.linearRampToValueAtTime(0.001, audioCtxRef.current.currentTime + 0.8);
       setTimeout(() => {
@@ -39,9 +40,9 @@ export default function TanpuraSoundscape() {
     } else {
       setIsPlaying(false);
     }
-  };
+  }, []);
 
-  const startDrone = () => {
+  const startDrone = useCallback(() => {
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (!AudioContext) return;
@@ -70,7 +71,7 @@ export default function TanpuraSoundscape() {
 
       oscillatorsRef.current = [];
 
-      notes.forEach((note, idx) => {
+      TANPURA_NOTES.forEach((note, idx) => {
         const osc = ctx.createOscillator();
         const noteGain = ctx.createGain();
 
@@ -102,7 +103,7 @@ export default function TanpuraSoundscape() {
       console.warn("Web Audio autoplay prevented or not supported", e);
       setIsPlaying(false);
     }
-  };
+  }, []);
 
   const toggleSound = () => {
     if (isPlaying) {
@@ -122,13 +123,21 @@ export default function TanpuraSoundscape() {
   };
 
   useEffect(() => {
+    const handleStartEvent = () => {
+      if (!isPlaying) {
+        startDrone();
+      }
+    };
+    window.addEventListener("start-tanpura-drone", handleStartEvent);
+
     return () => {
+      window.removeEventListener("start-tanpura-drone", handleStartEvent);
       stopDrone();
       if (audioCtxRef.current && audioCtxRef.current.state !== "closed") {
         try { audioCtxRef.current.close(); } catch {}
       }
     };
-  }, []);
+  }, [isPlaying, startDrone, stopDrone]);
 
   return (
     <div className="fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2">
