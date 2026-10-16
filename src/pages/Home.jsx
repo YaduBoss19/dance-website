@@ -29,7 +29,6 @@ import {
 export default function Home() {
   const {
     setLightboxItem,
-    gallery,
     academyInfo,
     addEnquiry,
     showToast
@@ -537,8 +536,6 @@ export default function Home() {
           7. GALLERY & ACHIEVEMENTS: Two-Panel Cinematic Hero + Infinite Reels
       ───────────────────────────────────────────────────────────── */}
       <CinematicReelsShowcase
-        gallery={gallery}
-        onPhotoClick={(item) => setLightboxItem(item)}
         onExploreClick={() => scrollToSection("services-section")}
         onMeetArtistClick={() => scrollToSection("artistic-journey")}
       />

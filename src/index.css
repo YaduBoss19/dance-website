@@ -48,6 +48,14 @@
   button, a {
     touch-action: manipulation;
   }
+
+  /* ── Image Protection (Privacy & Security) ── */
+  img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
 }
 
 /* Custom scrollbar */
