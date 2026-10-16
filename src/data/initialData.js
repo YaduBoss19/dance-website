@@ -383,102 +383,40 @@ export const INITIAL_GALLERY = [
   },
   {
     id: "g-dr-2",
-    title: "Georgia Classical Dance Workshop Series",
-    category: "Studio Life",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80",
-    caption: "One of 15+ offline workshops conducted by Dr. Malavika M. Sunil introducing Indian classical dance technique in Georgia."
+    title: "Tbilisi Philharmonic Hall Stage Direction",
+    category: "Global Productions",
+    type: "video",
+    url: "/images/malavika_dance_stage.jpg",
+    videoUrl: "/videos/performance.mp4",
+    caption: "Directing 20+ grand stage productions in Georgia, bridging Indian classical heritage with international concert audiences."
   },
   {
     id: "g-dr-3",
-    title: "Ignite Dance Competition & Rhythmic Raga",
+    title: "Physician & Classical Dancer Graduation",
     category: "Performances",
     type: "photo",
-    url: "https://images.unsplash.com/photo-1535525153412-5a42439a210d?auto=format&fit=crop&w=1200&q=80",
-    caption: "Inter-university solo & duo dance festival organized and judged by Dr. Malavika in Tbilisi."
+    url: "/images/malavika_portrait.jpg",
+    caption: "Medical graduation (MBBS) in Georgia: Bridging anatomical biomechanics and knee injury prevention with sacred Bharatanatyam."
   },
   {
-    id: "g-1",
-    title: "Annual Gala 2025: Symphony in Motion",
+    id: "g-dr-4",
+    title: "1-to-1 Private Online Studio Sadhana",
+    category: "Music",
+    type: "photo",
+    url: "/images/malavika_vocal.jpg",
+    caption: "Personalized 1-on-1 vocal and dance coaching with real-time tanpura alignment and individual student mudra correction."
+  },
+  {
+    id: "g-dr-5",
+    title: "Sacred Temple Recital & Salangai Bells",
     category: "Performances",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80",
-    caption: "Senior contemporary dancers performing our original piece 'Awakening' at the City Grand Auditorium."
-  },
-  {
-    id: "g-2",
-    title: "Young Pianists Recital",
-    category: "Music",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1520523839898-50712825e617?auto=format&fit=crop&w=1200&q=80",
-    caption: "Our junior piano students performing classical sonatas during the Spring Chamber Concert."
-  },
-  {
-    id: "g-3",
-    title: "Little Steps Joyful Recital",
-    category: "Kids Spotlight",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=1200&q=80",
-    caption: "Our 4-to-6 year-old ballerinas taking their bow after their butterfly dance routine."
-  },
-  {
-    id: "g-4",
-    title: "National Street Battle Champions",
-    category: "Dance",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1535525153412-5a42439a210d?auto=format&fit=crop&w=1200&q=80",
-    caption: "Aura Crew celebrating 1st place in the All-State Youth Hip-Hop Championship."
-  },
-  {
-    id: "g-5",
-    title: "Kathak Rhythms & Ghungroo Magic",
-    category: "Performances",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&q=80",
-    caption: "Mesmerizing 27-circle pirouettes (Chakkars) performed by our advanced Kathak disciples."
-  },
-  {
-    id: "g-6",
-    title: "Rock Band Jam Session",
-    category: "Music",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1200&q=80",
-    caption: "Teen guitar and drum ensemble rehearsing for the Summer Sunset Acoustic Lounge."
-  },
-  {
-    id: "g-7",
-    title: "Adult Salsa Social Evening",
-    category: "Dance",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1545959570-a94084071b5d?auto=format&fit=crop&w=1200&q=80",
-    caption: "Laughter, rhythm, and vibrant footwork at our monthly Friday Night Salsa & Bachata Social."
-  },
-  {
-    id: "g-8",
-    title: "Rhythm Lab: Drum Masterclass",
-    category: "Studio Life",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=1200&q=80",
-    caption: "Coach Samuel breaking down syncopated Latin funk rhythms with junior percussionists."
-  },
-  {
-    id: "g-9",
-    title: "Chamber Strings Performance",
-    category: "Music",
-    type: "photo",
-    url: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=1200&q=80",
-    caption: "Violin students performing Vivaldi's Spring movement with flawless bowing harmony."
-  },
-  {
-    id: "g-10",
-    title: "Vocal Masterclass Highlights",
-    category: "Music",
     type: "video",
-    url: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
-    caption: "Behind-the-scenes recording session of the teen harmony choir singing 'A Million Dreams'.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    url: "/images/malavika_dance_pose.jpg",
+    videoUrl: "/videos/performance.mp4",
+    caption: "Traditional recital performance celebrating rhythm, swara patterns, and rhythmic footwork in honor of Lord Nataraja."
   }
 ];
+
 
 export const INITIAL_ENQUIRIES = [
   {

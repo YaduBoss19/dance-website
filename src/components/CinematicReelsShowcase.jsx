@@ -4,6 +4,7 @@ import { PERFORMANCE_REELS } from "../data/initialData";
 import {
   Sparkles,
   Play,
+  Pause,
   ChevronLeft,
   ChevronRight,
   Volume2,
@@ -15,8 +16,102 @@ import {
   ExternalLink,
   Grid,
   Video,
-  MessageCircle
+  MessageCircle,
+  Camera,
+  Maximize2
 } from "lucide-react";
+
+// Continuous stream of curated classical moments (Photos and Videos)
+const INFINITE_STREAM_ITEMS = [
+  {
+    id: "stream-01",
+    type: "video",
+    reelIndex: 0,
+    title: "Margam Classical Recital",
+    subtitle: "Sacred Alarippu Invocation",
+    category: "Bharatanatyam",
+    imageUrl: "/images/malavika_dance_stage.jpg",
+    videoUrl: "/videos/performance.mp4",
+    duration: "Live Recital",
+    badge: "Stage Recital"
+  },
+  {
+    id: "stream-02",
+    type: "photo",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    subtitle: "Resmi Narayanan Hereditary Lineage",
+    category: "Carnatic Vocal",
+    imageUrl: "/images/malavika_vocal.jpg",
+    duration: "16+ Yrs",
+    badge: "Hereditary Shruti"
+  },
+  {
+    id: "stream-03",
+    type: "photo",
+    title: "Temple Recital & Salangai Bells",
+    subtitle: "Alarippu Invocation to Nataraja",
+    category: "Bharatanatyam",
+    imageUrl: "/images/malavika_dance_pose.jpg",
+    duration: "Classical Pose",
+    badge: "Sacred Mudra"
+  },
+  {
+    id: "stream-04",
+    type: "video",
+    reelIndex: 4,
+    title: "Tbilisi International Residency",
+    subtitle: "20+ Productions Across Georgia",
+    category: "Global Stage",
+    imageUrl: "/images/malavika_dance_stage.jpg",
+    videoUrl: "/videos/performance.mp4",
+    duration: "Stage Symphony",
+    badge: "Tbilisi Concert"
+  },
+  {
+    id: "stream-05",
+    type: "photo",
+    title: "Physician & Classical Dancer",
+    subtitle: "MBBS Graduation & Dance Synthesis",
+    category: "Doctor & Dancer",
+    imageUrl: "/images/malavika_portrait.jpg",
+    duration: "MBBS Doctor",
+    badge: "Medical Graduate"
+  },
+  {
+    id: "stream-06",
+    type: "video",
+    reelIndex: 2,
+    title: "Doctor's Kinesiology & Knee Safety",
+    subtitle: "Araimandi Patellar Biomechanics",
+    category: "Injury Prevention",
+    imageUrl: "/images/malavika_portrait.jpg",
+    videoUrl: "/videos/performance.mp4",
+    duration: "Physician Guide",
+    badge: "Anatomy Safety"
+  },
+  {
+    id: "stream-07",
+    type: "photo",
+    title: "Silver Screen Cinema Abhinaya",
+    subtitle: "Kaazhcha & Thanmathra Classics",
+    category: "Malayalam Cinema",
+    imageUrl: "/images/malavika_dance_pose.jpg",
+    duration: "5 Films",
+    badge: "Cinema Heritage"
+  },
+  {
+    id: "stream-08",
+    type: "video",
+    reelIndex: 5,
+    title: "1-to-1 Private Online Studio",
+    subtitle: "Live Tanpura & Personal Feedback",
+    category: "Online Academy",
+    imageUrl: "/images/malavika_vocal.jpg",
+    videoUrl: "/videos/performance.mp4",
+    duration: "1-on-1 Studio",
+    badge: "Global Mentorship"
+  }
+];
 
 // Curated collection of 9 verified Instagram Posts & Reels for @dancingragasbymalavika
 const INSTAGRAM_WALL_ITEMS = [
@@ -25,11 +120,13 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "reel",
     reelIndex: 0,
     title: "Margam Classical Recital",
-    caption: "Rooted in 21 years of sacred Bharatanatyam discipline. Exploring foundational Aramandi and classical Abhinaya. #dancingragas #bharatanatyam",
+    caption: "Rooted in 21 years of sacred Bharatanatyam discipline. Perfecting the foundational Araimandi posture and classical Abhinaya. #dancingragas #bharatanatyam #margam #classicaldance",
     imageUrl: "/images/malavika_dance_stage.jpg",
-    likes: "2.4k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Original Audio · dancingragasbymalavika",
+    likes: "2.8k",
     comments: "142",
-    views: "34.8k",
+    views: "38.2k",
     tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
@@ -38,11 +135,13 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "reel",
     reelIndex: 1,
     title: "Carnatic Vocal & Shruti Sadhana",
-    caption: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment and swara riyaz. #carnaticmusic #vocal",
+    caption: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment, swara riyaz, and raga bhava. #carnaticmusic #vocal #shruti #ragas",
     imageUrl: "/images/malavika_vocal.jpg",
-    likes: "1.8k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Raga Mayamalavagowla Alapana · Dr. Malavika",
+    likes: "2.1k",
     comments: "98",
-    views: "28.5k",
+    views: "31.5k",
     tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
@@ -51,25 +150,29 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "reel",
     reelIndex: 2,
     title: "Anatomy & Knee Biomechanics",
-    caption: "Doctor's perspective: Preventing patellar strain in Araimandi by initiating external hip rotation correctly. #danceinjuryprevention #mbbs",
+    caption: "Doctor's perspective (MBBS): Preventing patellar strain in Araimandi by initiating external hip rotation safely. #danceinjuryprevention #mbbs #kinesiology #anatomy",
     imageUrl: "/images/malavika_portrait.jpg",
-    likes: "3.2k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Doctor's Movement Breakdown · dancingragasbymalavika",
+    likes: "3.6k",
     comments: "215",
-    views: "46.1k",
+    views: "52.4k",
     tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-04",
-    type: "post",
+    type: "reel",
     reelIndex: 3,
     title: "Silver Screen Cinema Abhinaya",
-    caption: "Childhood moments from Malayalam cinema classics alongside Mammootty and Mohanlal. Natural emotive abhinaya. #malayalamcinema #kaazhcha",
+    caption: "Childhood memories from Malayalam cinema classics alongside Mammootty and Mohanlal. Natural emotive abhinaya across 5 feature films. #malayalamcinema #kaazhcha #thanmathra #abhinaya",
     imageUrl: "/images/malavika_dance_pose.jpg",
-    likes: "4.7k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Cinema Classical Score · Archival Heritage",
+    likes: "5.2k",
     comments: "320",
-    views: "68.3k",
-    tag: "Post",
+    views: "74.1k",
+    tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
@@ -77,25 +180,29 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "reel",
     reelIndex: 4,
     title: "Tbilisi International Residency",
-    caption: "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art. #tbilisi #globaldance",
+    caption: "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art worldwide. #tbilisi #globaldance #culturaldiplomacy",
     imageUrl: "/images/malavika_dance_stage.jpg",
-    likes: "2.1k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Live Stage Symphony · Tbilisi Concert",
+    likes: "2.4k",
     comments: "104",
-    views: "31.9k",
+    views: "36.8k",
     tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-06",
-    type: "post",
+    type: "reel",
     reelIndex: 5,
     title: "1-to-1 Private Online Studio",
-    caption: "Every body and voice is unique. In 1-to-1 coaching, we progress at your exact pace with personalized feedback. #onlinedance #1to1",
+    caption: "Every body and voice is unique. In 1-to-1 coaching, we progress at your exact pace with live tanpura drone and personalized feedback. #onlinedance #1to1 #privatecoaching",
     imageUrl: "/images/malavika_portrait.jpg",
-    likes: "2.9k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Private Studio Sadhana · dancingragasbymalavika",
+    likes: "3.1k",
     comments: "167",
-    views: "41.0k",
-    tag: "Post",
+    views: "44.6k",
+    tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
@@ -103,11 +210,13 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "post",
     reelIndex: 0,
     title: "Traditional Temple Recital Pose",
-    caption: "Alarippu rhythmic invocation. Dedicated to Lord Nataraja and the unbroken lineage of Nellay Nrithya Kalalayam. #classicaldance #tradition",
+    caption: "Alarippu rhythmic invocation. Dedicated to Lord Nataraja and the unbroken lineage of Nellay Nrithya Kalalayam. Salangai bells blessed. #classicaldance #tradition #nataraja",
     imageUrl: "/images/malavika_dance_pose.jpg",
-    likes: "1.9k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Sacred Temple Nadaswaram & Chimes",
+    likes: "2.3k",
     comments: "88",
-    views: "23.4k",
+    views: "29.2k",
     tag: "Post",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
@@ -116,11 +225,13 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "reel",
     reelIndex: 1,
     title: "Swara Patterns & Tala Calculation",
-    caption: "Interactive Carnatic session teaching Sarali and Janta varisais with hand talam precision. #carnaticsinging #ragas",
+    caption: "Interactive Carnatic session teaching Sarali and Janta varisais with hand talam precision in Adi Talam. Pitch perfection and swara clarity. #carnaticsinging #ragas #talam",
     imageUrl: "/images/malavika_vocal.jpg",
-    likes: "2.3k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Swara Sadhana Drills · Dr. Malavika",
+    likes: "2.7k",
     comments: "116",
-    views: "35.2k",
+    views: "39.0k",
     tag: "Reel",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
@@ -129,20 +240,307 @@ const INSTAGRAM_WALL_ITEMS = [
     type: "post",
     reelIndex: 2,
     title: "Doctor & Dancer Graduation",
-    caption: "Bridging ancient Indian aesthetics with medical graduation in Georgia. Moving with anatomical safety. #doctorsofinstagram #artist",
+    caption: "Two parallel journeys, one soul. Bridging medical graduation (MBBS) in Georgia with 21 years of sacred Bharatanatyam devotion. Moving with anatomical safety. #doctorsofinstagram #artist #mbbs",
     imageUrl: "/images/malavika_portrait.jpg",
-    likes: "3.8k",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Graduation Symphony & Temple Bells",
+    likes: "4.8k",
     comments: "254",
-    views: "58.9k",
+    views: "66.5k",
     tag: "Post",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   }
 ];
 
+// Interactive Instagram Wall Card with Hover Video Preview
+function InstagramWallCard({ item, onPlayInCinema }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlayingPreview(true))
+          .catch(() => {});
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setIsPlayingPreview(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
+    >
+      {/* Visual Thumbnail Frame with Hover Video Play */}
+      <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
+        {/* Hover-activated HTML5 Video */}
+        <video
+          ref={videoRef}
+          src={item.videoUrl || "/videos/performance.mp4"}
+          poster={item.imageUrl}
+          muted
+          loop
+          playsInline
+          className={`w-full h-full object-cover transition-all duration-500 absolute inset-0 ${
+            isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
+          }`}
+        />
+
+        {/* Poster Image */}
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className={`w-full h-full object-cover transition-transform duration-700 ${
+            isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
+          }`}
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-[#151515]/60 pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1.5 shadow-md">
+            {isPlayingPreview ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+                <span className="text-white font-bold">Playing Live</span>
+              </>
+            ) : item.type === "reel" ? (
+              <>
+                <Video className="w-3 h-3 text-[#B99A63]" />
+                <span>Reel</span>
+              </>
+            ) : (
+              <>
+                <Film className="w-3 h-3 text-[#B99A63]" />
+                <span>Post</span>
+              </>
+            )}
+          </span>
+
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs flex items-center gap-1">
+            <Eye className="w-3 h-3 text-[#B99A63]" />
+            <span>{item.views}</span>
+          </span>
+        </div>
+
+        {/* Hover Engagement Overlay */}
+        <div
+          className={`absolute inset-0 bg-[#151515]/75 p-6 flex flex-col justify-between items-center text-center z-20 transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="flex items-center gap-4 text-white my-auto">
+            <span className="flex items-center gap-1.5 font-bold text-sm bg-black/50 px-3 py-1 rounded-full border border-white/10">
+              <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
+              <span>{item.likes}</span>
+            </span>
+            <span className="flex items-center gap-1.5 font-bold text-sm bg-black/50 px-3 py-1 rounded-full border border-white/10">
+              <MessageCircle className="w-4 h-4 fill-white text-white" />
+              <span>{item.comments}</span>
+            </span>
+          </div>
+
+          <div className="space-y-2 w-full">
+            <button
+              onClick={() => onPlayInCinema(item.reelIndex)}
+              className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
+            >
+              <Play className="w-3.5 h-3.5 fill-[#151515]" />
+              <span>Play in Cinema Player</span>
+            </button>
+
+            <a
+              href={item.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
+            >
+              <span>View on Instagram</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Caption Info */}
+      <div className="p-5 space-y-2 text-left">
+        <div className="flex items-center justify-between text-[11px] text-[#B99A63] font-bold">
+          <span>@dancingragasbymalavika</span>
+          <span className="text-slate-400 capitalize">{item.tag || item.type}</span>
+        </div>
+
+        <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
+          {item.title}
+        </h4>
+
+        <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+          {item.caption}
+        </p>
+
+        <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-slate-400">
+          <span className="truncate max-w-[190px] italic">
+            🎵 {item.audio || "Original Audio · dancingragasbymalavika"}
+          </span>
+          <span className="text-[#D4AF37] font-semibold flex items-center gap-1">
+            ▶ Hover to Play
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Interactive Infinite Stream Card (Photo & Video)
+function InfiniteStreamCard({ item, onPlayInCinema, onPhotoClick }) {
+  const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (item.type === "video" && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlayingPreview(true)).catch(() => {});
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (item.type === "video" && videoRef.current) {
+      setIsPlayingPreview(false);
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const handleClick = () => {
+    if (item.type === "video") {
+      onPlayInCinema(item.reelIndex || 0);
+    } else if (onPhotoClick) {
+      onPhotoClick({
+        id: item.id,
+        title: item.title,
+        url: item.imageUrl,
+        category: item.category,
+        caption: item.subtitle
+      });
+    }
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      className="w-[280px] sm:w-[320px] shrink-0 rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 cursor-pointer flex flex-col justify-between select-none relative tap-bounce"
+    >
+      <div className="aspect-[16/11] bg-[#0d0d0d] relative overflow-hidden">
+        {item.type === "video" && (
+          <video
+            ref={videoRef}
+            src={item.videoUrl || "/videos/performance.mp4"}
+            poster={item.imageUrl}
+            muted
+            loop
+            playsInline
+            className={`w-full h-full object-cover transition-opacity duration-500 absolute inset-0 ${
+              isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
+            }`}
+          />
+        )}
+
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className={`w-full h-full object-cover transition-transform duration-700 ${
+            isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
+          }`}
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/30 pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1 shadow-md">
+            {isPlayingPreview ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+                <span className="text-white font-bold">Playing Live</span>
+              </>
+            ) : item.type === "video" ? (
+              <>
+                <Video className="w-3 h-3 text-[#B99A63]" />
+                <span>Live Video</span>
+              </>
+            ) : (
+              <>
+                <Camera className="w-3 h-3 text-[#B99A63]" />
+                <span>Photo Gallery</span>
+              </>
+            )}
+          </span>
+
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-slate-200 backdrop-blur-xs">
+            {item.badge}
+          </span>
+        </div>
+
+        {/* Center Hover Action Pill */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
+          <span className="px-3.5 py-1.5 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs shadow-xl flex items-center gap-1.5">
+            {item.type === "video" ? (
+              <>
+                <Play className="w-3.5 h-3.5 fill-[#151515]" />
+                <span>Watch Video</span>
+              </>
+            ) : (
+              <>
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>Inspect Photo</span>
+              </>
+            )}
+          </span>
+        </div>
+      </div>
+
+      <div className="p-4 text-left space-y-1">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-[#B99A63]">
+          {item.category}
+        </span>
+        <h4 className="text-sm font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1 group-hover:text-[#D4AF37] transition-colors">
+          {item.title}
+        </h4>
+        <p className="text-[11px] text-slate-400 line-clamp-1">
+          {item.subtitle}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function CinematicReelsShowcase({
   reels = PERFORMANCE_REELS,
   onExploreClick,
-  onMeetArtistClick
+  onMeetArtistClick,
+  onPhotoClick
 }) {
   const publishedReels = reels.filter((r) => r.published !== false);
   const totalReels = publishedReels.length;
@@ -298,6 +696,7 @@ export default function CinematicReelsShowcase({
   const formattedCounter = `${String(currentIndex + 1).padStart(2, "0")} / ${String(totalReels).padStart(2, "0")}`;
 
   const [wallFilter, setWallFilter] = useState("all");
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
 
   const playReelFromWall = (reelIdx) => {
     stopCurrentVideo();
@@ -743,8 +1142,73 @@ export default function CinematicReelsShowcase({
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
+            INFINITE PHOTO GALLERY & RECITAL VIDEO STREAM
+            Continuous auto-scrolling loop with hover video preview
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className="pt-10 border-t border-[#A9A49D]/20 space-y-6 text-left">
+          {/* Header & Marquee Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#B99A63] animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
+                  Continuous Classical Stream
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
+                Infinite Photo Gallery & Recital Videos
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Hover any video to preview live or click to expand in cinema definition.
+              </p>
+            </div>
+
+            {/* Marquee Controls */}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => setIsMarqueePaused((prev) => !prev)}
+                className="px-3.5 py-1.5 rounded-xl bg-[#1E1B1B] hover:bg-[#252222] border border-[#B99A63]/40 text-xs font-semibold text-[#D4AF37] flex items-center gap-1.5 cursor-pointer tap-bounce transition-all shadow-sm"
+              >
+                {isMarqueePaused ? (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-[#D4AF37]" />
+                    <span>Resume Stream</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause className="w-3.5 h-3.5" />
+                    <span>Pause Stream</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Seamless Infinite Auto-Scrolling Track */}
+          <div className="overflow-hidden relative py-2 -mx-4 sm:mx-0 px-4 sm:px-0">
+            {/* Gradient Edge Masks for High-End Fade */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#151515] to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#151515] to-transparent z-20 pointer-events-none" />
+
+            <div
+              className={`flex gap-6 ${isMarqueePaused ? "pause-marquee" : "animate-infinite-marquee"}`}
+            >
+              {/* Double array for uninterrupted seamless loop */}
+              {INFINITE_STREAM_ITEMS.concat(INFINITE_STREAM_ITEMS).map((item, idx) => (
+                <InfiniteStreamCard
+                  key={`${item.id}-${idx}`}
+                  item={item}
+                  onPlayInCinema={playReelFromWall}
+                  onPhotoClick={onPhotoClick}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
             INSTAGRAM REELS & POSTS WALL (@dancingragasbymalavika)
-            Native, instant, responsive 9-post archival grid
+            Native, instant, responsive 9-post archival grid with Hover Play
         ═══════════════════════════════════════════════════════════════ */}
         <div className="pt-12 border-t border-[#A9A49D]/20 space-y-8 text-left">
           {/* Wall Header & Filter Pills */}
@@ -760,7 +1224,7 @@ export default function CinematicReelsShowcase({
                 Explore @dancingragasbymalavika on Site
               </h3>
               <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Stream performance reels and archival classical posts directly or watch on Instagram.
+                Hover over any video to play live instantly or click to watch on Instagram.
               </p>
             </div>
 
@@ -804,96 +1268,14 @@ export default function CinematicReelsShowcase({
             </div>
           </div>
 
-          {/* 9-Post Responsive Grid */}
+          {/* 9-Post Responsive Grid with Hover Play */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredWallItems.map((item) => (
-              <div
+              <InstagramWallCard
                 key={item.id}
-                className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
-              >
-                {/* Visual Thumbnail Frame */}
-                <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-[#151515]/60 pointer-events-none" />
-
-                  {/* Top Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1 shadow-md">
-                      {item.type === "reel" ? (
-                        <>
-                          <Video className="w-3 h-3 text-[#B99A63]" />
-                          <span>Reel</span>
-                        </>
-                      ) : (
-                        <>
-                          <Film className="w-3 h-3 text-[#B99A63]" />
-                          <span>Post</span>
-                        </>
-                      )}
-                    </span>
-
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs flex items-center gap-1">
-                      <Eye className="w-3 h-3 text-[#B99A63]" />
-                      <span>{item.views}</span>
-                    </span>
-                  </div>
-
-                  {/* Hover Overlay with Instagram Interaction */}
-                  <div className="absolute inset-0 bg-[#151515]/75 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-between items-center text-center z-20">
-                    <div className="flex items-center gap-4 text-white my-auto">
-                      <span className="flex items-center gap-1.5 font-bold text-sm">
-                        <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
-                        <span>{item.likes}</span>
-                      </span>
-                      <span className="flex items-center gap-1.5 font-bold text-sm">
-                        <MessageCircle className="w-4 h-4 fill-white text-white" />
-                        <span>{item.comments}</span>
-                      </span>
-                    </div>
-
-                    <div className="space-y-2 w-full">
-                      <button
-                        onClick={() => playReelFromWall(item.reelIndex)}
-                        className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-[#151515]" />
-                        <span>Play in Cinema Player</span>
-                      </button>
-
-                      <a
-                        href={item.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
-                      >
-                        <span>View on Instagram</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Caption Info */}
-                <div className="p-5 space-y-2 text-left">
-                  <div className="flex items-center justify-between text-[11px] text-[#B99A63] font-bold">
-                    <span>@dancingragasbymalavika</span>
-                    <span className="text-slate-400">Instagram</span>
-                  </div>
-
-                  <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
-                    {item.title}
-                  </h4>
-
-                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
-                    {item.caption}
-                  </p>
-                </div>
-              </div>
+                item={item}
+                onPlayInCinema={playReelFromWall}
+              />
             ))}
           </div>
 

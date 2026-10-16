@@ -520,8 +520,28 @@
   }
   .animate-float, .animate-float-reverse, .animate-float-x,
   .animate-pulse-subtle, .animate-spin-slow, .animate-spin-slow-rev,
-  .animate-morph, .animate-gradient-x, .animate-glow-pulse {
-    animation: none !important;
-  }
   .card-3d, .hover-lift-3d { transform: none !important; transition: none !important; }
 }
+
+/* ─── INFINITE PHOTO & VIDEO STREAM MARQUEE ─────────────── */
+@keyframes infinite-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-infinite-marquee:hover,
+.pause-marquee {
+  animation-play-state: paused !important;
+}
+

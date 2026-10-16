@@ -538,6 +538,7 @@ export default function Home() {
       <CinematicReelsShowcase
         onExploreClick={() => scrollToSection("services-section")}
         onMeetArtistClick={() => scrollToSection("artistic-journey")}
+        onPhotoClick={(item) => setLightboxItem(item)}
       />
 
       {/* ─────────────────────────────────────────────────────────────
