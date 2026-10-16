@@ -82,15 +82,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#A9A49D]/20 text-left">
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full overflow-hidden bg-[#151515] border border-[#B99A63]/40 shadow-md flex items-center justify-center p-0.5">
-                <img src="/images/logo.png" alt="Dr. Malavika Sunil Logo" className="w-full h-full object-contain" />
+            <div className="flex items-center gap-3.5">
+              <div className="h-14 w-14 rounded-2xl bg-[#F5F0E8] p-1.5 shadow-lg flex items-center justify-center shrink-0 border border-[#B99A63]/40">
+                <img src="/images/logo_transparent.png" alt="DancingRagas Logo" className="w-full h-full object-contain" />
               </div>
               <div>
-                <span className="font-bold text-2xl tracking-tight text-[#F5F0E8] font-serif-luxury block">
+                <span className="font-bold text-2xl tracking-tight text-[#F5F0E8] font-serif-luxury block leading-tight">
                   Dr. Malavika Sunil
                 </span>
-                <span className="text-[10px] font-semibold tracking-widest text-[#B99A63] uppercase">
+                <span className="text-[10px] font-bold tracking-widest text-[#B99A63] uppercase">
                   Dance & Music · 1-to-1 Studio
                 </span>
               </div>

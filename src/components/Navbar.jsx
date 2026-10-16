@@ -82,8 +82,8 @@ export default function Navbar() {
       <nav
         className={`w-full transition-all duration-300 ${
           scrolled
-            ? "bg-[#151515]/95 text-[#F5F0E8] backdrop-blur-md shadow-lg py-3 sm:py-3.5 border-b border-[#B99A63]/30"
-            : "bg-[#F5F0E8]/95 text-[#151515] backdrop-blur-md py-4 sm:py-4.5 border-b border-[#A9A49D]/20"
+            ? "bg-[#F5F0E8]/98 text-[#151515] backdrop-blur-md shadow-md py-2.5 sm:py-3 border-b border-[#B99A63]/40"
+            : "bg-[#F5F0E8]/95 text-[#151515] backdrop-blur-md py-3.5 sm:py-4 border-b border-[#A9A49D]/20"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
@@ -93,24 +93,21 @@ export default function Navbar() {
             className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none tap-bounce"
             aria-label="Dr. Malavika Sunil Home"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-[#151515] border-2 border-[#B99A63]/60 shadow-md group-hover:scale-105 transition-all duration-300 flex items-center justify-center p-0.5">
+            {/* Prominent, clean logo without any black background or clipping circle */}
+            <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img
-                src="/images/logo.png"
-                alt="Dr. Malavika Sunil Logo"
-                className="w-full h-full object-contain"
+                src="/images/logo_transparent.png"
+                alt="DancingRagas Logo"
+                className="h-full w-auto object-contain drop-shadow-xs"
               />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span
-                  className={`font-bold text-lg sm:text-xl tracking-tight font-serif-luxury ${
-                    scrolled ? "text-[#F5F0E8]" : "text-[#151515]"
-                  }`}
-                >
+                <span className="font-bold text-lg sm:text-xl tracking-tight font-serif-luxury text-[#151515] leading-tight">
                   Dr. Malavika Sunil
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] font-semibold tracking-widest text-[#B99A63] uppercase -mt-0.5">
+              <p className="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#B99A63] uppercase">
                 Dance & Music · 1-to-1 Studio
               </p>
             </div>
@@ -124,11 +121,9 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link)}
-                  className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
-                    scrolled
-                      ? "text-[#F5F0E8]/85 hover:text-[#B99A63] hover:bg-white/5"
-                      : "text-[#151515]/85 hover:text-[#151515] hover:bg-black/5"
-                  } ${isActive ? "text-[#B99A63] font-bold" : ""}`}
+                  className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer text-[#151515]/85 hover:text-[#B99A63] hover:bg-black/5 ${
+                    isActive ? "text-[#B99A63] font-bold" : ""
+                  }`}
                 >
                   {link.label}
                 </button>
@@ -159,26 +154,24 @@ export default function Navbar() {
             {/* Smooth Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg transition-colors focus:outline-none tap-bounce ${
-                scrolled ? "text-[#F5F0E8] hover:bg-white/10" : "text-[#151515] hover:bg-black/5"
-              }`}
+              className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg transition-colors focus:outline-none tap-bounce text-[#151515] hover:bg-black/5"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >
               <span
-                className={`w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  scrolled ? "bg-[#F5F0E8]" : "bg-[#151515]"
-                } ${mobileMenuOpen ? "transform rotate-45 translate-y-2" : ""}`}
+                className={`w-5 h-0.5 rounded-full bg-[#151515] transition-all duration-300 ${
+                  mobileMenuOpen ? "transform rotate-45 translate-y-2" : ""
+                }`}
               />
               <span
-                className={`w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  scrolled ? "bg-[#F5F0E8]" : "bg-[#151515]"
-                } ${mobileMenuOpen ? "opacity-0" : ""}`}
+                className={`w-5 h-0.5 rounded-full bg-[#151515] transition-all duration-300 ${
+                  mobileMenuOpen ? "opacity-0" : ""
+                }`}
               />
               <span
-                className={`w-5 h-0.5 rounded-full transition-all duration-300 ${
-                  scrolled ? "bg-[#F5F0E8]" : "bg-[#151515]"
-                } ${mobileMenuOpen ? "transform -rotate-45 -translate-y-2" : ""}`}
+                className={`w-5 h-0.5 rounded-full bg-[#151515] transition-all duration-300 ${
+                  mobileMenuOpen ? "transform -rotate-45 -translate-y-2" : ""
+                }`}
               />
             </button>
           </div>
