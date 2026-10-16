@@ -12,9 +12,132 @@ import {
   Film,
   Heart,
   Eye,
-  ExternalLink
+  ExternalLink,
+  Grid,
+  Video,
+  MessageCircle
 } from "lucide-react";
-import SociableKitInstagramFeed from "./SociableKitInstagramFeed";
+
+// Curated collection of 9 verified Instagram Posts & Reels for @dancingragasbymalavika
+const INSTAGRAM_WALL_ITEMS = [
+  {
+    id: "insta-01",
+    type: "reel",
+    reelIndex: 0,
+    title: "Margam Classical Recital",
+    caption: "Rooted in 21 years of sacred Bharatanatyam discipline. Exploring foundational Aramandi and classical Abhinaya. #dancingragas #bharatanatyam",
+    imageUrl: "/images/malavika_dance_stage.jpg",
+    likes: "2.4k",
+    comments: "142",
+    views: "34.8k",
+    tag: "Reel",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-02",
+    type: "reel",
+    reelIndex: 1,
+    title: "Carnatic Vocal & Shruti Sadhana",
+    caption: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment and swara riyaz. #carnaticmusic #vocal",
+    imageUrl: "/images/malavika_vocal.jpg",
+    likes: "1.8k",
+    comments: "98",
+    views: "28.5k",
+    tag: "Reel",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-03",
+    type: "reel",
+    reelIndex: 2,
+    title: "Anatomy & Knee Biomechanics",
+    caption: "Doctor's perspective: Preventing patellar strain in Araimandi by initiating external hip rotation correctly. #danceinjuryprevention #mbbs",
+    imageUrl: "/images/malavika_portrait.jpg",
+    likes: "3.2k",
+    comments: "215",
+    views: "46.1k",
+    tag: "Reel",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-04",
+    type: "post",
+    reelIndex: 3,
+    title: "Silver Screen Cinema Abhinaya",
+    caption: "Childhood moments from Malayalam cinema classics alongside Mammootty and Mohanlal. Natural emotive abhinaya. #malayalamcinema #kaazhcha",
+    imageUrl: "/images/malavika_dance_pose.jpg",
+    likes: "4.7k",
+    comments: "320",
+    views: "68.3k",
+    tag: "Post",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-05",
+    type: "reel",
+    reelIndex: 4,
+    title: "Tbilisi International Residency",
+    caption: "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art. #tbilisi #globaldance",
+    imageUrl: "/images/malavika_dance_stage.jpg",
+    likes: "2.1k",
+    comments: "104",
+    views: "31.9k",
+    tag: "Reel",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-06",
+    type: "post",
+    reelIndex: 5,
+    title: "1-to-1 Private Online Studio",
+    caption: "Every body and voice is unique. In 1-to-1 coaching, we progress at your exact pace with personalized feedback. #onlinedance #1to1",
+    imageUrl: "/images/malavika_portrait.jpg",
+    likes: "2.9k",
+    comments: "167",
+    views: "41.0k",
+    tag: "Post",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-07",
+    type: "post",
+    reelIndex: 0,
+    title: "Traditional Temple Recital Pose",
+    caption: "Alarippu rhythmic invocation. Dedicated to Lord Nataraja and the unbroken lineage of Nellay Nrithya Kalalayam. #classicaldance #tradition",
+    imageUrl: "/images/malavika_dance_pose.jpg",
+    likes: "1.9k",
+    comments: "88",
+    views: "23.4k",
+    tag: "Post",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-08",
+    type: "reel",
+    reelIndex: 1,
+    title: "Swara Patterns & Tala Calculation",
+    caption: "Interactive Carnatic session teaching Sarali and Janta varisais with hand talam precision. #carnaticsinging #ragas",
+    imageUrl: "/images/malavika_vocal.jpg",
+    likes: "2.3k",
+    comments: "116",
+    views: "35.2k",
+    tag: "Reel",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-09",
+    type: "post",
+    reelIndex: 2,
+    title: "Doctor & Dancer Graduation",
+    caption: "Bridging ancient Indian aesthetics with medical graduation in Georgia. Moving with anatomical safety. #doctorsofinstagram #artist",
+    imageUrl: "/images/malavika_portrait.jpg",
+    likes: "3.8k",
+    comments: "254",
+    views: "58.9k",
+    tag: "Post",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  }
+];
 
 export default function CinematicReelsShowcase({
   reels = PERFORMANCE_REELS,
@@ -173,6 +296,30 @@ export default function CinematicReelsShowcase({
   const showArrows = !isPlaying && (isHovered || controlsVisible);
 
   const formattedCounter = `${String(currentIndex + 1).padStart(2, "0")} / ${String(totalReels).padStart(2, "0")}`;
+
+  const [wallFilter, setWallFilter] = useState("all");
+
+  const playReelFromWall = (reelIdx) => {
+    stopCurrentVideo();
+    setCurrentIndex(reelIdx);
+    if (reelsTopRef.current) {
+      reelsTopRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
+      }
+    }, 450);
+  };
+
+  const filteredWallItems = INSTAGRAM_WALL_ITEMS.filter((item) => {
+    if (wallFilter === "reels") return item.type === "reel";
+    if (wallFilter === "posts") return item.type === "post";
+    return true;
+  });
 
   return (
     <section
@@ -596,24 +743,168 @@ export default function CinematicReelsShowcase({
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
-            THE EMBEDDED INSTAGRAM FEED & REELS BROADCAST (SOCIABLEKIT)
-            Live streaming reels and posts from @dancingragasbymalavika
+            INSTAGRAM REELS & POSTS WALL (@dancingragasbymalavika)
+            Native, instant, responsive 9-post archival grid
         ═══════════════════════════════════════════════════════════════ */}
         <div className="pt-12 border-t border-[#A9A49D]/20 space-y-8 text-left">
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div className="space-y-1.5">
+          {/* Wall Header & Filter Pills */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
-                  Official Instagram Broadcast
+                  Instagram Feed & Reels Wall
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-4xl font-bold font-serif-luxury text-[#F5F0E8]">
-                Live Performances & Margam Reels
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
+                Explore @dancingragasbymalavika on Site
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-                Streaming the sacred Margam choreographies, Carnatic vocal sessions, and stage productions of Dr. Malavika directly from Instagram.
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Stream performance reels and archival classical posts directly or watch on Instagram.
+              </p>
+            </div>
+
+            {/* Filter Toggle Buttons */}
+            <div className="flex items-center gap-1.5 bg-[#1E1B1B] p-1.5 rounded-2xl border border-[#B99A63]/30 shrink-0">
+              <button
+                onClick={() => setWallFilter("all")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                  wallFilter === "all"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Grid className="w-3.5 h-3.5" />
+                <span>All ({filteredWallItems.length})</span>
+              </button>
+
+              <button
+                onClick={() => setWallFilter("reels")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                  wallFilter === "reels"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Video className="w-3.5 h-3.5" />
+                <span>Reels</span>
+              </button>
+
+              <button
+                onClick={() => setWallFilter("posts")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                  wallFilter === "posts"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Film className="w-3.5 h-3.5" />
+                <span>Posts</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 9-Post Responsive Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredWallItems.map((item) => (
+              <div
+                key={item.id}
+                className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
+              >
+                {/* Visual Thumbnail Frame */}
+                <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-[#151515]/60 pointer-events-none" />
+
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1 shadow-md">
+                      {item.type === "reel" ? (
+                        <>
+                          <Video className="w-3 h-3 text-[#B99A63]" />
+                          <span>Reel</span>
+                        </>
+                      ) : (
+                        <>
+                          <Film className="w-3 h-3 text-[#B99A63]" />
+                          <span>Post</span>
+                        </>
+                      )}
+                    </span>
+
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs flex items-center gap-1">
+                      <Eye className="w-3 h-3 text-[#B99A63]" />
+                      <span>{item.views}</span>
+                    </span>
+                  </div>
+
+                  {/* Hover Overlay with Instagram Interaction */}
+                  <div className="absolute inset-0 bg-[#151515]/75 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-between items-center text-center z-20">
+                    <div className="flex items-center gap-4 text-white my-auto">
+                      <span className="flex items-center gap-1.5 font-bold text-sm">
+                        <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
+                        <span>{item.likes}</span>
+                      </span>
+                      <span className="flex items-center gap-1.5 font-bold text-sm">
+                        <MessageCircle className="w-4 h-4 fill-white text-white" />
+                        <span>{item.comments}</span>
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 w-full">
+                      <button
+                        onClick={() => playReelFromWall(item.reelIndex)}
+                        className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-[#151515]" />
+                        <span>Play in Cinema Player</span>
+                      </button>
+
+                      <a
+                        href={item.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
+                      >
+                        <span>View on Instagram</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Caption Info */}
+                <div className="p-5 space-y-2 text-left">
+                  <div className="flex items-center justify-between text-[11px] text-[#B99A63] font-bold">
+                    <span>@dancingragasbymalavika</span>
+                    <span className="text-slate-400">Instagram</span>
+                  </div>
+
+                  <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
+                    {item.title}
+                  </h4>
+
+                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                    {item.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Follow CTA Strip */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#1c1c1c] border border-[#B99A63]/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <h4 className="text-lg sm:text-xl font-bold font-serif-luxury text-[#F5F0E8]">
+                Join 100+ Dance Connoisseurs on Instagram
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Get behind-the-scenes rehearsal clips, classical mudra guides, and workshop updates every week.
               </p>
             </div>
 
@@ -621,15 +912,12 @@ export default function CinematicReelsShowcase({
               href="https://www.instagram.com/dancingragasbymalavika/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-pink-500/20 hover:scale-105 active:scale-95 transition-all shrink-0 tap-bounce"
+              className="px-6 py-3.5 rounded-full bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-pink-500/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0 tap-bounce"
             >
               <span>Follow @dancingragasbymalavika</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
-
-          {/* Ultra-Premium Gilded SociableKIT Live Stream Container */}
-          <SociableKitInstagramFeed widgetId="25722712" />
         </div>
       </div>
     </section>

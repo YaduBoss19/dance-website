@@ -58,11 +58,39 @@
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #F5F0E8; }
-::-webkit-scrollbar-thumb { background: #A9A49D; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #B99A63; }
+/* Custom scrollbar for primary page vertical scrolling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #151515;
+}
+::-webkit-scrollbar-thumb {
+  background: #B99A63;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Strictly hide scrollbars for all horizontal carousels, swipe tracks, and scrollbar-none containers */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar,
+[class*="overflow-x-auto"]::-webkit-scrollbar,
+[class*="overflow-x-scroll"]::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar-none,
+.no-scrollbar,
+[class*="overflow-x-auto"],
+[class*="overflow-x-scroll"] {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
 
 /* ─── PREMIUM BRAND PALETTE UTILITIES ────────────────────── */
 .bg-charcoal       { background-color: #151515; }
