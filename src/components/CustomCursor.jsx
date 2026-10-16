@@ -10,6 +10,7 @@ export default function CustomCursor() {
   );
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [ripples, setRipples] = useState([]);
 
   const cursorRef = useRef(null);
   const dotRef = useRef(null);
@@ -26,7 +27,20 @@ export default function CustomCursor() {
       mouse.current.y = e.clientY;
     };
 
-    const onMouseDown = () => setClicked(true);
+    const onMouseDown = (e) => {
+      setClicked(true);
+      // Create a Thatte Mettu foot-stamp ripple
+      const newRipple = {
+        id: Date.now() + Math.random(),
+        x: e.clientX,
+        y: e.clientY
+      };
+      setRipples((prev) => [...prev.slice(-4), newRipple]);
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
+      }, 700);
+    };
+
     const onMouseUp = () => setClicked(false);
 
     // Track hovering over clickable/interactive elements
@@ -83,15 +97,30 @@ export default function CustomCursor() {
 
   return (
     <>
+      {/* Thatte Mettu Golden Foot-Stamp Shockwave Ripples */}
+      {ripples.map((rip) => (
+        <span
+          key={rip.id}
+          className="fixed rounded-full pointer-events-none z-[9998] border border-[#B99A63]/70"
+          style={{
+            left: rip.x - 24,
+            top: rip.y - 24,
+            width: 48,
+            height: 48,
+            animation: "talam-stamp-ripple 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards"
+          }}
+        />
+      ))}
+
       {/* Outer Follower Ring */}
       <div
         ref={cursorRef}
         className={`fixed top-0 left-0 -ml-4 -mt-4 rounded-full pointer-events-none z-[9999] transition-all duration-200 ease-out ${
           hovered
-            ? "w-12 h-12 -ml-6 -mt-6 border border-amber-400 bg-amber-400/15 shadow-[0_0_20px_rgba(245,158,11,0.4)] backdrop-blur-[1px] scale-110"
+            ? "w-12 h-12 -ml-6 -mt-6 border border-[#B99A63] bg-[#B99A63]/15 shadow-[0_0_20px_rgba(185,154,99,0.4)] backdrop-blur-[1px] scale-110"
             : clicked
-            ? "w-7 h-7 -ml-3.5 -mt-3.5 border-2 border-amber-300 bg-amber-300/20 scale-90"
-            : "w-8 h-8 border border-amber-500/60 shadow-[0_0_12px_rgba(217,119,6,0.25)]"
+            ? "w-7 h-7 -ml-3.5 -mt-3.5 border-2 border-[#D4AF37] bg-[#D4AF37]/20 scale-90"
+            : "w-8 h-8 border border-[#B99A63]/60 shadow-[0_0_12px_rgba(185,154,99,0.25)]"
         }`}
         style={{ willChange: "transform" }}
       />
@@ -99,7 +128,7 @@ export default function CustomCursor() {
       {/* Center Precise Dot */}
       <div
         ref={dotRef}
-        className={`fixed top-0 left-0 -ml-1 -mt-1 w-2 h-2 rounded-full bg-amber-500 pointer-events-none z-[10000] transition-opacity duration-150 ${
+        className={`fixed top-0 left-0 -ml-1 -mt-1 w-2 h-2 rounded-full bg-[#B99A63] pointer-events-none z-[10000] transition-opacity duration-150 ${
           hovered ? "opacity-0" : "opacity-100"
         }`}
         style={{ willChange: "transform" }}

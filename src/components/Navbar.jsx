@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAcademy } from "../context/AcademyContext";
+import { playGhungrooChime } from "../utils/talamAudio";
 import { Sparkles, ChevronRight } from "lucide-react";
 
 export default function Navbar() {
@@ -32,11 +33,13 @@ export default function Navbar() {
     { id: "journey", label: "Journey", target: "artistic-journey" },
     { id: "classes", label: "Classes", target: "services-section" },
     { id: "art-forms", label: "Art Forms", target: "art-forms" },
+    { id: "navarasa", label: "Navarasa", target: "navarasa-section" },
     { id: "gallery", label: "Gallery", target: "gallery-section" },
     { id: "contact", label: "Contact", target: "book-trial" }
   ];
 
   const handleNavClick = (linkItem) => {
+    playGhungrooChime();
     setMobileMenuOpen(false);
     if (typeof linkItem === "string") {
       navigateTo(linkItem);
@@ -65,6 +68,7 @@ export default function Navbar() {
   };
 
   const handleBookTrialClick = () => {
+    playGhungrooChime();
     setMobileMenuOpen(false);
     if (currentPage === "home") {
       const el = document.getElementById("book-trial");

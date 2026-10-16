@@ -1,5 +1,6 @@
 import React from "react";
 import { useAcademy } from "../context/AcademyContext";
+import { playGhungrooChime } from "../utils/talamAudio";
 import { MessageCircle, Sparkles, Phone, Compass } from "lucide-react";
 
 /**
@@ -14,6 +15,7 @@ export default function MobileBottomBar() {
   if (currentPage === "admin") return null;
 
   const openWhatsApp = () => {
+    playGhungrooChime();
     const url = `https://wa.me/${academyInfo.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
       academyInfo.whatsappDefaultMsg
     )}`;
@@ -21,6 +23,7 @@ export default function MobileBottomBar() {
   };
 
   const handleTrialClick = () => {
+    playGhungrooChime();
     if (currentPage === "home") {
       const el = document.getElementById("book-trial");
       if (el) {
@@ -32,6 +35,7 @@ export default function MobileBottomBar() {
   };
 
   const handleLessonsClick = () => {
+    playGhungrooChime();
     if (currentPage === "home") {
       const el = document.getElementById("dance-lessons");
       if (el) {

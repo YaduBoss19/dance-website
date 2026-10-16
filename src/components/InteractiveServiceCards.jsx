@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
+import StageSpotlightOverlay from "./StageSpotlightOverlay";
 import { useAcademy } from "../context/AcademyContext";
+import { playGhungrooChime } from "../utils/talamAudio";
 import {
   Sparkles,
   Clock,
@@ -94,6 +96,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
   });
 
   const handleWhatsAppEnquiry = (course) => {
+    playGhungrooChime();
     const meta = SERVICE_THEMES[course.id];
     const msg = meta ? meta.whatsappMsg : `Hello Dr. Malavika! I am interested in ${course.title}.`;
     const cleanNumber = academyInfo.whatsappNumber.replace(/[^0-9]/g, "");
@@ -101,12 +104,24 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
     window.open(url, "_blank");
   };
 
+  const handleBookingClick = (courseTitle) => {
+    playGhungrooChime();
+    if (onSelectServiceForBooking) {
+      onSelectServiceForBooking(courseTitle);
+    }
+  };
+
+  const handleViewSyllabus = (course) => {
+    playGhungrooChime();
+    setSelectedCourseModal(course);
+  };
+
   return (
-    <section id="services-section" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <StageSpotlightOverlay className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <div id="services-section" className="max-w-7xl mx-auto space-y-12 relative z-20">
         {/* Section Heading */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
             <span>Interactive Service Portfolio</span>
           </div>
@@ -125,7 +140,10 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           {pillars.map((pillar) => (
             <button
               key={pillar.id}
-              onClick={() => setFilterPillar(pillar.id)}
+              onClick={() => {
+                setFilterPillar(pillar.id);
+                playGhungrooChime();
+              }}
               className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer tap-bounce ${
                 filterPillar === pillar.id
                   ? "bg-[#151515] text-[#F5F0E8] shadow-md shadow-[#151515]/20 scale-[1.02]"
@@ -137,7 +155,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           ))}
         </div>
 
-        {/* 8 Distinct Interactive Service Cards */}
+        {/* 8 Distinct Interactive Service Cards with Silk Pleat Unfold Animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {filteredCourses.map((course, idx) => {
             const theme = SERVICE_THEMES[course.id] || {
@@ -151,8 +169,8 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
             return (
               <AnimatedSection
                 key={course.id}
-                delay={idx * 50}
-                className={`bg-white rounded-3xl overflow-hidden border ${theme.accentColor} shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between text-left group relative`}
+                delay={idx * 60}
+                className={`silk-pleat-card bg-white rounded-3xl overflow-hidden border ${theme.accentColor} shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-left group relative`}
               >
                 <div>
                   {/* Card Thumbnail with Museum Border Frame */}
@@ -222,15 +240,15 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
                 <div className="p-5 sm:p-6 pt-0 border-t border-slate-100 mt-3 space-y-2">
                   <div className="flex items-center justify-between gap-2 pt-3">
                     <button
-                      onClick={() => setSelectedCourseModal(course)}
+                      onClick={() => handleViewSyllabus(course)}
                       className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
                     >
                       View Syllabus
                     </button>
 
                     <button
-                      onClick={() => onSelectServiceForBooking(course.title)}
-                      className="px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
+                      onClick={() => handleBookingClick(course.title)}
+                      className="px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
                     >
                       <span>Book 1-to-1</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -251,6 +269,6 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           })}
         </div>
       </div>
-    </section>
+    </StageSpotlightOverlay>
   );
 }

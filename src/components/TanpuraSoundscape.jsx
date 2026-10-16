@@ -1,13 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Volume2, Music } from "lucide-react";
+import { Volume2, Music, Bell, BellOff, ChevronUp, ChevronDown } from "lucide-react";
+import GamakaWaveform from "./GamakaWaveform";
+import { playGhungrooChime, toggleTalamSound, isTalamSoundEnabled } from "../utils/talamAudio";
 
 /**
- * Native Web Audio API Tanpura & Shruti Drone Synthesizer.
- * Creates an authentic, gentle, meditative Indian classical drone (Sa - Pa - Sa')
- * with zero external MP3 assets, meaning 100% offline reliability.
+ * Native Web Audio API Tanpura & Shruti Drone Synthesizer with Gamaka Waveform.
+ * Synthesizes an authentic Indian classical drone (Sa - Pa - Sa')
+ * with real-time Carnatic Gamaka harmonic oscillations.
  */
 export default function TanpuraSoundscape() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [bellsActive, setBellsActive] = useState(isTalamSoundEnabled());
+
   const audioCtxRef = useRef(null);
   const oscillatorsRef = useRef([]);
   const gainNodeRef = useRef(null);
@@ -16,7 +21,7 @@ export default function TanpuraSoundscape() {
   const baseFreq = 138.59;
   const notes = [
     { freq: baseFreq * 1.5, name: "Pa (Fifth)", detune: -4 },
-    { freq: baseFreq * 2.0, name: "Sa (Higher Octave)", detune: 2 },
+    { freq: baseFreq * 2.0, name: "Sa' (Higher Octave)", detune: 2 },
     { freq: baseFreq * 2.0, name: "Sa (Middle)", detune: -2 },
     { freq: baseFreq, name: "Kharaj Sa (Root)", detune: 0 }
   ];
@@ -56,7 +61,7 @@ export default function TanpuraSoundscape() {
       masterGain.connect(ctx.destination);
       gainNodeRef.current = masterGain;
 
-      // Filter to simulate the rich wooden acoustic body of the Tanpura
+      // Filter simulating rich acoustic gourd body
       const filter = ctx.createBiquadFilter();
       filter.type = "lowpass";
       filter.frequency.setValueAtTime(1400, ctx.currentTime);
@@ -92,6 +97,7 @@ export default function TanpuraSoundscape() {
       });
 
       setIsPlaying(true);
+      playGhungrooChime();
     } catch (e) {
       console.warn("Web Audio autoplay prevented or not supported", e);
       setIsPlaying(false);
@@ -106,6 +112,15 @@ export default function TanpuraSoundscape() {
     }
   };
 
+  const handleToggleBells = (e) => {
+    e.stopPropagation();
+    const newState = toggleTalamSound();
+    setBellsActive(newState);
+    if (newState) {
+      playGhungrooChime();
+    }
+  };
+
   useEffect(() => {
     return () => {
       stopDrone();
@@ -116,39 +131,109 @@ export default function TanpuraSoundscape() {
   }, []);
 
   return (
-    <div className="fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40">
-      <button
-        onClick={toggleSound}
-        className={`group flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer tap-bounce ${
-          isPlaying
-            ? "bg-slate-950/95 border-amber-400 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.35)] scale-105"
-            : "bg-white/95 border-amber-300/60 text-slate-700 hover:border-amber-400 hover:text-amber-800"
-        }`}
-        title="Experience Indian Classical Tanpura & Raga Shruti Drone"
-        aria-label="Toggle Tanpura soundscape"
-      >
-        <div
-          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-all ${
-            isPlaying
-              ? "bg-gradient-to-tr from-amber-500 to-rose-600 text-white animate-pulse"
-              : "bg-amber-100 text-amber-700 group-hover:scale-105"
-          }`}
-        >
-          {isPlaying ? <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Music className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
-        </div>
+    <div className="fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2">
+      {/* Expanded Gamaka Harmonic Visualizer Modal / Panel */}
+      {isExpanded && (
+        <div className="w-72 sm:w-80 p-4 rounded-2xl bg-[#151515]/95 border border-[#B99A63]/50 shadow-2xl backdrop-blur-xl text-left space-y-3 animate-silk-fan">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />
+              <span className="text-xs font-bold text-[#F5F0E8] font-serif-luxury tracking-wide">
+                Carnatic Gamaka Oscillations
+              </span>
+            </div>
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="text-[#A9A49D] hover:text-white text-xs p-1 cursor-pointer"
+            >
+              ✕
+            </button>
+          </div>
 
-        <div className="text-left text-[10px] sm:text-[11px] leading-tight pr-1">
-          <p className="font-bold flex items-center gap-1">
-            <span>Tanpura Drone</span>
-            {isPlaying && (
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping inline-block" />
-            )}
+          <p className="text-[11px] text-slate-300 leading-snug">
+            Real-time sine-wave visualization of the 4 sacred Tanpura strings tuned to <strong>C# (138.6 Hz)</strong>.
           </p>
-          <p className={`text-[8px] sm:text-[9px] ${isPlaying ? "text-amber-300/80" : "text-slate-500"}`}>
-            {isPlaying ? "Classical Shruti Active" : "Tap for Sound"}
-          </p>
+
+          <div className="rounded-xl bg-black/60 p-2.5 border border-[#B99A63]/30">
+            <GamakaWaveform isPlaying={isPlaying} height={60} />
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-[#B99A63] pt-1 border-t border-white/10">
+            <span>Jawari Buzz: Pure Acoustic</span>
+            <button
+              onClick={handleToggleBells}
+              className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#3B0B14] hover:bg-[#4A0E17] text-[#D4AF37] border border-[#B99A63]/40 cursor-pointer"
+            >
+              {bellsActive ? <Bell className="w-3 h-3 text-[#D4AF37]" /> : <BellOff className="w-3 h-3 text-slate-400" />}
+              <span>{bellsActive ? "Ghungroo Audio: ON" : "Ghungroo: Muted"}</span>
+            </button>
+          </div>
         </div>
-      </button>
+      )}
+
+      {/* Floating Controller Pill */}
+      <div className="flex items-center gap-1.5">
+        <button
+          onClick={toggleSound}
+          className={`group flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer tap-bounce ${
+            isPlaying
+              ? "bg-slate-950/95 border-[#B99A63] text-[#D4AF37] shadow-[0_0_20px_rgba(185,154,99,0.35)] scale-105"
+              : "bg-white/95 border-[#A9A49D]/40 text-slate-700 hover:border-[#B99A63] hover:text-[#151515]"
+          }`}
+          title="Experience Indian Classical Tanpura & Raga Shruti Drone"
+          aria-label="Toggle Tanpura soundscape"
+        >
+          <div
+            className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-all ${
+              isPlaying
+                ? "bg-gradient-to-tr from-[#B99A63] to-[#3B0B14] text-white animate-pulse"
+                : "bg-amber-100 text-[#B99A63] group-hover:scale-105"
+            }`}
+          >
+            {isPlaying ? <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Music className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
+          </div>
+
+          <div className="text-left text-[10px] sm:text-[11px] leading-tight pr-1">
+            <p className="font-bold flex items-center gap-1">
+              <span>Tanpura Drone</span>
+              {isPlaying && (
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B99A63] animate-ping inline-block" />
+              )}
+            </p>
+            <p className={`text-[8px] sm:text-[9px] ${isPlaying ? "text-[#D4AF37]/90" : "text-slate-500"}`}>
+              {isPlaying ? "Classical Shruti Active" : "Tap for Sound"}
+            </p>
+          </div>
+        </button>
+
+        {/* Gamaka Visualizer Expand Trigger */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={`p-2 rounded-full border shadow-md backdrop-blur-md transition-all cursor-pointer ${
+            isExpanded
+              ? "bg-[#B99A63] text-[#151515] border-[#B99A63]"
+              : "bg-white/90 text-slate-700 border-[#A9A49D]/40 hover:border-[#B99A63]"
+          }`}
+          title="Toggle Gamaka Waveform Visualizer"
+          aria-label="Gamaka waveform display"
+        >
+          {isExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
+        </button>
+
+        {/* Ghungroo Bell Audio Toggle */}
+        <button
+          onClick={handleToggleBells}
+          className={`p-2 rounded-full border shadow-md backdrop-blur-md transition-all cursor-pointer ${
+            bellsActive
+              ? "bg-[#3B0B14] text-[#D4AF37] border-[#B99A63]/50"
+              : "bg-white/90 text-slate-400 border-[#A9A49D]/40 hover:text-slate-700"
+          }`}
+          title={bellsActive ? "Ghungroo Bell Click Chime Active" : "Ghungroo Muted"}
+          aria-label="Ghungroo bell chime"
+        >
+          {bellsActive ? <Bell className="w-3.5 h-3.5 text-[#D4AF37]" /> : <BellOff className="w-3.5 h-3.5" />}
+        </button>
+      </div>
     </div>
   );
 }

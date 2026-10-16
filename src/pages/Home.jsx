@@ -6,6 +6,10 @@ import GoldParticlesCanvas from "../components/GoldParticlesCanvas";
 import ArtisticJourneyTimeline from "../components/ArtisticJourneyTimeline";
 import InteractiveServiceCards from "../components/InteractiveServiceCards";
 import ImmersiveArtForms from "../components/ImmersiveArtForms";
+import NavarasaWheel from "../components/NavarasaWheel";
+import SacredMandalaScroll from "../components/SacredMandalaScroll";
+import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
+import { playGhungrooChime } from "../utils/talamAudio";
 import { FAQS, TESTIMONIALS } from "../data/initialData";
 import {
   Sparkles,
@@ -75,6 +79,7 @@ export default function Home() {
       return;
     }
 
+    playGhungrooChime();
     setIsSubmitting(true);
     setTimeout(() => {
       addEnquiry({
@@ -89,11 +94,13 @@ export default function Home() {
 
       setIsSubmitting(false);
       setSubmittedSuccess(true);
+      playGhungrooChime();
       showToast("Your 1-to-1 trial request has been submitted! Dr. Malavika will confirm your slot shortly.", "success");
     }, 600);
   };
 
   const openWhatsAppBooking = () => {
+    playGhungrooChime();
     const msg = `Hello Dr. Malavika! I would like to book a 1-to-1 trial session.%0A%0A*Name:* ${formData.name || "Student"}%0A*Discipline:* ${formData.discipline}%0A*Level:* ${formData.level}%0A*Preferred Time:* ${formData.preferredTime}`;
     const url = `https://wa.me/${academyInfo.whatsappNumber.replace(/[^0-9]/g, "")}?text=${msg}`;
     window.open(url, "_blank");
@@ -120,6 +127,9 @@ export default function Home() {
         {/* Stage Gold Particles Background Canvas */}
         <GoldParticlesCanvas count={38} className="opacity-75" />
 
+        {/* Sacred Temple Yantra Mandala Background */}
+        <SacredMandalaScroll className="absolute -right-24 -top-20 opacity-[0.06] -z-10" size={580} />
+
         {/* Ambient subtle lighting */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#3B0B14]/10 via-[#B99A63]/8 to-transparent blur-3xl pointer-events-none -z-10" />
 
@@ -145,7 +155,10 @@ export default function Home() {
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                 <button
-                  onClick={() => scrollToSection("services-section")}
+                  onClick={() => {
+                    playGhungrooChime();
+                    scrollToSection("services-section");
+                  }}
                   className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-lg shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
                 >
                   <Sparkles className="w-4 h-4 text-[#151515]" />
@@ -154,7 +167,10 @@ export default function Home() {
                 </button>
 
                 <button
-                  onClick={() => scrollToSection("artistic-journey")}
+                  onClick={() => {
+                    playGhungrooChime();
+                    scrollToSection("artistic-journey");
+                  }}
                   className="px-7 py-4 rounded-full bg-[#151515] hover:bg-[#252525] text-[#F5F0E8] font-bold text-sm sm:text-base shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
                   <UserCheck className="w-4 h-4 text-[#B99A63]" />
@@ -280,8 +296,11 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
       ───────────────────────────────────────────────────────────── */}
-      <section id="meet-instructor" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-        <div className="max-w-7xl mx-auto">
+      <section id="meet-instructor" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 relative overflow-hidden">
+        {/* Sacred Temple Yantra Mandala Background */}
+        <SacredMandalaScroll className="absolute -left-28 -bottom-24 opacity-[0.05] -z-10" size={540} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Instructor Portrait with Museum Frame */}
             <AnimatedSection animation="fade-up" className="lg:col-span-5 relative">
@@ -373,6 +392,11 @@ export default function Home() {
           5. IMMERSIVE ART-FORM TRANSITIONS: 4 Interactive Disciplines
       ───────────────────────────────────────────────────────────── */}
       <ImmersiveArtForms />
+
+      {/* ─────────────────────────────────────────────────────────────
+          5B. INTERACTIVE NAVARASA EMOTION WHEEL: The 9 Sentiments of Abhinaya
+      ───────────────────────────────────────────────────────────── */}
+      <NavarasaWheel />
 
       {/* ─────────────────────────────────────────────────────────────
           6. THE 1-TO-1 EXPERIENCE: The Process Explained
@@ -504,7 +528,11 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           9. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
       ───────────────────────────────────────────────────────────── */}
-      <section id="book-trial" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+      <StageSpotlightOverlay>
+        <section id="book-trial" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+        {/* Sacred Temple Yantra Mandala Background */}
+        <SacredMandalaScroll className="absolute -right-24 -top-24 opacity-[0.06] -z-10" size={540} />
+
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#3B0B14]/40 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -713,6 +741,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </StageSpotlightOverlay>
 
       {/* ─────────────────────────────────────────────────────────────
           10. FAQS & REASSURANCE
