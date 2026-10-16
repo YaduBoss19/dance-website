@@ -1,0 +1,967 @@
+import React, { useState, useRef } from "react";
+import { useAcademy } from "../context/AcademyContext";
+import AnimatedSection from "../components/AnimatedSection";
+import VideoPerformanceShowcase from "../components/VideoPerformanceShowcase";
+import { FAQS, TESTIMONIALS } from "../data/initialData";
+import {
+  Sparkles,
+  ArrowRight,
+  Star,
+  Award,
+  Clock,
+  CheckCircle2,
+  MessageCircle,
+  Send,
+  Heart,
+  ChevronDown,
+  Play,
+  Film
+} from "lucide-react";
+
+export default function Home() {
+  const {
+    courses,
+    setSelectedCourseModal,
+    setLightboxItem,
+    gallery,
+    academyInfo,
+    addEnquiry,
+    showToast
+  } = useAcademy();
+
+  // Booking Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    discipline: "Bharatanatyam Classical Dance",
+    level: "Complete Beginner (No prior experience)",
+    preferredTime: "Weekday Evening",
+    timezone: "Europe / Georgia (GET)",
+    notes: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(false);
+
+  // FAQ Accordion State
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  // Creative Hero Intro Video State
+  const heroVideoRef = useRef(null);
+  const [heroVideoPlaying, setHeroVideoPlaying] = useState(false);
+
+  // Separate Dance & Music courses
+  const danceCourses = courses.filter(
+    (c) =>
+      c.category === "Online Academy" &&
+      !c.title.toLowerCase().includes("vocal") &&
+      !c.title.toLowerCase().includes("yoga") ||
+      c.category === "Bespoke Choreography" ||
+      c.category === "Workshops for Institutions"
+  );
+
+  const musicAndMindCourses = courses.filter(
+    (c) =>
+      c.title.toLowerCase().includes("vocal") ||
+      c.title.toLowerCase().includes("yoga")
+  );
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.phone) {
+      showToast("Please provide your name, email, and contact number.", "error");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      addEnquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        type: "trial",
+        courseInterest: formData.discipline,
+        notes: `Level: ${formData.level} | Preferred Time: ${formData.preferredTime} (${formData.timezone}) | Goals: ${formData.notes || "None specified"}`,
+        status: "New"
+      });
+
+      setIsSubmitting(false);
+      setSubmittedSuccess(true);
+      showToast("Your 1-to-1 trial request has been submitted! Dr. Malavika will confirm your slot shortly.", "success");
+    }, 600);
+  };
+
+  const openWhatsAppBooking = () => {
+    const msg = `Hello Dr. Malavika! I would like to book a 1-to-1 trial session.%0A%0A*Name:* ${formData.name || "Student"}%0A*Discipline:* ${formData.discipline}%0A*Level:* ${formData.level}%0A*Preferred Time:* ${formData.preferredTime}`;
+    const url = `https://wa.me/${academyInfo.whatsappNumber.replace(/[^0-9]/g, "")}?text=${msg}`;
+    window.open(url, "_blank");
+  };
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="bg-[#F5F0E8] text-[#151515] selection:bg-[#B99A63]/30 selection:text-[#151515] overflow-x-hidden">
+      {/* ─────────────────────────────────────────────────────────────
+          2. HERO SECTION: "Your Passion. Your Pace. Your Personal Coach."
+      ───────────────────────────────────────────────────────────── */}
+      <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 overflow-hidden">
+        {/* Ambient subtle glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#B99A63]/12 via-[#B99A63]/5 to-transparent blur-3xl pointer-events-none -z-10" />
+
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Headline & Pitch */}
+            <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-semibold tracking-wider uppercase">
+                <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
+                <span>Move · Learn · Master</span>
+              </div>
+
+              <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#151515] leading-[1.08] font-serif-luxury">
+                Your Passion. <br />
+                Your Pace. <br />
+                <span className="italic text-[#B99A63]">Your Personal Coach.</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl font-normal">
+                A personal space for dance, music, and creative expression. Master classical Bharatanatyam, Carnatic vocal music, or bespoke choreography through <strong>online, one-to-one private lessons</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
+              </p>
+
+              {/* Two Prominent CTAs */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                <button
+                  onClick={() => scrollToSection("book-trial")}
+                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-lg shadow-[#B99A63]/25 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
+                >
+                  <Sparkles className="w-4 h-4 text-[#151515]" />
+                  <span>Book a Trial Session</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => scrollToSection("dance-lessons")}
+                  className="px-7 py-4 rounded-full bg-white border border-[#A9A49D]/40 text-[#151515] font-bold text-sm sm:text-base hover:bg-[#151515] hover:text-[#F5F0E8] hover:border-[#151515] shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                >
+                  <span>Explore Lessons</span>
+                  <ChevronDown className="w-4 h-4 text-[#A9A49D]" />
+                </button>
+              </div>
+
+              {/* 4 Value Pillars Banner */}
+              <div className="pt-8 border-t border-[#A9A49D]/25 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Online 1-to-1</div>
+                  <p className="text-xs text-slate-600 mt-1">Live, personalised lessons from anywhere.</p>
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Personal Coaching</div>
+                  <p className="text-xs text-slate-600 mt-1">Lessons adapted to your individual goals.</p>
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Flexible Scheduling</div>
+                  <p className="text-xs text-slate-600 mt-1">Request a suitable session time.</p>
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Dance & Music</div>
+                  <p className="text-xs text-slate-600 mt-1">Explore separate lesson categories.</p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Right Visual Frame: Museum Frame with Interactive Intro Video */}
+            <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+                <div className="museum-frame group">
+                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative">
+                    <video
+                      ref={heroVideoRef}
+                      src="/videos/performance.mp4"
+                      poster="/images/malavika_dance_stage.jpg"
+                      playsInline
+                      controls={heroVideoPlaying}
+                      onPlay={() => setHeroVideoPlaying(true)}
+                      onPause={() => setHeroVideoPlaying(false)}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Interactive Play Overlay when not active */}
+                    {!heroVideoPlaying && (
+                      <div
+                        onClick={() => {
+                          if (heroVideoRef.current) {
+                            heroVideoRef.current.play();
+                            setHeroVideoPlaying(true);
+                          }
+                        }}
+                        className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/30 to-transparent flex flex-col justify-between p-6 cursor-pointer group/overlay transition-all"
+                      >
+                        {/* Top Video Tag */}
+                        <div className="self-end">
+                          <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#151515]/90 backdrop-blur-md text-[#B99A63] border border-[#B99A63]/60 flex items-center gap-1.5 shadow-lg">
+                            <Film className="w-3.5 h-3.5 text-[#B99A63]" />
+                            <span>Intro Video</span>
+                          </span>
+                        </div>
+
+                        {/* Center Glowing Play Button */}
+                        <div className="self-center flex flex-col items-center gap-3">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl shadow-[#B99A63]/50 group-hover/overlay:scale-110 active:scale-95 transition-all">
+                            <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#151515] ml-1" />
+                          </div>
+                          <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/80 px-3.5 py-1 rounded-full border border-[#B99A63]/30 backdrop-blur-xs">
+                            Watch Studio Intro
+                          </span>
+                        </div>
+
+                        {/* Bottom Visual Label */}
+                        <div className="text-left text-[#F5F0E8]">
+                          <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#B99A63] text-[#151515] uppercase tracking-wider inline-block mb-1.5">
+                            Classical Margam & Vocal Intro
+                          </span>
+                          <h3 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
+                            Dr. Malavika M. Sunil
+                          </h3>
+                          <p className="text-xs text-[#A9A49D] mt-0.5">
+                            CCRT Scholar · 21 Years Lineage · MBBS Physician
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Floating Badge */}
+                <div className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-xl text-left flex items-center gap-2.5 z-20">
+                  <Award className="w-5 h-5 text-[#B99A63]" />
+                  <div>
+                    <div className="text-xs font-bold">1-to-1 Private Coaching</div>
+                    <div className="text-[10px] text-[#A9A49D]">Tailored to Your Schedule</div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
+      ───────────────────────────────────────────────────────────── */}
+      <section id="meet-instructor" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Instructor Portrait with Museum Frame */}
+            <AnimatedSection animation="fade-up" className="lg:col-span-5 relative">
+              <div className="museum-frame group">
+                <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative">
+                  <img
+                    src="/images/malavika_portrait.jpg"
+                    alt="Dr. Malavika M. Sunil Portrait"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/90 via-[#151515]/20 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-left text-white">
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-[#B99A63]">
+                      Your Personal Mentor
+                    </span>
+                    <h3 className="text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
+                      Dr. Malavika M. Sunil
+                    </h3>
+                    <p className="text-xs text-[#A9A49D] mt-1">
+                      Disciple of Dr. Sunil Nellay & Resmi Narayanan
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Biography, Credentials & Philosophy */}
+            <AnimatedSection animation="fade-up" delay={100} className="lg:col-span-7 text-left space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+                  Meet Your Instructor
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+                  Rooted in Sacred Tradition. <br />
+                  <span className="italic text-[#B99A63]">Guided by Anatomical Science.</span>
+                </h2>
+              </div>
+
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Welcome to a private space where classical dance and music are taught as living arts. I began my Bharatanatyam journey over 21 years ago under my father and master guru, <strong>Dr. Sunil Nellay</strong>, and trained for 16+ years in Carnatic vocal music under my mother, <strong>Resmi Narayanan</strong>. At age 12, I was honored with the prestigious <strong>CCRT National Scholarship</strong> by the Government of India.
+              </p>
+
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Alongside 600+ stage recitals and starring in 5 Malayalam feature films (including <em>Kaazhcha</em>), I completed my medical degree (<strong>MBBS</strong>) in Tbilisi, Georgia, and became a certified yoga instructor. This unique intersection of medicine and movement allows me to coach you with biomechanical precision—preventing dance injuries, strengthening posture, and developing vocal endurance safely.
+              </p>
+
+              {/* Teaching Philosophy Callout */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/40 space-y-2">
+                <div className="text-xs font-bold uppercase tracking-widest text-[#B99A63] flex items-center gap-2">
+                  <Heart className="w-3.5 h-3.5 fill-[#B99A63]" />
+                  <span>My Teaching Philosophy</span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
+                  "No two bodies or voices are identical. In 1-to-1 private coaching, we discard one-size-fits-all group drill pressures. We progress at your exact pace, aligning rhythm, anatomy, and soulful expression so you truly own your art."
+                </p>
+              </div>
+
+              {/* 4 Key Milestone Accolades */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
+                  <div className="text-xl font-black text-[#151515] font-serif-luxury">21+ Yrs</div>
+                  <div className="text-[11px] text-slate-600 font-medium">Bharatanatyam</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
+                  <div className="text-xl font-black text-[#B99A63] font-serif-luxury">CCRT</div>
+                  <div className="text-[11px] text-slate-600 font-medium">National Scholar</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
+                  <div className="text-xl font-black text-[#151515] font-serif-luxury">MBBS</div>
+                  <div className="text-[11px] text-slate-600 font-medium">Physician & Yoga</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
+                  <div className="text-xl font-black text-[#B99A63] font-serif-luxury">600+</div>
+                  <div className="text-[11px] text-slate-600 font-medium">Stage Recitals</div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          4. EXPLORE DANCE LESSONS: Dedicated cards for dance styles
+      ───────────────────────────────────────────────────────────── */}
+      <section id="dance-lessons" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Dance Disciplines
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              Explore Dance Lessons
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              From accredited classical Bharatanatyam to custom performance choreography. Every lesson is conducted live, one-on-one.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {danceCourses.map((course, idx) => (
+              <AnimatedSection
+                key={course.id}
+                delay={idx * 60}
+                className="bg-white rounded-3xl overflow-hidden border border-[#A9A49D]/25 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div>
+                  {/* Card Thumbnail with Luxury Gold Border Frame */}
+                  <div className="p-3 pb-0">
+                    <div className="card-photo-frame aspect-[16/10] w-full bg-[#151515] relative">
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#151515]/90 text-[#F5F0E8] shadow-sm backdrop-blur-xs">
+                          {course.level}
+                        </span>
+                        {course.badge && (
+                          <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#B99A63] text-[#151515] shadow-sm">
+                            {course.badge}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-6 space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-[#B99A63]">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>{course.duration}</span>
+                      <span>•</span>
+                      <span>{course.ageGroup}</span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[#151515] font-serif-luxury group-hover:text-[#B99A63] transition-colors">
+                      {course.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                      {course.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card Actions */}
+                <div className="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between gap-3">
+                  <button
+                    onClick={() => setSelectedCourseModal(course)}
+                    className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
+                  >
+                    View Syllabus
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, discipline: course.title }));
+                      scrollToSection("book-trial");
+                    }}
+                    className="px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
+                  >
+                    <span>Book 1-to-1</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          5. EXPLORE MUSIC & MIND LESSONS: Vocals & Yoga
+      ───────────────────────────────────────────────────────────── */}
+      <section id="music-lessons" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Music & Alignment
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              Explore Music & Mind Lessons
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              Nurture your voice and posture through private Carnatic vocal lessons and physician-guided yoga conditioning.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {musicAndMindCourses.map((course, idx) => (
+              <AnimatedSection
+                key={course.id}
+                delay={idx * 80}
+                className="bg-white rounded-3xl overflow-hidden border border-[#A9A49D]/25 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div>
+                  {/* Card Thumbnail with Luxury Gold Border Frame */}
+                  <div className="p-3 pb-0">
+                    <div className="card-photo-frame aspect-[16/10] w-full bg-[#151515] relative">
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#151515]/90 text-[#F5F0E8] shadow-sm backdrop-blur-xs">
+                          {course.level}
+                        </span>
+                        {course.badge && (
+                          <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#B99A63] text-[#151515] shadow-sm">
+                            {course.badge}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 sm:p-8 space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-[#B99A63]">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>{course.duration}</span>
+                      <span>•</span>
+                      <span>{course.ageGroup}</span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-[#151515] font-serif-luxury group-hover:text-[#B99A63] transition-colors">
+                      {course.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {course.description}
+                    </p>
+
+                    <div className="pt-2 space-y-1.5">
+                      {course.syllabus.slice(0, 3).map((item, sIdx) => (
+                        <div key={sIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#B99A63] shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 pt-0 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <button
+                    onClick={() => setSelectedCourseModal(course)}
+                    className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
+                  >
+                    View Curriculum
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, discipline: course.title }));
+                      scrollToSection("book-trial");
+                    }}
+                    className="px-5 py-2.5 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
+                  >
+                    <span>Book 1-to-1</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          6. THE 1-TO-1 EXPERIENCE: The Process Explained
+      ───────────────────────────────────────────────────────────── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Personalized Journey
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              The 1-to-1 Experience
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              How private online mentorship works — from your first trial consultation to stage mastery.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 text-left">
+            {[
+              {
+                step: "01",
+                title: "Choose Discipline",
+                desc: "Select Bharatanatyam, Carnatic vocal music, Bollywood, or yoga conditioning based on your passion."
+              },
+              {
+                step: "02",
+                title: "Discuss Your Goals",
+                desc: "A brief private assessment to understand your physical posture, vocal pitch, and musical dreams."
+              },
+              {
+                step: "03",
+                title: "Book Flexible Time",
+                desc: "Schedule sessions that suit your personal timezone in North America, Europe, Middle East, or Asia."
+              },
+              {
+                step: "04",
+                title: "Live 1-to-1 Lesson",
+                desc: "Direct, undivided attention with Dr. Malavika. Immediate correction of mudras, tala rhythm, and shruti."
+              },
+              {
+                step: "05",
+                title: "Personal Feedback",
+                desc: "Receive customized video practice clips and constructive notes after every session for steady progress."
+              }
+            ].map((step, idx) => (
+              <AnimatedSection
+                key={step.step}
+                delay={idx * 60}
+                className="p-6 rounded-2xl bg-white border border-[#A9A49D]/20 shadow-xs flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-2xl font-black text-[#B99A63] font-serif-luxury mb-3">
+                    {step.step}
+                  </div>
+                  <h4 className="text-base font-bold text-[#151515] mb-1.5">{step.title}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          8. GALLERY & ACHIEVEMENTS: Clips, Performances & Recitals
+      ───────────────────────────────────────────────────────────── */}
+      <section id="gallery-section" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Stage & Screen Moments
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              Gallery & Achievements
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              A curated look into classical recitals, vocal concerts, and international stage productions in Georgia and India.
+            </p>
+          </AnimatedSection>
+
+          {/* Integrated Studio Prelude & Intro Video Showcase */}
+          <VideoPerformanceShowcase
+            videoSrc="/videos/performance.mp4"
+            posterImage="/images/malavika_dance_stage.jpg"
+            title="Studio Prelude & Video Introduction"
+            subtitle="An intimate personal introduction and classical Margam recital by Dr. Malavika M. Sunil"
+          />
+
+          {/* Photographic Moments Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+            {gallery.slice(0, 4).map((item) => (
+              <div
+                key={item.id}
+                onClick={() => setLightboxItem(item)}
+                className="card-photo-frame aspect-square bg-[#151515] group cursor-pointer shadow-md hover:border-[#B99A63] transition-all tap-bounce"
+              >
+                <img
+                  src={item.url}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
+                  <span className="text-[10px] font-bold text-[#B99A63] uppercase">
+                    {item.category}
+                  </span>
+                  <p className="text-xs font-bold truncate">{item.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          9. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback
+      ───────────────────────────────────────────────────────────── */}
+      <section id="testimonials" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Student Experiences
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              Student & Parent Stories
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              What it feels like to learn directly from a dedicated private mentor.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {TESTIMONIALS.map((t, idx) => (
+              <AnimatedSection
+                key={t.id}
+                delay={idx * 80}
+                className="bg-white p-7 sm:p-8 rounded-3xl border border-[#A9A49D]/20 shadow-sm flex flex-col justify-between text-left"
+              >
+                <div>
+                  <div className="flex items-center gap-1 text-[#B99A63] mb-4">
+                    {[...Array(t.stars)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[#B99A63]" />
+                    ))}
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed mb-6">
+                    "{t.quote}"
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-10 h-10 rounded-full object-cover border border-[#B99A63]/40"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-[#151515]">{t.name}</h4>
+                    <p className="text-[11px] text-[#B99A63] font-medium">{t.relation}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          10. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
+      ───────────────────────────────────────────────────────────── */}
+      <section id="book-trial" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
+          <AnimatedSection animation="fade-up" className="text-center space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/15 px-3.5 py-1.5 rounded-full border border-[#B99A63]/40 inline-flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
+              <span>Zero-Commitment Trial</span>
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
+              Book a 1-to-1 Trial Session
+            </h2>
+
+            <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+              Meet Dr. Malavika M. Sunil for a private 45-minute video consultation and movement/vocal assessment. Share your goals, ask questions, and discover your personalized learning pathway.
+            </p>
+          </AnimatedSection>
+
+          {/* Form Card */}
+          <div className="bg-[#1f1f1f] rounded-3xl p-6 sm:p-10 border border-[#B99A63]/30 shadow-2xl text-left">
+            {submittedSuccess ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#B99A63]/20 text-[#B99A63] flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
+                  Trial Request Received!
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                  Thank you, <strong>{formData.name}</strong>. Dr. Malavika has received your request for <strong>{formData.discipline}</strong>. You will receive an email and WhatsApp confirmation to finalize your exact video session slot.
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    onClick={openWhatsAppBooking}
+                    className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 tap-bounce"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Confirm Instantly via WhatsApp</span>
+                  </button>
+                  <button
+                    onClick={() => setSubmittedSuccess(false)}
+                    className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs"
+                  >
+                    Submit Another Request
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleBookingSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Student Name */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Student's Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleFormChange}
+                      placeholder="e.g. Ananya Nair"
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      placeholder="e.g. ananya@example.com"
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Phone / WhatsApp */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Phone / WhatsApp (with country code) *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleFormChange}
+                      placeholder="+1 (555) 000-0000"
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    />
+                  </div>
+
+                  {/* Discipline Selector */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Discipline of Interest *
+                    </label>
+                    <select
+                      name="discipline"
+                      value={formData.discipline}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    >
+                      <option value="Bharatanatyam Classical Dance">Online Bharatanatyam Diploma Programme</option>
+                      <option value="Carnatic Vocal Music">Online Carnatic Vocal Music</option>
+                      <option value="Semi-Classical & Bollywood Dance">Online Semi-Classical & Bollywood Dance</option>
+                      <option value="Physician-Led Yoga & Breathwork">Online Yoga & Fitness for Dancers</option>
+                      <option value="Personalised Song Choreography">Personalised Dance Choreography (Custom Songs)</option>
+                      <option value="Stage Performance Choreography">Stage Performance Choreography</option>
+                      <option value="Institutional Dance Workshop">Institutional Workshop (1-Day / 5-Day)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Experience Level */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Current Experience Level
+                    </label>
+                    <select
+                      name="level"
+                      value={formData.level}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    >
+                      <option value="Complete Beginner (No prior experience)">Complete Beginner (Starting from zero)</option>
+                      <option value="Some Prior Lessons (Basic Adavus / Sarali Varisais)">Some Prior Lessons (Basic foundation)</option>
+                      <option value="Intermediate Dancer / Singer">Intermediate (Seeking refinement & repertoire)</option>
+                      <option value="Advanced / Arangetram / Stage Performer">Advanced / Arangetram / Stage Performer</option>
+                    </select>
+                  </div>
+
+                  {/* Preferred Time Slot */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                      Preferred Session Time
+                    </label>
+                    <select
+                      name="preferredTime"
+                      value={formData.preferredTime}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                    >
+                      <option value="Weekday Morning">Weekday Morning</option>
+                      <option value="Weekday Afternoon">Weekday Afternoon</option>
+                      <option value="Weekday Evening">Weekday Evening</option>
+                      <option value="Weekend Morning">Weekend Morning</option>
+                      <option value="Weekend Afternoon / Evening">Weekend Afternoon / Evening</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Goals & Message */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+                    Your Creative Goals & Questions (Optional)
+                  </label>
+                  <textarea
+                    name="notes"
+                    rows={3}
+                    value={formData.notes}
+                    onChange={handleFormChange}
+                    placeholder="e.g. Preparing for a family sangeet, starting Bharatanatyam as an adult beginner, or seeking posture-safe training..."
+                    className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
+                  />
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full sm:flex-1 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 transition-all cursor-pointer flex items-center justify-center gap-2 tap-bounce disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <span>Sending Request...</span>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-[#151515]" />
+                        <span>Submit Booking Request</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={openWhatsAppBooking}
+                    className="w-full sm:w-auto px-6 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 tap-bounce cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>WhatsApp Directly</span>
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          11. FAQS & FOOTER: Common questions & reassurance
+      ───────────────────────────────────────────────────────────── */}
+      <section id="faqs" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <AnimatedSection animation="fade-up" className="text-center space-y-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
+              Frequently Asked Questions
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
+              Everything You Need to Know
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              Clear answers about online setup, flexible timezones, adult beginner pacing, and cancellations.
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-4 text-left">
+            {FAQS.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <AnimatedSection
+                  key={idx}
+                  delay={idx * 40}
+                  className="rounded-2xl bg-white border border-[#A9A49D]/20 overflow-hidden shadow-xs transition-all"
+                >
+                  <button
+                    onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  >
+                    <span className="text-base sm:text-lg font-bold text-[#151515] font-serif-luxury">
+                      {faq.question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-[#B99A63] shrink-0 transition-transform duration-300 ${
+                        isOpen ? "transform rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                      {faq.answer}
+                    </div>
+                  )}
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
