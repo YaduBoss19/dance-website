@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useAcademy } from "../context/AcademyContext";
 import AnimatedSection from "../components/AnimatedSection";
-import VideoPerformanceShowcase from "../components/VideoPerformanceShowcase";
+import CinematicReelsShowcase from "../components/CinematicReelsShowcase";
 import GoldParticlesCanvas from "../components/GoldParticlesCanvas";
 import ArtisticJourneyTimeline from "../components/ArtisticJourneyTimeline";
 import InteractiveServiceCards from "../components/InteractiveServiceCards";
@@ -438,55 +438,14 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          7. GALLERY & ACHIEVEMENTS: Clips, Performances & Recitals
+          7. GALLERY & ACHIEVEMENTS: Two-Panel Cinematic Hero + Infinite Reels
       ───────────────────────────────────────────────────────────── */}
-      <section id="gallery-section" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Stage & Screen Moments
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              Gallery & Achievements
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              A curated look into classical recitals, vocal concerts, and international stage productions in Georgia and India.
-            </p>
-          </AnimatedSection>
-
-          {/* Integrated Studio Prelude & Intro Video Showcase */}
-          <VideoPerformanceShowcase
-            videoSrc="/videos/performance.mp4"
-            posterImage="/images/malavika_dance_stage.jpg"
-            title="Studio Prelude & Video Introduction"
-            subtitle="An intimate personal introduction and classical Margam recital by Dr. Malavika M. Sunil"
-          />
-
-          {/* Photographic Moments Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
-            {gallery.slice(0, 4).map((item) => (
-              <div
-                key={item.id}
-                onClick={() => setLightboxItem(item)}
-                className="card-photo-frame aspect-square bg-[#151515] group cursor-pointer shadow-md hover:border-[#B99A63] transition-all tap-bounce"
-              >
-                <img
-                  src={item.url}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                  <span className="text-[10px] font-bold text-[#B99A63] uppercase">
-                    {item.category}
-                  </span>
-                  <p className="text-xs font-bold truncate">{item.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CinematicReelsShowcase
+        gallery={gallery}
+        onPhotoClick={(item) => setLightboxItem(item)}
+        onExploreClick={() => scrollToSection("services-section")}
+        onMeetArtistClick={() => scrollToSection("artistic-journey")}
+      />
 
       {/* ─────────────────────────────────────────────────────────────
           8. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback

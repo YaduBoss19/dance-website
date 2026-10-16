@@ -689,3 +689,78 @@ export const ACADEMY_INFO = {
   ]
 };
 
+export const PERFORMANCE_REELS = [
+  {
+    id: "reel-01",
+    reelNumber: "01",
+    title: "Margam Classical Recital",
+    category: "Bharatanatyam · Stage",
+    description: "Dr. Malavika performing foundational Aramandi Adavus and expressive classical Abhinaya.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_dance_stage.jpg",
+    tag: "Classical Margam",
+    duration: "Live Clip",
+    published: true
+  },
+  {
+    id: "reel-02",
+    reelNumber: "02",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    category: "Carnatic Music · Lineage",
+    description: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Shruti alignment and raga bhava.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_vocal.jpg",
+    tag: "Shruti Lineage",
+    duration: "Vocal Solo",
+    published: true
+  },
+  {
+    id: "reel-03",
+    reelNumber: "03",
+    title: "Anatomy, Spine & Joint Health",
+    category: "Physician Alignment",
+    description: "Physician-guided patellar knee protection, neutral spine biomechanics, and diaphragmatic stamina.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_portrait.jpg",
+    tag: "MBBS Kinesiology",
+    duration: "Clinical Movement",
+    published: true
+  },
+  {
+    id: "reel-04",
+    reelNumber: "04",
+    title: "Silver Screen & Cinema Heritage",
+    category: "Malayalam Cinema",
+    description: "Emotive storytelling from childhood appearances in 5 landmark Malayalam feature films.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_dance_pose.jpg",
+    tag: "5 Feature Films",
+    duration: "Screen Archive",
+    published: true
+  },
+  {
+    id: "reel-05",
+    reelNumber: "05",
+    title: "Tbilisi & Georgia University Recital",
+    category: "International Stage",
+    description: "Directing and performing in 20+ stage productions and cultural residencies across Georgia.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_dance_stage.jpg",
+    tag: "Global Stages",
+    duration: "Concert Stage",
+    published: true
+  },
+  {
+    id: "reel-06",
+    reelNumber: "06",
+    title: "1-to-1 Private Mentorship Studio",
+    category: "Online Academy",
+    description: "Dedicated personal attention, immediate mudra correction, and international flexible scheduling.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/malavika_portrait.jpg",
+    tag: "1-to-1 Studio",
+    duration: "Private Lesson",
+    published: true
+  }
+];
+
