@@ -21,6 +21,10 @@ import {
   Heart,
   ChevronDown,
   Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize2,
   Film,
   UserCheck
 } from "lucide-react";
@@ -51,10 +55,43 @@ export default function Home() {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
-  // Creative Hero Intro Video State & 3D Tilt
-  const heroVideoRef = useRef(null);
-  const [heroVideoPlaying, setHeroVideoPlaying] = useState(false);
+  // Full-Bleed Cinematic Background Video State & Handlers
+  const bgVideoRef = useRef(null);
+  const [isBgPlaying, setIsBgPlaying] = useState(true);
+  const [isBgMuted, setIsBgMuted] = useState(true);
   const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
+
+  const toggleBgPlay = () => {
+    playGhungrooChime();
+    if (!bgVideoRef.current) return;
+    if (bgVideoRef.current.paused) {
+      bgVideoRef.current.play();
+      setIsBgPlaying(true);
+    } else {
+      bgVideoRef.current.pause();
+      setIsBgPlaying(false);
+    }
+  };
+
+  const toggleBgMute = () => {
+    playGhungrooChime();
+    if (!bgVideoRef.current) return;
+    const nextMute = !bgVideoRef.current.muted;
+    bgVideoRef.current.muted = nextMute;
+    setIsBgMuted(nextMute);
+  };
+
+  const openTheatreModal = () => {
+    playGhungrooChime();
+    setLightboxItem({
+      id: "theatre-performance-intro",
+      title: "Dr. Malavika M. Sunil — Classical Bharatanatyam Margam",
+      category: "Classical Performance",
+      videoSrc: "/videos/performance.mp4",
+      caption:
+        "Full studio recital by Dr. Malavika M. Sunil. Filmed on stage with authentic Carnatic orchestral accompaniment, presenting the intricate geometric footwork (Nritta) and emotional depth (Abhinaya) of the Pandanallur lineage."
+    });
+  };
 
   const handleHeroMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -121,35 +158,47 @@ export default function Home() {
   return (
     <div className="bg-[#F5F0E8] text-[#151515] selection:bg-[#B99A63]/30 selection:text-[#151515] overflow-x-hidden">
       {/* ─────────────────────────────────────────────────────────────
-          1. CINEMATIC 3D HERO SECTION: "Your Passion. Your Pace. Your Personal Coach."
+          1. CINEMATIC 3D HERO SECTION: Full-Bleed Video Background + Multi-Stop Luxury Overlay
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 overflow-hidden bg-gradient-to-b from-[#F5F0E8] via-[#F8F5EE] to-[#F5F0E8]">
-        {/* Stage Gold Particles Background Canvas */}
-        <GoldParticlesCanvas count={38} className="opacity-75" />
+      <section className="relative min-h-[92vh] sm:min-h-screen flex items-center pt-16 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+        {/* Full-Bleed Ambient Performance Video Background */}
+        <video
+          ref={bgVideoRef}
+          src="/videos/performance.mp4"
+          poster="/images/malavika_dance_stage.jpg"
+          autoPlay
+          muted={isBgMuted}
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-opacity duration-1000"
+        />
 
-        {/* Sacred Temple Yantra Mandala Background */}
-        <SacredMandalaScroll className="absolute -right-24 -top-20 opacity-[0.06] -z-10" size={580} />
+        {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/55 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(21,21,21,0.75)_85%)] pointer-events-none z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F5F0E8] via-[#151515]/80 to-transparent pointer-events-none z-10" />
 
-        {/* Ambient subtle lighting */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#3B0B14]/10 via-[#B99A63]/8 to-transparent blur-3xl pointer-events-none -z-10" />
+        {/* Stage Gold Particles Background Canvas & Sacred Temple Yantra */}
+        <GoldParticlesCanvas count={42} className="opacity-75 z-10" />
+        <SacredMandalaScroll className="absolute -right-24 -top-20 opacity-[0.08] z-10" size={620} />
 
-        <div className="max-w-7xl mx-auto relative z-20">
+        <div className="max-w-7xl mx-auto relative z-20 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Headline & Pitch */}
             <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-semibold tracking-wider uppercase shadow-md">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515]/85 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/50 text-xs font-bold tracking-widest uppercase shadow-lg">
                 <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-                <span>Move · Learn · Master</span>
+                <span>Move · Learn · Master · 1-to-1 Studio</span>
               </div>
 
-              <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#151515] leading-[1.08] font-serif-luxury">
+              <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
                 Your Passion. <br />
                 Your Pace. <br />
-                <span className="italic text-[#B99A63]">Your Personal Coach.</span>
+                <span className="italic text-[#D4AF37]">Your Personal Coach.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl font-normal">
-                A personal space for dance, music, and creative expression. Master classical Bharatanatyam, Carnatic vocal music, or bespoke choreography through <strong>online, one-to-one private lessons</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
+                A personal sanctuary for classical dance, music, and artistic mastery. Learn Bharatanatyam, Carnatic vocal music, and custom choreography through <strong>online, one-to-one private lessons</strong> mentored directly by <strong>Dr. Malavika M. Sunil</strong>.
               </p>
 
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
@@ -159,7 +208,7 @@ export default function Home() {
                     playGhungrooChime();
                     scrollToSection("services-section");
                   }}
-                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-lg shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
+                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
                 >
                   <Sparkles className="w-4 h-4 text-[#151515]" />
                   <span>Explore Classes</span>
@@ -171,7 +220,7 @@ export default function Home() {
                     playGhungrooChime();
                     scrollToSection("artistic-journey");
                   }}
-                  className="px-7 py-4 rounded-full bg-[#151515] hover:bg-[#252525] text-[#F5F0E8] font-bold text-sm sm:text-base shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                  className="px-7 py-4 rounded-full bg-[#151515]/80 hover:bg-[#252525] text-[#F5F0E8] border border-[#B99A63]/50 font-bold text-sm sm:text-base shadow-md backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
                   <UserCheck className="w-4 h-4 text-[#B99A63]" />
                   <span>Meet the Artist</span>
@@ -179,27 +228,27 @@ export default function Home() {
               </div>
 
               {/* 4 Value Pillars Banner */}
-              <div className="pt-8 border-t border-[#A9A49D]/25 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+              <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Online 1-to-1</div>
-                  <p className="text-xs text-slate-600 mt-1">Live, personalised lessons from anywhere.</p>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Online 1-to-1</div>
+                  <p className="text-xs text-slate-300 mt-1">Live, personalised lessons from anywhere.</p>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Personal Coaching</div>
-                  <p className="text-xs text-slate-600 mt-1">Lessons adapted to your individual goals.</p>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Personal Coaching</div>
+                  <p className="text-xs text-slate-300 mt-1">Lessons adapted to your individual goals.</p>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Flexible Scheduling</div>
-                  <p className="text-xs text-slate-600 mt-1">Request a suitable session time.</p>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Flexible Scheduling</div>
+                  <p className="text-xs text-slate-300 mt-1">Request a suitable session time.</p>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#B99A63]">Dance & Music</div>
-                  <p className="text-xs text-slate-600 mt-1">Explore separate lesson categories.</p>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Dance & Music</div>
+                  <p className="text-xs text-slate-300 mt-1">Separate classical learning disciplines.</p>
                 </div>
               </div>
             </AnimatedSection>
 
-            {/* Right Visual Frame: Museum Frame with Interactive 3D Tilt & Video */}
+            {/* Right Visual Frame: Museum Spotlight Frame with Interactive 3D Tilt */}
             <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative perspective-scene">
               <div
                 onMouseMove={handleHeroMouseMove}
@@ -211,61 +260,51 @@ export default function Home() {
                 className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none transition-transform will-change-transform"
               >
                 <div className="museum-frame group shadow-2xl">
-                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative overflow-hidden">
-                    <video
-                      ref={heroVideoRef}
-                      src="/videos/performance.mp4"
-                      poster="/images/malavika_dance_stage.jpg"
-                      playsInline
-                      controls={heroVideoPlaying}
-                      onPlay={() => setHeroVideoPlaying(true)}
-                      onPause={() => setHeroVideoPlaying(false)}
-                      className="w-full h-full object-cover"
+                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative overflow-hidden rounded-2xl">
+                    <img
+                      src="/images/malavika_dance_stage.jpg"
+                      alt="Dr. Malavika M. Sunil Bharatanatyam Margam"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
 
-                    {/* Interactive Play Overlay when not active */}
-                    {!heroVideoPlaying && (
-                      <div
-                        onClick={() => {
-                          if (heroVideoRef.current) {
-                            heroVideoRef.current.play();
-                            setHeroVideoPlaying(true);
-                          }
-                        }}
-                        className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/30 to-transparent flex flex-col justify-between p-6 cursor-pointer group/overlay transition-all"
-                      >
-                        {/* Top Video Tag */}
-                        <div className="self-end">
-                          <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#151515]/90 backdrop-blur-md text-[#B99A63] border border-[#B99A63]/60 flex items-center gap-1.5 shadow-lg">
-                            <Film className="w-3.5 h-3.5 text-[#B99A63]" />
-                            <span>Intro Video</span>
-                          </span>
-                        </div>
-
-                        {/* Center Glowing Play Button */}
-                        <div className="self-center flex flex-col items-center gap-3">
-                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl shadow-[#B99A63]/50 group-hover/overlay:scale-110 active:scale-95 transition-all">
-                            <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#151515] ml-1" />
-                          </div>
-                          <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/80 px-3.5 py-1 rounded-full border border-[#B99A63]/30 backdrop-blur-xs">
-                            Watch Studio Intro
-                          </span>
-                        </div>
-
-                        {/* Bottom Visual Label */}
-                        <div className="text-left text-[#F5F0E8]">
-                          <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#B99A63] text-[#151515] uppercase tracking-wider inline-block mb-1.5">
-                            Classical Margam & Vocal Intro
-                          </span>
-                          <h3 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
-                            Dr. Malavika M. Sunil
-                          </h3>
-                          <p className="text-xs text-[#A9A49D] mt-0.5">
-                            CCRT Scholar · 21 Years Lineage · MBBS Physician
-                          </p>
-                        </div>
+                    {/* Gradient Overlay & Fullscreen Theatre Button */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/30 to-transparent flex flex-col justify-between p-6">
+                      {/* Top Tag */}
+                      <div className="self-end flex items-center gap-2">
+                        <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 flex items-center gap-1.5 shadow-lg">
+                          <Film className="w-3.5 h-3.5 text-[#B99A63]" />
+                          <span>Performance Reel</span>
+                        </span>
                       </div>
-                    )}
+
+                      {/* Center Glowing Play Button for Theatre Fullscreen */}
+                      <div className="self-center flex flex-col items-center gap-3">
+                        <button
+                          onClick={openTheatreModal}
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl shadow-[#B99A63]/50 group-hover:scale-110 active:scale-95 transition-all cursor-pointer tap-bounce"
+                          title="Watch Full Performance with Sound"
+                          aria-label="Watch Full Performance with Sound"
+                        >
+                          <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#151515] ml-1" />
+                        </button>
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/85 px-3.5 py-1 rounded-full border border-[#B99A63]/40 backdrop-blur-xs">
+                          Watch with Sound (Theatre Mode)
+                        </span>
+                      </div>
+
+                      {/* Bottom Visual Label */}
+                      <div className="text-left text-[#F5F0E8]">
+                        <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#B99A63] text-[#151515] uppercase tracking-wider inline-block mb-1.5">
+                          Classical Margam & Vocal Intro
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
+                          Dr. Malavika M. Sunil
+                        </h3>
+                        <p className="text-xs text-[#A9A49D] mt-0.5">
+                          CCRT Scholar · 21 Years Lineage · MBBS Physician
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -274,7 +313,7 @@ export default function Home() {
                   style={{
                     transform: "translateZ(30px)"
                   }}
-                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30"
+                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md"
                 >
                   <Award className="w-5 h-5 text-[#B99A63]" />
                   <div>
@@ -284,6 +323,45 @@ export default function Home() {
                 </div>
               </div>
             </AnimatedSection>
+          </div>
+
+          {/* Hero Bottom Glass Video Controls Dock */}
+          <div className="mt-12 sm:mt-16 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
+            <div className="flex items-center gap-2.5 text-[#A9A49D]">
+              <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />
+              <span className="text-[11px] font-semibold text-slate-300">
+                Live Cinematic Background: <em>Dr. Malavika M. Sunil Bharatanatyam Margam</em>
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleBgPlay}
+                className="px-3.5 py-1.5 rounded-full bg-[#151515]/80 hover:bg-[#151515] border border-white/15 text-slate-200 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce"
+                title={isBgPlaying ? "Pause Background Video" : "Play Background Video"}
+              >
+                {isBgPlaying ? <Pause className="w-3.5 h-3.5 text-[#B99A63]" /> : <Play className="w-3.5 h-3.5 text-[#B99A63]" />}
+                <span className="text-[11px] font-medium">{isBgPlaying ? "Pause Video" : "Resume Video"}</span>
+              </button>
+
+              <button
+                onClick={toggleBgMute}
+                className="px-3.5 py-1.5 rounded-full bg-[#151515]/80 hover:bg-[#151515] border border-white/15 text-slate-200 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce"
+                title={isBgMuted ? "Unmute Background Video" : "Mute Background Video"}
+              >
+                {isBgMuted ? <VolumeX className="w-3.5 h-3.5 text-slate-400" /> : <Volume2 className="w-3.5 h-3.5 text-[#D4AF37]" />}
+                <span className="text-[11px] font-medium">{isBgMuted ? "Audio: Muted" : "Audio: On"}</span>
+              </button>
+
+              <button
+                onClick={openTheatreModal}
+                className="px-3.5 py-1.5 rounded-full bg-[#3B0B14]/80 hover:bg-[#4A0E17] border border-[#B99A63]/50 text-[#D4AF37] transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce font-semibold"
+                title="Open Fullscreen HD Video with Audio"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#B99A63]" />
+                <span className="text-[11px]">Theatre Mode</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>

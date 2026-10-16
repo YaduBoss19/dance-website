@@ -120,7 +120,15 @@ export default function LightboxModal() {
       >
         {/* Media Container */}
         <div className="relative max-h-[65vh] sm:max-h-[70vh] bg-black flex items-center justify-center overflow-hidden">
-          {lightboxItem.type === "video" && lightboxItem.videoUrl ? (
+          {lightboxItem.videoSrc ? (
+            <video
+              src={lightboxItem.videoSrc}
+              controls
+              autoPlay
+              playsInline
+              className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full mx-auto"
+            />
+          ) : lightboxItem.type === "video" && lightboxItem.videoUrl ? (
             <div className="w-full aspect-video">
               <iframe
                 src={lightboxItem.videoUrl}
