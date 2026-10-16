@@ -67,6 +67,22 @@
 .border-stone-grey { border-color: rgba(169, 164, 157, 0.25); }
 .text-stone-grey   { color: #767069; }
 
+/* Deep Burgundy Tones */
+.bg-burgundy         { background-color: #3B0B14; }
+.bg-burgundy-dark    { background-color: #24050B; }
+.bg-burgundy-light   { background-color: #4A0E17; }
+.text-burgundy       { color: #3B0B14; }
+.text-burgundy-light { color: #58111D; }
+.border-burgundy     { border-color: rgba(59, 11, 20, 0.35); }
+.border-burgundy-gold { border-color: rgba(185, 154, 99, 0.5); }
+
+.bg-gradient-burgundy {
+  background: linear-gradient(135deg, #3B0B14 0%, #1a0409 100%);
+}
+.bg-gradient-hero-dark {
+  background: radial-gradient(circle at 70% 30%, #4A0E17 0%, #20040A 40%, #151515 90%);
+}
+
 .btn-gold {
   background-color: #B99A63;
   color: #151515;
@@ -86,6 +102,19 @@
 }
 .btn-charcoal:hover {
   background-color: #272727;
+  transform: translateY(-1px);
+}
+
+.btn-burgundy {
+  background-color: #3B0B14;
+  color: #F5F0E8;
+  font-weight: 700;
+  border: 1px solid rgba(185, 154, 99, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-burgundy:hover {
+  background-color: #4A0E17;
+  border-color: #B99A63;
   transform: translateY(-1px);
 }
 

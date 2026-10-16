@@ -2,26 +2,27 @@ import React, { useState, useRef } from "react";
 import { useAcademy } from "../context/AcademyContext";
 import AnimatedSection from "../components/AnimatedSection";
 import VideoPerformanceShowcase from "../components/VideoPerformanceShowcase";
+import GoldParticlesCanvas from "../components/GoldParticlesCanvas";
+import ArtisticJourneyTimeline from "../components/ArtisticJourneyTimeline";
+import InteractiveServiceCards from "../components/InteractiveServiceCards";
+import ImmersiveArtForms from "../components/ImmersiveArtForms";
 import { FAQS, TESTIMONIALS } from "../data/initialData";
 import {
   Sparkles,
   ArrowRight,
   Star,
   Award,
-  Clock,
-  CheckCircle2,
   MessageCircle,
   Send,
   Heart,
   ChevronDown,
   Play,
-  Film
+  Film,
+  UserCheck
 } from "lucide-react";
 
 export default function Home() {
   const {
-    courses,
-    setSelectedCourseModal,
     setLightboxItem,
     gallery,
     academyInfo,
@@ -46,25 +47,21 @@ export default function Home() {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
-  // Creative Hero Intro Video State
+  // Creative Hero Intro Video State & 3D Tilt
   const heroVideoRef = useRef(null);
   const [heroVideoPlaying, setHeroVideoPlaying] = useState(false);
+  const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
 
-  // Separate Dance & Music courses
-  const danceCourses = courses.filter(
-    (c) =>
-      c.category === "Online Academy" &&
-      !c.title.toLowerCase().includes("vocal") &&
-      !c.title.toLowerCase().includes("yoga") ||
-      c.category === "Bespoke Choreography" ||
-      c.category === "Workshops for Institutions"
-  );
+  const handleHeroMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
+    setHeroTilt({ x, y });
+  };
 
-  const musicAndMindCourses = courses.filter(
-    (c) =>
-      c.title.toLowerCase().includes("vocal") ||
-      c.title.toLowerCase().includes("yoga")
-  );
+  const handleHeroMouseLeave = () => {
+    setHeroTilt({ x: 0, y: 0 });
+  };
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -109,20 +106,28 @@ export default function Home() {
     }
   };
 
+  const selectServiceForBooking = (serviceTitle) => {
+    setFormData((prev) => ({ ...prev, discipline: serviceTitle }));
+    scrollToSection("book-trial");
+  };
+
   return (
     <div className="bg-[#F5F0E8] text-[#151515] selection:bg-[#B99A63]/30 selection:text-[#151515] overflow-x-hidden">
       {/* ─────────────────────────────────────────────────────────────
-          2. HERO SECTION: "Your Passion. Your Pace. Your Personal Coach."
+          1. CINEMATIC 3D HERO SECTION: "Your Passion. Your Pace. Your Personal Coach."
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 overflow-hidden">
-        {/* Ambient subtle glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#B99A63]/12 via-[#B99A63]/5 to-transparent blur-3xl pointer-events-none -z-10" />
+      <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 overflow-hidden bg-gradient-to-b from-[#F5F0E8] via-[#F8F5EE] to-[#F5F0E8]">
+        {/* Stage Gold Particles Background Canvas */}
+        <GoldParticlesCanvas count={38} className="opacity-75" />
 
-        <div className="max-w-7xl mx-auto">
+        {/* Ambient subtle lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#3B0B14]/10 via-[#B99A63]/8 to-transparent blur-3xl pointer-events-none -z-10" />
+
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Headline & Pitch */}
             <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-semibold tracking-wider uppercase">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-semibold tracking-wider uppercase shadow-md">
                 <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
                 <span>Move · Learn · Master</span>
               </div>
@@ -137,23 +142,23 @@ export default function Home() {
                 A personal space for dance, music, and creative expression. Master classical Bharatanatyam, Carnatic vocal music, or bespoke choreography through <strong>online, one-to-one private lessons</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
               </p>
 
-              {/* Two Prominent CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                 <button
-                  onClick={() => scrollToSection("book-trial")}
-                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-lg shadow-[#B99A63]/25 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
+                  onClick={() => scrollToSection("services-section")}
+                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-lg shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
                 >
                   <Sparkles className="w-4 h-4 text-[#151515]" />
-                  <span>Book a Trial Session</span>
+                  <span>Explore Classes</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
-                  onClick={() => scrollToSection("dance-lessons")}
-                  className="px-7 py-4 rounded-full bg-white border border-[#A9A49D]/40 text-[#151515] font-bold text-sm sm:text-base hover:bg-[#151515] hover:text-[#F5F0E8] hover:border-[#151515] shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                  onClick={() => scrollToSection("artistic-journey")}
+                  className="px-7 py-4 rounded-full bg-[#151515] hover:bg-[#252525] text-[#F5F0E8] font-bold text-sm sm:text-base shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
-                  <span>Explore Lessons</span>
-                  <ChevronDown className="w-4 h-4 text-[#A9A49D]" />
+                  <UserCheck className="w-4 h-4 text-[#B99A63]" />
+                  <span>Meet the Artist</span>
                 </button>
               </div>
 
@@ -178,11 +183,19 @@ export default function Home() {
               </div>
             </AnimatedSection>
 
-            {/* Right Visual Frame: Museum Frame with Interactive Intro Video */}
-            <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
-                <div className="museum-frame group">
-                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative">
+            {/* Right Visual Frame: Museum Frame with Interactive 3D Tilt & Video */}
+            <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative perspective-scene">
+              <div
+                onMouseMove={handleHeroMouseMove}
+                onMouseLeave={handleHeroMouseLeave}
+                style={{
+                  transform: `perspective(1000px) rotateX(${heroTilt.y}deg) rotateY(${heroTilt.x}deg)`,
+                  transition: heroTilt.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none"
+                }}
+                className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none transition-transform will-change-transform"
+              >
+                <div className="museum-frame group shadow-2xl">
+                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative overflow-hidden">
                     <video
                       ref={heroVideoRef}
                       src="/videos/performance.mp4"
@@ -240,8 +253,13 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Floating Badge */}
-                <div className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-xl text-left flex items-center gap-2.5 z-20">
+                {/* Floating 3D Badge */}
+                <div
+                  style={{
+                    transform: "translateZ(30px)"
+                  }}
+                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30"
+                >
                   <Award className="w-5 h-5 text-[#B99A63]" />
                   <div>
                     <div className="text-xs font-bold">1-to-1 Private Coaching</div>
@@ -255,9 +273,14 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
+          2. STORYTELLING THROUGH SCROLL: The Artistic Journey Timeline
+      ───────────────────────────────────────────────────────────── */}
+      <ArtisticJourneyTimeline />
+
+      {/* ─────────────────────────────────────────────────────────────
           3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
       ───────────────────────────────────────────────────────────── */}
-      <section id="meet-instructor" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section id="meet-instructor" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Instructor Portrait with Museum Frame */}
@@ -342,200 +365,19 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          4. EXPLORE DANCE LESSONS: Dedicated cards for dance styles
+          4. INTERACTIVE 8 SERVICE CARDS: Dedicated Identities & WhatsApp Actions
       ───────────────────────────────────────────────────────────── */}
-      <section id="dance-lessons" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Dance Disciplines
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              Explore Dance Lessons
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              From accredited classical Bharatanatyam to custom performance choreography. Every lesson is conducted live, one-on-one.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {danceCourses.map((course, idx) => (
-              <AnimatedSection
-                key={course.id}
-                delay={idx * 60}
-                className="bg-white rounded-3xl overflow-hidden border border-[#A9A49D]/25 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group"
-              >
-                <div>
-                  {/* Card Thumbnail with Luxury Gold Border Frame */}
-                  <div className="p-3 pb-0">
-                    <div className="card-photo-frame aspect-[16/10] w-full bg-[#151515] relative">
-                      <img
-                        src={course.image}
-                        alt={course.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#151515]/90 text-[#F5F0E8] shadow-sm backdrop-blur-xs">
-                          {course.level}
-                        </span>
-                        {course.badge && (
-                          <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#B99A63] text-[#151515] shadow-sm">
-                            {course.badge}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-6 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-[#B99A63]">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{course.duration}</span>
-                      <span>•</span>
-                      <span>{course.ageGroup}</span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-[#151515] font-serif-luxury group-hover:text-[#B99A63] transition-colors">
-                      {course.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
-                      {course.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card Actions */}
-                <div className="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between gap-3">
-                  <button
-                    onClick={() => setSelectedCourseModal(course)}
-                    className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
-                  >
-                    View Syllabus
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setFormData((prev) => ({ ...prev, discipline: course.title }));
-                      scrollToSection("book-trial");
-                    }}
-                    className="px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
-                  >
-                    <span>Book 1-to-1</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
+      <InteractiveServiceCards onSelectServiceForBooking={selectServiceForBooking} />
 
       {/* ─────────────────────────────────────────────────────────────
-          5. EXPLORE MUSIC & MIND LESSONS: Vocals & Yoga
+          5. IMMERSIVE ART-FORM TRANSITIONS: 4 Interactive Disciplines
       ───────────────────────────────────────────────────────────── */}
-      <section id="music-lessons" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Music & Alignment
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              Explore Music & Mind Lessons
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              Nurture your voice and posture through private Carnatic vocal lessons and physician-guided yoga conditioning.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {musicAndMindCourses.map((course, idx) => (
-              <AnimatedSection
-                key={course.id}
-                delay={idx * 80}
-                className="bg-white rounded-3xl overflow-hidden border border-[#A9A49D]/25 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group"
-              >
-                <div>
-                  {/* Card Thumbnail with Luxury Gold Border Frame */}
-                  <div className="p-3 pb-0">
-                    <div className="card-photo-frame aspect-[16/10] w-full bg-[#151515] relative">
-                      <img
-                        src={course.image}
-                        alt={course.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#151515]/90 text-[#F5F0E8] shadow-sm backdrop-blur-xs">
-                          {course.level}
-                        </span>
-                        {course.badge && (
-                          <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#B99A63] text-[#151515] shadow-sm">
-                            {course.badge}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 sm:p-8 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-[#B99A63]">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{course.duration}</span>
-                      <span>•</span>
-                      <span>{course.ageGroup}</span>
-                    </div>
-
-                    <h3 className="text-2xl font-bold text-[#151515] font-serif-luxury group-hover:text-[#B99A63] transition-colors">
-                      {course.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {course.description}
-                    </p>
-
-                    <div className="pt-2 space-y-1.5">
-                      {course.syllabus.slice(0, 3).map((item, sIdx) => (
-                        <div key={sIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#B99A63] shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-6 sm:p-8 pt-0 border-t border-slate-100 flex items-center justify-between gap-3">
-                  <button
-                    onClick={() => setSelectedCourseModal(course)}
-                    className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
-                  >
-                    View Curriculum
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setFormData((prev) => ({ ...prev, discipline: course.title }));
-                      scrollToSection("book-trial");
-                    }}
-                    className="px-5 py-2.5 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
-                  >
-                    <span>Book 1-to-1</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ImmersiveArtForms />
 
       {/* ─────────────────────────────────────────────────────────────
           6. THE 1-TO-1 EXPERIENCE: The Process Explained
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-7xl mx-auto space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
@@ -596,9 +438,9 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          8. GALLERY & ACHIEVEMENTS: Clips, Performances & Recitals
+          7. GALLERY & ACHIEVEMENTS: Clips, Performances & Recitals
       ───────────────────────────────────────────────────────────── */}
-      <section id="gallery-section" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section id="gallery-section" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-7xl mx-auto space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
@@ -647,9 +489,9 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          9. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback
+          8. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback
       ───────────────────────────────────────────────────────────── */}
-      <section id="testimonials" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
+      <section id="testimonials" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
         <div className="max-w-7xl mx-auto space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
@@ -701,10 +543,11 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          10. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
+          9. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
       ───────────────────────────────────────────────────────────── */}
-      <section id="book-trial" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
+      <section id="book-trial" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#3B0B14]/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto space-y-10 relative z-10">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
@@ -727,7 +570,7 @@ export default function Home() {
             {submittedSuccess ? (
               <div className="text-center py-8 space-y-4">
                 <div className="w-16 h-16 rounded-full bg-[#B99A63]/20 text-[#B99A63] flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
+                  <Sparkles className="w-8 h-8 text-[#B99A63]" />
                 </div>
                 <h3 className="text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
                   Trial Request Received!
@@ -815,13 +658,14 @@ export default function Home() {
                       onChange={handleFormChange}
                       className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
                     >
-                      <option value="Bharatanatyam Classical Dance">Online Bharatanatyam Diploma Programme</option>
-                      <option value="Carnatic Vocal Music">Online Carnatic Vocal Music</option>
-                      <option value="Semi-Classical & Bollywood Dance">Online Semi-Classical & Bollywood Dance</option>
-                      <option value="Physician-Led Yoga & Breathwork">Online Yoga & Fitness for Dancers</option>
-                      <option value="Personalised Song Choreography">Personalised Dance Choreography (Custom Songs)</option>
+                      <option value="Online Bharatanatyam Diploma Programme">Online Bharatanatyam Diploma Programme</option>
+                      <option value="Online Carnatic Vocal Music Classes">Online Carnatic Vocal Music Classes</option>
+                      <option value="Online Semi-Classical and Bollywood Dance Classes">Online Semi-Classical & Bollywood Dance</option>
+                      <option value="Online Yoga and Fitness Classes">Online Yoga & Fitness for Dancers</option>
+                      <option value="Personalised Dance Choreography">Personalised Dance Choreography (Custom Songs)</option>
                       <option value="Stage Performance Choreography">Stage Performance Choreography</option>
-                      <option value="Institutional Dance Workshop">Institutional Workshop (1-Day / 5-Day)</option>
+                      <option value="One-Day Dance Workshops for Institutions">One-Day Dance Workshop for Institutions</option>
+                      <option value="Five-Day Dance Workshops for Institutions">Five-Day Dance Workshop for Institutions</option>
                     </select>
                   </div>
                 </div>
@@ -912,9 +756,9 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          11. FAQS & FOOTER: Common questions & reassurance
+          10. FAQS & REASSURANCE
       ───────────────────────────────────────────────────────────── */}
-      <section id="faqs" className="py-16 sm:py-24 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section id="faqs" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-4xl mx-auto space-y-12">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">

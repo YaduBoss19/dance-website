@@ -29,10 +29,11 @@ export default function Navbar() {
 
   const navLinks = [
     { id: "about", label: "About", target: "meet-instructor" },
-    { id: "dance", label: "Dance", target: "dance-lessons" },
-    { id: "music", label: "Music", target: "music-lessons" },
+    { id: "journey", label: "Journey", target: "artistic-journey" },
+    { id: "classes", label: "Classes", target: "services-section" },
+    { id: "art-forms", label: "Art Forms", target: "art-forms" },
     { id: "gallery", label: "Gallery", target: "gallery-section" },
-    { id: "contact", label: "Contact", target: "contact-section" }
+    { id: "contact", label: "Contact", target: "book-trial" }
   ];
 
   const handleNavClick = (linkItem) => {
@@ -50,9 +51,9 @@ export default function Navbar() {
       }
     }
     // If not on home, or target not found, navigate to corresponding page
-    if (linkItem.id === "dance" || linkItem.id === "music") {
+    if (linkItem.id === "classes" || linkItem.id === "art-forms") {
       navigateTo("courses");
-    } else if (linkItem.id === "about") {
+    } else if (linkItem.id === "about" || linkItem.id === "journey") {
       navigateTo("about");
     } else if (linkItem.id === "gallery") {
       navigateTo("gallery");
