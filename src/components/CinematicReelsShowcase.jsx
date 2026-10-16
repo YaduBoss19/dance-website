@@ -22,6 +22,7 @@ import {
   X
 } from "lucide-react";
 import { fetchLiveInstagramMedia, getStoredInstagramToken, saveInstagramToken } from "../services/instagramService";
+import SociableKitInstagramFeed from "./SociableKitInstagramFeed";
 
 // Curated collection of Instagram Posts & Reels for @dancingragasbymalavika
 const INSTAGRAM_WALL_ITEMS = [
@@ -872,98 +873,102 @@ export default function CinematicReelsShowcase({
             </div>
           </div>
 
-          {/* Infinite Wall Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredWallItems.map((item) => (
-              <div
-                key={item.id}
-                className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
-              >
-                {/* Visual Thumbnail Frame */}
-                <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-[#151515]/60 pointer-events-none" />
+          {/* SociableKIT Powered Instagram Feed & Infinite Wall */}
+          <SociableKitInstagramFeed
+            fallbackGrid={
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredWallItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
+                  >
+                    {/* Visual Thumbnail Frame */}
+                    <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-[#151515]/60 pointer-events-none" />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1 shadow-md">
-                      {item.type === "reel" ? (
-                        <>
-                          <Video className="w-3 h-3 text-[#B99A63]" />
-                          <span>Reel</span>
-                        </>
-                      ) : (
-                        <>
-                          <Film className="w-3 h-3 text-[#B99A63]" />
-                          <span>Post</span>
-                        </>
-                      )}
-                    </span>
+                      {/* Top Badges */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 border border-[#B99A63]/40 text-[#D4AF37] backdrop-blur-xs flex items-center gap-1 shadow-md">
+                          {item.type === "reel" ? (
+                            <>
+                              <Video className="w-3 h-3 text-[#B99A63]" />
+                              <span>Reel</span>
+                            </>
+                          ) : (
+                            <>
+                              <Film className="w-3 h-3 text-[#B99A63]" />
+                              <span>Post</span>
+                            </>
+                          )}
+                        </span>
 
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs flex items-center gap-1">
-                      <Eye className="w-3 h-3 text-[#B99A63]" />
-                      <span>{item.views}</span>
-                    </span>
-                  </div>
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs flex items-center gap-1">
+                          <Eye className="w-3 h-3 text-[#B99A63]" />
+                          <span>{item.views}</span>
+                        </span>
+                      </div>
 
-                  {/* Hover Overlay with Instagram Interaction */}
-                  <div className="absolute inset-0 bg-[#151515]/75 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-between items-center text-center z-20">
-                    <div className="flex items-center gap-4 text-white my-auto">
-                      <span className="flex items-center gap-1.5 font-bold text-sm">
-                        <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
-                        <span>{item.likes}</span>
-                      </span>
-                      <span className="flex items-center gap-1.5 font-bold text-sm">
-                        <MessageCircle className="w-4 h-4 fill-white text-white" />
-                        <span>{item.comments}</span>
-                      </span>
+                      {/* Hover Overlay with Instagram Interaction */}
+                      <div className="absolute inset-0 bg-[#151515]/75 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-between items-center text-center z-20">
+                        <div className="flex items-center gap-4 text-white my-auto">
+                          <span className="flex items-center gap-1.5 font-bold text-sm">
+                            <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
+                            <span>{item.likes}</span>
+                          </span>
+                          <span className="flex items-center gap-1.5 font-bold text-sm">
+                            <MessageCircle className="w-4 h-4 fill-white text-white" />
+                            <span>{item.comments}</span>
+                          </span>
+                        </div>
+
+                        <div className="space-y-2 w-full">
+                          <button
+                            onClick={() => playReelFromWall(item.reelIndex)}
+                            className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
+                          >
+                            <Play className="w-3.5 h-3.5 fill-[#151515]" />
+                            <span>Play in Cinema Player</span>
+                          </button>
+
+                          <a
+                            href={item.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
+                          >
+                            <span>View on Instagram</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="space-y-2 w-full">
-                      <button
-                        onClick={() => playReelFromWall(item.reelIndex)}
-                        className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-[#151515]" />
-                        <span>Play in Cinema Player</span>
-                      </button>
+                    {/* Card Caption Info */}
+                    <div className="p-5 space-y-2">
+                      <div className="flex items-center justify-between text-[11px] text-[#B99A63] font-bold">
+                        <span>@dancingragasbymalavika</span>
+                        <span className="text-slate-400">Instagram</span>
+                      </div>
 
-                      <a
-                        href={item.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
-                      >
-                        <span>View on Instagram</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+                      <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
+                        {item.title}
+                      </h4>
+
+                      <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                        {item.caption}
+                      </p>
                     </div>
                   </div>
-                </div>
-
-                {/* Card Caption Info */}
-                <div className="p-5 space-y-2">
-                  <div className="flex items-center justify-between text-[11px] text-[#B99A63] font-bold">
-                    <span>@dancingragasbymalavika</span>
-                    <span className="text-slate-400">Instagram</span>
-                  </div>
-
-                  <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
-                    {item.title}
-                  </h4>
-
-                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
-                    {item.caption}
-                  </p>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            }
+          />
 
           {/* Follow CTA Strip */}
           <div className="p-6 sm:p-8 rounded-3xl bg-[#1c1c1c] border border-[#B99A63]/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
