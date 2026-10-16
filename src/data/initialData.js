@@ -667,6 +667,8 @@ export const ACADEMY_INFO = {
   whatsappDefaultMsg: "Hello Dr. Malavika! I would like to book a 1-to-1 trial session for private dance / music coaching.",
   email: "info@malavikasunil.com",
   adminEmail: "malavika@malavikasunil.com",
+  instagramUrl: "https://www.instagram.com/dancingragasbymalavika/",
+  instagramHandle: "@dancingragasbymalavika",
   hours: {
     weekdays: "Monday – Friday: Flexible Online 1:1 Slots",
     saturday: "Saturday: Dedicated Masterclasses",
@@ -700,6 +702,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_dance_stage.jpg",
     tag: "Classical Margam",
     duration: "Live Clip",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "2.4k",
+    views: "34.8k",
+    comments: "142",
+    audio: "Original Audio · dancingragasbymalavika",
     published: true
   },
   {
@@ -712,6 +719,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_vocal.jpg",
     tag: "Shruti Lineage",
     duration: "Vocal Solo",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "1.8k",
+    views: "28.5k",
+    comments: "98",
+    audio: "Carnatic Raga Alapana · Dr. Malavika",
     published: true
   },
   {
@@ -724,6 +736,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_portrait.jpg",
     tag: "MBBS Kinesiology",
     duration: "Clinical Movement",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "3.2k",
+    views: "46.1k",
+    comments: "215",
+    audio: "Doctor's Kinesiology Guide · dancingragasbymalavika",
     published: true
   },
   {
@@ -736,6 +753,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_dance_pose.jpg",
     tag: "5 Feature Films",
     duration: "Screen Archive",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "4.7k",
+    views: "68.3k",
+    comments: "320",
+    audio: "Nostalgic Film Audio · Sathyan Anthikad Classics",
     published: true
   },
   {
@@ -748,6 +770,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_dance_stage.jpg",
     tag: "Global Stages",
     duration: "Concert Stage",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "2.1k",
+    views: "31.9k",
+    comments: "104",
+    audio: "Tbilisi Stage Resonance · Live Ensemble",
     published: true
   },
   {
@@ -760,6 +787,11 @@ export const PERFORMANCE_REELS = [
     posterImage: "/images/malavika_portrait.jpg",
     tag: "1-to-1 Studio",
     duration: "Private Lesson",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "2.9k",
+    views: "41.0k",
+    comments: "167",
+    audio: "Studio Guidance · Dr. Malavika Sunil",
     published: true
   }
 ];

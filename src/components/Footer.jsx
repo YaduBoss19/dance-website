@@ -237,6 +237,17 @@ export default function Footer() {
                 <Mail className="w-3.5 h-3.5 text-[#B99A63] shrink-0" />
                 <span>{academyInfo.email}</span>
               </div>
+              <a
+                href={academyInfo.instagramUrl || "https://www.instagram.com/dancingragasbymalavika/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors pt-0.5"
+              >
+                <span className="w-4 h-4 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center shrink-0 text-[8px] text-white font-bold">
+                  ig
+                </span>
+                <span>@dancingragasbymalavika</span>
+              </a>
             </div>
           </div>
         </div>
