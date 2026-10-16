@@ -29,7 +29,7 @@ const MILESTONES = [
     institution: "Hereditary Vocal Lineage",
     category: "Music",
     icon: Music,
-    badgeColor: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+    badgeColor: "bg-[#B99A63]/20 text-[#D4AF37] border-[#B99A63]/40",
     quote: "A dancer without swara knowledge is like a temple without a flame.",
     description:
       "Nurtured from childhood in the divine traditions of Carnatic vocal music by mother Resmi Narayanan. Steeped in shruti alignment, swara mathematical patterns (Sarali, Janta, Dhatu), foundational ragas, complex Varnams, and expressive devotional Keerthanas.",

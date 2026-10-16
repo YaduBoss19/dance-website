@@ -22,10 +22,6 @@ import {
   Heart,
   ChevronDown,
   Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize2,
   Film,
   UserCheck
 } from "lucide-react";
@@ -58,29 +54,7 @@ export default function Home() {
 
   // Full-Bleed Cinematic Background Video State & Handlers
   const bgVideoRef = useRef(null);
-  const [isBgPlaying, setIsBgPlaying] = useState(true);
-  const [isBgMuted, setIsBgMuted] = useState(true);
   const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
-
-  const toggleBgPlay = () => {
-    playGhungrooChime();
-    if (!bgVideoRef.current) return;
-    if (bgVideoRef.current.paused) {
-      bgVideoRef.current.play();
-      setIsBgPlaying(true);
-    } else {
-      bgVideoRef.current.pause();
-      setIsBgPlaying(false);
-    }
-  };
-
-  const toggleBgMute = () => {
-    playGhungrooChime();
-    if (!bgVideoRef.current) return;
-    const nextMute = !bgVideoRef.current.muted;
-    bgVideoRef.current.muted = nextMute;
-    setIsBgMuted(nextMute);
-  };
 
   const openTheatreModal = () => {
     playGhungrooChime();
@@ -168,7 +142,7 @@ export default function Home() {
           src="/videos/performance.mp4"
           poster="/images/malavika_dance_stage.jpg"
           autoPlay
-          muted={isBgMuted}
+          muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-opacity duration-1000"
@@ -361,45 +335,6 @@ export default function Home() {
                 </div>
               </div>
             </AnimatedSection>
-          </div>
-
-          {/* Hero Bottom Glass Video Controls Dock */}
-          <div className="mt-12 sm:mt-16 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
-            <div className="flex items-center gap-2.5 text-[#A9A49D]">
-              <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />
-              <span className="text-[11px] font-semibold text-slate-300">
-                Live Cinematic Background: <em>Dr. Malavika M. Sunil Bharatanatyam Margam</em>
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={toggleBgPlay}
-                className="px-3.5 py-1.5 rounded-full bg-[#151515]/80 hover:bg-[#151515] border border-white/15 text-slate-200 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce"
-                title={isBgPlaying ? "Pause Background Video" : "Play Background Video"}
-              >
-                {isBgPlaying ? <Pause className="w-3.5 h-3.5 text-[#B99A63]" /> : <Play className="w-3.5 h-3.5 text-[#B99A63]" />}
-                <span className="text-[11px] font-medium">{isBgPlaying ? "Pause Video" : "Resume Video"}</span>
-              </button>
-
-              <button
-                onClick={toggleBgMute}
-                className="px-3.5 py-1.5 rounded-full bg-[#151515]/80 hover:bg-[#151515] border border-white/15 text-slate-200 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce"
-                title={isBgMuted ? "Unmute Background Video" : "Mute Background Video"}
-              >
-                {isBgMuted ? <VolumeX className="w-3.5 h-3.5 text-slate-400" /> : <Volume2 className="w-3.5 h-3.5 text-[#D4AF37]" />}
-                <span className="text-[11px] font-medium">{isBgMuted ? "Audio: Muted" : "Audio: On"}</span>
-              </button>
-
-              <button
-                onClick={openTheatreModal}
-                className="px-3.5 py-1.5 rounded-full bg-[#3B0B14]/80 hover:bg-[#4A0E17] border border-[#B99A63]/50 text-[#D4AF37] transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md shadow-sm tap-bounce font-semibold"
-                title="Open Fullscreen HD Video with Audio"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#B99A63]" />
-                <span className="text-[11px]">Theatre Mode</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>

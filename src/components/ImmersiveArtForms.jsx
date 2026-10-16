@@ -23,8 +23,8 @@ export default function ImmersiveArtForms() {
       label: "Carnatic Vocal",
       tagline: "Shruti Resonance & Live Drone",
       icon: Music,
-      color: "from-cyan-700 to-slate-900",
-      accent: "#06b6d4"
+      color: "from-amber-800 to-slate-900",
+      accent: "#D4AF37"
     },
     {
       id: "cinema",

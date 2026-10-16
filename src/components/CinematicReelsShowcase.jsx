@@ -15,8 +15,13 @@ import {
   Eye,
   ExternalLink,
   Grid,
-  Video
+  Video,
+  Key,
+  RefreshCw,
+  Check,
+  X
 } from "lucide-react";
+import { fetchLiveInstagramMedia, getStoredInstagramToken, saveInstagramToken } from "../services/instagramService";
 
 // Curated collection of Instagram Posts & Reels for @dancingragasbymalavika
 const INSTAGRAM_WALL_ITEMS = [
@@ -156,6 +161,49 @@ export default function CinematicReelsShowcase({
   const [controlsVisible, setControlsVisible] = useState(true);
   const [leftParallax, setLeftParallax] = useState({ x: 0, y: 0 });
   const [wallFilter, setWallFilter] = useState("all");
+  const [wallItems, setWallItems] = useState(INSTAGRAM_WALL_ITEMS);
+  const [isLiveSynced, setIsLiveSynced] = useState(false);
+  const [showSyncModal, setShowSyncModal] = useState(false);
+  const [tokenInput, setTokenInput] = useState(getStoredInstagramToken());
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncStatusMsg, setSyncStatusMsg] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    fetchLiveInstagramMedia().then((items) => {
+      if (active && items && items.length > 0) {
+        setWallItems(items);
+        setIsLiveSynced(true);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const handleManualSync = async () => {
+    setIsSyncing(true);
+    setSyncStatusMsg("");
+    saveInstagramToken(tokenInput);
+    if (!tokenInput.trim()) {
+      setWallItems(INSTAGRAM_WALL_ITEMS);
+      setIsLiveSynced(false);
+      setIsSyncing(false);
+      setSyncStatusMsg("Token cleared. Reverted to curated 9 posts.");
+      return;
+    }
+    const items = await fetchLiveInstagramMedia();
+    if (items && items.length > 0) {
+      setWallItems(items);
+      setIsLiveSynced(true);
+      setSyncStatusMsg(`Successfully synced ${items.length} live posts!`);
+      setTimeout(() => setShowSyncModal(false), 1200);
+    } else {
+      setIsLiveSynced(false);
+      setSyncStatusMsg("Could not authenticate token with Instagram Graph API. Keeping curated 9 posts.");
+    }
+    setIsSyncing(false);
+  };
 
   const videoRef = useRef(null);
   const hideControlsTimerRef = useRef(null);
@@ -319,7 +367,7 @@ export default function CinematicReelsShowcase({
 
   const formattedCounter = `${String(currentIndex + 1).padStart(2, "0")} / ${String(totalReels).padStart(2, "0")}`;
 
-  const filteredWallItems = INSTAGRAM_WALL_ITEMS.filter((item) => {
+  const filteredWallItems = wallItems.filter((item) => {
     if (wallFilter === "reels") return item.type === "reel";
     if (wallFilter === "posts") return item.type === "post";
     return true;
@@ -768,43 +816,59 @@ export default function CinematicReelsShowcase({
               </p>
             </div>
 
-            {/* Filter Toggle Buttons */}
-            <div className="flex items-center gap-2 bg-[#1E1B1B] p-1.5 rounded-2xl border border-[#B99A63]/30 shrink-0 self-start sm:self-auto">
+            {/* Filter & API Sync Controls */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Instagram Live API Key / Sync Trigger Pill */}
               <button
-                onClick={() => setWallFilter("all")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
-                  wallFilter === "all"
-                    ? "bg-[#B99A63] text-[#151515] shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
+                onClick={() => setShowSyncModal(true)}
+                className="px-3.5 py-1.5 rounded-xl bg-[#1E1B1B] hover:bg-[#252222] border border-[#B99A63]/40 text-xs font-semibold text-[#D4AF37] flex items-center gap-2 cursor-pointer tap-bounce transition-all shadow-sm"
+                title="Connect Instagram API Key or Access Token"
               >
-                <Grid className="w-3.5 h-3.5" />
-                <span>All (9)</span>
+                <Key className="w-3.5 h-3.5 text-[#B99A63]" />
+                <span className="text-[11px]">
+                  {isLiveSynced ? "Live API Synced" : "Instagram API Sync"}
+                </span>
+                <span className={`w-2 h-2 rounded-full ${isLiveSynced ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`} />
               </button>
 
-              <button
-                onClick={() => setWallFilter("reels")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
-                  wallFilter === "reels"
-                    ? "bg-[#B99A63] text-[#151515] shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                <Video className="w-3.5 h-3.5" />
-                <span>Reels</span>
-              </button>
+              {/* Filter Toggle Buttons */}
+              <div className="flex items-center gap-1.5 bg-[#1E1B1B] p-1.5 rounded-2xl border border-[#B99A63]/30 shrink-0">
+                <button
+                  onClick={() => setWallFilter("all")}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                    wallFilter === "all"
+                      ? "bg-[#B99A63] text-[#151515] shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Grid className="w-3.5 h-3.5" />
+                  <span>All ({filteredWallItems.length})</span>
+                </button>
 
-              <button
-                onClick={() => setWallFilter("posts")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
-                  wallFilter === "posts"
-                    ? "bg-[#B99A63] text-[#151515] shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                <Film className="w-3.5 h-3.5" />
-                <span>Posts</span>
-              </button>
+                <button
+                  onClick={() => setWallFilter("reels")}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                    wallFilter === "reels"
+                      ? "bg-[#B99A63] text-[#151515] shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Video className="w-3.5 h-3.5" />
+                  <span>Reels</span>
+                </button>
+
+                <button
+                  onClick={() => setWallFilter("posts")}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                    wallFilter === "posts"
+                      ? "bg-[#B99A63] text-[#151515] shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Film className="w-3.5 h-3.5" />
+                  <span>Posts</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -968,6 +1032,104 @@ export default function CinematicReelsShowcase({
           </div>
         )}
       </div>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          INSTAGRAM GRAPH API SYNC MODAL
+      ═══════════════════════════════════════════════════════════════ */}
+      {showSyncModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-silk-fan">
+          <div className="w-full max-w-lg rounded-3xl bg-[#1E1B1B] border border-[#B99A63]/50 p-6 sm:p-8 space-y-5 text-left shadow-2xl relative text-[#F5F0E8]">
+            <button
+              onClick={() => setShowSyncModal(false)}
+              className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+              aria-label="Close dialog"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center shadow-lg">
+                <Key className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
+                  Instagram Feed & Reels API Sync
+                </h3>
+                <p className="text-xs text-[#B99A63]">
+                  @dancingragasbymalavika live ingestion
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Paste your <strong>Instagram User Access Token</strong> below (from Meta Developer Portal or Instagram Basic Display API). Any newly published reel or post will automatically appear on the website&apos;s Infinite Wall.
+            </p>
+
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
+                Instagram User Access Token / Key
+              </label>
+              <textarea
+                rows={3}
+                value={tokenInput}
+                onChange={(e) => setTokenInput(e.target.value)}
+                placeholder="EAA... paste your long-lived Instagram Access Token here"
+                className="w-full rounded-2xl bg-[#151515] border border-[#B99A63]/40 p-3 text-xs text-[#F5F0E8] placeholder-slate-500 focus:outline-none focus:border-[#D4AF37] font-mono resize-none"
+              />
+              <p className="text-[10px] text-slate-400">
+                Leave blank or click Clear to use the verified 9 canonical posts from the @dancingragasbymalavika profile.
+              </p>
+            </div>
+
+            {syncStatusMsg && (
+              <div
+                className={`p-3 rounded-xl text-xs font-semibold ${
+                  isLiveSynced
+                    ? "bg-emerald-950/60 border border-emerald-500/50 text-emerald-300"
+                    : "bg-amber-950/60 border border-amber-500/50 text-amber-300"
+                }`}
+              >
+                {syncStatusMsg}
+              </div>
+            )}
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setTokenInput("");
+                  saveInstagramToken("");
+                  setWallItems(INSTAGRAM_WALL_ITEMS);
+                  setIsLiveSynced(false);
+                  setSyncStatusMsg("Reverted to canonical 9 posts.");
+                }}
+                className="px-4 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-white cursor-pointer"
+              >
+                Clear Token
+              </button>
+
+              <button
+                type="button"
+                onClick={handleManualSync}
+                disabled={isSyncing}
+                className="px-5 py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center gap-1.5 shadow-lg tap-bounce cursor-pointer disabled:opacity-50"
+              >
+                {isSyncing ? (
+                  <>
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <span>Verifying...</span>
+                  </>
+                ) : (
+                  <>
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Save & Sync Feed</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

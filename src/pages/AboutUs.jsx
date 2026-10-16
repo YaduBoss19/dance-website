@@ -82,7 +82,7 @@ function StatBadge({ icon: Icon, value, label, color = "rose" }) {
     rose:   "bg-rose-50   text-rose-600   border-rose-200",
     violet: "bg-violet-50 text-violet-600 border-violet-200",
     amber:  "bg-amber-50  text-amber-600  border-amber-200",
-    blue:   "bg-blue-50   text-blue-600   border-blue-200",
+    gold:   "bg-amber-50/80 text-[#B99A63] border-[#B99A63]/40",
     green:  "bg-emerald-50 text-emerald-600 border-emerald-200"
   };
   return (
@@ -158,7 +158,7 @@ export default function AboutUs() {
     { icon: Award,    value: "600+",  label: "Stage Performances",      color: "rose"   },
     { icon: Globe,    value: "15+",   label: "Workshops in Georgia",     color: "violet" },
     { icon: Trophy,   value: "20+",   label: "Stage Shows (3 yrs)",      color: "amber"  },
-    { icon: Star,     value: "5+",    label: "Years of Teaching",        color: "blue"   },
+    { icon: Star,     value: "5+",    label: "Years of Teaching",        color: "gold"   },
     { icon: Users,    value: "Multi", label: "Countries — Online Students", color: "violet" },
     { icon: Film,     value: "5",     label: "Malayalam Films",          color: "rose"   },
     { icon: Music,    value: "2",     label: "Devotional Music Albums",  color: "amber"  },

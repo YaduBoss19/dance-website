@@ -73,18 +73,15 @@ function AppContent() {
         <>
           <TanpuraSoundscape />
 
-          <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
-            {/* Quick WhatsApp Floating Button (Desktop) */}
+          <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end">
+            {/* Quick WhatsApp Floating Button (Desktop - Icon Only) */}
             <button
               onClick={openWhatsApp}
-              className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] font-bold text-sm shadow-xl shadow-black/20 hover:scale-105 border border-[#B99A63]/40 transition-all cursor-pointer group tap-bounce"
+              className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-xl shadow-black/30 hover:scale-110 border border-white/20 transition-all cursor-pointer group tap-bounce"
               title="Chat directly with Dr. Malavika on WhatsApp"
               aria-label="Chat on WhatsApp"
             >
-              <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
-                <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
-              </div>
-              <span className="font-bold tracking-wide">WhatsApp Dr. Malavika</span>
+              <MessageCircle className="w-6 h-6 fill-white text-white" />
             </button>
           </div>
 
