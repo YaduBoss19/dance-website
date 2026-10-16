@@ -178,17 +178,31 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(21,21,21,0.75)_85%)] pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F5F0E8] via-[#151515]/80 to-transparent pointer-events-none z-10" />
 
-        {/* Stage Gold Particles Background Canvas & Sacred Temple Yantra */}
+        {/* Stage Gold Particles Background Canvas & Parallax Sacred Temple Yantra */}
         <GoldParticlesCanvas count={42} className="opacity-75 z-10" />
-        <SacredMandalaScroll className="absolute -right-24 -top-20 opacity-[0.08] z-10" size={620} />
+        <div
+          style={{
+            transform: `translate3d(${heroTilt.x * -1.8}px, ${heroTilt.y * -1.8}px, 0)`,
+            transition: heroTilt.x === 0 ? "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" : "none"
+          }}
+          className="absolute -right-24 -top-20 pointer-events-none z-10"
+        >
+          <SacredMandalaScroll className="opacity-[0.09]" size={640} />
+        </div>
 
         <div className="max-w-7xl mx-auto relative z-20 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Headline & Pitch */}
             <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515]/85 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/50 text-xs font-bold tracking-widest uppercase shadow-lg">
-                <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-                <span>Move · Learn · Master · 1-to-1 Studio</span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-xs font-bold tracking-widest uppercase shadow-xl">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                  <span>2026/27 Admissions Active · 1-to-1 Studio</span>
+                </div>
+
+                <span className="hidden sm:inline-block text-[11px] font-mono tracking-wider text-[#B99A63]/80 italic">
+                  यतो हस्तस्ततो दृष्टिः · Natya Shastra
+                </span>
               </div>
 
               <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
@@ -227,28 +241,33 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* 4 Value Pillars Banner */}
-              <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Online 1-to-1</div>
-                  <p className="text-xs text-slate-300 mt-1">Live, personalised lessons from anywhere.</p>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Personal Coaching</div>
-                  <p className="text-xs text-slate-300 mt-1">Lessons adapted to your individual goals.</p>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Flexible Scheduling</div>
-                  <p className="text-xs text-slate-300 mt-1">Request a suitable session time.</p>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">Dance & Music</div>
-                  <p className="text-xs text-slate-300 mt-1">Separate classical learning disciplines.</p>
-                </div>
+              {/* 4 Value Pillars Banner: Glassmorphic Cards with Depth */}
+              <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4">
+                {[
+                  { title: "Online 1-to-1", desc: "Live, personalised lessons worldwide.", tag: "Global" },
+                  { title: "Personal Coaching", desc: "Syllabus tailored to your anatomy.", tag: "Doctor-Led" },
+                  { title: "Flexible Timing", desc: "Request times around your routine.", tag: "Self-Paced" },
+                  { title: "Dance & Music", desc: "Bharatanatyam, Carnatic & Yoga.", tag: "Living Lineage" }
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-md border border-white/10 hover:border-[#B99A63]/60 transition-all duration-300 hover:-translate-y-1 group"
+                  >
+                    <div className="text-[10px] font-mono tracking-widest text-[#B99A63] uppercase mb-1">
+                      {item.tag}
+                    </div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors">
+                      {item.title}
+                    </div>
+                    <p className="text-[11px] text-slate-300 mt-1 leading-snug">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
             </AnimatedSection>
 
-            {/* Right Visual Frame: Museum Spotlight Frame with Interactive 3D Tilt */}
+            {/* Right Visual Frame: Museum Spotlight Frame with Multi-Plane 3D Tilt */}
             <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative perspective-scene">
               <div
                 onMouseMove={handleHeroMouseMove}
@@ -308,17 +327,35 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Floating 3D Badge */}
+                {/* Top-Right Floating 3D Badge: CCRT Scholar */}
                 <div
                   style={{
-                    transform: "translateZ(30px)"
+                    transform: "translateZ(45px)"
                   }}
-                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/60 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md"
+                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
                 >
-                  <Award className="w-5 h-5 text-[#B99A63]" />
+                  <div className="w-8 h-8 rounded-full bg-[#B99A63]/20 flex items-center justify-center text-[#D4AF37]">
+                    <Award className="w-4 h-4 text-[#D4AF37]" />
+                  </div>
                   <div>
-                    <div className="text-xs font-bold">1-to-1 Private Coaching</div>
-                    <div className="text-[10px] text-[#A9A49D]">Tailored to Your Schedule</div>
+                    <div className="text-xs font-bold">CCRT National Scholar</div>
+                    <div className="text-[10px] text-[#A9A49D]">Govt. of India · Age 12</div>
+                  </div>
+                </div>
+
+                {/* Bottom-Left Floating 3D Badge: 600+ Recitals & 5 Films */}
+                <div
+                  style={{
+                    transform: "translateZ(50px)"
+                  }}
+                  className="absolute -bottom-4 -left-2 sm:-bottom-5 sm:-left-4 bg-[#24050B]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#3B0B14] flex items-center justify-center text-[#D4AF37]">
+                    <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-[#D4AF37]">600+ Recitals · 5 Films</div>
+                    <div className="text-[10px] text-slate-300">21+ Yrs Classical Lineage</div>
                   </div>
                 </div>
               </div>
