@@ -180,26 +180,31 @@ export default function TanpuraSoundscape() {
         </div>
       )}
 
-      {/* Floating Controller Button (Icon Only) */}
-      <button
-        onClick={toggleSound}
-        className={`w-12 h-12 rounded-full border transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer tap-bounce flex items-center justify-center relative group ${
-          isPlaying
-            ? "bg-[#3B0B14] border-[#B99A63] text-[#D4AF37] shadow-[0_0_20px_rgba(185,154,99,0.5)] scale-105"
-            : "bg-[#151515] border-[#B99A63]/50 text-[#B99A63] hover:text-[#D4AF37] hover:border-[#D4AF37] hover:scale-110"
-        }`}
-        title={isPlaying ? "Tanpura Classical Drone Active (Click to Mute)" : "Play Indian Classical Tanpura Drone"}
-        aria-label={isPlaying ? "Mute Tanpura Drone" : "Play Tanpura Drone"}
-      >
-        {isPlaying ? (
-          <Volume2 className="w-5 h-5 text-[#D4AF37] animate-pulse" />
-        ) : (
-          <Music className="w-5 h-5 text-[#B99A63] group-hover:scale-110 transition-transform" />
-        )}
+      {/* Floating Controller Button with Shruti Breathing Pulse */}
+      <div className="relative">
         {isPlaying && (
-          <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#B99A63] border-2 border-[#151515] animate-ping" />
+          <span className="absolute inset-0 rounded-full bg-[#B99A63]/30 blur-md pointer-events-none shruti-pulse-active" />
         )}
-      </button>
+        <button
+          onClick={toggleSound}
+          className={`w-12 h-12 rounded-full border transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer tap-bounce flex items-center justify-center relative group ${
+            isPlaying
+              ? "bg-[#3B0B14] border-[#B99A63] text-[#D4AF37] shadow-[0_0_20px_rgba(185,154,99,0.5)] scale-105"
+              : "bg-[#151515] border-[#B99A63]/50 text-[#B99A63] hover:text-[#D4AF37] hover:border-[#D4AF37] hover:scale-110"
+          }`}
+          title={isPlaying ? "Tanpura Classical Drone Active (Click to Mute)" : "Play Indian Classical Tanpura Drone"}
+          aria-label={isPlaying ? "Mute Tanpura Drone" : "Play Tanpura Drone"}
+        >
+          {isPlaying ? (
+            <Volume2 className="w-5 h-5 text-[#D4AF37] animate-pulse" />
+          ) : (
+            <Music className="w-5 h-5 text-[#B99A63] group-hover:scale-110 transition-transform" />
+          )}
+          {isPlaying && (
+            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#B99A63] border-2 border-[#151515] animate-ping" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

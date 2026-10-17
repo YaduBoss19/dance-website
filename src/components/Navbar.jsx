@@ -139,7 +139,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={handleBookTrialClick}
-              className="px-6 py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm tracking-wide shadow-md shadow-[#B99A63]/20 hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer tap-bounce flex items-center gap-2"
+              className="silk-zari-btn px-6 py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm tracking-wide shadow-md shadow-[#B99A63]/20 hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer tap-bounce flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#151515]" />
               <span>Book a Trial</span>
@@ -214,7 +214,7 @@ export default function Navbar() {
                 <div className="pt-5 mt-2 border-t border-[#A9A49D]/20">
                   <button
                     onClick={handleBookTrialClick}
-                    className="w-full py-3.5 rounded-full bg-[#B99A63] text-[#151515] font-extrabold text-sm text-center shadow-md shadow-[#B99A63]/25 flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                    className="silk-zari-btn w-full py-3.5 rounded-full bg-[#B99A63] text-[#151515] font-extrabold text-sm text-center shadow-md shadow-[#B99A63]/25 flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                   >
                     <Sparkles className="w-4 h-4 text-[#151515]" />
                     <span>Book a 1-to-1 Trial Session</span>

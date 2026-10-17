@@ -294,7 +294,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
 
                       <button
                         onClick={() => handleBookingClick(course.title)}
-                        className="px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
+                        className="silk-zari-btn px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
                       >
                         <span>Book 1-to-1</span>
                         <ArrowRight className="w-3.5 h-3.5" />

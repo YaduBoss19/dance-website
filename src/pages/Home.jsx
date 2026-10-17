@@ -171,7 +171,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-2.5">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-xs font-bold tracking-widest uppercase shadow-xl">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  <span>2026/27 Admissions Active · 1-to-1 Studio</span>
+                  <span>Strictly Limited 1-to-1 Studio Cohorts · 2026/27</span>
                 </div>
 
                 <span className="hidden sm:inline-block text-[11px] font-mono tracking-wider text-[#B99A63]/80 italic">
@@ -196,7 +196,7 @@ export default function Home() {
                     playGhungrooChime();
                     scrollToSection("services-section");
                   }}
-                  className="px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
+                  className="silk-zari-btn px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
                 >
                   <Sparkles className="w-4 h-4 text-[#151515]" />
                   <span>Explore Classes</span>
@@ -208,7 +208,7 @@ export default function Home() {
                     playGhungrooChime();
                     scrollToSection("artistic-journey");
                   }}
-                  className="px-7 py-4 rounded-full bg-[#151515]/80 hover:bg-[#252525] text-[#F5F0E8] border border-[#B99A63]/50 font-bold text-sm sm:text-base shadow-md backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                  className="silk-zari-gold-sweep px-7 py-4 rounded-full bg-[#151515]/80 hover:bg-[#252525] text-[#F5F0E8] border border-[#B99A63]/50 font-bold text-sm sm:text-base shadow-md backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
                   <UserCheck className="w-4 h-4 text-[#B99A63]" />
                   <span>Meet the Artist</span>
@@ -624,10 +624,19 @@ export default function Home() {
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
               Meet Dr. Malavika M. Sunil for a private 45-minute video consultation and movement/vocal assessment. Share your goals, ask questions, and discover your personalized learning pathway.
             </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] font-semibold tracking-wider uppercase text-[#B99A63]">
+              <span className="px-3.5 py-1.5 rounded-full bg-[#B99A63]/10 border border-[#B99A63]/30 backdrop-blur-xs flex items-center gap-1.5">
+                <span className="text-[#D4AF37]">✦</span> By Private Consultation &amp; Mentorship
+              </span>
+              <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 flex items-center gap-1.5">
+                <span className="text-[#D4AF37]">✦</span> Flexible Global Cohorts (USA, UK, UAE &amp; India)
+              </span>
+            </div>
           </AnimatedSection>
 
           {/* Form Card */}
-          <div className="bg-[#1f1f1f] rounded-3xl p-6 sm:p-10 border border-[#B99A63]/30 shadow-2xl text-left">
+          <div className="museum-frame-dark bg-[#1f1f1f]/95 rounded-3xl p-6 sm:p-10 border border-[#B99A63]/35 shadow-2xl text-left relative overflow-hidden">
             {submittedSuccess ? (
               <div className="text-center py-8 space-y-4">
                 <div className="w-16 h-16 rounded-full bg-[#B99A63]/20 text-[#B99A63] flex items-center justify-center mx-auto">
@@ -642,7 +651,7 @@ export default function Home() {
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <button
                     onClick={openWhatsAppBooking}
-                    className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 tap-bounce"
+                    className="silk-zari-btn px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 tap-bounce"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>Confirm Instantly via WhatsApp</span>
@@ -789,7 +798,7 @@ export default function Home() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:flex-1 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 transition-all cursor-pointer flex items-center justify-center gap-2 tap-bounce disabled:opacity-50"
+                    className="silk-zari-btn w-full sm:flex-1 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 transition-all cursor-pointer flex items-center justify-center gap-2 tap-bounce disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <span>Sending Request...</span>
@@ -804,7 +813,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={openWhatsAppBooking}
-                    className="w-full sm:w-auto px-6 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 tap-bounce cursor-pointer"
+                    className="silk-zari-btn w-full sm:w-auto px-6 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 tap-bounce cursor-pointer shadow-lg shadow-emerald-900/30"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>WhatsApp Directly</span>
