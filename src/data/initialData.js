@@ -594,9 +594,9 @@ export const FAQS = [
 ];
 
 export const ACADEMY_INFO = {
-  name: "Dr. Malavika M. Sunil",
-  brandTitle: "Private Dance & Music Coaching",
-  shortName: "Dr. Malavika M. Sunil",
+  name: "Dr. Malavika M Sunil",
+  brandTitle: "Dance & Music",
+  shortName: "Dr. Malavika M Sunil",
   tagline: "Your Passion. Your Pace. Your Personal Coach.",
   heroHeadline: "Move. Learn. Master.",
   phone: "+91 79942 59815",

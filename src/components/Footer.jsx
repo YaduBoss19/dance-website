@@ -88,10 +88,10 @@ export default function Footer() {
               </div>
               <div>
                 <span className="font-bold text-2xl tracking-tight text-[#F5F0E8] font-serif-luxury block leading-tight">
-                  Dr. Malavika M. Sunil
+                  Dr. Malavika M Sunil
                 </span>
                 <span className="text-[10px] font-bold tracking-widest text-[#B99A63] uppercase">
-                  Dance & Music · 1-to-1 Studio
+                  Dance &amp; Music
                 </span>
               </div>
             </div>

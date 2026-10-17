@@ -94,25 +94,25 @@ export default function Navbar() {
           {/* Logo & Instructor Brand Name */}
           <button
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none tap-bounce"
-            aria-label="Dr. Malavika M. Sunil Home"
+            className="flex items-center gap-3 sm:gap-4 text-left group cursor-pointer focus:outline-none tap-bounce"
+            aria-label="Dr. Malavika M Sunil Home"
           >
             {/* Prominent, clean logo without any black background or clipping circle */}
-            <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <div className="h-16 sm:h-20 md:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo_transparent.png"
-                alt="Dr. Malavika M. Sunil Logo"
-                className="h-full w-auto object-contain drop-shadow-xs"
+                alt="Dr. Malavika M Sunil Logo"
+                className="h-full w-auto object-contain drop-shadow-sm"
               />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-lg sm:text-xl tracking-tight font-serif-luxury text-[#151515] leading-tight">
-                  Dr. Malavika M. Sunil
+                <span className="font-bold text-xl sm:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-tight">
+                  Dr. Malavika M Sunil
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#B99A63] uppercase">
-                Dance & Music · 1-to-1 Studio
+              <p className="text-[11px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-0.5">
+                Dance &amp; Music
               </p>
             </div>
           </button>
