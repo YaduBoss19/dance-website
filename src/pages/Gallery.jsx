@@ -192,7 +192,7 @@ export default function Gallery() {
       </section>
 
       {/* Recital Production Info */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-24 sm:pb-28 lg:pb-16">
         <AnimatedSection
           animation="zoom-in"
           className="p-8 sm:p-12 rounded-3xl bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/30 text-center max-w-3xl mx-auto space-y-3 shadow-xl"

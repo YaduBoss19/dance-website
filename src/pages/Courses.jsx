@@ -358,7 +358,7 @@ export default function Courses() {
       <GoldDivider />
 
       {/* ── BESPOKE CONSULTATION CALLOUT ──────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-24 sm:pb-28 lg:pb-16">
         <AnimatedSection
           animation="zoom-in"
           className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#140F24] via-[#1A1230] to-[#0A0714] text-white shadow-2xl border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left relative overflow-hidden"

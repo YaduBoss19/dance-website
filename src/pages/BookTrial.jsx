@@ -113,7 +113,7 @@ export default function BookTrial() {
       </section>
 
       {/* Main Container */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-8 pb-24 sm:pb-28 lg:pb-16">
         {submittedEnquiry ? (
           /* Confirmation State */
           <AnimatedSection

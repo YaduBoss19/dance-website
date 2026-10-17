@@ -131,7 +131,7 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           1. CINEMATIC HERO SECTION: Royal Atmosphere & Sacred Mandala
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] sm:min-h-screen flex items-center pt-16 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+      <section className="relative min-h-[85vh] sm:min-h-screen flex items-center pt-8 sm:pt-20 pb-16 sm:pb-28 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
         {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast) */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/65 pointer-events-none z-10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(185,154,99,0.15)_0%,rgba(36,5,11,0.6)_45%,rgba(21,21,21,0.95)_90%)] pointer-events-none z-10" />
@@ -164,7 +164,7 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
+              <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.12] sm:leading-[1.08] font-serif-luxury drop-shadow-lg">
                 Your Passion. <br />
                 Your Pace. <br />
                 <span className="italic text-[#D4AF37]">Your Personal Coach.</span>
@@ -287,14 +287,14 @@ export default function Home() {
                   style={{
                     transform: "translateZ(45px)"
                   }}
-                  className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 bg-[#151515]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
+                  className="absolute -top-3 right-0 sm:-top-5 sm:-right-4 bg-[#151515]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-2xl text-left flex items-center gap-2 sm:gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[#B99A63]/20 flex items-center justify-center text-[#D4AF37]">
-                    <Award className="w-4 h-4 text-[#D4AF37]" />
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#B99A63]/20 flex items-center justify-center text-[#D4AF37] shrink-0">
+                    <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold">CCRT National Scholar</div>
-                    <div className="text-[10px] text-[#A9A49D]">Govt. of India · Age 12</div>
+                    <div className="text-[11px] sm:text-xs font-bold">CCRT National Scholar</div>
+                    <div className="text-[9px] sm:text-[10px] text-[#A9A49D]">Govt. of India · Age 12</div>
                   </div>
                 </div>
 
@@ -303,14 +303,14 @@ export default function Home() {
                   style={{
                     transform: "translateZ(50px)"
                   }}
-                  className="absolute -bottom-4 -left-2 sm:-bottom-5 sm:-left-4 bg-[#24050B]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-4 py-2.5 rounded-2xl shadow-2xl text-left flex items-center gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
+                  className="absolute -bottom-3 left-0 sm:-bottom-5 sm:-left-4 bg-[#24050B]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-2xl text-left flex items-center gap-2 sm:gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[#3B0B14] flex items-center justify-center text-[#D4AF37]">
-                    <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#3B0B14] flex items-center justify-center text-[#D4AF37] shrink-0">
+                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#D4AF37]">600+ Recitals · 5 Films</div>
-                    <div className="text-[10px] text-slate-300">21+ Yrs Classical Lineage</div>
+                    <div className="text-[11px] sm:text-xs font-bold text-[#D4AF37]">600+ Recitals · 5 Films</div>
+                    <div className="text-[9px] sm:text-[10px] text-slate-300">21+ Yrs Classical Lineage</div>
                   </div>
                 </div>
               </div>

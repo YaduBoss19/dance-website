@@ -213,7 +213,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
             return (
               <div
                 key={course.id}
-                className="w-[290px] sm:w-[340px] md:w-[370px] shrink-0 snap-start flex"
+                className="w-[82vw] max-w-[320px] sm:w-[340px] md:w-[370px] shrink-0 snap-start flex"
               >
                 <div
                   className={`silk-pleat-card bg-white rounded-3xl overflow-hidden border ${theme.accentColor} shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-left group relative w-full`}

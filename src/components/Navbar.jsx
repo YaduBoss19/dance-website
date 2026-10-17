@@ -86,32 +86,32 @@ export default function Navbar() {
       <nav
         className={`w-full transition-all duration-300 ${
           scrolled
-            ? "bg-[#F5F0E8]/98 text-[#151515] backdrop-blur-md shadow-md py-2.5 sm:py-3 border-b border-[#B99A63]/40"
-            : "bg-[#F5F0E8]/95 text-[#151515] backdrop-blur-md py-3.5 sm:py-4 border-b border-[#A9A49D]/20"
+            ? "bg-[#F5F0E8]/98 text-[#151515] backdrop-blur-md shadow-md py-2 sm:py-2.5 border-b border-[#B99A63]/40"
+            : "bg-[#F5F0E8]/95 text-[#151515] backdrop-blur-md py-2.5 sm:py-3.5 border-b border-[#A9A49D]/20"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 flex items-center justify-between gap-2">
           {/* Logo & Instructor Brand Name */}
           <button
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-3 sm:gap-4 text-left group cursor-pointer focus:outline-none tap-bounce"
+            className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-left group cursor-pointer focus:outline-none tap-bounce min-w-0"
             aria-label="Dr. Malavika M Sunil Home"
           >
             {/* Prominent, clean logo without any black background or clipping circle */}
-            <div className="h-16 sm:h-20 md:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
+            <div className="h-12 xs:h-14 sm:h-18 md:h-20 lg:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo_transparent.png"
                 alt="Dr. Malavika M Sunil Logo"
                 className="h-full w-auto object-contain drop-shadow-sm"
               />
             </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-bold text-xl sm:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-tight">
+            <div className="min-w-0">
+              <div className="flex items-center">
+                <span className="font-bold text-base xs:text-lg sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-none truncate whitespace-nowrap block">
                   Dr. Malavika M Sunil
                 </span>
               </div>
-              <p className="text-[11px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-0.5">
+              <p className="text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-1 leading-none truncate">
                 Dance &amp; Music
               </p>
             </div>
@@ -146,11 +146,11 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Actions: CTA Button & Hamburger */}
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Actions: CTA Button (tablet only) & Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden shrink-0">
             <button
               onClick={handleBookTrialClick}
-              className="px-3.5 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce"
+              className="hidden sm:inline-flex px-3.5 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce"
             >
               Book Trial
             </button>
@@ -158,7 +158,7 @@ export default function Navbar() {
             {/* Smooth Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg transition-colors focus:outline-none tap-bounce text-[#151515] hover:bg-black/5"
+              className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-colors focus:outline-none tap-bounce text-[#151515] hover:bg-black/5 border border-black/5"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >

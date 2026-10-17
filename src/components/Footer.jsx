@@ -35,7 +35,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact-section" className="bg-[#151515] text-[#F5F0E8] pt-16 pb-12 border-t border-[#A9A49D]/20 relative overflow-hidden">
+    <footer id="contact-section" className="bg-[#151515] text-[#F5F0E8] pt-16 pb-24 sm:pb-28 lg:pb-12 border-t border-[#A9A49D]/20 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
 

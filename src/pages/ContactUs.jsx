@@ -358,7 +358,7 @@ export default function ContactUs() {
       </section>
 
       {/* Frequently Asked Questions (FAQ) Accordion */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-8">
+      <section className="max-w-4xl mx-auto px-4 sm:px-8 pb-24 sm:pb-28 lg:pb-16">
         <AnimatedSection animation="fade-up" className="text-center mb-8 sm:mb-10 space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
             Common Questions

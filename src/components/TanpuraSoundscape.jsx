@@ -140,10 +140,10 @@ export default function TanpuraSoundscape() {
   }, [isPlaying, startDrone, stopDrone]);
 
   return (
-    <div className="fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2">
+    <div className="fixed bottom-20 left-3 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2">
       {/* Expanded Gamaka Harmonic Visualizer Modal / Panel */}
       {isExpanded && (
-        <div className="w-72 sm:w-80 p-4 rounded-2xl bg-[#151515]/95 border border-[#B99A63]/50 shadow-2xl backdrop-blur-xl text-left space-y-3 animate-silk-fan">
+        <div className="w-[calc(100vw-2rem)] max-w-xs sm:w-80 p-4 rounded-2xl bg-[#151515]/95 border border-[#B99A63]/50 shadow-2xl backdrop-blur-xl text-left space-y-3 animate-silk-fan">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />

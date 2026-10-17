@@ -556,7 +556,7 @@ export default function AboutUs() {
       </section>
 
       {/* ── BOTTOM CTA ───────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-24 sm:pb-28 lg:pb-16">
         <AnimatedSection
           animation="zoom-in"
           className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-rose-500 via-violet-600 to-indigo-600 p-8 sm:p-14 text-white shadow-2xl text-center"
