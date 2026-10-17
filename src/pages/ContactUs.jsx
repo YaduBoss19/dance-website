@@ -105,7 +105,8 @@ export default function ContactUs() {
               onClick={openWhatsApp}
               className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm tap-bounce"
             >
-              <span>Chat on WhatsApp</span>
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>Chat: +91 79942 59815</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </button>
           </AnimatedSection>

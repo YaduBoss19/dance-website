@@ -842,7 +842,7 @@ export default function CinematicReelsShowcase({
             >
               <img
                 src="/images/malavika_dance_stage.jpg"
-                alt="Dr. Malavika Sunil Bharatanatyam Performance"
+                alt="Dr. Malavika M. Sunil Bharatanatyam Performance"
                 className="w-full h-full object-cover object-top"
               />
             </div>

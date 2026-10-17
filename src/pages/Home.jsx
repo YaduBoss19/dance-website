@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useAcademy } from "../context/AcademyContext";
 import AnimatedSection from "../components/AnimatedSection";
 import CinematicReelsShowcase from "../components/CinematicReelsShowcase";
@@ -21,8 +21,6 @@ import {
   Send,
   Heart,
   ChevronDown,
-  Play,
-  Film,
   UserCheck
 } from "lucide-react";
 
@@ -51,19 +49,18 @@ export default function Home() {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
-  // Full-Bleed Cinematic Background Video State & Handlers
-  const bgVideoRef = useRef(null);
+  // Hero Tilt State & Handlers
   const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
 
-  const openTheatreModal = () => {
+  const openHeroPhotoModal = () => {
     playGhungrooChime();
     setLightboxItem({
-      id: "theatre-performance-intro",
+      id: "hero-portrait",
       title: "Dr. Malavika M. Sunil — Classical Bharatanatyam Margam",
       category: "Classical Performance",
-      videoSrc: "/videos/performance.mp4",
+      image: "/images/malavika_dance_stage.jpg",
       caption:
-        "Full studio recital by Dr. Malavika M. Sunil. Filmed on stage with authentic Carnatic orchestral accompaniment, presenting the intricate geometric footwork (Nritta) and emotional depth (Abhinaya) of the Pandanallur lineage."
+        "Dr. Malavika M. Sunil on stage. Discipleship of 21+ years under renowned Gurus, CCRT National Scholar, and MBBS Physician."
     });
   };
 
@@ -132,24 +129,12 @@ export default function Home() {
   return (
     <div className="bg-[#F5F0E8] text-[#151515] selection:bg-[#B99A63]/30 selection:text-[#151515] overflow-x-hidden">
       {/* ─────────────────────────────────────────────────────────────
-          1. CINEMATIC 3D HERO SECTION: Full-Bleed Video Background + Multi-Stop Luxury Overlay
+          1. CINEMATIC HERO SECTION: Royal Atmosphere & Sacred Mandala
       ───────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] sm:min-h-screen flex items-center pt-16 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
-        {/* Full-Bleed Ambient Performance Video Background */}
-        <video
-          ref={bgVideoRef}
-          src="/videos/performance.mp4"
-          poster="/images/malavika_dance_stage.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-opacity duration-1000"
-        />
-
         {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/55 pointer-events-none z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(21,21,21,0.75)_85%)] pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/65 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(185,154,99,0.15)_0%,rgba(36,5,11,0.6)_45%,rgba(21,21,21,0.95)_90%)] pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F5F0E8] via-[#151515]/80 to-transparent pointer-events-none z-10" />
 
         {/* Stage Gold Particles Background Canvas & Parallax Sacred Temple Yantra */}
@@ -186,7 +171,7 @@ export default function Home() {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
-                A personal sanctuary for classical dance, music, and artistic mastery. Learn Bharatanatyam, Carnatic vocal music, and custom choreography through <strong>online, one-to-one private lessons</strong> mentored directly by <strong>Dr. Malavika M. Sunil</strong>.
+                A personal space for dance, music and creative expression. Master Bharatanatyam, Carnatic music or bespoke choreography , through <strong>online group classes</strong> or <strong>one on one personalized sessions</strong> mentored personally by <strong>Dr Malavika M Sunil</strong>.
               </p>
 
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
@@ -252,7 +237,11 @@ export default function Home() {
                 }}
                 className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none transition-transform will-change-transform"
               >
-                <div className="museum-frame group shadow-2xl">
+                <div
+                  onClick={openHeroPhotoModal}
+                  className="museum-frame group shadow-2xl cursor-pointer"
+                  title="View portrait of Dr. Malavika M. Sunil"
+                >
                   <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative overflow-hidden rounded-2xl">
                     <img
                       src="/images/malavika_dance_stage.jpg"
@@ -260,41 +249,33 @@ export default function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
 
-                    {/* Gradient Overlay & Fullscreen Theatre Button */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/30 to-transparent flex flex-col justify-between p-6">
+                    {/* Gradient Overlay & Artist Badges */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/20 to-transparent flex flex-col justify-between p-6">
                       {/* Top Tag */}
                       <div className="self-end flex items-center gap-2">
                         <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 flex items-center gap-1.5 shadow-lg">
-                          <Film className="w-3.5 h-3.5 text-[#B99A63]" />
-                          <span>Performance Reel</span>
+                          <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
+                          <span>Artist &amp; Mentor</span>
                         </span>
                       </div>
 
-                      {/* Center Glowing Play Button for Theatre Fullscreen */}
-                      <div className="self-center flex flex-col items-center gap-3">
-                        <button
-                          onClick={openTheatreModal}
-                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl shadow-[#B99A63]/50 group-hover:scale-110 active:scale-95 transition-all cursor-pointer tap-bounce"
-                          title="Watch Full Performance with Sound"
-                          aria-label="Watch Full Performance with Sound"
-                        >
-                          <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#151515] ml-1" />
-                        </button>
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/85 px-3.5 py-1 rounded-full border border-[#B99A63]/40 backdrop-blur-xs">
-                          Watch with Sound (Theatre Mode)
+                      {/* Center subtle hover zoom indicator */}
+                      <div className="self-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/90 px-4 py-2 rounded-full border border-[#B99A63]/50 backdrop-blur-xs shadow-xl">
+                          View Full Portrait
                         </span>
                       </div>
 
                       {/* Bottom Visual Label */}
                       <div className="text-left text-[#F5F0E8]">
                         <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#B99A63] text-[#151515] uppercase tracking-wider inline-block mb-1.5">
-                          Classical Margam & Vocal Intro
+                          Classical Bharatanatyam &amp; Vocal
                         </span>
                         <h3 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
                           Dr. Malavika M. Sunil
                         </h3>
                         <p className="text-xs text-[#A9A49D] mt-0.5">
-                          CCRT Scholar · 21 Years Lineage · MBBS Physician
+                          CCRT Scholar · 21+ Years Lineage · MBBS Physician
                         </p>
                       </div>
                     </div>

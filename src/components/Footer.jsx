@@ -23,7 +23,7 @@ export default function Footer() {
       showToast("Please enter a valid email address.", "error");
       return;
     }
-    showToast("🎉 Thank you for subscribing to Dr. Malavika Sunil's Studio Notes!", "success");
+    showToast("🎉 Thank you for subscribing to Dr. Malavika M. Sunil's Studio Notes!", "success");
     setNewsletterEmail("");
   };
 
@@ -88,7 +88,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="font-bold text-2xl tracking-tight text-[#F5F0E8] font-serif-luxury block leading-tight">
-                  Dr. Malavika Sunil
+                  Dr. Malavika M. Sunil
                 </span>
                 <span className="text-[10px] font-bold tracking-widest text-[#B99A63] uppercase">
                   Dance & Music · 1-to-1 Studio
@@ -229,6 +229,15 @@ export default function Footer() {
             </form>
 
             <div className="space-y-1.5 text-xs text-slate-400">
+              <a
+                href={`https://wa.me/${academyInfo.whatsappNumber.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                <span>+91 79942 59815 (WhatsApp)</span>
+              </a>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#B99A63] shrink-0" />
                 <span>{academyInfo.directPhone}</span>

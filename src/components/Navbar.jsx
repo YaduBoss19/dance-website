@@ -95,20 +95,20 @@ export default function Navbar() {
           <button
             onClick={() => handleNavClick("home")}
             className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none tap-bounce"
-            aria-label="Dr. Malavika Sunil Home"
+            aria-label="Dr. Malavika M. Sunil Home"
           >
             {/* Prominent, clean logo without any black background or clipping circle */}
             <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img
                 src="/images/logo_transparent.png"
-                alt="DancingRagas Logo"
+                alt="Dr. Malavika M. Sunil Logo"
                 className="h-full w-auto object-contain drop-shadow-xs"
               />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="font-bold text-lg sm:text-xl tracking-tight font-serif-luxury text-[#151515] leading-tight">
-                  Dr. Malavika Sunil
+                  Dr. Malavika M. Sunil
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#B99A63] uppercase">
