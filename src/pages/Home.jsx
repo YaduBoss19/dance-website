@@ -129,12 +129,23 @@ export default function Home() {
   return (
     <div className="bg-[#F5F0E8] text-[#151515] selection:bg-[#B99A63]/30 selection:text-[#151515] overflow-x-hidden">
       {/* ─────────────────────────────────────────────────────────────
-          1. CINEMATIC HERO SECTION: Royal Atmosphere & Sacred Mandala
+          1. CINEMATIC HERO SECTION: Full-Bleed Performance Video Background
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[85vh] sm:min-h-screen flex items-center pt-8 sm:pt-20 pb-16 sm:pb-28 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+      <section className="relative min-h-screen flex items-center pt-20 sm:pt-28 pb-20 sm:pb-32 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+        {/* Full-Bleed Ambient Performance Video Background */}
+        <video
+          src="/videos/performance.mp4"
+          poster="/images/malavika_dance_stage.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-opacity duration-1000"
+        />
+
         {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast) */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/65 pointer-events-none z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(185,154,99,0.15)_0%,rgba(36,5,11,0.6)_45%,rgba(21,21,21,0.95)_90%)] pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.15)_0%,rgba(21,21,21,0.8)_85%)] pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F5F0E8] via-[#151515]/80 to-transparent pointer-events-none z-10" />
 
         {/* Stage Gold Particles Background Canvas & Parallax Sacred Temple Yantra */}
@@ -164,7 +175,7 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.12] sm:leading-[1.08] font-serif-luxury drop-shadow-lg">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
                 Your Passion. <br />
                 Your Pace. <br />
                 <span className="italic text-[#D4AF37]">Your Personal Coach.</span>

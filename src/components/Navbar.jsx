@@ -98,7 +98,7 @@ export default function Navbar() {
             aria-label="Dr. Malavika M Sunil Home"
           >
             {/* Prominent, clean logo without any black background or clipping circle */}
-            <div className="h-12 xs:h-14 sm:h-18 md:h-20 lg:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
+            <div className="h-14 sm:h-18 md:h-20 lg:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo_transparent.png"
                 alt="Dr. Malavika M Sunil Logo"
@@ -107,11 +107,11 @@ export default function Navbar() {
             </div>
             <div className="min-w-0">
               <div className="flex items-center">
-                <span className="font-bold text-base xs:text-lg sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-none truncate whitespace-nowrap block">
+                <span className="font-bold text-lg sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-none truncate whitespace-nowrap block">
                   Dr. Malavika M Sunil
                 </span>
               </div>
-              <p className="text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-1 leading-none truncate">
+              <p className="text-[10px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-1 leading-none truncate">
                 Dance &amp; Music
               </p>
             </div>
@@ -146,11 +146,11 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Actions: CTA Button (tablet only) & Hamburger */}
+          {/* Mobile Actions: CTA Button & Hamburger */}
           <div className="flex items-center gap-2 lg:hidden shrink-0">
             <button
               onClick={handleBookTrialClick}
-              className="hidden sm:inline-flex px-3.5 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce"
+              className="silk-zari-btn px-3 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce shrink-0"
             >
               Book Trial
             </button>
