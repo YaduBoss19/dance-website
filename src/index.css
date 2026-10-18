@@ -528,31 +528,40 @@
 /* ─── INFINITE PHOTO & VIDEO STREAM MARQUEE ─────────────── */
 @keyframes infinite-marquee {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-infinite-marquee {
   display: flex;
   width: max-content;
-  animation: infinite-marquee 45s linear infinite;
+  animation: infinite-marquee 40s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee,
 .animate-ticker-marquee {
   display: flex;
   width: max-content;
-  animation: infinite-marquee 32s linear infinite;
+  animation: infinite-marquee 28s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
-.animate-infinite-marquee:hover,
-.animate-marquee:hover,
-.animate-ticker-marquee:hover,
+@media (hover: hover) and (pointer: fine) {
+  .animate-infinite-marquee:hover,
+  .animate-marquee:hover,
+  .animate-ticker-marquee:hover {
+    animation-play-state: paused !important;
+  }
+}
+
 .pause-marquee {
   animation-play-state: paused !important;
 }

@@ -724,13 +724,13 @@ export default function CinematicReelsShowcase({
     <section
       id="gallery-section"
       ref={reelsTopRef}
-      className="py-16 sm:py-24 px-4 sm:px-8 bg-[#151515] text-[#F5F0E8] border-b border-[#A9A49D]/20 relative overflow-hidden"
+      className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 bg-[#151515] text-[#F5F0E8] border-b border-[#A9A49D]/20 relative overflow-hidden"
     >
       {/* Ambient background glows */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#3B0B14]/40 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#B99A63]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-6 sm:space-y-10 lg:space-y-12">
         {/* ═══════════════════════════════════════════════════════════════
             OFFICIAL INSTAGRAM EMBED BANNER (@dancingragasbymalavika)
         ═══════════════════════════════════════════════════════════════ */}

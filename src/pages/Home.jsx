@@ -11,7 +11,7 @@ import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
 import GoldDivider from "../components/GoldDivider";
 import AnnouncementsTicker from "../components/AnnouncementsTicker";
-import VirtualTourHeroCard from "../components/VirtualTourHeroCard";
+import HeroSlideshow from "../components/HeroSlideshow";
 import AcademyNewsAndEvents from "../components/AcademyNewsAndEvents";
 import { playGhungrooChime } from "../utils/talamAudio";
 import { FAQS, TESTIMONIALS } from "../data/initialData";
@@ -19,7 +19,6 @@ import {
   Sparkles,
   ArrowRight,
   Star,
-  Award,
   MessageCircle,
   Send,
   Heart,
@@ -55,30 +54,6 @@ export default function Home() {
   // Hero Tilt State & Handlers
   const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
 
-  const openHeroPhotoModal = () => {
-    playGhungrooChime();
-    setLightboxItem({
-      id: "hero-portrait",
-      title: "Dr. Malavika M. Sunil — Classical Bharatanatyam Margam",
-      category: "Classical Performance",
-      image: "/images/malavika_dance_stage.jpg",
-      caption:
-        "Dr. Malavika M. Sunil on stage. Discipleship of 21+ years under renowned Gurus, CCRT National Scholar, and MBBS Physician."
-    });
-  };
-
-  const openStageTourModal = () => {
-    playGhungrooChime();
-    setLightboxItem({
-      id: "stage-tour",
-      title: "Dr. Malavika M. Sunil — 360° Classical Stage Recital & Studio",
-      category: "Stage Performance",
-      videoUrl: "/videos/performance.mp4",
-      image: "/images/malavika_dance_stage.jpg",
-      caption:
-        "Watch Dr. Malavika M. Sunil in full classical Bharatanatyam Margam presentation. 21+ Years Lineage, CCRT National Scholar, MBBS Physician."
-    });
-  };
 
   const handleHeroMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -147,7 +122,7 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           1. CINEMATIC HERO SECTION: Full-Bleed Performance Video Background
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center pt-20 sm:pt-28 pb-20 sm:pb-32 px-4 sm:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+      <section className="relative min-h-[100dvh] lg:min-h-[92vh] flex flex-col justify-center pt-10 xs:pt-12 sm:pt-16 lg:pt-20 pb-4 xs:pb-6 sm:pb-8 px-3.5 sm:px-6 lg:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
         {/* Full-Bleed Ambient Performance Video Background */}
         <video
           src="/videos/performance.mp4"
@@ -176,12 +151,12 @@ export default function Home() {
           <SacredMandalaScroll className="opacity-[0.09]" size={640} />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto relative z-20 w-full space-y-4 xs:space-y-5 sm:space-y-8 lg:space-y-10 my-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-14 items-center">
             {/* Left Headline & Pitch */}
-            <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-6">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-xs font-bold tracking-widest uppercase shadow-xl">
+            <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-3 xs:space-y-4 sm:space-y-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-xl">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
                   <span>Strictly Limited 1-to-1 Studio Cohorts · 2026/27</span>
                 </div>
@@ -191,24 +166,24 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
                 Your Passion. <br />
                 Your Pace. <br />
                 <span className="italic text-[#D4AF37]">Your Personal Coach.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
+              <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
                 A personal space for dance, music and creative expression. Master Bharatanatyam, Carnatic music or bespoke choreography , through <strong>online group classes</strong> or <strong>one on one personalized sessions</strong> mentored personally by <strong>Dr Malavika M Sunil</strong>.
               </p>
 
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1">
                 <button
                   onClick={() => {
                     playGhungrooChime();
                     scrollToSection("services-section");
                   }}
-                  className="silk-zari-btn px-8 py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-sm sm:text-base shadow-xl shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer tap-bounce"
+                  className="silk-zari-btn px-5 sm:px-8 py-3 sm:py-4 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs sm:text-base shadow-xl shadow-[#B99A63]/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
                   <Sparkles className="w-4 h-4 text-[#151515]" />
                   <span>Explore Classes</span>
@@ -220,20 +195,16 @@ export default function Home() {
                     playGhungrooChime();
                     scrollToSection("artistic-journey");
                   }}
-                  className="silk-zari-gold-sweep px-7 py-4 rounded-full bg-[#151515]/80 hover:bg-[#252525] text-[#F5F0E8] border border-[#B99A63]/50 font-bold text-sm sm:text-base shadow-md backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
+                  className="silk-zari-gold-sweep px-5 sm:px-7 py-3 sm:py-4 rounded-full bg-[#151515]/80 hover:bg-[#252525] text-[#F5F0E8] border border-[#B99A63]/50 font-bold text-xs sm:text-base shadow-md backdrop-blur-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                 >
                   <UserCheck className="w-4 h-4 text-[#B99A63]" />
                   <span>Meet the Artist</span>
                 </button>
               </div>
 
-              {/* SH College Inspired 360° Virtual Tour & Stage Spotlight Card */}
-              <div className="pt-2">
-                <VirtualTourHeroCard onOpenTour={openStageTourModal} />
-              </div>
             </AnimatedSection>
 
-            {/* Right Visual Frame: Museum Spotlight Frame with Multi-Plane 3D Tilt */}
+            {/* Right Visual Frame: Interactive Hero Photo Slideshow with 3D Tilt */}
             <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative perspective-scene">
               <div
                 onMouseMove={handleHeroMouseMove}
@@ -242,90 +213,14 @@ export default function Home() {
                   transform: `perspective(1000px) rotateX(${heroTilt.y}deg) rotateY(${heroTilt.x}deg)`,
                   transition: heroTilt.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none"
                 }}
-                className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none transition-transform will-change-transform"
               >
-                <div
-                  onClick={openHeroPhotoModal}
-                  className="museum-frame group shadow-2xl cursor-pointer"
-                  title="View portrait of Dr. Malavika M. Sunil"
-                >
-                  <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative overflow-hidden rounded-2xl">
-                    <img
-                      src="/images/malavika_dance_stage.jpg"
-                      alt="Dr. Malavika M. Sunil Bharatanatyam Margam"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-
-                    {/* Gradient Overlay & Artist Badges */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/20 to-transparent flex flex-col justify-between p-6">
-                      {/* Top Tag */}
-                      <div className="self-end flex items-center gap-2">
-                        <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 flex items-center gap-1.5 shadow-lg">
-                          <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-                          <span>Artist &amp; Mentor</span>
-                        </span>
-                      </div>
-
-                      {/* Center subtle hover zoom indicator */}
-                      <div className="self-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5F0E8] bg-[#151515]/90 px-4 py-2 rounded-full border border-[#B99A63]/50 backdrop-blur-xs shadow-xl">
-                          View Full Portrait
-                        </span>
-                      </div>
-
-                      {/* Bottom Visual Label */}
-                      <div className="text-left text-[#F5F0E8]">
-                        <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#B99A63] text-[#151515] uppercase tracking-wider inline-block mb-1.5">
-                          Classical Bharatanatyam &amp; Vocal
-                        </span>
-                        <h3 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
-                          Dr. Malavika M. Sunil
-                        </h3>
-                        <p className="text-xs text-[#A9A49D] mt-0.5">
-                          CCRT Scholar · 21+ Years Lineage · MBBS Physician
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Top-Right Floating 3D Badge: CCRT Scholar */}
-                <div
-                  style={{
-                    transform: "translateZ(45px)"
-                  }}
-                  className="absolute -top-3 right-0 sm:-top-5 sm:-right-4 bg-[#151515]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-2xl text-left flex items-center gap-2 sm:gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#B99A63]/20 flex items-center justify-center text-[#D4AF37] shrink-0">
-                    <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-bold">CCRT National Scholar</div>
-                    <div className="text-[9px] sm:text-[10px] text-[#A9A49D]">Govt. of India · Age 12</div>
-                  </div>
-                </div>
-
-                {/* Bottom-Left Floating 3D Badge: 600+ Recitals & 5 Films */}
-                <div
-                  style={{
-                    transform: "translateZ(50px)"
-                  }}
-                  className="absolute -bottom-3 left-0 sm:-bottom-5 sm:-left-4 bg-[#24050B]/95 text-[#F5F0E8] border border-[#B99A63]/70 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-2xl text-left flex items-center gap-2 sm:gap-2.5 z-30 backdrop-blur-md hover:scale-105 transition-transform"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#3B0B14] flex items-center justify-center text-[#D4AF37] shrink-0">
-                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-bold text-[#D4AF37]">600+ Recitals · 5 Films</div>
-                    <div className="text-[9px] sm:text-[10px] text-slate-300">21+ Yrs Classical Lineage</div>
-                  </div>
-                </div>
+                <HeroSlideshow onPhotoClick={(item) => setLightboxItem(item)} />
               </div>
             </AnimatedSection>
           </div>
 
           {/* 4 Value Pillars Banner: Spans full width gracefully across both mobile and desktop */}
-          <div className="pt-8 sm:pt-10 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+          <div className="pt-4 xs:pt-6 sm:pt-8 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4">
             {[
               { title: "Online 1-to-1", desc: "Live, personalised lessons worldwide.", tag: "Global" },
               { title: "Personal Coaching", desc: "Syllabus tailored to your anatomy.", tag: "Doctor-Led" },
@@ -334,15 +229,15 @@ export default function Home() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-3.5 sm:p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-md border border-white/10 hover:border-[#B99A63]/60 transition-all duration-300 hover:-translate-y-1 group text-left"
+                className="p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-md border border-white/10 hover:border-[#B99A63]/60 transition-all duration-300 hover:-translate-y-1 group text-left"
               >
-                <div className="text-[10px] font-mono tracking-widest text-[#B99A63] uppercase mb-1">
+                <div className="text-[9px] xs:text-[10px] font-mono tracking-widest text-[#B99A63] uppercase mb-0.5">
                   {item.tag}
                 </div>
-                <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors">
+                <div className="text-[11px] xs:text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors leading-tight">
                   {item.title}
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug">
+                <p className="text-[10px] xs:text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug">
                   {item.desc}
                 </p>
               </div>
@@ -373,7 +268,7 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
       ───────────────────────────────────────────────────────────── */}
-      <section id="meet-instructor" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 relative overflow-hidden">
+      <section id="meet-instructor" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 relative overflow-hidden">
         {/* Sacred Temple Yantra Mandala Background */}
         <SacredMandalaScroll className="absolute -left-28 -bottom-24 opacity-[0.05] -z-10" size={540} />
 
@@ -499,8 +394,8 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           6. THE 1-TO-1 EXPERIENCE: The Process Explained
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <section className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
               Personalized Journey
@@ -571,8 +466,8 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           8. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback
       ───────────────────────────────────────────────────────────── */}
-      <section id="testimonials" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <section id="testimonials" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
               Student Experiences
@@ -630,14 +525,14 @@ export default function Home() {
           9. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
       ───────────────────────────────────────────────────────────── */}
       <StageSpotlightOverlay>
-        <section id="book-trial" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+        <section id="book-trial" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
         {/* Sacred Temple Yantra Mandala Background */}
         <SacredMandalaScroll className="absolute -right-24 -top-24 opacity-[0.06] -z-10" size={540} />
 
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#3B0B14]/40 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B99A63]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
+        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10 relative z-10">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/15 px-3.5 py-1.5 rounded-full border border-[#B99A63]/40 inline-flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />

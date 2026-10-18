@@ -45,8 +45,8 @@ export default function ImmersiveArtForms() {
   ];
 
   return (
-    <section id="art-forms" className="py-20 sm:py-28 px-4 sm:px-8 bg-[#FAF7F2] border-b border-[#A9A49D]/20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section id="art-forms" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 bg-[#FAF7F2] border-b border-[#A9A49D]/20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12">
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase">

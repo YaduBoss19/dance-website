@@ -119,12 +119,12 @@ export default function ArtisticJourneyTimeline() {
   const IconComponent = activeMilestone.icon;
 
   return (
-    <section id="artistic-journey" className="py-20 sm:py-28 px-4 sm:px-8 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+    <section id="artistic-journey" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-1/4 -left-40 w-96 h-96 bg-[#3B0B14] rounded-full blur-[120px] pointer-events-none opacity-60" />
       <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-[#B99A63]/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 space-y-14">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-6 sm:space-y-10 lg:space-y-12">
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#3B0B14] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold tracking-widest uppercase shadow-lg">

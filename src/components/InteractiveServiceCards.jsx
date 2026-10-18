@@ -130,8 +130,8 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
   };
 
   return (
-    <StageSpotlightOverlay className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-      <div id="services-section" className="max-w-7xl mx-auto space-y-12 relative z-20">
+    <StageSpotlightOverlay className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <div id="services-section" className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12 relative z-20">
         {/* Section Heading */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">

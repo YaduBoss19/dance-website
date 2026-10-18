@@ -161,11 +161,11 @@ export default function NavarasaWheel() {
   const ActiveIcon = selectedRasa.icon;
 
   return (
-    <section id="navarasa-section" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+    <section id="navarasa-section" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
       {/* Background radial atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[500px] bg-gradient-to-b from-[#3B0B14]/30 via-[#B99A63]/10 to-transparent blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12 relative z-10">
         {/* Header Title */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/15 px-3.5 py-1.5 rounded-full border border-[#B99A63]/40 inline-flex items-center gap-1.5 shadow-sm">
