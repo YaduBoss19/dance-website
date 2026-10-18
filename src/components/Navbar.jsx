@@ -95,24 +95,24 @@ export default function Navbar() {
           {/* Logo & Instructor Brand Name */}
           <button
             onClick={() => handleNavClick("home")}
-            className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-left group cursor-pointer focus:outline-none tap-bounce min-w-0"
+            className="flex items-center gap-2 sm:gap-2.5 md:gap-3.5 text-left group cursor-pointer focus:outline-none tap-bounce min-w-0"
             aria-label="Dr. Malavika M Sunil Home"
           >
-            {/* Prominent, clean logo without any black background or clipping circle */}
-            <div className="h-14 sm:h-18 md:h-20 lg:h-22 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
+            {/* Elegant, balanced logo scale that prevents wrapping */}
+            <div className="h-8 xs:h-9 sm:h-11 md:h-12 lg:h-14 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo_transparent.png"
                 alt="Dr. Malavika M Sunil Logo"
-                className="h-full w-auto object-contain drop-shadow-sm"
+                className="h-full w-auto object-contain drop-shadow-xs"
               />
             </div>
             <div className="min-w-0">
               <div className="flex items-center">
-                <span className="font-bold text-base sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-tight block">
+                <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl tracking-tight font-serif-luxury text-[#151515] leading-tight block whitespace-nowrap">
                   Dr. Malavika M Sunil
                 </span>
               </div>
-              <p className="text-[9px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-0.5 leading-none">
+              <p className="text-[7.5px] xs:text-[8.5px] sm:text-[10px] md:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-0.5 leading-none whitespace-nowrap">
                 Dance &amp; Music
               </p>
             </div>

@@ -51,20 +51,6 @@ export default function Home() {
   // FAQ Accordion State
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
-  // Hero Tilt State & Handlers
-  const [heroTilt, setHeroTilt] = useState({ x: 0, y: 0 });
-
-
-  const handleHeroMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
-    setHeroTilt({ x, y });
-  };
-
-  const handleHeroMouseLeave = () => {
-    setHeroTilt({ x: 0, y: 0 });
-  };
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -141,13 +127,7 @@ export default function Home() {
 
         {/* Stage Gold Particles Background Canvas & Parallax Sacred Temple Yantra */}
         <GoldParticlesCanvas count={42} className="opacity-75 z-10" />
-        <div
-          style={{
-            transform: `translate3d(${heroTilt.x * -1.8}px, ${heroTilt.y * -1.8}px, 0)`,
-            transition: heroTilt.x === 0 ? "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" : "none"
-          }}
-          className="absolute -right-24 -top-20 pointer-events-none z-10"
-        >
+        <div className="absolute -right-24 -top-20 pointer-events-none z-10">
           <SacredMandalaScroll className="opacity-[0.09]" size={640} />
         </div>
 
@@ -204,18 +184,9 @@ export default function Home() {
 
             </AnimatedSection>
 
-            {/* Right Visual Frame: Interactive Hero Photo Slideshow with 3D Tilt */}
-            <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative perspective-scene">
-              <div
-                onMouseMove={handleHeroMouseMove}
-                onMouseLeave={handleHeroMouseLeave}
-                style={{
-                  transform: `perspective(1000px) rotateX(${heroTilt.y}deg) rotateY(${heroTilt.x}deg)`,
-                  transition: heroTilt.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none"
-                }}
-              >
-                <HeroSlideshow onPhotoClick={(item) => setLightboxItem(item)} />
-              </div>
+            {/* Right Visual Frame: Interactive Hero Photo Slideshow */}
+            <AnimatedSection animation="fade-up" delay={150} className="lg:col-span-5 relative">
+              <HeroSlideshow onPhotoClick={(item) => setLightboxItem(item)} />
             </AnimatedSection>
           </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Sparkles, Award, Maximize2 } from "lucide-react";
+import { Sparkles, Award, Maximize2 } from "lucide-react";
 
 const HERO_SLIDES = [
   {
@@ -174,30 +174,6 @@ export default function HeroSlideshow({ onPhotoClick }) {
               </p>
             </div>
           </div>
-
-          {/* Left Arrow Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              prevSlide();
-            }}
-            aria-label="Previous slide"
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#151515]/85 hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] border border-[#B99A63]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer tap-bounce z-20"
-          >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
-
-          {/* Right Arrow Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              nextSlide();
-            }}
-            aria-label="Next slide"
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#151515]/85 hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] border border-[#B99A63]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer tap-bounce z-20"
-          >
-            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
 
           {/* Bottom Pagination Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-[#151515]/75 px-3 py-1 rounded-full border border-white/10 backdrop-blur-xs">
