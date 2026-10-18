@@ -97,13 +97,13 @@ export default function HeroSlideshow({ onPhotoClick }) {
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative mx-auto max-w-[280px] xs:max-w-xs sm:max-w-md lg:max-w-none transition-transform will-change-transform select-none"
+      className="relative mx-auto w-full max-w-[230px] xs:max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px] select-none"
     >
-      {/* Museum Frame Container — Pure Photo Display Without Cluttering Overlays */}
+      {/* Museum Frame Container — Sized exactly to the 2:3 (682x1024) photo aspect ratio */}
       <div className="museum-frame group shadow-2xl relative">
         <div
           onClick={handleSlideClick}
-          className="museum-frame-inner aspect-[4/5] max-h-[280px] xs:max-h-[320px] sm:max-h-[460px] lg:max-h-[520px] bg-[#151515] relative overflow-hidden rounded-2xl cursor-pointer"
+          className="museum-frame-inner w-full aspect-[2/3] bg-[#151515] relative overflow-hidden rounded-2xl cursor-pointer"
         >
           {/* Images with Smooth Fade Transition */}
           {HERO_SLIDES.map((slide, idx) => {
