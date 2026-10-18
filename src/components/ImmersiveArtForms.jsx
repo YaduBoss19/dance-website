@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
 import MudraShowcase from "./MudraShowcase";
-import TanpuraSoundscape from "./TanpuraSoundscape";
+import GamakaWaveform from "./GamakaWaveform";
 import DoctorAnatomyShowcase from "./DoctorAnatomyShowcase";
 import FilmArchiveShowcase from "./FilmArchiveShowcase";
 import { Sparkles, Music, Activity, Clapperboard } from "lucide-react";
@@ -131,20 +131,37 @@ export default function ImmersiveArtForms() {
 
           {activeTab === "carnatic" && (
             <AnimatedSection animation="fade-up" className="space-y-8">
-              <div className="bg-[#151515] text-[#F5F0E8] rounded-3xl p-6 sm:p-10 border border-[#B99A63]/30 shadow-2xl space-y-8">
+              <div className="bg-[#151515] text-[#F5F0E8] rounded-3xl p-6 sm:p-10 border border-[#B99A63]/30 shadow-2xl space-y-6">
                 <div className="max-w-3xl space-y-3">
                   <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
-                    Native Web Audio Drone Experience
+                    Sacred Shruti Resonance
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8]">
                     Carnatic Vocal Shruti Alignment
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Experience our built-in Tanpura synthesizer right in your browser. Feel the grounding drone of Sa-Pa-Sa' that underpins every live Carnatic vocal session.
+                    Visualizing the sacred harmonics of the 4 classical Tanpura strings tuned to <strong>C# (138.6 Hz)</strong>. In 1-to-1 coaching, Dr. Malavika trains your vocal pitch against this exact acoustic foundation.
                   </p>
                 </div>
 
-                <TanpuraSoundscape />
+                <div className="rounded-2xl bg-black/60 p-5 border border-[#B99A63]/30">
+                  <GamakaWaveform isPlaying={true} height={80} />
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                  {[
+                    { note: "Pa (Fifth)", freq: "207.9 Hz", role: "Acoustic Anchor" },
+                    { note: "Tāra Sa (High)", freq: "277.2 Hz", role: "Upper Octave" },
+                    { note: "Madhya Sa (Mid)", freq: "138.6 Hz", role: "Vocal Ground" },
+                    { note: "Mandra Sa (Root)", freq: "69.3 Hz", role: "Sub-harmonic" }
+                  ].map((s, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/10 text-left">
+                      <div className="text-xs font-bold text-[#D4AF37]">{s.note}</div>
+                      <div className="text-[10px] text-[#B99A63] font-mono">{s.freq}</div>
+                      <div className="text-[10px] text-slate-400 mt-0.5">{s.role}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </AnimatedSection>
           )}

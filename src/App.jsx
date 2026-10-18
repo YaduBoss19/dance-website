@@ -16,8 +16,6 @@ import ContactUs from "./pages/ContactUs";
 import AdminDashboard from "./pages/AdminDashboard";
 
 import CustomCursor from "./components/CustomCursor";
-import TanpuraSoundscape from "./components/TanpuraSoundscape";
-import MobileBottomBar from "./components/MobileBottomBar";
 import { MessageCircle } from "lucide-react";
 import "./App.css";
 
@@ -62,18 +60,15 @@ function AppContent() {
       {/* Sticky Navigation */}
       <Navbar />
 
-      {/* Main View Area with mobile bottom padding */}
-      <main className="flex-1 w-full pb-16 lg:pb-0">
+      {/* Main View Area */}
+      <main className="flex-1 w-full">
         {renderPage()}
       </main>
 
-      {/* Floating Action Buttons (Desktop only, mobile uses MobileBottomBar) */}
+      {/* Floating Action Buttons */}
       {currentPage !== "admin" && (
-        <>
-          <TanpuraSoundscape />
-
-          <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end">
-            {/* Quick WhatsApp Floating Button (Desktop - Icon Only) */}
+        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+            {/* Quick WhatsApp Floating Button (Consistent on all devices) */}
             <button
               onClick={openWhatsApp}
               className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-xl shadow-black/30 hover:scale-110 border border-white/20 transition-all cursor-pointer group tap-bounce"
@@ -83,10 +78,6 @@ function AppContent() {
               <MessageCircle className="w-6 h-6 fill-white text-white" />
             </button>
           </div>
-
-          {/* Mobile Bottom Navigation & Action Bar */}
-          <MobileBottomBar />
-        </>
       )}
 
       {/* Footer */}

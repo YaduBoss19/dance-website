@@ -211,30 +211,6 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* 4 Value Pillars Banner: Glassmorphic Cards with Depth */}
-              <div className="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4">
-                {[
-                  { title: "Online 1-to-1", desc: "Live, personalised lessons worldwide.", tag: "Global" },
-                  { title: "Personal Coaching", desc: "Syllabus tailored to your anatomy.", tag: "Doctor-Led" },
-                  { title: "Flexible Timing", desc: "Request times around your routine.", tag: "Self-Paced" },
-                  { title: "Dance & Music", desc: "Bharatanatyam, Carnatic & Yoga.", tag: "Living Lineage" }
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-md border border-white/10 hover:border-[#B99A63]/60 transition-all duration-300 hover:-translate-y-1 group"
-                  >
-                    <div className="text-[10px] font-mono tracking-widest text-[#B99A63] uppercase mb-1">
-                      {item.tag}
-                    </div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors">
-                      {item.title}
-                    </div>
-                    <p className="text-[11px] text-slate-300 mt-1 leading-snug">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </AnimatedSection>
 
             {/* Right Visual Frame: Museum Spotlight Frame with Multi-Plane 3D Tilt */}
@@ -326,6 +302,31 @@ export default function Home() {
                 </div>
               </div>
             </AnimatedSection>
+          </div>
+
+          {/* 4 Value Pillars Banner: Spans full width gracefully across both mobile and desktop */}
+          <div className="pt-8 sm:pt-10 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            {[
+              { title: "Online 1-to-1", desc: "Live, personalised lessons worldwide.", tag: "Global" },
+              { title: "Personal Coaching", desc: "Syllabus tailored to your anatomy.", tag: "Doctor-Led" },
+              { title: "Flexible Timing", desc: "Request times around your routine.", tag: "Self-Paced" },
+              { title: "Dance & Music", desc: "Bharatanatyam, Carnatic & Yoga.", tag: "Living Lineage" }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 sm:p-4 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-md border border-white/10 hover:border-[#B99A63]/60 transition-all duration-300 hover:-translate-y-1 group text-left"
+              >
+                <div className="text-[10px] font-mono tracking-widest text-[#B99A63] uppercase mb-1">
+                  {item.tag}
+                </div>
+                <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors">
+                  {item.title}
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

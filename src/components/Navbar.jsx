@@ -107,11 +107,11 @@ export default function Navbar() {
             </div>
             <div className="min-w-0">
               <div className="flex items-center">
-                <span className="font-bold text-lg sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-none truncate whitespace-nowrap block">
+                <span className="font-bold text-base sm:text-xl md:text-2xl tracking-tight font-serif-luxury text-[#151515] leading-tight block">
                   Dr. Malavika M Sunil
                 </span>
               </div>
-              <p className="text-[10px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-1 leading-none truncate">
+              <p className="text-[9px] sm:text-xs font-bold tracking-widest text-[#B99A63] uppercase mt-0.5 leading-none">
                 Dance &amp; Music
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 lg:hidden shrink-0">
             <button
               onClick={handleBookTrialClick}
-              className="silk-zari-btn px-3 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce shrink-0"
+              className="silk-zari-btn px-3 py-1.5 rounded-full bg-[#B99A63] text-[#151515] text-xs font-bold shadow-xs tap-bounce shrink-0 hidden sm:inline-flex"
             >
               Book Trial
             </button>
@@ -158,7 +158,7 @@ export default function Navbar() {
             {/* Smooth Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-colors focus:outline-none tap-bounce text-[#151515] hover:bg-black/5 border border-black/5"
+              className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-colors focus:outline-none tap-bounce text-[#151515] hover:bg-black/5 border border-black/10 bg-white/60"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >
