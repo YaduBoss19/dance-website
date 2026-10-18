@@ -32,6 +32,7 @@ export default function Navbar() {
     { id: "about", label: "About", target: "meet-instructor" },
     { id: "journey", label: "Journey", target: "artistic-journey" },
     { id: "classes", label: "Classes", target: "services-section" },
+    { id: "events", label: "Happenings", target: "academy-events" },
     { id: "art-forms", label: "Art Forms", target: "art-forms" },
     { id: "navarasa", label: "Navarasa", target: "navarasa-section" },
     { id: "gallery", label: "Gallery", target: "gallery-section" },

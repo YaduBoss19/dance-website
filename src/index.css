@@ -542,7 +542,17 @@
   will-change: transform;
 }
 
+.animate-marquee,
+.animate-ticker-marquee {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 32s linear infinite;
+  will-change: transform;
+}
+
 .animate-infinite-marquee:hover,
+.animate-marquee:hover,
+.animate-ticker-marquee:hover,
 .pause-marquee {
   animation-play-state: paused !important;
 }

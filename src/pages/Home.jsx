@@ -10,6 +10,9 @@ import NavarasaWheel from "../components/NavarasaWheel";
 import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
 import GoldDivider from "../components/GoldDivider";
+import AnnouncementsTicker from "../components/AnnouncementsTicker";
+import VirtualTourHeroCard from "../components/VirtualTourHeroCard";
+import AcademyNewsAndEvents from "../components/AcademyNewsAndEvents";
 import { playGhungrooChime } from "../utils/talamAudio";
 import { FAQS, TESTIMONIALS } from "../data/initialData";
 import {
@@ -61,6 +64,19 @@ export default function Home() {
       image: "/images/malavika_dance_stage.jpg",
       caption:
         "Dr. Malavika M. Sunil on stage. Discipleship of 21+ years under renowned Gurus, CCRT National Scholar, and MBBS Physician."
+    });
+  };
+
+  const openStageTourModal = () => {
+    playGhungrooChime();
+    setLightboxItem({
+      id: "stage-tour",
+      title: "Dr. Malavika M. Sunil — 360° Classical Stage Recital & Studio",
+      category: "Stage Performance",
+      videoUrl: "/videos/performance.mp4",
+      image: "/images/malavika_dance_stage.jpg",
+      caption:
+        "Watch Dr. Malavika M. Sunil in full classical Bharatanatyam Margam presentation. 21+ Years Lineage, CCRT National Scholar, MBBS Physician."
     });
   };
 
@@ -211,6 +227,10 @@ export default function Home() {
                 </button>
               </div>
 
+              {/* SH College Inspired 360° Virtual Tour & Stage Spotlight Card */}
+              <div className="pt-2">
+                <VirtualTourHeroCard onOpenTour={openStageTourModal} />
+              </div>
             </AnimatedSection>
 
             {/* Right Visual Frame: Museum Spotlight Frame with Multi-Plane 3D Tilt */}
@@ -331,6 +351,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────────────────────────────────────────────────────
+          INSTITUTIONAL ANNOUNCEMENTS TICKER (SH College Inspired)
+      ───────────────────────────────────────────────────────────── */}
+      <AnnouncementsTicker onAnnouncementClick={scrollToSection} />
+
       {/* Theatrical Antique Gold Transition Divider */}
       <div className="bg-[#151515] py-2">
         <GoldDivider />
@@ -441,6 +466,15 @@ export default function Home() {
       <InteractiveServiceCards onSelectServiceForBooking={selectServiceForBooking} />
 
       <div className="bg-[#151515] py-2">
+        <GoldDivider />
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          4B. ACADEMY HAPPENINGS & MASTERCLASSES (SH College Inspired Events Grid)
+      ───────────────────────────────────────────────────────────── */}
+      <AcademyNewsAndEvents onBookSlot={selectServiceForBooking} />
+
+      <div className="bg-[#FAF7F2] py-2">
         <GoldDivider />
       </div>
 
