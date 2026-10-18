@@ -2,7 +2,7 @@
 // Generates authentic acoustic brass bell resonance with zero external MP3 assets
 
 let audioCtx = null;
-let soundEnabled = true;
+let soundEnabled = false;
 
 export const toggleTalamSound = (enable) => {
   if (typeof enable === "boolean") {
@@ -16,6 +16,7 @@ export const toggleTalamSound = (enable) => {
 export const isTalamSoundEnabled = () => soundEnabled;
 
 export const playGhungrooChime = () => {
+  // Silent by default per user preference
   if (!soundEnabled) return;
   try {
     const AudioContext = window.AudioContext || window.webkitAudioContext;

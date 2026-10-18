@@ -3,7 +3,6 @@ import { AcademyProvider, useAcademy } from "./context/AcademyContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
-import AudioWelcomeToast from "./components/AudioWelcomeToast";
 import CourseDetailsModal from "./components/CourseDetailsModal";
 import LightboxModal from "./components/LightboxModal";
 
@@ -94,7 +93,6 @@ function AppContent() {
       <Footer />
 
       {/* Global Modals & Notifications */}
-      <AudioWelcomeToast />
       <CourseDetailsModal />
       <LightboxModal />
       <Toast />
