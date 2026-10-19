@@ -5,8 +5,6 @@ import CinematicReelsShowcase from "../components/CinematicReelsShowcase";
 import GoldParticlesCanvas from "../components/GoldParticlesCanvas";
 import ArtisticJourneyTimeline from "../components/ArtisticJourneyTimeline";
 import InteractiveServiceCards from "../components/InteractiveServiceCards";
-import ImmersiveArtForms from "../components/ImmersiveArtForms";
-import NavarasaWheel from "../components/NavarasaWheel";
 import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
 import GoldDivider from "../components/GoldDivider";
@@ -343,27 +341,8 @@ export default function Home() {
       <div className="bg-[#FAF7F2] py-2">
         <GoldDivider />
       </div>
-
       {/* ─────────────────────────────────────────────────────────────
-          5. IMMERSIVE ART-FORM TRANSITIONS: 4 Interactive Disciplines
-      ───────────────────────────────────────────────────────────── */}
-      <ImmersiveArtForms />
-
-      <div className="bg-[#151515] py-2">
-        <GoldDivider />
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          5B. INTERACTIVE NAVARASA EMOTION WHEEL: The 9 Sentiments of Abhinaya
-      ───────────────────────────────────────────────────────────── */}
-      <NavarasaWheel />
-
-      <div className="bg-[#FAF7F2] py-2">
-        <GoldDivider />
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          6. THE 1-TO-1 EXPERIENCE: The Process Explained
+          5. THE 1-TO-1 EXPERIENCE: The Process Explained
       ───────────────────────────────────────────────────────────── */}
       <section className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
