@@ -21,63 +21,87 @@ import {
   ChevronRight
 } from "lucide-react";
 
-// Visual themes & prefilled WhatsApp messages for each of the 8 services
+// Visual themes & prefilled WhatsApp messages for each of the 11 courses & services
 const SERVICE_THEMES = {
-  "srv-bharatanatyam-diploma": {
+  // 5 Courses We Offer
+  "crs-bharatanatyam-diploma": {
     accentColor: "border-[#B99A63]/60 bg-gradient-to-br from-[#3B0B14]/10 to-transparent",
     pillBadge: "bg-[#3B0B14] text-[#D4AF37] border border-[#B99A63]/50",
     icon: Award,
     whatsappMsg:
-      "Hello Dr. Malavika! I would love to enquire about enrolling in the Online Bharatanatyam Diploma Programme. Please share details on syllabus and trial availability."
+      "Hello Dr. Malavika! I would love to enquire about enrolling in the Online Bharatanatyam Diploma Course. Please share details on the prescribed syllabus, yearly examinations, and trial class availability."
   },
-  "srv-carnatic-vocal": {
+  "crs-bharatanatyam-non-diploma": {
+    accentColor: "border-[#B99A63]/50 bg-gradient-to-br from-[#3B0B14]/15 to-transparent",
+    pillBadge: "bg-[#25060C] text-[#D4AF37] border border-[#B99A63]/40",
+    icon: Sparkles,
+    whatsappMsg:
+      "Hello Dr. Malavika! I am inquiring about the Online Bharatanatyam Non-Diploma Classes for practical training and classical dance development. Could you please share timing details?"
+  },
+  "crs-carnatic-music": {
     accentColor: "border-[#B99A63]/50 bg-gradient-to-br from-[#3B0B14]/15 to-transparent",
     pillBadge: "bg-[#25060C] text-[#D4AF37] border border-[#B99A63]/40",
     icon: Music,
     whatsappMsg:
-      "Hello Dr. Malavika! I am inquiring about Online Carnatic Vocal Music Classes (1-to-1). Could you please guide me on introductory sessions and shruti alignment?"
+      "Hello Dr. Malavika! I would love to enquire about the Online Carnatic Music Classes (vocal & theory). Could you please guide me on introductory sessions and shruti alignment?"
   },
-  "srv-semiclassical-bollywood": {
+  "crs-semiclassical-bollywood": {
     accentColor: "border-amber-500/40 bg-gradient-to-br from-amber-950/15 to-transparent",
     pillBadge: "bg-amber-950 text-amber-300 border border-amber-500/40",
     icon: Flame,
     whatsappMsg:
-      "Hello Dr. Malavika! I am interested in joining the Online Semi-Classical and Bollywood Dance Classes for grace, fitness, and celebrations. What are the trial options?"
+      "Hello Dr. Malavika! I am interested in joining the Online Semi-Classical Bollywood Dance Classes for expression, rhythm, and vibrant choreographies. What are the trial options?"
   },
-  "srv-yoga-fitness": {
+  "crs-60-day-fitness": {
     accentColor: "border-emerald-500/40 bg-gradient-to-br from-emerald-950/15 to-transparent",
     pillBadge: "bg-emerald-950 text-emerald-300 border border-emerald-500/40",
     icon: Heart,
     whatsappMsg:
-      "Hello Dr. Malavika! I would like to book an Online Physician-Led Yoga and Fitness Class for dancers. Please let me know your available schedule."
+      "Hello Dr. Malavika! I would like to enrol in the 60-Day Fitness Program (guided yoga, dance-based workouts, and dietary guidance). Please let me know the upcoming batch schedule."
   },
-  "srv-personalised-choreography": {
-    accentColor: "border-rose-500/40 bg-gradient-to-br from-rose-950/15 to-transparent",
-    pillBadge: "bg-rose-950 text-rose-300 border border-rose-500/40",
-    icon: Star,
-    whatsappMsg:
-      "Hello Dr. Malavika! I need Personalised Dance Choreography for a custom song (wedding/sangeet/solo recital). Could we discuss concept details and timeline?"
-  },
-  "srv-stage-performance": {
+
+  // 6 Other Services We Offer
+  "srv-event-stage-show": {
     accentColor: "border-purple-500/40 bg-gradient-to-br from-purple-950/15 to-transparent",
     pillBadge: "bg-purple-950 text-purple-300 border border-purple-500/40",
     icon: Users,
     whatsappMsg:
-      "Hello Dr. Malavika! We are seeking Stage Performance Choreography and artistic direction for an upcoming festival/competition stage production."
+      "Hello Dr. Malavika! We are seeking Event-Based Stage Show Choreography for an upcoming cultural program / stage performance. Could we discuss the concept and timeline?"
   },
-  "srv-workshop-one-day": {
+  "srv-wedding-choreography": {
+    accentColor: "border-rose-500/40 bg-gradient-to-br from-rose-950/15 to-transparent",
+    pillBadge: "bg-rose-950 text-rose-300 border border-rose-500/40",
+    icon: Star,
+    whatsappMsg:
+      "Hello Dr. Malavika! We need Wedding Choreography for our special occasion (solo, couple dance, and family/friends group choreography). Could we discuss songs and rehearsal slots?"
+  },
+  "srv-one-day-workshop": {
     accentColor: "border-orange-500/40 bg-gradient-to-br from-orange-950/15 to-transparent",
     pillBadge: "bg-orange-950 text-orange-300 border border-orange-500/40",
     icon: Building,
     whatsappMsg:
-      "Hello Dr. Malavika! We represent an institution/organization interested in hosting your One-Day Classical Dance Masterclass Workshop. Could you share details?"
+      "Hello Dr. Malavika! We represent an institution/organization interested in booking an intensive One-Day Dance Workshop. Could you please share the syllabus and availability?"
   },
-  "srv-workshop-five-day": {
+  "srv-three-day-workshop": {
     accentColor: "border-[#B99A63]/60 bg-gradient-to-br from-[#151515]/30 to-transparent",
     pillBadge: "bg-[#151515] text-[#D4AF37] border border-[#B99A63]/60",
     icon: GraduationCap,
     whatsappMsg:
-      "Hello Dr. Malavika! We would like to invite you for a 5-Day Intensive Dance Residency & Certification for our institution. Please share available dates and syllabus."
+      "Hello Dr. Malavika! We would like to invite you for a structured Three-Day Dance Workshop for our students / institution. Please share available dates and syllabus."
+  },
+  "srv-competition-choreography": {
+    accentColor: "border-amber-600/40 bg-gradient-to-br from-amber-950/20 to-transparent",
+    pillBadge: "bg-amber-950 text-amber-200 border border-amber-600/40",
+    icon: Award,
+    whatsappMsg:
+      "Hello Dr. Malavika! I am seeking Competition-Based Choreography (solo/duet/group) tailored to a specific theme and performance requirements. Could we discuss details?"
+  },
+  "srv-corporate-events": {
+    accentColor: "border-blue-500/40 bg-gradient-to-br from-blue-950/15 to-transparent",
+    pillBadge: "bg-blue-950 text-blue-300 border border-blue-500/40",
+    icon: Building,
+    whatsappMsg:
+      "Hello Dr. Malavika! We are looking for Corporate Event Stage Shows choreography and performance preparation for our corporate celebration / annual gala. Could you share details?"
   }
 };
 
@@ -97,15 +121,14 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
   };
 
   const pillars = [
-    { id: "all", label: "All 8 Services" },
-    { id: "Online Classical & Arts Academy", label: "Online Academy (1-to-1)" },
-    { id: "Bespoke Choreography & Stage Direction", label: "Bespoke Choreography" },
-    { id: "Workshops for Institutions", label: "Institutional Workshops" }
+    { id: "all", label: "All Offerings (11)" },
+    { id: "Courses We Offer", label: "Courses We Offer (5)" },
+    { id: "Other Services We Offer", label: "Other Services We Offer (6)" }
   ];
 
   const filteredCourses = courses.filter((c) => {
     if (filterPillar === "all") return true;
-    return c.pillar === filterPillar;
+    return c.pillar === filterPillar || c.category === filterPillar;
   });
 
   const handleWhatsAppEnquiry = (course) => {
@@ -136,15 +159,15 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>Interactive Service Portfolio</span>
+            <span>Interactive Portfolio</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Eight Pathways to Mastery
+            Courses & Services We Offer
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Each offering is tailored with dedicated 1-to-1 attention, structured curricula, flexible scheduling across global timezones, and direct personal mentorship by Dr. Malavika.
+            At DancingRagas by Dr. Malavika M. Sunil, we offer structured classical dance, music, and fitness courses, alongside professional choreography and customised dance experiences for special occasions, institutions, competitions, and corporate events.
           </p>
         </AnimatedSection>
 
@@ -173,7 +196,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
             <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />
             <span className="font-serif-luxury tracking-wider uppercase text-[#151515] text-[11px] sm:text-xs">
-              Swipe Left / Right to Explore All 8 Offerings
+              Swipe Left / Right to Explore All Offerings
             </span>
           </div>
 
@@ -289,14 +312,14 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
                         onClick={() => handleViewSyllabus(course)}
                         className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
                       >
-                        View Syllabus
+                        {course.category === "Courses We Offer" ? "View Syllabus" : "Service Details"}
                       </button>
 
                       <button
                         onClick={() => handleBookingClick(course.title)}
                         className="silk-zari-btn px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
                       >
-                        <span>Book 1-to-1</span>
+                        <span>{course.category === "Courses We Offer" ? "Book Trial" : "Enquire"}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>

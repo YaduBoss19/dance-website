@@ -371,27 +371,18 @@ export default function BookTrial() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:border-amber-500 font-medium"
                     >
-                      <optgroup label="1. Online Classical & Arts Academy">
+                      <optgroup label="Courses We Offer (5)">
                         {courses
-                          .filter((c) => c.category === "Online Academy")
+                          .filter((c) => c.category === "Courses We Offer")
                           .map((c) => (
                             <option key={c.id} value={c.title}>
                               {c.title}
                             </option>
                           ))}
                       </optgroup>
-                      <optgroup label="2. Bespoke Choreography & Stage Direction">
+                      <optgroup label="Other Services We Offer (6)">
                         {courses
-                          .filter((c) => c.category === "Bespoke Choreography")
-                          .map((c) => (
-                            <option key={c.id} value={c.title}>
-                              {c.title}
-                            </option>
-                          ))}
-                      </optgroup>
-                      <optgroup label="3. Institutional Workshops">
-                        {courses
-                          .filter((c) => c.category === "Workshops for Institutions")
+                          .filter((c) => c.category === "Other Services We Offer")
                           .map((c) => (
                             <option key={c.id} value={c.title}>
                               {c.title}

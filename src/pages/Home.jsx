@@ -39,7 +39,7 @@ export default function Home() {
     name: "",
     email: "",
     phone: "",
-    discipline: "Bharatanatyam Classical Dance",
+    discipline: "Online Bharatanatyam Diploma Course",
     level: "Complete Beginner (No prior experience)",
     preferredTime: "Weekday Evening",
     timezone: "Europe / Georgia (GET)",
@@ -621,14 +621,21 @@ export default function Home() {
                       onChange={handleFormChange}
                       className="w-full px-4 py-3 rounded-xl bg-[#151515] border border-[#A9A49D]/30 text-white text-sm focus:outline-none focus:border-[#B99A63]"
                     >
-                      <option value="Online Bharatanatyam Diploma Programme">Online Bharatanatyam Diploma Programme</option>
-                      <option value="Online Carnatic Vocal Music Classes">Online Carnatic Vocal Music Classes</option>
-                      <option value="Online Semi-Classical and Bollywood Dance Classes">Online Semi-Classical & Bollywood Dance</option>
-                      <option value="Online Yoga and Fitness Classes">Online Yoga & Fitness for Dancers</option>
-                      <option value="Personalised Dance Choreography">Personalised Dance Choreography (Custom Songs)</option>
-                      <option value="Stage Performance Choreography">Stage Performance Choreography</option>
-                      <option value="One-Day Dance Workshops for Institutions">One-Day Dance Workshop for Institutions</option>
-                      <option value="Five-Day Dance Workshops for Institutions">Five-Day Dance Workshop for Institutions</option>
+                      <optgroup label="Courses We Offer (5)">
+                        <option value="Online Bharatanatyam Diploma Course">Online Bharatanatyam Diploma Course</option>
+                        <option value="Online Bharatanatyam Non-Diploma Classes">Online Bharatanatyam Non-Diploma Classes</option>
+                        <option value="Online Carnatic Music Classes">Online Carnatic Music Classes</option>
+                        <option value="Online Semi-Classical Bollywood Dance Classes">Online Semi-Classical Bollywood Dance Classes</option>
+                        <option value="60-Day Fitness Program">60-Day Fitness Program</option>
+                      </optgroup>
+                      <optgroup label="Other Services We Offer (6)">
+                        <option value="Event-Based Stage Show Choreography">Event-Based Stage Show Choreography</option>
+                        <option value="Wedding Choreography">Wedding Choreography</option>
+                        <option value="One-Day Dance Workshops">One-Day Dance Workshops</option>
+                        <option value="Three-Day Dance Workshops">Three-Day Dance Workshops</option>
+                        <option value="Competition-Based Choreography">Competition-Based Choreography</option>
+                        <option value="Corporate Event Stage Shows">Corporate Event Stage Shows</option>
+                      </optgroup>
                     </select>
                   </div>
                 </div>

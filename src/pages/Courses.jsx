@@ -9,9 +9,7 @@ import {
   Clock,
   CheckCircle2,
   RotateCcw,
-  Globe,
   Award,
-  Users,
   Compass,
   ArrowRight
 } from "lucide-react";
@@ -27,41 +25,33 @@ export default function Courses() {
   const PILLAR_TABS = [
     {
       id: "all",
-      label: "All Classes & Services",
+      label: "All Offerings",
       count: courses.length,
       icon: Compass,
-      description: "Explore our complete portfolio of classical arts, bespoke choreography, and institutional masterclasses."
+      description: "Explore our complete portfolio of structured classical courses, bespoke choreography, and institutional workshops."
     },
     {
-      id: "online",
-      label: "1. Online Academy",
-      count: courses.filter((c) => c.category === "Online Academy").length,
-      icon: Globe,
-      description: "Certified Bharatanatyam Diploma, Carnatic vocal music, semi-classical Bollywood, and physician-led yoga delivered worldwide."
+      id: "courses",
+      label: "Courses We Offer",
+      count: courses.filter((c) => c.category === "Courses We Offer").length,
+      icon: Award,
+      description: "Structured programs: Online Bharatanatyam Diploma & Non-Diploma, Carnatic Music, Semi-Classical Bollywood, and 60-Day Fitness Program."
     },
     {
-      id: "choreography",
-      label: "2. Bespoke Choreography",
-      count: courses.filter((c) => c.category === "Bespoke Choreography").length,
+      id: "services",
+      label: "Other Services",
+      count: courses.filter((c) => c.category === "Other Services We Offer").length,
       icon: Sparkles,
-      description: "Tailored choreography for songs of your choice, wedding sangeets, and large-scale stage productions."
-    },
-    {
-      id: "workshops",
-      label: "3. Institutional Workshops",
-      count: courses.filter((c) => c.category === "Workshops for Institutions").length,
-      icon: Users,
-      description: "Intensive 1-day and 5-day dance masterclasses designed for universities, schools, cultural foundations, and corporate residencies."
+      description: "Customised experiences: Event Stage Shows, Wedding Choreography, 1-Day & 3-Day Workshops, Competition Choreography, and Corporate Events."
     }
   ];
 
   const filteredCourses = useMemo(() => {
     return courses
       .filter((c) => {
-        // Pillar Tab filter
-        if (activeTab === "online" && c.category !== "Online Academy") return false;
-        if (activeTab === "choreography" && c.category !== "Bespoke Choreography") return false;
-        if (activeTab === "workshops" && c.category !== "Workshops for Institutions") return false;
+        // Category Tab filter
+        if (activeTab === "courses" && c.category !== "Courses We Offer") return false;
+        if (activeTab === "services" && c.category !== "Other Services We Offer") return false;
 
         // Search Query
         if (searchQuery.trim()) {
@@ -89,8 +79,7 @@ export default function Courses() {
   };
 
   const getButtonText = (course) => {
-    if (course.category === "Workshops for Institutions") return "Request Workshop Proposal";
-    if (course.category === "Bespoke Choreography") return "Enquire for Choreography";
+    if (course.category === "Other Services We Offer") return "Enquire for Service";
     return "Book Free Trial / Enrol";
   };
 
@@ -101,22 +90,22 @@ export default function Courses() {
         <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto px-4 sm:px-8 space-y-4">
           <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200">
             <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-spin-slow" />
-            Academy Curriculum & Offerings
+            Curriculum & Offerings Portfolio
           </span>
           <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight font-serif-luxury">
-            Our <span className="gold-foil-text italic">Classes & Services</span>
+            Courses & <span className="gold-foil-text italic">Services We Offer</span>
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Personally curated and mentored by <strong>Dr. Malavika M. Sunil</strong> — Bharatanatyam artist, Carnatic musician, CCRT Scholar, and physician. Providing world-class training across 3 core pillars.
+            At DancingRagas by <strong>Dr. Malavika M. Sunil</strong>, we offer professional choreography and customised dance experiences for special occasions, institutions, competitions, and corporate events. Every service is customised to suit the event, participants, and creative vision.
           </p>
         </AnimatedSection>
       </section>
 
-      {/* ── 3 CATEGORIZED PILLAR TABS ─────────────────────────────── */}
+      {/* ── CATEGORIZED PILLAR TABS ─────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
         <AnimatedSection animation="fade-up" className="space-y-6">
           {/* Pillar Selector Strip */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-3xl bg-slate-100/80 border border-slate-200">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-3xl bg-slate-100/80 border border-slate-200">
             {PILLAR_TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -228,9 +217,9 @@ export default function Courses() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
             {filteredCourses.map((course, idx) => {
-              const isDiploma = course.id === "srv-bharatanatyam-diploma";
-              const isWorkshop = course.category === "Workshops for Institutions";
-              const isChoreography = course.category === "Bespoke Choreography";
+              const isDiploma = course.id === "crs-bharatanatyam-diploma";
+              const isWorkshop = course.title.toLowerCase().includes("workshop");
+              const isService = course.category === "Other Services We Offer";
 
               return (
                 <AnimatedSection
@@ -332,7 +321,7 @@ export default function Courses() {
                             ? "bg-gradient-to-r from-amber-500 via-rose-500 to-violet-600 shadow-amber-500/25"
                             : isWorkshop
                             ? "bg-gradient-to-r from-indigo-600 to-purple-700 shadow-purple-500/25"
-                            : isChoreography
+                            : isService
                             ? "bg-gradient-to-r from-amber-600 to-rose-600 shadow-amber-500/25"
                             : "bg-gradient-to-r from-rose-500 to-violet-600 shadow-rose-500/25"
                         }`}
