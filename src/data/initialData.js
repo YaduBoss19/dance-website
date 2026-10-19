@@ -341,6 +341,232 @@ export const INITIAL_TIMETABLE = [
 ];
 
 export const INITIAL_GALLERY = [
+  // Workshops
+  {
+    id: "g-ws-1",
+    title: "Youth Classical Dance Workshop Masterclass",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_01.jpg",
+    caption: "Interactive classical dance workshop with passionate students exploring Adavus, mudras, and rhythmic posture."
+  },
+  {
+    id: "g-ws-2",
+    title: "Institutional Dance Workshop & Training",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_02.jpg",
+    caption: "Hands-on foundation training in classical posture, balance, and rhythm during an academy institutional workshop."
+  },
+  {
+    id: "g-ws-3",
+    title: "Mudra & Abhinaya Expression Workshop",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_03.jpg",
+    caption: "Deep dive into Hastha Mudras and expressive Abhinaya storytelling with Dr. Malavika M. Sunil."
+  },
+  {
+    id: "g-ws-4",
+    title: "Masterclass Intensive Workshop Session",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_04.jpg",
+    caption: "Intensive training session focusing on precision, footwork clarity, and rhythmic coordination."
+  },
+  {
+    id: "g-ws-5",
+    title: "Classical Workshop Live Highlights & Drills",
+    category: "Workshops",
+    type: "video",
+    url: "/images/workshops/workshop_01.jpg",
+    videoUrl: "/videos/workshop_reel.mp4",
+    caption: "Live reel highlights from institutional workshop sessions and student technique drills."
+  },
+  {
+    id: "g-ws-6",
+    title: "Student Ensemble & Choreography Workshop",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_06.jpg",
+    caption: "Students collaborating on group formations and stage transitions during an intensive weekend masterclass."
+  },
+  {
+    id: "g-ws-7",
+    title: "Stage Rehearsal & Performance Preparation Workshop",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_07.jpg",
+    caption: "Final stage readiness workshop refining posture, stamina, and artistic synchronization."
+  },
+  {
+    id: "g-ws-8",
+    title: "Workshop Graduation & Certificate Felicitation",
+    category: "Workshops",
+    type: "photo",
+    url: "/images/workshops/workshop_08.jpg",
+    caption: "Celebrating student accomplishments and graduation certificates after completing the workshop curriculum."
+  },
+
+  // Stage Shows
+  {
+    id: "g-stage-1",
+    title: "Live Stage Bharatanatyam Recital",
+    category: "Stage Shows",
+    type: "video",
+    url: "/images/stage_shows/stage_01.jpg",
+    videoUrl: "/videos/recital_live_01.mp4",
+    caption: "Captivating live stage Bharatanatyam recital showcasing rhythmic footwork, classical silk costume, and expressive abhinaya."
+  },
+  {
+    id: "g-stage-2",
+    title: "Classical Stage Recital – Silk & Temple Ornaments",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_02.jpg",
+    caption: "Traditional stage adornment with handcrafted temple jewellery and authentic classical performance attire."
+  },
+  {
+    id: "g-stage-3",
+    title: "Auditorium Stage Recital Highlights",
+    category: "Stage Shows",
+    type: "video",
+    url: "/images/stage_shows/stage_03.jpg",
+    videoUrl: "/videos/recital_live_02.mp4",
+    caption: "Dynamic auditorium performance featuring intricate rhythm patterns and dramatic stage illumination."
+  },
+  {
+    id: "g-stage-4",
+    title: "Hastha Mudra Poise on Grand Stage",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_04.jpg",
+    caption: "Sculptural mudra poise in mid-performance, embodying stillness and divine devotional presence."
+  },
+  {
+    id: "g-stage-5",
+    title: "Temple Recital & Salangai Bells",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_05.jpg",
+    caption: "Sacred temple recital invoking Lord Nataraja with traditional brass salangai rhythm."
+  },
+  {
+    id: "g-stage-6",
+    title: "Tbilisi International Stage Production",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_06.jpg",
+    caption: "Dr. Malavika performing on international concert stages in Georgia, bridging classical traditions worldwide."
+  },
+  {
+    id: "g-stage-7",
+    title: "Theatrical Stage Direction & Lighting",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_07.jpg",
+    caption: "Stunning concert hall choreography directed with custom theatrical lighting cues and live acoustics."
+  },
+  {
+    id: "g-stage-8",
+    title: "Sacred Nataraja Tribute & Aramandi",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_08.jpg",
+    caption: "Flawless Aramandi stance with rhythmic balance during a temple centenary performance."
+  },
+  {
+    id: "g-stage-9",
+    title: "Concert Stage Ensemble Choreography",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_09.jpg",
+    caption: "Ensemble synchrony and spatial geometric formations on grand auditorium stage."
+  },
+  {
+    id: "g-stage-10",
+    title: "Solo Classical Margam Presentation",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_10.jpg",
+    caption: "A comprehensive solo recital moving through Alarippu, Jathiswaram, and Shabdam with emotional depth."
+  },
+  {
+    id: "g-stage-11",
+    title: "Stage Salangai & Tala Precision",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_11.jpg",
+    caption: "Rhythmic footwork resonating in Adi Talam with melodic violin and mridangam accompaniment."
+  },
+  {
+    id: "g-stage-12",
+    title: "Concert Finale & Audience Appreciation",
+    category: "Stage Shows",
+    type: "photo",
+    url: "/images/stage_shows/stage_12.jpg",
+    caption: "Grand finale bow celebrating years of rigorous practice and audience ovation."
+  },
+
+  // Music & Dance
+  {
+    id: "g-music-1",
+    title: "Carnatic Vocal & Shruti Alignment Recital",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_01.jpg",
+    caption: "Live Carnatic vocal recital featuring acoustic Tanpura drone and deep swara riyaz."
+  },
+  {
+    id: "g-music-2",
+    title: "Soulful Raga Alapana & Swara Sadhana",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_02.jpg",
+    caption: "Exploring classical ragas with pitch fidelity and hereditary musical nuances."
+  },
+  {
+    id: "g-music-3",
+    title: "Music and Dance Synergy Masterclass",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_03.jpg",
+    caption: "Integrating Carnatic rhythmic tala structures with Bharatanatyam nritta steps."
+  },
+  {
+    id: "g-music-4",
+    title: "Traditional Chamber Music Concert",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_04.jpg",
+    caption: "Intimate acoustic baithak chamber concert honoring devotional keerthanams and classical ragas."
+  },
+  {
+    id: "g-music-5",
+    title: "Vocal Melody & Devotional Bhava",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_05.jpg",
+    caption: "Expressive devotional singing evoking deep spiritual sentiment and melodic warmth."
+  },
+  {
+    id: "g-music-6",
+    title: "Hereditary Lineage – Mother & Guru",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_06.jpg",
+    caption: "16+ years of hereditary musical lineage under mother and guru Resmi Narayanan."
+  },
+  {
+    id: "g-music-7",
+    title: "Acoustic Melody & Swara Drills",
+    category: "Music & Dance",
+    type: "photo",
+    url: "/images/music_and_dance/music_07.jpg",
+    caption: "Swara drills and rhythmic calculations taught with traditional discipline and joy."
+  },
+
+  // Heritage & Special Features
   {
     id: "g-malavika-stage-margam",
     title: "Bharatanatyam Stage Margam – Dr. Malavika M. Sunil",
@@ -352,7 +578,7 @@ export const INITIAL_GALLERY = [
   {
     id: "g-malavika-vocal-heritage",
     title: "Carnatic Vocal Recital with Resmi Narayanan",
-    category: "Music",
+    category: "Carnatic Vocal",
     type: "photo",
     url: "/images/malavika_vocal.jpg",
     caption: "Live Carnatic vocal concert: Dr. Malavika singing classical ragas alongside her mother and guru, Resmi Narayanan (16-year musical heritage)."
@@ -360,7 +586,7 @@ export const INITIAL_GALLERY = [
   {
     id: "g-malavika-portrait-classical",
     title: "Dr. Malavika M. Sunil – Classical Portrait",
-    category: "Performances",
+    category: "Doctor & Dancer",
     type: "photo",
     url: "/images/malavika_portrait.jpg",
     caption: "Founder & Principal Guru Dr. Malavika M. Sunil (CCRT Scholar & Physician) in traditional Bharatanatyam dance attire and temple jewelry."
@@ -374,14 +600,6 @@ export const INITIAL_GALLERY = [
     caption: "Poise, devotional bhava, and expressive hand gestures (Hastha Mudras) captured in classical recital presentation."
   },
   {
-    id: "g-dr-1",
-    title: "Tbilisi Grand Stage: 20+ Productions Milestone",
-    category: "Performances",
-    type: "photo",
-    url: "/images/malavika_dance_stage.jpg",
-    caption: "DancingRagas presenting classical Bharatanatyam choreography on stage in Tbilisi, Georgia."
-  },
-  {
     id: "g-dr-2",
     title: "Tbilisi Philharmonic Hall Stage Direction",
     category: "Global Productions",
@@ -389,31 +607,6 @@ export const INITIAL_GALLERY = [
     url: "/images/malavika_dance_stage.jpg",
     videoUrl: "/videos/performance.mp4",
     caption: "Directing 20+ grand stage productions in Georgia, bridging Indian classical heritage with international concert audiences."
-  },
-  {
-    id: "g-dr-3",
-    title: "Physician & Classical Dancer Graduation",
-    category: "Performances",
-    type: "photo",
-    url: "/images/malavika_portrait.jpg",
-    caption: "Medical graduation (MBBS) in Georgia: Bridging anatomical biomechanics and knee injury prevention with sacred Bharatanatyam."
-  },
-  {
-    id: "g-dr-4",
-    title: "1-to-1 Private Online Studio Sadhana",
-    category: "Music",
-    type: "photo",
-    url: "/images/malavika_vocal.jpg",
-    caption: "Personalized 1-on-1 vocal and dance coaching with real-time tanpura alignment and individual student mudra correction."
-  },
-  {
-    id: "g-dr-5",
-    title: "Sacred Temple Recital & Salangai Bells",
-    category: "Performances",
-    type: "video",
-    url: "/images/malavika_dance_pose.jpg",
-    videoUrl: "/videos/performance.mp4",
-    caption: "Traditional recital performance celebrating rhythm, swara patterns, and rhythmic footwork in honor of Lord Nataraja."
   }
 ];
 
@@ -633,40 +826,74 @@ export const PERFORMANCE_REELS = [
   {
     id: "reel-01",
     reelNumber: "01",
-    title: "Margam Classical Recital",
+    title: "Live Stage Bharatanatyam Recital",
     category: "Bharatanatyam · Stage",
-    description: "Dr. Malavika performing foundational Aramandi Adavus and expressive classical Abhinaya.",
-    videoUrl: "/videos/performance.mp4",
-    posterImage: "/images/malavika_dance_stage.jpg",
-    tag: "Classical Margam",
-    duration: "Live Clip",
+    description: "Dr. Malavika performing live stage recital Adavus and expressive Abhinaya with authentic temple silk adornment.",
+    videoUrl: "/videos/recital_live_01.mp4",
+    posterImage: "/images/stage_shows/stage_01.jpg",
+    tag: "Live Recital",
+    duration: "Live Stage",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
-    likes: "2.4k",
-    views: "34.8k",
-    comments: "142",
-    audio: "Original Audio · dancingragasbymalavika",
+    likes: "3.4k",
+    views: "48.2k",
+    comments: "186",
+    audio: "Live Stage Bells & Nattuvangam · dancingragasbymalavika",
     published: true
   },
   {
     id: "reel-02",
     reelNumber: "02",
-    title: "Carnatic Vocal & Shruti Sadhana",
-    category: "Carnatic Music · Lineage",
-    description: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Shruti alignment and raga bhava.",
-    videoUrl: "/videos/performance.mp4",
-    posterImage: "/images/malavika_vocal.jpg",
-    tag: "Shruti Lineage",
-    duration: "Vocal Solo",
+    title: "International Classical Workshop",
+    category: "Workshops & Training",
+    description: "Hands-on student masterclass exploring Adavu precision, Aramandi geometry, and expressive Hastha Mudras.",
+    videoUrl: "/videos/workshop_reel.mp4",
+    posterImage: "/images/workshops/workshop_01.jpg",
+    tag: "Workshop Reel",
+    duration: "Masterclass",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
-    likes: "1.8k",
-    views: "28.5k",
-    comments: "98",
-    audio: "Carnatic Raga Alapana · Dr. Malavika",
+    likes: "2.9k",
+    views: "39.5k",
+    comments: "145",
+    audio: "Workshop Rhythm Drills · Dr. Malavika",
     published: true
   },
   {
     id: "reel-03",
     reelNumber: "03",
+    title: "Auditorium Stage Choreography",
+    category: "Stage Shows",
+    description: "High-energy stage choreography presenting intricate rhythm patterns, dynamic spins, and classical grace.",
+    videoUrl: "/videos/recital_live_02.mp4",
+    posterImage: "/images/stage_shows/stage_03.jpg",
+    tag: "Stage Highlights",
+    duration: "Auditorium",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "4.1k",
+    views: "53.7k",
+    comments: "220",
+    audio: "Auditorium Symphony · dancingragasbymalavika",
+    published: true
+  },
+  {
+    id: "reel-04",
+    reelNumber: "04",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    category: "Carnatic Music · Lineage",
+    description: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Shruti alignment and raga bhava.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/music_and_dance/music_01.jpg",
+    tag: "Shruti Lineage",
+    duration: "Vocal Solo",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "2.2k",
+    views: "31.5k",
+    comments: "112",
+    audio: "Carnatic Raga Alapana · Dr. Malavika",
+    published: true
+  },
+  {
+    id: "reel-05",
+    reelNumber: "05",
     title: "Anatomy, Spine & Joint Health",
     category: "Physician Alignment",
     description: "Physician-guided patellar knee protection, neutral spine biomechanics, and diaphragmatic stamina.",
@@ -675,49 +902,49 @@ export const PERFORMANCE_REELS = [
     tag: "MBBS Kinesiology",
     duration: "Clinical Movement",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
-    likes: "3.2k",
-    views: "46.1k",
-    comments: "215",
+    likes: "3.8k",
+    views: "52.1k",
+    comments: "235",
     audio: "Doctor's Kinesiology Guide · dancingragasbymalavika",
-    published: true
-  },
-  {
-    id: "reel-04",
-    reelNumber: "04",
-    title: "Silver Screen & Cinema Heritage",
-    category: "Malayalam Cinema",
-    description: "Emotive storytelling from childhood appearances in 5 landmark Malayalam feature films.",
-    videoUrl: "/videos/performance.mp4",
-    posterImage: "/images/malavika_dance_pose.jpg",
-    tag: "5 Feature Films",
-    duration: "Screen Archive",
-    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
-    likes: "4.7k",
-    views: "68.3k",
-    comments: "320",
-    audio: "Nostalgic Film Audio · Sathyan Anthikad Classics",
-    published: true
-  },
-  {
-    id: "reel-05",
-    reelNumber: "05",
-    title: "Tbilisi & Georgia University Recital",
-    category: "International Stage",
-    description: "Directing and performing in 20+ stage productions and cultural residencies across Georgia.",
-    videoUrl: "/videos/performance.mp4",
-    posterImage: "/images/malavika_dance_stage.jpg",
-    tag: "Global Stages",
-    duration: "Concert Stage",
-    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
-    likes: "2.1k",
-    views: "31.9k",
-    comments: "104",
-    audio: "Tbilisi Stage Resonance · Live Ensemble",
     published: true
   },
   {
     id: "reel-06",
     reelNumber: "06",
+    title: "Tbilisi & Georgia University Recital",
+    category: "International Stage",
+    description: "Directing and performing in 20+ stage productions and cultural residencies across Georgia.",
+    videoUrl: "/videos/performance.mp4",
+    posterImage: "/images/stage_shows/stage_06.jpg",
+    tag: "Global Stages",
+    duration: "Concert Stage",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "2.7k",
+    views: "36.9k",
+    comments: "128",
+    audio: "Tbilisi Stage Resonance · Live Ensemble",
+    published: true
+  },
+  {
+    id: "reel-07",
+    reelNumber: "07",
+    title: "Music & Dance Synergy Masterclass",
+    category: "Music & Dance",
+    description: "Live rhythmic talam calculation and swara coordination connecting Carnatic music with classical Bharatanatyam.",
+    videoUrl: "/videos/workshop_reel.mp4",
+    posterImage: "/images/music_and_dance/music_03.jpg",
+    tag: "Music & Dance",
+    duration: "Masterclass",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "3.1k",
+    views: "44.2k",
+    comments: "156",
+    audio: "Tala Swara Riyaz · Dr. Malavika",
+    published: true
+  },
+  {
+    id: "reel-08",
+    reelNumber: "08",
     title: "1-to-1 Private Mentorship Studio",
     category: "Online Academy",
     description: "Dedicated personal attention, immediate mudra correction, and international flexible scheduling.",

@@ -21,4 +21,17 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+# Raw camera formats (converted to web .jpg and .mp4)
+*.MOV
+*.mov
+*.HEIC
+*.heic
+*.CR3
+*.cr3
+*.CR2
+*.cr2
+public/videos/FFEBD736-9ABD-4699-8A69-4FDFBAD3A4FD.MP4
+public/images/stage shows/
+public/images/music and dance/
+public/images/workshops/IMG_*
+public/images/workshops/DE57*

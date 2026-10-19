@@ -27,48 +27,122 @@ const INFINITE_STREAM_ITEMS = [
     id: "stream-01",
     type: "video",
     reelIndex: 0,
-    title: "Margam Classical Recital",
-    subtitle: "Sacred Alarippu Invocation",
-    category: "Bharatanatyam",
-    imageUrl: "/images/malavika_dance_stage.jpg",
-    videoUrl: "/videos/performance.mp4",
+    title: "Live Stage Bharatanatyam Recital",
+    subtitle: "Rhythmic Footwork & Temple Silk Adornment",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_01.jpg",
+    videoUrl: "/videos/recital_live_01.mp4",
     duration: "Live Recital",
     badge: "Stage Recital"
   },
   {
     id: "stream-02",
-    type: "photo",
-    title: "Carnatic Vocal & Shruti Sadhana",
-    subtitle: "Resmi Narayanan Hereditary Lineage",
-    category: "Carnatic Vocal",
-    imageUrl: "/images/malavika_vocal.jpg",
-    duration: "16+ Yrs",
-    badge: "Hereditary Shruti"
+    type: "video",
+    reelIndex: 1,
+    title: "International Classical Workshop",
+    subtitle: "Adavu Precision, Mudras & Aramandi",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_01.jpg",
+    videoUrl: "/videos/workshop_reel.mp4",
+    duration: "Masterclass",
+    badge: "Workshop Reel"
   },
   {
     id: "stream-03",
     type: "photo",
-    title: "Temple Recital & Salangai Bells",
-    subtitle: "Alarippu Invocation to Nataraja",
-    category: "Bharatanatyam",
-    imageUrl: "/images/malavika_dance_pose.jpg",
-    duration: "Classical Pose",
-    badge: "Sacred Mudra"
+    title: "Youth Classical Dance Workshop",
+    subtitle: "Adavu Drills & Student Formations",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_02.jpg",
+    duration: "Workshop",
+    badge: "Foundation Drills"
   },
   {
     id: "stream-04",
     type: "video",
-    reelIndex: 4,
+    reelIndex: 2,
+    title: "Auditorium Stage Choreography",
+    subtitle: "Intricate Rhythm & Dynamic Grace",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_03.jpg",
+    videoUrl: "/videos/recital_live_02.mp4",
+    duration: "Auditorium",
+    badge: "Live Choreography"
+  },
+  {
+    id: "stream-05",
+    type: "photo",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    subtitle: "16+ Yrs Hereditary Vocal Lineage",
+    category: "Music & Dance",
+    imageUrl: "/images/music_and_dance/music_01.jpg",
+    duration: "16+ Yrs",
+    badge: "Hereditary Shruti"
+  },
+  {
+    id: "stream-06",
+    type: "photo",
+    title: "Temple Recital & Salangai Bells",
+    subtitle: "Alarippu Invocation to Nataraja",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    duration: "Classical Pose",
+    badge: "Sacred Mudra"
+  },
+  {
+    id: "stream-07",
+    type: "photo",
+    title: "Mudra & Abhinaya Masterclass",
+    subtitle: "Navarasa & Hastha Mudras Training",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_03.jpg",
+    duration: "Dr. Malavika",
+    badge: "Mudra Workshop"
+  },
+  {
+    id: "stream-08",
+    type: "video",
+    reelIndex: 5,
     title: "Tbilisi International Residency",
     subtitle: "20+ Productions Across Georgia",
-    category: "Global Stage",
-    imageUrl: "/images/malavika_dance_stage.jpg",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_06.jpg",
     videoUrl: "/videos/performance.mp4",
     duration: "Stage Symphony",
     badge: "Tbilisi Concert"
   },
   {
-    id: "stream-05",
+    id: "stream-09",
+    type: "photo",
+    title: "Music & Dance Synergy Session",
+    subtitle: "Connecting Tala with Nritta",
+    category: "Music & Dance",
+    imageUrl: "/images/music_and_dance/music_03.jpg",
+    duration: "Carnatic & Dance",
+    badge: "Synergy"
+  },
+  {
+    id: "stream-10",
+    type: "photo",
+    title: "Classical Silk & Stage Presence",
+    subtitle: "Auditorium Performance Splendor",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_08.jpg",
+    duration: "Live Concert",
+    badge: "Aramandi Poise"
+  },
+  {
+    id: "stream-11",
+    type: "photo",
+    title: "Institutional Workshop Intensive",
+    subtitle: "Student Ensemble Synchrony",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_06.jpg",
+    duration: "Ensemble",
+    badge: "Group Masterclass"
+  },
+  {
+    id: "stream-12",
     type: "photo",
     title: "Physician & Classical Dancer",
     subtitle: "MBBS Graduation & Dance Synthesis",
@@ -76,191 +150,200 @@ const INFINITE_STREAM_ITEMS = [
     imageUrl: "/images/malavika_portrait.jpg",
     duration: "MBBS Doctor",
     badge: "Medical Graduate"
-  },
-  {
-    id: "stream-06",
-    type: "video",
-    reelIndex: 2,
-    title: "Doctor's Kinesiology & Knee Safety",
-    subtitle: "Araimandi Patellar Biomechanics",
-    category: "Injury Prevention",
-    imageUrl: "/images/malavika_portrait.jpg",
-    videoUrl: "/videos/performance.mp4",
-    duration: "Physician Guide",
-    badge: "Anatomy Safety"
-  },
-  {
-    id: "stream-07",
-    type: "photo",
-    title: "Silver Screen Cinema Abhinaya",
-    subtitle: "Kaazhcha & Thanmathra Classics",
-    category: "Malayalam Cinema",
-    imageUrl: "/images/malavika_dance_pose.jpg",
-    duration: "5 Films",
-    badge: "Cinema Heritage"
-  },
-  {
-    id: "stream-08",
-    type: "video",
-    reelIndex: 5,
-    title: "1-to-1 Private Online Studio",
-    subtitle: "Live Tanpura & Personal Feedback",
-    category: "Online Academy",
-    imageUrl: "/images/malavika_vocal.jpg",
-    videoUrl: "/videos/performance.mp4",
-    duration: "1-on-1 Studio",
-    badge: "Global Mentorship"
   }
 ];
 
-// Curated collection of 9 verified Instagram Posts & Reels for @dancingragasbymalavika
+// Curated collection of verified Instagram Posts & Reels for @dancingragasbymalavika
 const INSTAGRAM_WALL_ITEMS = [
   {
     id: "insta-01",
     type: "reel",
     reelIndex: 0,
-    title: "Margam Classical Recital",
-    caption: "Rooted in 21 years of sacred Bharatanatyam discipline. Perfecting the foundational Araimandi posture and classical Abhinaya. #dancingragas #bharatanatyam #margam #classicaldance",
-    imageUrl: "/images/malavika_dance_stage.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Original Audio · dancingragasbymalavika",
-    likes: "2.8k",
-    comments: "142",
-    views: "38.2k",
-    tag: "Reel",
+    category: "stage",
+    title: "Live Stage Bharatanatyam Recital",
+    caption: "Rooted in 21 years of sacred Bharatanatyam discipline. Captivating live stage recital showcasing rhythmic footwork, temple silk, and expressive Abhinaya. #dancingragas #bharatanatyam #stageperformance",
+    imageUrl: "/images/stage_shows/stage_01.jpg",
+    videoUrl: "/videos/recital_live_01.mp4",
+    audio: "Live Stage Bells & Nattuvangam · dancingragasbymalavika",
+    likes: "3.4k",
+    comments: "186",
+    views: "48.2k",
+    tag: "Stage Shows",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-02",
     type: "reel",
     reelIndex: 1,
-    title: "Carnatic Vocal & Shruti Sadhana",
-    caption: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment, swara riyaz, and raga bhava. #carnaticmusic #vocal #shruti #ragas",
-    imageUrl: "/images/malavika_vocal.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Raga Mayamalavagowla Alapana · Dr. Malavika",
-    likes: "2.1k",
-    comments: "98",
-    views: "31.5k",
-    tag: "Reel",
+    category: "workshops",
+    title: "International Classical Workshop",
+    caption: "Immersive masterclass coaching students on Araimandi posture, mudras, and rhythmic footwork. Empowering the next generation of classical dancers. #danceworkshop #masterclass #classicaldance",
+    imageUrl: "/images/workshops/workshop_01.jpg",
+    videoUrl: "/videos/workshop_reel.mp4",
+    audio: "Workshop Rhythm Drills · Dr. Malavika",
+    likes: "2.9k",
+    comments: "145",
+    views: "39.5k",
+    tag: "Workshops",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-03",
     type: "reel",
     reelIndex: 2,
-    title: "Anatomy & Knee Biomechanics",
-    caption: "Doctor's perspective (MBBS): Preventing patellar strain in Araimandi by initiating external hip rotation safely. #danceinjuryprevention #mbbs #kinesiology #anatomy",
-    imageUrl: "/images/malavika_portrait.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Doctor's Movement Breakdown · dancingragasbymalavika",
-    likes: "3.6k",
-    comments: "215",
-    views: "52.4k",
-    tag: "Reel",
+    category: "stage",
+    title: "Auditorium Stage Choreography",
+    caption: "Dynamic stage choreography presenting intricate rhythm patterns and classical grace under dramatic auditorium illumination. #stageshow #choreography #dr_malavika",
+    imageUrl: "/images/stage_shows/stage_03.jpg",
+    videoUrl: "/videos/recital_live_02.mp4",
+    audio: "Auditorium Symphony · dancingragasbymalavika",
+    likes: "4.1k",
+    comments: "220",
+    views: "53.7k",
+    tag: "Stage Shows",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-04",
-    type: "reel",
-    reelIndex: 3,
-    title: "Silver Screen Cinema Abhinaya",
-    caption: "Childhood memories from Malayalam cinema classics alongside Mammootty and Mohanlal. Natural emotive abhinaya across 5 feature films. #malayalamcinema #kaazhcha #thanmathra #abhinaya",
-    imageUrl: "/images/malavika_dance_pose.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Cinema Classical Score · Archival Heritage",
-    likes: "5.2k",
-    comments: "320",
-    views: "74.1k",
-    tag: "Reel",
+    type: "post",
+    category: "workshops",
+    title: "Institutional Dance Workshop & Training",
+    caption: "Hands-on foundation training in classical posture, balance, and rhythm during an academy institutional workshop. #workshops #dancetraining #foundations",
+    imageUrl: "/images/workshops/workshop_02.jpg",
+    audio: "Classical Sitar & Tanpura Drone",
+    likes: "2.5k",
+    comments: "94",
+    views: "33.1k",
+    tag: "Workshops",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-05",
     type: "reel",
-    reelIndex: 4,
-    title: "Tbilisi International Residency",
-    caption: "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art worldwide. #tbilisi #globaldance #culturaldiplomacy",
-    imageUrl: "/images/malavika_dance_stage.jpg",
+    reelIndex: 3,
+    category: "music",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    caption: "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment, swara riyaz, and raga bhava. #carnaticmusic #vocal #shruti #ragas",
+    imageUrl: "/images/music_and_dance/music_01.jpg",
     videoUrl: "/videos/performance.mp4",
-    audio: "Live Stage Symphony · Tbilisi Concert",
-    likes: "2.4k",
-    comments: "104",
-    views: "36.8k",
-    tag: "Reel",
+    audio: "Raga Mayamalavagowla Alapana · Dr. Malavika",
+    likes: "2.2k",
+    comments: "112",
+    views: "31.5k",
+    tag: "Music & Dance",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-06",
-    type: "reel",
-    reelIndex: 5,
-    title: "1-to-1 Private Online Studio",
-    caption: "Every body and voice is unique. In 1-to-1 coaching, we progress at your exact pace with live tanpura drone and personalized feedback. #onlinedance #1to1 #privatecoaching",
-    imageUrl: "/images/malavika_portrait.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Private Studio Sadhana · dancingragasbymalavika",
-    likes: "3.1k",
-    comments: "167",
-    views: "44.6k",
-    tag: "Reel",
+    type: "post",
+    category: "workshops",
+    title: "Expressions & Mudras Masterclass",
+    caption: "Deep dive into Hastha Mudras and expressive Abhinaya storytelling with Dr. Malavika M. Sunil. #mudras #abhinaya #masterclass",
+    imageUrl: "/images/workshops/workshop_03.jpg",
+    audio: "Abhinaya Classical Tanpura",
+    likes: "3.2k",
+    comments: "138",
+    views: "41.0k",
+    tag: "Workshops",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-07",
     type: "post",
-    reelIndex: 0,
-    title: "Traditional Temple Recital Pose",
-    caption: "Alarippu rhythmic invocation. Dedicated to Lord Nataraja and the unbroken lineage of Nellay Nrithya Kalalayam. Salangai bells blessed. #classicaldance #tradition #nataraja",
-    imageUrl: "/images/malavika_dance_pose.jpg",
-    videoUrl: "/videos/performance.mp4",
+    category: "stage",
+    title: "Temple Recital & Salangai Bells",
+    caption: "Sacred temple recital invoking Lord Nataraja with traditional brass salangai rhythm and silk adornment. #templedance #nataraja #salangai",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
     audio: "Sacred Temple Nadaswaram & Chimes",
-    likes: "2.3k",
-    comments: "88",
-    views: "29.2k",
-    tag: "Post",
+    likes: "3.6k",
+    comments: "164",
+    views: "45.8k",
+    tag: "Stage Shows",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-08",
-    type: "reel",
-    reelIndex: 1,
-    title: "Swara Patterns & Tala Calculation",
-    caption: "Interactive Carnatic session teaching Sarali and Janta varisais with hand talam precision in Adi Talam. Pitch perfection and swara clarity. #carnaticsinging #ragas #talam",
-    imageUrl: "/images/malavika_vocal.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Swara Sadhana Drills · Dr. Malavika",
-    likes: "2.7k",
-    comments: "116",
-    views: "39.0k",
-    tag: "Reel",
+    type: "post",
+    category: "music",
+    title: "Music & Dance Synergy Masterclass",
+    caption: "Integrating Carnatic rhythmic tala structures with Bharatanatyam nritta steps in dedicated studio sessions. #carnaticdance #talam #synergy",
+    imageUrl: "/images/music_and_dance/music_03.jpg",
+    audio: "Tala Swara Riyaz · Dr. Malavika",
+    likes: "2.8k",
+    comments: "122",
+    views: "37.4k",
+    tag: "Music & Dance",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   },
   {
     id: "insta-09",
     type: "post",
-    reelIndex: 2,
-    title: "Doctor & Dancer Graduation",
-    caption: "Two parallel journeys, one soul. Bridging medical graduation (MBBS) in Georgia with 21 years of sacred Bharatanatyam devotion. Moving with anatomical safety. #doctorsofinstagram #artist #mbbs",
-    imageUrl: "/images/malavika_portrait.jpg",
-    videoUrl: "/videos/performance.mp4",
-    audio: "Graduation Symphony & Temple Bells",
-    likes: "4.8k",
-    comments: "254",
-    views: "66.5k",
-    tag: "Post",
+    category: "stage",
+    title: "Tbilisi International Stage Production",
+    caption: "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art worldwide. #tbilisi #globaldance #culturaldiplomacy",
+    imageUrl: "/images/stage_shows/stage_06.jpg",
+    audio: "Live Stage Symphony · Tbilisi Concert",
+    likes: "4.5k",
+    comments: "210",
+    views: "59.2k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-10",
+    type: "post",
+    category: "workshops",
+    title: "Student Ensemble Workshop & Choreography",
+    caption: "Students collaborating on group formations and stage transitions during an intensive weekend masterclass. #ensemble #groupchoreography #workshops",
+    imageUrl: "/images/workshops/workshop_06.jpg",
+    audio: "Ensemble Footwork Rhythms",
+    likes: "2.7k",
+    comments: "105",
+    views: "35.3k",
+    tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-11",
+    type: "post",
+    category: "stage",
+    title: "Sacred Nataraja Tribute & Aramandi",
+    caption: "Flawless Aramandi stance with rhythmic balance during a classical stage performance. #aramandi #bharatanatyam #heritage",
+    imageUrl: "/images/stage_shows/stage_08.jpg",
+    audio: "Nataraja Stotram Chants",
+    likes: "3.9k",
+    comments: "172",
+    views: "51.6k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-12",
+    type: "post",
+    category: "workshops",
+    title: "Workshop Graduation & Certificate Felicitation",
+    caption: "Celebrating student accomplishments and graduation certificates after completing the intensive workshop curriculum. #graduation #achievement #dancingragas",
+    imageUrl: "/images/workshops/workshop_08.jpg",
+    audio: "Felicitation Fanfare & Applause",
+    likes: "4.2k",
+    comments: "198",
+    views: "58.0k",
+    tag: "Workshops",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   }
 ];
 
-// Interactive Instagram Wall Card with Hover Video Preview
-function InstagramWallCard({ item, onPlayInCinema }) {
+// Interactive Instagram Wall Card with Hover Video Preview & Lightbox Photo Inspection
+function InstagramWallCard({ item, onPlayInCinema, onPhotoClick }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPlayingPreview, setIsPlayingPreview] = useState(false);
   const videoRef = useRef(null);
 
+  const isVideoItem = Boolean(item.videoUrl && item.type === "reel");
+
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current) {
+    if (isVideoItem && videoRef.current) {
       videoRef.current.currentTime = 0;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
@@ -280,26 +363,43 @@ function InstagramWallCard({ item, onPlayInCinema }) {
     }
   };
 
+  const handleCardClick = () => {
+    if (isVideoItem) {
+      onPlayInCinema(item.reelIndex ?? 0);
+    } else if (onPhotoClick) {
+      onPhotoClick({
+        id: item.id,
+        title: item.title,
+        url: item.imageUrl,
+        category: item.tag || item.category,
+        caption: item.caption
+      });
+    }
+  };
+
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between"
+      onClick={handleCardClick}
+      className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between cursor-pointer tap-bounce select-none"
     >
       {/* Visual Thumbnail Frame with Hover Video Play */}
       <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
         {/* Hover-activated HTML5 Video */}
-        <video
-          ref={videoRef}
-          src={item.videoUrl || "/videos/performance.mp4"}
-          poster={item.imageUrl}
-          muted
-          loop
-          playsInline
-          className={`w-full h-full object-cover transition-all duration-500 absolute inset-0 ${
-            isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
-          }`}
-        />
+        {isVideoItem && (
+          <video
+            ref={videoRef}
+            src={item.videoUrl || "/videos/performance.mp4"}
+            poster={item.imageUrl}
+            muted
+            loop
+            playsInline
+            className={`w-full h-full object-cover transition-all duration-500 absolute inset-0 ${
+              isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
+            }`}
+          />
+        )}
 
         {/* Poster Image */}
         <img
@@ -329,7 +429,7 @@ function InstagramWallCard({ item, onPlayInCinema }) {
             ) : (
               <>
                 <Film className="w-3 h-3 text-[#B99A63]" />
-                <span>Post</span>
+                <span>Photo Post</span>
               </>
             )}
           </span>
@@ -358,18 +458,35 @@ function InstagramWallCard({ item, onPlayInCinema }) {
           </div>
 
           <div className="space-y-2 w-full">
-            <button
-              onClick={() => onPlayInCinema(item.reelIndex)}
-              className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
-            >
-              <Play className="w-3.5 h-3.5 fill-[#151515]" />
-              <span>Play in Cinema Player</span>
-            </button>
+            {isVideoItem ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPlayInCinema(item.reelIndex ?? 0);
+                }}
+                className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
+              >
+                <Play className="w-3.5 h-3.5 fill-[#151515]" />
+                <span>Play in Cinema Player</span>
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCardClick();
+                }}
+                className="w-full py-2.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg tap-bounce cursor-pointer"
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>Inspect Full Photo</span>
+              </button>
+            )}
 
             <a
               href={item.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="w-full py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#F5F0E8] font-bold text-xs flex items-center justify-center gap-1.5 backdrop-blur-md tap-bounce"
             >
               <span>View on Instagram</span>
@@ -386,7 +503,7 @@ function InstagramWallCard({ item, onPlayInCinema }) {
           <span className="text-slate-400 capitalize">{item.tag || item.type}</span>
         </div>
 
-        <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1">
+        <h4 className="text-base font-bold font-serif-luxury text-[#F5F0E8] line-clamp-1 group-hover:text-[#D4AF37] transition-colors">
           {item.title}
         </h4>
 
@@ -399,7 +516,7 @@ function InstagramWallCard({ item, onPlayInCinema }) {
             🎵 {item.audio || "Original Audio · dancingragasbymalavika"}
           </span>
           <span className="text-[#D4AF37] font-semibold flex items-center gap-1">
-            ▶ Hover to Play
+            {isVideoItem ? "▶ Hover to Play" : "✦ Click to Zoom"}
           </span>
         </div>
       </div>
@@ -715,8 +832,11 @@ export default function CinematicReelsShowcase({
   };
 
   const filteredWallItems = INSTAGRAM_WALL_ITEMS.filter((item) => {
-    if (wallFilter === "reels") return item.type === "reel";
-    if (wallFilter === "posts") return item.type === "post";
+    if (wallFilter === "workshops") return item.category === "workshops" || item.tag?.toLowerCase().includes("workshop");
+    if (wallFilter === "stage") return item.category === "stage" || item.tag?.toLowerCase().includes("stage");
+    if (wallFilter === "music") return item.category === "music" || item.tag?.toLowerCase().includes("music");
+    if (wallFilter === "reels") return item.type === "reel" || Boolean(item.videoUrl);
+    if (wallFilter === "photos") return item.type === "post";
     return true;
   });
 
@@ -1228,23 +1348,59 @@ export default function CinematicReelsShowcase({
               </p>
             </div>
 
-            {/* Filter Toggle Buttons */}
-            <div className="flex items-center gap-1.5 bg-[#1E1B1B] p-1.5 rounded-2xl border border-[#B99A63]/30 shrink-0">
+            {/* Filter Toggle Buttons with Mobile Smooth Scroll */}
+            <div className="flex items-center gap-1.5 bg-[#1E1B1B] p-1.5 rounded-2xl border border-[#B99A63]/30 overflow-x-auto scrollbar-none max-w-full shrink-0">
               <button
                 onClick={() => setWallFilter("all")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
                   wallFilter === "all"
                     ? "bg-[#B99A63] text-[#151515] shadow-md"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
                 <Grid className="w-3.5 h-3.5" />
-                <span>All ({filteredWallItems.length})</span>
+                <span>All ({INSTAGRAM_WALL_ITEMS.length})</span>
+              </button>
+
+              <button
+                onClick={() => setWallFilter("workshops")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "workshops"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Workshops</span>
+              </button>
+
+              <button
+                onClick={() => setWallFilter("stage")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "stage"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>Stage Shows</span>
+              </button>
+
+              <button
+                onClick={() => setWallFilter("music")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "music"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Film className="w-3.5 h-3.5" />
+                <span>Music & Dance</span>
               </button>
 
               <button
                 onClick={() => setWallFilter("reels")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
                   wallFilter === "reels"
                     ? "bg-[#B99A63] text-[#151515] shadow-md"
                     : "text-slate-400 hover:text-white"
@@ -1255,26 +1411,27 @@ export default function CinematicReelsShowcase({
               </button>
 
               <button
-                onClick={() => setWallFilter("posts")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
-                  wallFilter === "posts"
+                onClick={() => setWallFilter("photos")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "photos"
                     ? "bg-[#B99A63] text-[#151515] shadow-md"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                <Film className="w-3.5 h-3.5" />
-                <span>Posts</span>
+                <Camera className="w-3.5 h-3.5" />
+                <span>Photos</span>
               </button>
             </div>
           </div>
 
-          {/* 9-Post Responsive Grid with Hover Play */}
+          {/* Responsive Wall Grid with Hover Play & Photo Zoom */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredWallItems.map((item) => (
               <InstagramWallCard
                 key={item.id}
                 item={item}
                 onPlayInCinema={playReelFromWall}
+                onPhotoClick={onPhotoClick}
               />
             ))}
           </div>

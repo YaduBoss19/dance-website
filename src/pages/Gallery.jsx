@@ -128,9 +128,11 @@ export default function Gallery() {
 
   const categories = [
     "All",
+    "Workshops",
+    "Stage Shows",
+    "Music & Dance",
     "Performances",
     "Carnatic Vocal",
-    "Cinema & Abhinaya",
     "Doctor & Dancer",
     "Global Productions"
   ];
