@@ -436,6 +436,15 @@ export const INITIAL_GALLERY = [
     caption: "Dynamic auditorium performance featuring intricate rhythm patterns and dramatic stage illumination."
   },
   {
+    id: "g-stage-recital-solo",
+    title: "Solo Classical Stage Recital & Abhinaya",
+    category: "Stage Shows",
+    type: "video",
+    url: "/images/stage_shows/stage_05.jpg",
+    videoUrl: "/videos/recital_live_03.mp4",
+    caption: "Captivating solo Bharatanatyam recital presentation showcasing expressive bhava, refined rhythm, and pure devotion."
+  },
+  {
     id: "g-stage-4",
     title: "Hastha Mudra Poise on Grand Stage",
     category: "Stage Shows",
@@ -957,6 +966,23 @@ export const PERFORMANCE_REELS = [
     views: "41.0k",
     comments: "167",
     audio: "Studio Guidance · Dr. Malavika M. Sunil",
+    published: true
+  },
+  {
+    id: "reel-09",
+    reelNumber: "09",
+    title: "Solo Classical Stage Recital & Abhinaya",
+    category: "Bharatanatyam · Stage",
+    description: "Dr. Malavika presenting solo classical repertory with soulful expression, hand mudras, and rhythmic dynamism.",
+    videoUrl: "/videos/recital_live_03.mp4",
+    posterImage: "/images/stage_shows/stage_05.jpg",
+    tag: "Solo Recital",
+    duration: "Solo Stage",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
+    likes: "3.7k",
+    views: "49.8k",
+    comments: "192",
+    audio: "Temple Bells & Vocal Swaras · dancingragasbymalavika",
     published: true
   }
 ];

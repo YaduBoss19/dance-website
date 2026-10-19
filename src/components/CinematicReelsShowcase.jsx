@@ -150,6 +150,18 @@ const INFINITE_STREAM_ITEMS = [
     imageUrl: "/images/malavika_portrait.jpg",
     duration: "MBBS Doctor",
     badge: "Medical Graduate"
+  },
+  {
+    id: "stream-13",
+    type: "video",
+    reelIndex: 8,
+    title: "Solo Classical Stage Recital & Abhinaya",
+    subtitle: "Rhythmic Footwork & Expressive Bhava",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    videoUrl: "/videos/recital_live_03.mp4",
+    duration: "Solo Stage",
+    badge: "Solo Recital"
   }
 ];
 
@@ -329,6 +341,22 @@ const INSTAGRAM_WALL_ITEMS = [
     comments: "198",
     views: "58.0k",
     tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-13",
+    type: "reel",
+    reelIndex: 8,
+    category: "stage",
+    title: "Solo Classical Stage Recital & Abhinaya",
+    caption: "Captivating solo Bharatanatyam recital presentation showcasing expressive bhava, refined rhythm, and devotional grace. #classicalrecital #soloperformance #bharatanatyam",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    videoUrl: "/videos/recital_live_03.mp4",
+    audio: "Temple Bells & Vocal Swaras · dancingragasbymalavika",
+    likes: "3.7k",
+    comments: "192",
+    views: "49.8k",
+    tag: "Stage Shows",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
   }
 ];
