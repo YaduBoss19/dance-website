@@ -3,7 +3,7 @@ import { useAcademy } from "../context/AcademyContext";
 import AnimatedSection from "../components/AnimatedSection";
 import CinematicReelsShowcase from "../components/CinematicReelsShowcase";
 import GoldParticlesCanvas from "../components/GoldParticlesCanvas";
-import ArtisticJourneyTimeline from "../components/ArtisticJourneyTimeline";
+import CuratorMasterProfile from "../components/CuratorMasterProfile";
 import InteractiveServiceCards from "../components/InteractiveServiceCards";
 import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
@@ -19,7 +19,6 @@ import {
   Star,
   MessageCircle,
   Send,
-  Heart,
   ChevronDown,
   UserCheck
 } from "lucide-react";
@@ -226,103 +225,13 @@ export default function Home() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          2. STORYTELLING THROUGH SCROLL: The Artistic Journey Timeline
+          2. THE CURATOR'S MASTER-PROFILE: Meet the Artist & 21-Year Journey
       ───────────────────────────────────────────────────────────── */}
-      <ArtisticJourneyTimeline />
+      <CuratorMasterProfile />
 
       <div className="bg-[#FAF7F2] py-2">
         <GoldDivider />
       </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          3. MEET YOUR INSTRUCTOR: Personal spotlight on Dr. Malavika
-      ───────────────────────────────────────────────────────────── */}
-      <section id="meet-instructor" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 relative overflow-hidden">
-        {/* Sacred Temple Yantra Mandala Background */}
-        <SacredMandalaScroll className="absolute -left-28 -bottom-24 opacity-[0.05] -z-10" size={540} />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Instructor Portrait with Museum Frame */}
-            <AnimatedSection animation="fade-up" className="lg:col-span-5 relative">
-              <div className="museum-frame group">
-                <div className="museum-frame-inner aspect-[4/5] bg-[#151515] relative">
-                  <img
-                    src="/images/malavika_portrait.jpg"
-                    alt="Dr. Malavika M. Sunil Portrait"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/90 via-[#151515]/20 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-left text-white">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-[#B99A63]">
-                      Your Personal Mentor
-                    </span>
-                    <h3 className="text-2xl font-bold font-serif-luxury text-[#F5F0E8]">
-                      Dr. Malavika M. Sunil
-                    </h3>
-                    <p className="text-xs text-[#A9A49D] mt-1">
-                      Disciple of Dr. Sunil Nellay & Resmi Narayanan
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Biography, Credentials & Philosophy */}
-            <AnimatedSection animation="fade-up" delay={100} className="lg:col-span-7 text-left space-y-6">
-              <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-                  Meet Your Instructor
-                </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-                  Rooted in Sacred Tradition. <br />
-                  <span className="italic text-[#B99A63]">Guided by Anatomical Science.</span>
-                </h2>
-              </div>
-
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                Welcome to a private space where classical dance and music are taught as living arts. I began my Bharatanatyam journey over 21 years ago under my father and master guru, <strong>Dr. Sunil Nellay</strong>, and trained for 16+ years in Carnatic vocal music under my mother, <strong>Resmi Narayanan</strong>. At age 12, I was honored with the prestigious <strong>CCRT National Scholarship</strong> by the Government of India.
-              </p>
-
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                Alongside 600+ stage recitals and starring in 5 Malayalam feature films (including <em>Kaazhcha</em>), I completed my medical degree (<strong>MBBS</strong>) in Tbilisi, Georgia, and became a certified yoga instructor. This unique intersection of medicine and movement allows me to coach you with biomechanical precision—preventing dance injuries, strengthening posture, and developing vocal endurance safely.
-              </p>
-
-              {/* Teaching Philosophy Callout */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-[#151515] text-[#F5F0E8] border border-[#B99A63]/40 space-y-2">
-                <div className="text-xs font-bold uppercase tracking-widest text-[#B99A63] flex items-center gap-2">
-                  <Heart className="w-3.5 h-3.5 fill-[#B99A63]" />
-                  <span>My Teaching Philosophy</span>
-                </div>
-                <p className="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
-                  "No two bodies or voices are identical. In 1-to-1 private coaching, we discard one-size-fits-all group drill pressures. We progress at your exact pace, aligning rhythm, anatomy, and soulful expression so you truly own your art."
-                </p>
-              </div>
-
-              {/* 4 Key Milestone Accolades */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
-                  <div className="text-xl font-black text-[#151515] font-serif-luxury">21+ Yrs</div>
-                  <div className="text-[11px] text-slate-600 font-medium">Bharatanatyam</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
-                  <div className="text-xl font-black text-[#B99A63] font-serif-luxury">CCRT</div>
-                  <div className="text-[11px] text-slate-600 font-medium">National Scholar</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
-                  <div className="text-xl font-black text-[#151515] font-serif-luxury">MBBS</div>
-                  <div className="text-[11px] text-slate-600 font-medium">Physician & Yoga</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-[#A9A49D]/20 text-center">
-                  <div className="text-xl font-black text-[#B99A63] font-serif-luxury">600+</div>
-                  <div className="text-[11px] text-slate-600 font-medium">Stage Recitals</div>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
 
       {/* ─────────────────────────────────────────────────────────────
           4. INTERACTIVE 8 SERVICE CARDS: Dedicated Identities & WhatsApp Actions

@@ -29,14 +29,11 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { id: "about", label: "About", target: "meet-instructor" },
-    { id: "journey", label: "Journey", target: "artistic-journey" },
-    { id: "classes", label: "Classes", target: "services-section" },
+    { id: "about", label: "About & Journey", target: "about-artist" },
+    { id: "classes", label: "Courses & Services", target: "services-section" },
     { id: "events", label: "Happenings", target: "academy-events" },
-    { id: "art-forms", label: "Art Forms", target: "art-forms" },
-    { id: "navarasa", label: "Navarasa", target: "navarasa-section" },
     { id: "gallery", label: "Gallery", target: "gallery-section" },
-    { id: "contact", label: "Contact", target: "book-trial" }
+    { id: "contact", label: "Book Trial", target: "book-trial" }
   ];
 
   const handleNavClick = (linkItem) => {
