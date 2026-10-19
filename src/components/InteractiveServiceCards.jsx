@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import AnimatedSection from "./AnimatedSection";
 import StageSpotlightOverlay from "./StageSpotlightOverlay";
 import { useAcademy } from "../context/AcademyContext";
@@ -17,6 +17,7 @@ import {
   Users,
   Building,
   GraduationCap,
+  ChevronDown,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
@@ -25,35 +26,35 @@ import {
 const SERVICE_THEMES = {
   // 5 Courses We Offer
   "crs-bharatanatyam-diploma": {
-    accentColor: "border-[#B99A63]/60 bg-gradient-to-br from-[#3B0B14]/10 to-transparent",
+    accentColor: "border-[#B99A63]/60",
     pillBadge: "bg-[#3B0B14] text-[#D4AF37] border border-[#B99A63]/50",
     icon: Award,
     whatsappMsg:
       "Hello Dr. Malavika! I would love to enquire about enrolling in the Online Bharatanatyam Diploma Course. Please share details on the prescribed syllabus, yearly examinations, and trial class availability."
   },
   "crs-bharatanatyam-non-diploma": {
-    accentColor: "border-[#B99A63]/50 bg-gradient-to-br from-[#3B0B14]/15 to-transparent",
+    accentColor: "border-[#B99A63]/50",
     pillBadge: "bg-[#25060C] text-[#D4AF37] border border-[#B99A63]/40",
     icon: Sparkles,
     whatsappMsg:
       "Hello Dr. Malavika! I am inquiring about the Online Bharatanatyam Non-Diploma Classes for practical training and classical dance development. Could you please share timing details?"
   },
   "crs-carnatic-music": {
-    accentColor: "border-[#B99A63]/50 bg-gradient-to-br from-[#3B0B14]/15 to-transparent",
+    accentColor: "border-[#B99A63]/50",
     pillBadge: "bg-[#25060C] text-[#D4AF37] border border-[#B99A63]/40",
     icon: Music,
     whatsappMsg:
       "Hello Dr. Malavika! I would love to enquire about the Online Carnatic Music Classes (vocal & theory). Could you please guide me on introductory sessions and shruti alignment?"
   },
   "crs-semiclassical-bollywood": {
-    accentColor: "border-amber-500/40 bg-gradient-to-br from-amber-950/15 to-transparent",
+    accentColor: "border-amber-500/40",
     pillBadge: "bg-amber-950 text-amber-300 border border-amber-500/40",
     icon: Flame,
     whatsappMsg:
       "Hello Dr. Malavika! I am interested in joining the Online Semi-Classical Bollywood Dance Classes for expression, rhythm, and vibrant choreographies. What are the trial options?"
   },
   "crs-60-day-fitness": {
-    accentColor: "border-emerald-500/40 bg-gradient-to-br from-emerald-950/15 to-transparent",
+    accentColor: "border-emerald-500/40",
     pillBadge: "bg-emerald-950 text-emerald-300 border border-emerald-500/40",
     icon: Heart,
     whatsappMsg:
@@ -62,42 +63,42 @@ const SERVICE_THEMES = {
 
   // 6 Other Services We Offer
   "srv-event-stage-show": {
-    accentColor: "border-purple-500/40 bg-gradient-to-br from-purple-950/15 to-transparent",
+    accentColor: "border-purple-500/40",
     pillBadge: "bg-purple-950 text-purple-300 border border-purple-500/40",
     icon: Users,
     whatsappMsg:
       "Hello Dr. Malavika! We are seeking Event-Based Stage Show Choreography for an upcoming cultural program / stage performance. Could we discuss the concept and timeline?"
   },
   "srv-wedding-choreography": {
-    accentColor: "border-rose-500/40 bg-gradient-to-br from-rose-950/15 to-transparent",
+    accentColor: "border-rose-500/40",
     pillBadge: "bg-rose-950 text-rose-300 border border-rose-500/40",
     icon: Star,
     whatsappMsg:
       "Hello Dr. Malavika! We need Wedding Choreography for our special occasion (solo, couple dance, and family/friends group choreography). Could we discuss songs and rehearsal slots?"
   },
   "srv-one-day-workshop": {
-    accentColor: "border-orange-500/40 bg-gradient-to-br from-orange-950/15 to-transparent",
+    accentColor: "border-orange-500/40",
     pillBadge: "bg-orange-950 text-orange-300 border border-orange-500/40",
     icon: Building,
     whatsappMsg:
       "Hello Dr. Malavika! We represent an institution/organization interested in booking an intensive One-Day Dance Workshop. Could you please share the syllabus and availability?"
   },
   "srv-three-day-workshop": {
-    accentColor: "border-[#B99A63]/60 bg-gradient-to-br from-[#151515]/30 to-transparent",
+    accentColor: "border-[#B99A63]/60",
     pillBadge: "bg-[#151515] text-[#D4AF37] border border-[#B99A63]/60",
     icon: GraduationCap,
     whatsappMsg:
       "Hello Dr. Malavika! We would like to invite you for a structured Three-Day Dance Workshop for our students / institution. Please share available dates and syllabus."
   },
   "srv-competition-choreography": {
-    accentColor: "border-amber-600/40 bg-gradient-to-br from-amber-950/20 to-transparent",
+    accentColor: "border-amber-600/40",
     pillBadge: "bg-amber-950 text-amber-200 border border-amber-600/40",
     icon: Award,
     whatsappMsg:
       "Hello Dr. Malavika! I am seeking Competition-Based Choreography (solo/duet/group) tailored to a specific theme and performance requirements. Could we discuss details?"
   },
   "srv-corporate-events": {
-    accentColor: "border-blue-500/40 bg-gradient-to-br from-blue-950/15 to-transparent",
+    accentColor: "border-blue-500/40",
     pillBadge: "bg-blue-950 text-blue-300 border border-blue-500/40",
     icon: Building,
     whatsappMsg:
@@ -105,20 +106,304 @@ const SERVICE_THEMES = {
   }
 };
 
+/**
+ * In-Drawer Auto-Slideshow Component
+ * Runs automatically when the accordion is expanded.
+ * User can pause on hover or tap to navigate slides.
+ */
+function CourseSlideshow({ images = [], title = "" }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow every 3.2s when active and not hovered
+  useEffect(() => {
+    if (!images || images.length <= 1 || isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % images.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [images, isPaused]);
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <div
+      className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-2xl overflow-hidden bg-[#151515] border border-[#B99A63]/35 shadow-lg group select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {images.map((imgSrc, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+            idx === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+          }`}
+        >
+          <img
+            src={imgSrc}
+            alt={`${title} photo ${idx + 1}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/75 via-transparent to-black/20" />
+        </div>
+      ))}
+
+      {/* Top Slide Counter Badge & Live Indicator */}
+      <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between gap-2">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#151515]/85 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-[#B99A63]/40 backdrop-blur-xs shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Live Slideshow</span>
+        </span>
+        <span className="px-2.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[10px] font-bold tracking-widest border border-white/10 backdrop-blur-xs">
+          {String(currentIdx + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Next / Previous Controls */}
+      {images.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              playGhungrooChime();
+              setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
+            }}
+            aria-label="Previous photo"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#151515] text-[#F5F0E8] hover:text-[#D4AF37] border border-white/20 flex items-center justify-center transition-all opacity-80 sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer tap-bounce"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              playGhungrooChime();
+              setCurrentIdx((prev) => (prev + 1) % images.length);
+            }}
+            aria-label="Next photo"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#151515] text-[#F5F0E8] hover:text-[#D4AF37] border border-white/20 flex items-center justify-center transition-all opacity-80 sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer tap-bounce"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+
+          {/* Bottom Dot Indicators */}
+          <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-1.5">
+            {images.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playGhungrooChime();
+                  setCurrentIdx(dotIdx);
+                }}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  dotIdx === currentIdx
+                    ? "w-6 h-1.5 bg-[#D4AF37]"
+                    : "w-1.5 h-1.5 bg-white/40 hover:bg-white/80"
+                }`}
+                aria-label={`Jump to slide ${dotIdx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Individual Accordion Card Row
+ * Short initial view -> expands to reveal live photo slideshow, full brief & curriculum.
+ */
+function CourseAccordionItem({
+  course,
+  theme,
+  isOpen,
+  onToggle,
+  onBookingClick,
+  onWhatsAppClick,
+  onViewSyllabus
+}) {
+  const Icon = theme.icon || Award;
+  const slideImages =
+    course.images && course.images.length > 0 ? course.images : [course.image];
+
+  return (
+    <div
+      className={`rounded-2xl sm:rounded-3xl border transition-all duration-300 overflow-hidden ${
+        isOpen
+          ? "bg-white border-[#B99A63] shadow-xl ring-2 ring-[#B99A63]/20"
+          : "bg-white/90 hover:bg-white border-[#A9A49D]/25 hover:border-[#B99A63]/60 shadow-xs hover:shadow-md"
+      }`}
+    >
+      {/* ── HEADER STRIP: Short, Compact & Instant to Read ── */}
+      <button
+        type="button"
+        onClick={onToggle}
+        className="w-full p-3 sm:p-4 md:p-5 flex items-center justify-between gap-3 text-left cursor-pointer transition-colors"
+      >
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          {/* Compact Photo Thumbnail with Museum Frame */}
+          <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-[#151515] relative border border-[#B99A63]/40 shadow-xs">
+            <img
+              src={course.image}
+              alt={course.title}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-black/15" />
+            <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-[#151515] text-[#D4AF37] flex items-center justify-center border border-[#B99A63]/40">
+              <Icon className="w-2.5 h-2.5" />
+            </div>
+          </div>
+
+          {/* Title & Metadata */}
+          <div className="min-w-0 space-y-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span
+                className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${theme.pillBadge}`}
+              >
+                {course.badge || course.category}
+              </span>
+              <span className="text-[11px] text-slate-500 font-semibold flex items-center gap-1">
+                <Clock className="w-3 h-3 text-[#B99A63]" />
+                {course.duration}
+              </span>
+            </div>
+
+            <h3 className="text-sm sm:text-base md:text-lg font-bold text-[#151515] font-serif-luxury truncate">
+              {course.title}
+            </h3>
+
+            <p className="text-xs text-slate-500 truncate hidden xs:block">
+              {course.level} • {course.ageGroup}
+            </p>
+          </div>
+        </div>
+
+        {/* Right Toggle Button & Action Hint */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          <span className="text-xs font-bold text-[#B99A63] hidden md:inline-block">
+            {isOpen ? "Close" : "Explore"}
+          </span>
+          <div
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+              isOpen
+                ? "bg-[#151515] text-[#D4AF37] rotate-180"
+                : "bg-slate-100 hover:bg-[#151515] text-slate-700 hover:text-[#D4AF37] border border-[#A9A49D]/30"
+            }`}
+          >
+            <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
+          </div>
+        </div>
+      </button>
+
+      {/* ── EXPANDED ACCORDION DRAWER ── */}
+      {isOpen && (
+        <div className="px-3.5 pb-4 sm:px-6 sm:pb-6 pt-2 border-t border-slate-100 animate-fadeIn">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
+            {/* Left: Live Photo Slideshow */}
+            <div className="lg:col-span-5 w-full">
+              <CourseSlideshow images={slideImages} title={course.title} />
+              <div className="flex items-center justify-between text-[11px] text-slate-500 pt-2 px-1">
+                <span>✦ Slideshow starts automatically</span>
+                <span>Hover or tap to pause</span>
+              </div>
+            </div>
+
+            {/* Right: Full Description, Syllabus & Actions */}
+            <div className="lg:col-span-7 space-y-4 text-left">
+              <div>
+                <span className="text-[11px] font-bold text-[#B99A63] uppercase tracking-wider block mb-1">
+                  Program Overview
+                </span>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                  {course.description}
+                </p>
+              </div>
+
+              {/* Curriculum Points */}
+              {course.syllabus && course.syllabus.length > 0 && (
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-50/50 border border-amber-200/60 space-y-2">
+                  <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-slate-800 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#B99A63]" />
+                    Curriculum &amp; Program Highlights:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] sm:text-xs text-slate-600">
+                    {course.syllabus.map((point, pIdx) => (
+                      <div key={pIdx} className="flex items-start gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B99A63] shrink-0 mt-1.5" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Specs */}
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-slate-600">
+                <span className="px-2.5 py-1 rounded-lg bg-slate-100 font-medium">
+                  <strong>Frequency:</strong> {course.frequency}
+                </span>
+                <span className="px-2.5 py-1 rounded-lg bg-slate-100 font-medium">
+                  <strong>Age Group:</strong> {course.ageGroup}
+                </span>
+                <span className="px-2.5 py-1 rounded-lg bg-slate-100 font-medium">
+                  <strong>Fee:</strong> {course.fee}
+                </span>
+              </div>
+
+              {/* Action Buttons Footer */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => onBookingClick(course.title)}
+                  className="silk-zari-btn px-5 py-2.5 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-2 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
+                >
+                  <span>
+                    {course.category === "Courses We Offer"
+                      ? "Book Free Trial"
+                      : "Enquire for Service"}
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => onWhatsAppClick(course)}
+                  className="px-4 py-2.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-600" />
+                  <span>Enquire on WhatsApp</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => onViewSyllabus(course)}
+                  className="text-xs font-bold text-slate-600 hover:text-[#151515] underline underline-offset-4 cursor-pointer py-1 ml-auto"
+                >
+                  {course.category === "Courses We Offer"
+                    ? "View Full Syllabus"
+                    : "View Full Details"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
   const { courses, setSelectedCourseModal, academyInfo } = useAcademy();
   const [filterPillar, setFilterPillar] = useState("all");
-  const carouselRef = useRef(null);
-
-  const scrollCarousel = (direction) => {
-    playGhungrooChime();
-    if (!carouselRef.current) return;
-    const scrollAmount = 370;
-    carouselRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth"
-    });
-  };
+  // Default to the first course open so visitors immediately discover the slideshow
+  const [openCourseId, setOpenCourseId] = useState("crs-bharatanatyam-diploma");
 
   const pillars = [
     { id: "all", label: "All Offerings (11)" },
@@ -131,10 +416,17 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
     return c.pillar === filterPillar || c.category === filterPillar;
   });
 
+  const toggleAccordion = (courseId) => {
+    playGhungrooChime();
+    setOpenCourseId((prev) => (prev === courseId ? null : courseId));
+  };
+
   const handleWhatsAppEnquiry = (course) => {
     playGhungrooChime();
     const meta = SERVICE_THEMES[course.id];
-    const msg = meta ? meta.whatsappMsg : `Hello Dr. Malavika! I am interested in ${course.title}.`;
+    const msg = meta
+      ? meta.whatsappMsg
+      : `Hello Dr. Malavika! I am interested in ${course.title}.`;
     const cleanNumber = academyInfo.whatsappNumber.replace(/[^0-9]/g, "");
     const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
@@ -154,20 +446,29 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
 
   return (
     <StageSpotlightOverlay className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
-      <div id="services-section" className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12 relative z-20">
+      <div
+        id="services-section"
+        className="max-w-5xl mx-auto space-y-6 sm:space-y-8 relative z-20"
+      >
         {/* Section Heading */}
-        <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
+        <AnimatedSection
+          animation="fade-up"
+          className="text-center max-w-3xl mx-auto space-y-4"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
             <span>Interactive Portfolio</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Courses & Services We Offer
+            Courses &amp; Services We Offer
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            At DancingRagas by Dr. Malavika M. Sunil, we offer structured classical dance, music, and fitness courses, alongside professional choreography and customised dance experiences for special occasions, institutions, competitions, and corporate events.
+            At DancingRagas by Dr. Malavika M. Sunil, we offer structured classical
+            dance, music, and fitness courses, alongside professional choreography
+            and customised dance experiences for special occasions, institutions,
+            competitions, and corporate events.
           </p>
         </AnimatedSection>
 
@@ -191,39 +492,21 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           ))}
         </div>
 
-        {/* Horizontal Navigation & Swipe Guidance */}
-        <div className="flex items-center justify-between gap-4 pt-1">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+        {/* Guidance Subtitle */}
+        <div className="flex items-center justify-between text-xs font-semibold text-slate-500 px-2 pt-1">
+          <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#B99A63] animate-ping" />
-            <span className="font-serif-luxury tracking-wider uppercase text-[#151515] text-[11px] sm:text-xs">
-              Swipe Left / Right to Explore All Offerings
+            <span className="text-[#151515] tracking-wider uppercase text-[11px]">
+              Tap any offering to expand details and start photo slideshow
             </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scrollCarousel("left")}
-              aria-label="Previous pathway"
-              className="w-10 h-10 rounded-full bg-white hover:bg-[#151515] text-slate-700 hover:text-[#D4AF37] border border-[#A9A49D]/30 shadow-md flex items-center justify-center transition-all cursor-pointer tap-bounce"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scrollCarousel("right")}
-              aria-label="Next pathway"
-              className="w-10 h-10 rounded-full bg-white hover:bg-[#151515] text-slate-700 hover:text-[#D4AF37] border border-[#A9A49D]/30 shadow-md flex items-center justify-center transition-all cursor-pointer tap-bounce"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+          </span>
+          <span className="text-[11px] text-slate-400 hidden sm:inline">
+            Showing {filteredCourses.length} offerings
+          </span>
         </div>
 
-        {/* 8 Distinct Interactive Service Cards - Horizontal Swipe Track */}
-        <div
-          ref={carouselRef}
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-6 pt-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
+        {/* ── LUXURY ACCORDION DRAWER LIST ── */}
+        <div className="space-y-3 sm:space-y-4">
           {filteredCourses.map((course) => {
             const theme = SERVICE_THEMES[course.id] || {
               accentColor: "border-[#B99A63]/50",
@@ -231,110 +514,19 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
               icon: Award,
               whatsappMsg: `Hello Dr. Malavika! I am interested in ${course.title}.`
             };
-            const ServiceIcon = theme.icon;
+            const isOpen = openCourseId === course.id;
 
             return (
-              <div
+              <CourseAccordionItem
                 key={course.id}
-                className="w-[82vw] max-w-[320px] sm:w-[340px] md:w-[370px] shrink-0 snap-start flex"
-              >
-                <div
-                  className={`silk-pleat-card bg-white rounded-3xl overflow-hidden border ${theme.accentColor} shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between text-left group relative w-full`}
-                >
-                  <div>
-                    {/* Card Thumbnail with Museum Border Frame */}
-                    <div className="p-3 pb-0">
-                      <div className="card-photo-frame aspect-[16/10] w-full bg-[#151515] relative overflow-hidden rounded-2xl">
-                        <img
-                          src={course.image}
-                          alt={course.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/80 via-transparent to-transparent pointer-events-none" />
-
-                        {/* Top Badges */}
-                        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2">
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 text-[#F5F0E8] backdrop-blur-xs border border-white/10">
-                            {course.level}
-                          </span>
-                          {course.badge && (
-                            <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold shadow-sm ${theme.pillBadge}`}>
-                              {course.badge}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Bottom Info Bar inside image */}
-                        <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center gap-1.5 text-[10px] font-bold text-[#F5F0E8] tracking-wider uppercase">
-                          <ServiceIcon className="w-3.5 h-3.5 text-[#B99A63]" />
-                          <span>{course.category}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-5 sm:p-6 space-y-3">
-                      <div className="flex items-center gap-2 text-[11px] font-semibold text-[#B99A63]">
-                        <Clock className="w-3.5 h-3.5 shrink-0" />
-                        <span>{course.duration}</span>
-                        <span>•</span>
-                        <span className="truncate">{course.ageGroup}</span>
-                      </div>
-
-                      <h3 className="text-lg sm:text-xl font-bold text-[#151515] font-serif-luxury group-hover:text-[#B99A63] transition-colors leading-snug">
-                        {course.title}
-                      </h3>
-
-                      <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                        {course.description}
-                      </p>
-
-                      {/* Key syllabus preview points */}
-                      <div className="pt-2 border-t border-slate-100 space-y-1.5">
-                        <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 block">
-                          Curriculum Highlights:
-                        </span>
-                        {course.syllabus.slice(0, 2).map((item, sIdx) => (
-                          <div key={sIdx} className="flex items-start gap-1.5 text-[11px] text-slate-600">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#B99A63] shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card Action Footer: Two Distinct Actions */}
-                  <div className="p-5 sm:p-6 pt-0 border-t border-slate-100 mt-3 space-y-2">
-                    <div className="flex items-center justify-between gap-2 pt-3">
-                      <button
-                        onClick={() => handleViewSyllabus(course)}
-                        className="text-xs font-bold text-slate-600 hover:text-[#151515] transition-colors underline-offset-4 hover:underline cursor-pointer"
-                      >
-                        {course.category === "Courses We Offer" ? "View Syllabus" : "Service Details"}
-                      </button>
-
-                      <button
-                        onClick={() => handleBookingClick(course.title)}
-                        className="silk-zari-btn px-4 py-2 rounded-full bg-[#151515] hover:bg-[#B99A63] text-[#F5F0E8] hover:text-[#151515] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce shadow-sm hover:shadow-md"
-                      >
-                        <span>{course.category === "Courses We Offer" ? "Book Trial" : "Enquire"}</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    {/* Direct WhatsApp Action for this specific course */}
-                    <button
-                      onClick={() => handleWhatsAppEnquiry(course)}
-                      className="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer tap-bounce"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Enquire on WhatsApp</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+                course={course}
+                theme={theme}
+                isOpen={isOpen}
+                onToggle={() => toggleAccordion(course.id)}
+                onBookingClick={handleBookingClick}
+                onWhatsAppClick={handleWhatsAppEnquiry}
+                onViewSyllabus={handleViewSyllabus}
+              />
             );
           })}
         </div>

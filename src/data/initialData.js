@@ -15,6 +15,12 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Diploma & Certification",
     image: "/images/malavika_dance_stage.jpg",
+    images: [
+      "/images/malavika_dance_stage.jpg",
+      "/images/stage_shows/stage_02.jpg",
+      "/images/stage_shows/stage_05.jpg",
+      "/images/malavika_classical.jpg"
+    ],
     description: "A structured program combining practical Bharatanatyam training with theoretical lessons aligned with the prescribed syllabus. The course includes yearly examinations and certification, providing students with a systematic learning experience.",
     syllabus: [
       "Comprehensive practical Adavu training, Aramandi posture & Talam precision",
@@ -37,6 +43,12 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Practical Training",
     image: "/images/malavika_dance_pose.jpg",
+    images: [
+      "/images/malavika_dance_pose.jpg",
+      "/images/stage_shows/stage_04.jpg",
+      "/images/stage_shows/stage_08.jpg",
+      "/images/malavika_temple.jpg"
+    ],
     description: "Practical training in Bharatanatyam, complemented by basic theoretical lessons. Ideal for students who wish to learn and develop their classical dance skills without formal examinations or certification.",
     syllabus: [
       "Core Adavu technique, footwork precision & rhythmic control",
@@ -59,6 +71,12 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Vocal & Theory",
     image: "/images/music_and_dance/music_01.jpg",
+    images: [
+      "/images/music_and_dance/music_01.jpg",
+      "/images/music_and_dance/music_02.jpg",
+      "/images/music_and_dance/music_03.jpg",
+      "/images/malavika_vocal.jpg"
+    ],
     description: "Comprehensive Carnatic music training, from foundational concepts to advanced levels, incorporating both practical vocal training and theoretical sessions to develop musical knowledge and proficiency.",
     syllabus: [
       "Shruti alignment, Sarali Varisais, Janta Varisais & Dhatu Varisais",
@@ -81,6 +99,12 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Grace & Vibrancy",
     image: "/images/stage_shows/stage_03.jpg",
+    images: [
+      "/images/stage_shows/stage_03.jpg",
+      "/images/stage_shows/stage_09.jpg",
+      "/images/stage_shows/stage_12.jpg",
+      "/images/stage_shows/stage_15.jpg"
+    ],
     description: "Learn engaging choreographies set to a variety of songs, blending the grace of semi-classical movements with the vibrancy of Bollywood dance. Designed to enhance expression, rhythm, coordination, and performance skills.",
     syllabus: [
       "Semi-classical footwork, graceful posture, and lyrical Mudras",
@@ -103,6 +127,12 @@ export const INITIAL_COURSES = [
     frequency: "Scheduled sessions + daily guidance",
     badge: "Yoga & Nutrition",
     image: "/images/malavika_portrait.jpg",
+    images: [
+      "/images/malavika_portrait.jpg",
+      "/images/stage_shows/stage_11.jpg",
+      "/images/stage_shows/stage_14.jpg",
+      "/images/stage_shows/stage_16.jpg"
+    ],
     description: "A holistic fitness program combining guided yoga sessions, dance-based workouts, and personalised dietary guidance. Designed to help participants build a consistent fitness routine and work towards their individual wellness goals.",
     syllabus: [
       "Guided yoga asanas for core strength, flexibility & injury prevention",
@@ -127,6 +157,12 @@ export const INITIAL_COURSES = [
     frequency: "Rehearsal cycles + dress rehearsal",
     badge: "Stage & Cultural",
     image: "/images/stage_shows/stage_01.jpg",
+    images: [
+      "/images/stage_shows/stage_01.jpg",
+      "/images/stage_shows/stage_13.jpg",
+      "/images/stage_shows/stage_17.jpg",
+      "/images/stage_shows/stage_18.jpg"
+    ],
     description: "Tailored choreography for cultural programs, stage performances, celebrations, and special events. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Concept creation, music editing, and track curation",
@@ -149,6 +185,12 @@ export const INITIAL_COURSES = [
     frequency: "Flexible schedule (Online / In-person)",
     badge: "Weddings & Sangeet",
     image: "/images/stage_shows/stage_07.jpg",
+    images: [
+      "/images/stage_shows/stage_07.jpg",
+      "/images/stage_shows/stage_19.jpg",
+      "/images/stage_shows/stage_20.jpg",
+      "/images/stage_shows/stage_21.jpg"
+    ],
     description: "Specially curated dance performances for weddings, including solo performances, couple dances, and group choreography for family and friends. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Curated song medleys tailored to couple's story and family choices",
@@ -171,6 +213,12 @@ export const INITIAL_COURSES = [
     frequency: "Single-day event",
     badge: "1-Day Intensive",
     image: "/images/workshops/workshop_01.jpg",
+    images: [
+      "/images/workshops/workshop_01.jpg",
+      "/images/workshops/workshop_02.jpg",
+      "/images/workshops/workshop_04.jpg",
+      "/images/workshops/workshop_05.jpg"
+    ],
     description: "Intensive, engaging dance workshops designed for schools, colleges, institutions, and other organisations. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Dynamic warm-up and introduction to rhythm (Talam) & Hastha Mudras",
@@ -193,6 +241,12 @@ export const INITIAL_COURSES = [
     frequency: "Multi-day intensive residency",
     badge: "3-Day Masterclass",
     image: "/images/workshops/workshop_03.jpg",
+    images: [
+      "/images/workshops/workshop_03.jpg",
+      "/images/workshops/workshop_06.jpg",
+      "/images/workshops/workshop_07.jpg",
+      "/images/workshops/workshop_08.jpg"
+    ],
     description: "Structured multi-day workshops offering focused dance training, choreography, and performance development. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Day 1: Comprehensive posture, Adavu mechanics & rhythmic foundations",
@@ -215,6 +269,12 @@ export const INITIAL_COURSES = [
     frequency: "Rigorous rehearsal schedule",
     badge: "Championship Level",
     image: "/images/stage_shows/stage_10.jpg",
+    images: [
+      "/images/stage_shows/stage_10.jpg",
+      "/images/stage_shows/stage_22.jpg",
+      "/images/stage_shows/stage_02.jpg",
+      "/images/stage_shows/stage_14.jpg"
+    ],
     description: "Customised choreography for solo, duet, and group dance competitions, tailored to the theme, song selection, and performance requirements. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Theme analysis, music cut curation, and rule-compliant structure",
@@ -237,6 +297,12 @@ export const INITIAL_COURSES = [
     frequency: "Tailored to event timeline",
     badge: "Corporate & Galas",
     image: "/images/stage_shows/stage_06.jpg",
+    images: [
+      "/images/stage_shows/stage_06.jpg",
+      "/images/stage_shows/stage_08.jpg",
+      "/images/stage_shows/stage_17.jpg",
+      "/images/workshops/workshop_01.jpg"
+    ],
     description: "Choreography and performance preparation for corporate celebrations, annual functions, cultural events, and special occasions. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
       "Theme-aligned concept design for annual galas, summits & celebrations",
