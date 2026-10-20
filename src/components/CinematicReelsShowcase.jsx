@@ -330,6 +330,8 @@ export default function CinematicReelsShowcase({
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Videos");
   const [videoError, setVideoError] = useState(false);
+  const [autoPlayNext, setAutoPlayNext] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const featuredPlayerRef = useRef(null);
   const videoElementRef = useRef(null);
@@ -339,6 +341,19 @@ export default function CinematicReelsShowcase({
     activeCategory === "All Videos"
       ? PERFORMANCE_ARCHIVE
       : PERFORMANCE_ARCHIVE.filter((vid) => vid.category === activeCategory);
+
+  // Auto-advance preview photo every 4.8 seconds when idle (not playing video and not hovered)
+  useEffect(() => {
+    if (isPlaying || isHovered || !filteredVideos || filteredVideos.length <= 1) return;
+    const timer = setInterval(() => {
+      setSelectedVideo((prev) => {
+        const idx = filteredVideos.findIndex((v) => v.id === prev.id);
+        const nextIdx = (idx + 1) % filteredVideos.length;
+        return filteredVideos[nextIdx];
+      });
+    }, 4800);
+    return () => clearInterval(timer);
+  }, [isPlaying, isHovered, filteredVideos]);
 
   // Switch active video in player
   const handleSelectVideo = (video) => {
@@ -390,6 +405,18 @@ export default function CinematicReelsShowcase({
     setIsPlaying(false);
   };
 
+  // Automatically advance and play next video when current video finishes
+  const handleVideoEnded = () => {
+    if (!autoPlayNext) {
+      setIsPlaying(false);
+      return;
+    }
+    const currentIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
+    const nextIdx = (currentIdx + 1) % filteredVideos.length;
+    const nextVideo = filteredVideos[nextIdx];
+    handleSelectVideo(nextVideo);
+  };
+
   return (
     <section
       id="gallery-section"
@@ -419,116 +446,152 @@ export default function CinematicReelsShowcase({
         </AnimatedSection>
 
         {/* ═══════════════════════════════════════════════════════════════
-            2. FEATURED 16:9 LANDSCAPE VIDEO PLAYER
+            2. FEATURED 16:9 LANDSCAPE VIDEO PLAYER (Framed & Compact)
         ═══════════════════════════════════════════════════════════════ */}
-        <div ref={featuredPlayerRef} className="space-y-5">
-          <div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-[#181616] border border-[#B99A63]/35 shadow-2xl group">
-            {/* If video has an active error state */}
-            {videoError ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
-                <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
-                <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
-                  Video Stream Unavailable
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-                  The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setVideoError(false);
-                    setIsPlaying(false);
-                  }}
-                  className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
-                >
-                  Return to Thumbnail
-                </button>
-              </div>
-            ) : isPlaying ? (
-              /* Active Video Playback */
-              <div className="w-full h-full relative bg-black">
-                {selectedVideo.youtubeId ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
-                    title={selectedVideo.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full border-0"
-                  />
-                ) : (
-                  <video
-                    ref={videoElementRef}
-                    src={selectedVideo.videoUrl}
-                    poster={selectedVideo.thumbnail}
-                    controls
-                    autoPlay
-                    playsInline
-                    onError={handleVideoError}
-                    onEnded={() => setIsPlaying(false)}
-                    className="w-full h-full object-contain bg-black"
-                  />
-                )}
-              </div>
-            ) : (
-              /* High-Quality Video Thumbnail with Centered Play Button */
-              <div
-                onClick={handlePlayButtonClick}
-                className="w-full h-full relative cursor-pointer group"
-                role="button"
-                tabIndex={0}
-                aria-label={`Play ${selectedVideo.title}`}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handlePlayButtonClick();
-                  }
-                }}
-              >
-                <img
-                  src={selectedVideo.thumbnail}
-                  alt={selectedVideo.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="eager"
-                />
-
-                {/* Atmospheric Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
-
-                {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
-                  <span className="px-3 py-1.5 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] sm:text-xs font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
-                    {selectedVideo.featuredBadge || selectedVideo.category}
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-xs font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
-                    <Clock className="w-3 h-3 text-[#B99A63]" />
-                    {selectedVideo.duration}
-                  </span>
+        <div
+          ref={featuredPlayerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="max-w-4xl mx-auto space-y-4"
+        >
+          {/* Museum Frame Container — Styled exactly like the Hero Section */}
+          <div className="museum-frame group relative p-1.5 sm:p-2.5 rounded-3xl bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all">
+            <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/45 shadow-inner">
+              {/* If video has an active error state */}
+              {videoError ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
+                  <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
+                  <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
+                    Video Stream Unavailable
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-md">
+                    The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setVideoError(false);
+                      setIsPlaying(false);
+                    }}
+                    className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
+                  >
+                    Return to Thumbnail
+                  </button>
                 </div>
+              ) : isPlaying ? (
+                /* Active Video Playback */
+                <div className="w-full h-full relative bg-black">
+                  {selectedVideo.youtubeId ? (
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                      title={selectedVideo.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  ) : (
+                    <video
+                      ref={videoElementRef}
+                      src={selectedVideo.videoUrl}
+                      poster={selectedVideo.thumbnail}
+                      controls
+                      autoPlay
+                      playsInline
+                      onError={handleVideoError}
+                      onEnded={handleVideoEnded}
+                      className="w-full h-full object-contain bg-black"
+                    />
+                  )}
+                </div>
+              ) : (
+                /* High-Quality Video Thumbnail with Centered Play Button & Auto-previewing */
+                <div
+                  onClick={handlePlayButtonClick}
+                  className="w-full h-full relative cursor-pointer group"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Play ${selectedVideo.title}`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handlePlayButtonClick();
+                    }
+                  }}
+                >
+                  <img
+                    src={selectedVideo.thumbnail}
+                    alt={selectedVideo.title}
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                    loading="eager"
+                  />
 
-                {/* Centered Luxury Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-8 ring-[#B99A63]/25">
-                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#151515] translate-x-0.5" />
+                  {/* Atmospheric Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
+
+                  {/* Top Badges & Autoplay Toggle */}
+                  <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none z-10">
+                    <span className="px-3 py-1.5 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] sm:text-xs font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
+                      {selectedVideo.featuredBadge || selectedVideo.category}
+                    </span>
+
+                    <div className="flex items-center gap-2 pointer-events-auto">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setAutoPlayNext((prev) => !prev);
+                        }}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all cursor-pointer backdrop-blur-md border ${
+                          autoPlayNext
+                            ? "bg-[#B99A63] text-[#151515] border-[#B99A63] shadow-sm hover:bg-[#cca86d]"
+                            : "bg-black/70 text-slate-400 border-white/10 hover:text-white"
+                        }`}
+                        title="Automatically play next video when current finishes"
+                      >
+                        <span className={`w-1.5 h-1.5 rounded-full ${autoPlayNext ? "bg-[#151515] animate-ping" : "bg-slate-500"}`} />
+                        <span>Autoplay {autoPlayNext ? "ON" : "OFF"}</span>
+                      </button>
+
+                      <span className="px-2 py-1 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-[11px] sm:text-xs font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
+                        <Clock className="w-3 h-3 text-[#B99A63]" />
+                        {selectedVideo.duration}
+                      </span>
                     </div>
-                    <span className="px-4 py-1.5 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-xs font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
-                      Play Full Video
+                  </div>
+
+                  {/* Centered Luxury Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <div className="flex flex-col items-center gap-2 sm:gap-3">
+                      <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-6 ring-[#B99A63]/25">
+                        <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
+                      </div>
+                      <span className="px-3.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[11px] sm:text-xs font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
+                        Play Performance
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Auto-slideshow Indicator Badge when Idle */}
+                  <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-4 z-10 pointer-events-none hidden xs:block">
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase backdrop-blur-xs border border-white/10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Auto-previewing Photos</span>
                     </span>
                   </div>
-                </div>
 
-                {/* Bottom Overlay Title Bar */}
-                <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none text-left">
-                  <h3 className="text-lg sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
-                    {selectedVideo.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 truncate font-normal">
-                    {selectedVideo.subtitle}
-                  </p>
+                  {/* Bottom Overlay Title Bar */}
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 pointer-events-none text-left">
+                    <h3 className="text-base sm:text-xl font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
+                      {selectedVideo.title}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-slate-300 truncate font-normal">
+                      {selectedVideo.subtitle}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
           {/* Featured Video Metadata & Actions Bar (YouTube Style) */}
