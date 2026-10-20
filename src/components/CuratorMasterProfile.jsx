@@ -176,7 +176,7 @@ export default function CuratorMasterProfile() {
   return (
     <section
       id="about-artist"
-      className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2] relative overflow-hidden"
+      className="py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2] relative overflow-hidden"
     >
       {/* Anchor aliases for Navbar compatibility */}
       <span id="meet-instructor" className="absolute -top-24" />
@@ -193,7 +193,7 @@ export default function CuratorMasterProfile() {
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            About Dr. Malavika M. Sunil
+            About <span className="italic text-[#B99A63]">Dr. Malavika M. Sunil</span>
           </h2>
 
           <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">

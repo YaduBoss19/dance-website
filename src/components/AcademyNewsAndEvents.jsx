@@ -109,12 +109,12 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
   };
 
   return (
-    <section id="academy-events" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 bg-[#FAF7F2] border-b border-[#A9A49D]/20 relative overflow-hidden">
+    <section id="academy-events" className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 bg-[#FAF7F2] border-b border-[#A9A49D]/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12 relative z-10">
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Announcements
+            Academy <span className="italic text-[#B99A63]">Announcements</span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">

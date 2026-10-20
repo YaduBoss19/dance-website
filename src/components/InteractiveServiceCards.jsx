@@ -495,7 +495,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
   };
 
   return (
-    <StageSpotlightOverlay className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#A9A49D]/20">
+    <StageSpotlightOverlay className="py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#A9A49D]/20">
       <div
         id="services-section"
         className="max-w-7xl mx-auto space-y-6 sm:space-y-8 relative z-20"
@@ -506,7 +506,7 @@ export default function InteractiveServiceCards({ onSelectServiceForBooking }) {
           className="text-center max-w-3xl mx-auto space-y-3.5"
         >
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Courses &amp; Services
+            Courses &amp; <span className="italic text-[#B99A63]">Services</span>
           </h2>
 
           <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">

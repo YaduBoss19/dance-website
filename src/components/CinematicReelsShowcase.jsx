@@ -1009,7 +1009,7 @@ export default function CinematicReelsShowcase({
         ═══════════════════════════════════════════════════════════════ */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
-            Gallery
+            Performance <span className="italic text-[#D4AF37]">Gallery</span>
           </h2>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">

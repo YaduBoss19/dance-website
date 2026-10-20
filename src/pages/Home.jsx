@@ -7,7 +7,6 @@ import CuratorMasterProfile from "../components/CuratorMasterProfile";
 import InteractiveServiceCards from "../components/InteractiveServiceCards";
 import SacredMandalaScroll from "../components/SacredMandalaScroll";
 import StageSpotlightOverlay from "../components/StageSpotlightOverlay";
-import GoldDivider from "../components/GoldDivider";
 import AnnouncementsTicker from "../components/AnnouncementsTicker";
 import HeroSlideshow from "../components/HeroSlideshow";
 import AcademyNewsAndEvents from "../components/AcademyNewsAndEvents";
@@ -209,48 +208,29 @@ export default function Home() {
       ───────────────────────────────────────────────────────────── */}
       <AnnouncementsTicker onAnnouncementClick={scrollToSection} />
 
-      {/* Theatrical Antique Gold Transition Divider */}
-      <div className="bg-[#151515] py-2">
-        <GoldDivider />
-      </div>
-
       {/* ─────────────────────────────────────────────────────────────
           2. THE CURATOR'S MASTER-PROFILE: Meet the Artist & 21-Year Journey
       ───────────────────────────────────────────────────────────── */}
       <CuratorMasterProfile />
-
-      <div className="bg-[#FAF7F2] py-2">
-        <GoldDivider />
-      </div>
 
       {/* ─────────────────────────────────────────────────────────────
           4. INTERACTIVE 8 SERVICE CARDS: Dedicated Identities & WhatsApp Actions
       ───────────────────────────────────────────────────────────── */}
       <InteractiveServiceCards onSelectServiceForBooking={selectServiceForBooking} />
 
-      <div className="bg-[#151515] py-2">
-        <GoldDivider />
-      </div>
-
       {/* ─────────────────────────────────────────────────────────────
           4B. UPCOMING EVENTS & MASTERCLASSES
       ───────────────────────────────────────────────────────────── */}
       <AcademyNewsAndEvents onBookSlot={selectServiceForBooking} />
 
-      <div className="bg-[#FAF7F2] py-2">
-        <GoldDivider />
-      </div>
       {/* ─────────────────────────────────────────────────────────────
           5. THE LEARNING EXPERIENCE: The Process Explained
       ───────────────────────────────────────────────────────────── */}
-      <section className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Personalized Journey
-            </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              The Learning Experience
+              The Learning <span className="italic text-[#B99A63]">Experience</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
               How our guided mentorship works — from your first trial consultation to stage mastery.
@@ -288,14 +268,14 @@ export default function Home() {
               <AnimatedSection
                 key={step.step}
                 delay={idx * 60}
-                className="p-6 rounded-2xl bg-white border border-[#A9A49D]/20 shadow-xs flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white border border-[#B99A63]/30 hover:border-[#B99A63] shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   <div className="text-2xl font-black text-[#B99A63] font-serif-luxury mb-3">
                     {step.step}
                   </div>
-                  <h4 className="text-base font-bold text-[#151515] mb-1.5">{step.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+                  <h4 className="text-base font-bold text-[#151515] font-serif-luxury mb-1.5">{step.title}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal">{step.desc}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -315,14 +295,11 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           8. STUDENT TESTIMONIALS: Genuine Student Feedback
       ───────────────────────────────────────────────────────────── */}
-      <section id="testimonials" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
+      <section id="testimonials" className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
           <AnimatedSection animation="fade-up" className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Student Experiences
-            </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              Student & Parent Stories
+              Student &amp; Parent <span className="italic text-[#B99A63]">Stories</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
               What it feels like to learn directly from a dedicated private mentor.
@@ -334,7 +311,7 @@ export default function Home() {
               <AnimatedSection
                 key={t.id}
                 delay={idx * 80}
-                className="bg-white p-7 sm:p-8 rounded-3xl border border-[#A9A49D]/20 shadow-sm flex flex-col justify-between text-left"
+                className="bg-white p-7 sm:p-8 rounded-3xl border border-[#B99A63]/25 hover:border-[#B99A63]/60 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between text-left"
               >
                 <div>
                   <div className="flex items-center gap-1 text-[#B99A63] mb-4">
@@ -366,15 +343,11 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="bg-[#151515] py-2">
-        <GoldDivider />
-      </div>
-
       {/* ─────────────────────────────────────────────────────────────
           9. BOOK A TRIAL SESSION (PRIMARY CONVERSION SECTION)
       ───────────────────────────────────────────────────────────── */}
       <StageSpotlightOverlay>
-        <section id="book-trial" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
+        <section id="book-trial" className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#151515] text-[#F5F0E8] relative overflow-hidden">
         {/* Sacred Temple Yantra Mandala Background */}
         <SacredMandalaScroll className="absolute -right-24 -top-24 opacity-[0.06] -z-10" size={540} />
 
@@ -384,7 +357,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10 relative z-10">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
-              Book a Trial Session
+              Book a <span className="italic text-[#D4AF37]">Trial Session</span>
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
@@ -599,21 +572,14 @@ export default function Home() {
       </section>
       </StageSpotlightOverlay>
 
-      <div className="bg-[#FAF7F2] py-2">
-        <GoldDivider />
-      </div>
-
       {/* ─────────────────────────────────────────────────────────────
           10. FAQS & REASSURANCE
       ───────────────────────────────────────────────────────────── */}
-      <section id="faqs" className="py-20 sm:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20">
+      <section id="faqs" className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
         <div className="max-w-4xl mx-auto space-y-12">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/10 px-3.5 py-1 rounded-full border border-[#B99A63]/30">
-              Frequently Asked Questions
-            </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              Everything You Need to Know
+              Frequently Asked <span className="italic text-[#B99A63]">Questions</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
               Clear answers about online setup, flexible timezones, adult beginner pacing, and cancellations.
@@ -627,7 +593,7 @@ export default function Home() {
                 <AnimatedSection
                   key={idx}
                   delay={idx * 40}
-                  className="rounded-2xl bg-white border border-[#A9A49D]/20 overflow-hidden shadow-xs transition-all"
+                  className="rounded-2xl bg-white border border-[#B99A63]/25 hover:border-[#B99A63]/50 overflow-hidden shadow-xs hover:shadow-md transition-all"
                 >
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
