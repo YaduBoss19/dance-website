@@ -133,17 +133,6 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-14 items-center">
             {/* Left Headline & Pitch */}
             <AnimatedSection animation="fade-up" className="lg:col-span-7 text-left space-y-3 xs:space-y-4 sm:space-y-5">
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-xl">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  <span>Studio Cohorts &amp; Masterclasses · 2026/27</span>
-                </div>
-
-                <span className="hidden sm:inline-block text-[11px] font-mono tracking-wider text-[#B99A63]/80 italic">
-                  यतो हस्तस्ततो दृष्टिः · Natya Shastra
-                </span>
-              </div>
-
               <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                 Your Passion. <br />
                 Your Pace. <br />
@@ -151,7 +140,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-100 leading-relaxed max-w-xl font-normal drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
-                A personal space for dance, music, and creative expression. Master Bharatanatyam, Carnatic music, or bespoke choreography, through <strong>online group classes</strong> or <strong>1-on-1 personalized sessions</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
+                A personal space for dance, music, and creative expression. Master Bharatanatyam, Carnatic music, or bespoke choreography, through <strong>online and studio classes</strong> or <strong>personalized mentorship</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
               </p>
 
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}
@@ -394,11 +383,6 @@ export default function Home() {
 
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10 relative z-10">
           <AnimatedSection animation="fade-up" className="text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63] bg-[#B99A63]/15 px-3.5 py-1.5 rounded-full border border-[#B99A63]/40 inline-flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-              <span>Zero-Commitment Trial</span>
-            </span>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
               Book a Trial Session
             </h2>

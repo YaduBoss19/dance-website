@@ -1010,11 +1010,11 @@ export default function CinematicReelsShowcase({
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1F191A] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold tracking-widest uppercase shadow-lg">
             <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>The Performance Archive</span>
+            <span>Gallery</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
-            The Performance Archive
+            Gallery
           </h2>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">

@@ -5,7 +5,7 @@ import { playGhungrooChime } from "../utils/talamAudio";
 /**
  * Institutional Announcement Marquee Ticker
  * Displays active updates in an infinite marquee.
- * Clicking anywhere on the announcements takes the user directly to the Upcoming Events section.
+ * Clicking anywhere on the announcements takes the user directly to the Announcement section.
  */
 export default function AnnouncementsTicker({ onAnnouncementClick }) {
   const announcements = [
@@ -64,7 +64,7 @@ export default function AnnouncementsTicker({ onAnnouncementClick }) {
       <button
         type="button"
         onClick={handleClick}
-        title="View Upcoming Events"
+        title="View Announcements"
         className="shrink-0 z-10 bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] px-3 sm:px-5 py-2.5 sm:py-3 flex items-center gap-1.5 sm:gap-2 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-lg cursor-pointer transition-all active:scale-95"
       >
         <span className="w-2 h-2 rounded-full bg-[#151515] animate-ping" />
@@ -76,7 +76,7 @@ export default function AnnouncementsTicker({ onAnnouncementClick }) {
       {/* Marquee Ticker Track (Clickable, pauses on hover) */}
       <div
         onClick={handleClick}
-        title="Click to view Upcoming Events"
+        title="Click to view Announcements"
         className="flex-1 overflow-hidden relative flex items-center py-2 sm:py-2.5 cursor-pointer"
       >
         <div className="animate-marquee whitespace-nowrap flex items-center hover:[animation-play-state:paused]">
