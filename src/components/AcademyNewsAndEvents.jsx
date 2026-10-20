@@ -113,13 +113,8 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-10 lg:space-y-12 relative z-10">
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>Announcement</span>
-          </div>
-
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Announcement
+            Announcements
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">

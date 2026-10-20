@@ -192,19 +192,13 @@ export default function CuratorMasterProfile() {
       <div className="max-w-7xl mx-auto relative z-10 space-y-8 sm:space-y-12">
         {/* Section Header */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>About</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Rooted in Sacred Tradition. <br className="hidden sm:block" />
-            <span className="italic text-[#B99A63]">Guided by Anatomical Science.</span>
+            About Dr. Malavika M. Sunil
           </h2>
 
           <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Meet <strong>Dr. Malavika M. Sunil</strong> — Bharatanatyam artist, Carnatic vocalist,
-            CCRT National Scholar, and medical physician. Blending 21+ years of lineage with clinical biomechanics.
+            Rooted in sacred tradition, guided by anatomical science. Meet <strong>Dr. Malavika M. Sunil</strong> — Bharatanatyam artist, Carnatic vocalist,
+            CCRT National Scholar, and medical physician blending 21+ years of lineage with clinical biomechanics.
           </p>
         </AnimatedSection>
 
