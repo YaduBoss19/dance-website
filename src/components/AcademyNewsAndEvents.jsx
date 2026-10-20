@@ -20,7 +20,7 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const categories = [
-    { id: "all", label: "All Happenings" },
+    { id: "all", label: "All Events" },
     { id: "masterclass", label: "Masterclasses" },
     { id: "workshops", label: "Anatomy & Yoga" },
     { id: "vocal", label: "Carnatic Vocal" },
@@ -115,15 +115,15 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#151515] text-[#F5F0E8] text-xs font-bold tracking-widest uppercase shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>Academic &amp; Cultural Happenings</span>
+            <span>Upcoming Events</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-            Masterclasses, Clinics &amp; Admissions
+            Upcoming Events
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Structured in the spirit of premier cultural academies. Explore upcoming masterclasses, anatomy workshops, and limited 1-to-1 admissions.
+            Explore our curated masterclasses, doctor-led kinesiology clinics, and upcoming 1-to-1 studio cohort admissions.
           </p>
         </AnimatedSection>
 

@@ -244,7 +244,7 @@ export default function Home() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          4B. ACADEMY HAPPENINGS & MASTERCLASSES (SH College Inspired Events Grid)
+          4B. UPCOMING EVENTS & MASTERCLASSES
       ───────────────────────────────────────────────────────────── */}
       <AcademyNewsAndEvents onBookSlot={selectServiceForBooking} />
 
