@@ -85,11 +85,11 @@ export default function MobileBottomBar() {
           <span className="text-[10px] font-bold tracking-tight">Lessons</span>
         </button>
 
-        {/* 1-to-1 Trial Hero Button */}
+        {/* Trial Hero Button */}
         <button
           onClick={handleTrialClick}
           className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] shadow-md shadow-[#B99A63]/25 tap-bounce"
-          aria-label="Book 1-to-1 Trial Session"
+          aria-label="Book Trial Session"
         >
           <div className="w-8 h-8 rounded-full bg-[#151515]/20 flex items-center justify-center text-[#151515] mb-0.5">
             <Sparkles className="w-4 h-4 text-[#151515]" />

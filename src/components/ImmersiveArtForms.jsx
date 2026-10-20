@@ -120,7 +120,7 @@ export default function ImmersiveArtForms() {
                     The Language of Bharatanatyam Hasthas
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Click each sacred hand gesture to explore its Sanskrit shloka, poetic significance, and how Dr. Malavika breaks down every finger placement in private 1-to-1 video coaching.
+                    Click each sacred hand gesture to explore its Sanskrit shloka, poetic significance, and how Dr. Malavika breaks down every finger placement in her guided coaching and masterclasses.
                   </p>
                 </div>
 
@@ -140,7 +140,7 @@ export default function ImmersiveArtForms() {
                     Carnatic Vocal Shruti Alignment
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Visualizing the sacred harmonics of the 4 classical Tanpura strings tuned to <strong>C# (138.6 Hz)</strong>. In 1-to-1 coaching, Dr. Malavika trains your vocal pitch against this exact acoustic foundation.
+                    Visualizing the sacred harmonics of the 4 classical Tanpura strings tuned to <strong>C# (138.6 Hz)</strong>. In our coaching sessions, Dr. Malavika trains your vocal pitch against this exact acoustic foundation.
                   </p>
                 </div>
 

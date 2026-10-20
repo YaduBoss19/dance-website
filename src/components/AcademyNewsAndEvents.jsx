@@ -37,7 +37,7 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
       badge: "Masterclass",
       badgeColor: "bg-[#3B0B14] text-[#D4AF37] border-[#B99A63]/50",
       title: "Navarasa Abhinaya Intensive: Expressive Depth in Margam Repertoire",
-      mode: "Online 1-to-1 / Live Zoom",
+      mode: "Online & In-Studio / Live Interactive",
       time: "Flexible Global Slots",
       description:
         "A private masterclass dedicated to unlocking facial expressiveness (Bhavam), eye movements (Drishti Bhedas), and emotional nuances of the 9 classical Rasas.",
@@ -87,14 +87,14 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
       category: "admissions",
       badge: "Admissions Open",
       badgeColor: "bg-[#151515] text-[#D4AF37] border-[#B99A63]/60",
-      title: "2026/27 Strictly Limited 1-to-1 Studio Cohorts: Margam & Bespoke Solo",
+      title: "2026/27 Studio Cohorts & Masterclasses: Margam & Bespoke Solo",
       mode: "Full Syllabus Coaching",
       time: "Annual Intake",
       description:
         "Exclusive direct enrollment for dedicated students worldwide seeking accredited syllabus progress, Arangetram preparation, and custom performance choreography.",
       mentor: "Dr. Malavika M. Sunil",
       whatsappMsg:
-        "Hello Dr. Malavika! I would love to apply for your exclusive 2026/27 1-to-1 Studio Cohort. Please guide me through the admission process."
+        "Hello Dr. Malavika! I would love to apply for your 2026/27 Studio Cohort and Masterclasses. Please guide me through the admission process."
     }
   ];
 
@@ -123,7 +123,7 @@ export default function AcademyNewsAndEvents({ onBookSlot }) {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Explore our curated masterclasses, doctor-led kinesiology clinics, and upcoming 1-to-1 studio cohort admissions.
+            Explore our curated masterclasses, doctor-led kinesiology clinics, and upcoming studio cohort admissions.
           </p>
         </AnimatedSection>
 

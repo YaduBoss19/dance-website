@@ -54,7 +54,7 @@ const MILESTONES = [
     achievements: [
       "16+ continuous years of classical vocal training and live recital practice",
       "Mastery of Tala-Raga synchronization for classical dance accompaniment",
-      "Direct 1-to-1 vocal pedagogy focusing on pitch resonance and breath control"
+      "Direct vocal pedagogy focusing on pitch resonance and breath control"
     ]
   },
   {
@@ -120,17 +120,17 @@ const MILESTONES = [
     tabLabel: "600+ Stages (2020+)",
     title: "600+ Stage Recitals & International Productions",
     guru: "Global Stages & DancingRagas",
-    institution: "20+ Productions in Georgia & Worldwide 1-to-1 Studio",
+    institution: "20+ Productions in Georgia & Worldwide Studio Classes",
     category: "International",
     icon: Globe,
     badgeColor: "bg-purple-950 text-purple-300 border-purple-500/40",
-    quote: "Art knows no geographical boundaries. Today, our 1-to-1 students connect from 12+ nations.",
+    quote: "Art knows no geographical boundaries. Today, our students connect from 12+ nations.",
     description:
-      "Over 600 stage recitals across India and Europe, and founder of DancingRagas. Directed 20+ major cultural productions and university workshops in Georgia. Now dedicating her expertise to mentoring private 1-to-1 students worldwide with personalised attention.",
+      "Over 600 stage recitals across India and Europe, and founder of DancingRagas. Directed 20+ major cultural productions and university workshops in Georgia. Now dedicating her expertise to mentoring students worldwide with personalised attention.",
     achievements: [
       "600+ live stage recitals and classical concert performances",
       "Directed 20+ stage productions and institutional masterclasses across Georgia",
-      "Online 1-to-1 mentorship for students in North America, Europe, the Gulf & Asia"
+      "Global mentorship for students in North America, Europe, the Gulf & Asia"
     ]
   }
 ];
@@ -249,7 +249,7 @@ export default function CuratorMasterProfile() {
                 <span>My Teaching Philosophy</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
-                "No two bodies or voices are identical. In 1-to-1 private coaching, we discard
+                "No two bodies or voices are identical. In our dedicated coaching, we discard
                 one-size-fits-all pressures. We progress at your exact pace, aligning rhythm,
                 anatomy, and soulful expression so you truly own your art."
               </p>
@@ -332,7 +332,7 @@ export default function CuratorMasterProfile() {
                   ✦ Prescribed Syllabus &amp; Exams
                 </span>
                 <span className="px-3 py-1 rounded-full bg-[#151515] text-[#D4AF37]">
-                  ✦ 1-to-1 Global Mentorship
+                  ✦ Global Mentorship
                 </span>
               </div>
             </div>

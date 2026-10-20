@@ -44,13 +44,13 @@ export default function Footer() {
         <div className="rounded-3xl bg-[#1c1c1c] border border-[#B99A63]/30 p-8 sm:p-10 mb-16 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="text-left">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B99A63]/15 text-[#B99A63] border border-[#B99A63]/30 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" /> 1-to-1 Private Mentorship
+              <Sparkles className="w-3.5 h-3.5 text-[#B99A63]" /> Classical Arts Mentorship
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold tracking-tight font-serif-luxury text-[#F5F0E8]">
               Ready to begin your personal dance or vocal journey?
             </h3>
             <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-xl">
-              Book a 1-to-1 trial session directly with Dr. Malavika M. Sunil. Flexible scheduling across international time zones with zero commitment.
+              Book a trial session directly with Dr. Malavika M. Sunil. Flexible scheduling across international time zones with zero commitment.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
@@ -96,7 +96,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Founded & personally directed by <strong>Dr. Malavika M. Sunil</strong> (CCRT Scholar, Bharatanatyam disciple of 21 years, Carnatic vocalist, and physician). Dedicated to providing mindful, anatomical, and expressive 1-to-1 training worldwide.
+              Founded & personally directed by <strong>Dr. Malavika M. Sunil</strong> (CCRT Scholar, Bharatanatyam disciple of 21 years, Carnatic vocalist, and physician). Dedicated to providing mindful, anatomical, and expressive classical training worldwide.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-1">
@@ -191,7 +191,7 @@ export default function Footer() {
           {/* Col 3: Lesson Categories */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#B99A63] mb-4">
-              1-to-1 Offerings
+              Course Offerings
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-400">
               <li onClick={() => navigateTo("courses")} className="hover:text-[#B99A63] transition-colors cursor-pointer">Bharatanatyam Diploma</li>

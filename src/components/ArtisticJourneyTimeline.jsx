@@ -36,7 +36,7 @@ const MILESTONES = [
     achievements: [
       "16+ continuous years of classical vocal practice",
       "Mastery of Tala-Raga synchronization for classical dance accompaniment",
-      "Direct one-to-one vocal pedagogy focusing on pitch resonance and breath control"
+      "Direct vocal pedagogy focusing on pitch resonance and breath control"
     ]
   },
   {
@@ -98,17 +98,17 @@ const MILESTONES = [
     period: "Global Reach",
     title: "600+ Stage Recitals & International Productions",
     guru: "Global Stages & DancingRagas",
-    institution: "20+ Productions in Georgia & Worldwide 1-to-1 Studio",
+    institution: "20+ Productions in Georgia & Worldwide Studio Classes",
     category: "Global",
     icon: Globe,
     badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
-    quote: "Art knows no geographical boundaries. Today, our 1-to-1 students connect from 12+ nations.",
+    quote: "Art knows no geographical boundaries. Today, our students connect from 12+ nations.",
     description:
-      "Over 600 stage recitals across India and Europe, and founder of DancingRagas. Directed 20+ major cultural productions and university workshops in Georgia. Now dedicating her expertise to mentoring private 1-to-1 students worldwide with personalised attention.",
+      "Over 600 stage recitals across India and Europe, and founder of DancingRagas. Directed 20+ major cultural productions and university workshops in Georgia. Now dedicating her expertise to mentoring students worldwide with personalised attention.",
     achievements: [
       "600+ live stage recitals and classical concert performances",
       "Directed 20+ stage productions and institutional masterclasses across Georgia",
-      "Online 1-to-1 mentorship for students in North America, Europe, the Gulf & Asia"
+      "Global mentorship for students in North America, Europe, the Gulf & Asia"
     ]
   }
 ];
@@ -265,12 +265,12 @@ export default function ArtisticJourneyTimeline() {
                   Pedagogy Principle
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
-                  1-to-1 Mastery, Not Batch Uniformity
+                  Artistic Mastery &amp; Personal Attention
                 </h4>
               </div>
 
               <p className="text-xs text-slate-300 leading-relaxed">
-                Because Dr. Malavika spent over two decades learning directly from lineage masters rather than impersonal mass batches, she preserves that sacred 1-to-1 intimacy for every student online.
+                Because Dr. Malavika spent over two decades learning directly from lineage masters, she preserves that sacred dedication and attention for every student, whether in private coaching or interactive group masterclasses.
               </p>
             </div>
 
@@ -291,7 +291,7 @@ export default function ArtisticJourneyTimeline() {
                 className="w-full py-3.5 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg tap-bounce cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Begin Your 1-to-1 Journey With Dr. Malavika</span>
+                <span>Begin Your Classical Journey With Dr. Malavika</span>
               </a>
             </div>
           </div>

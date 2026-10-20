@@ -866,28 +866,28 @@ export const TESTIMONIALS = [
 export const LESSON_PACKAGES = [
   {
     id: "pkg-trial",
-    title: "1-to-1 Introductory Assessment",
+    title: "Introductory Assessment Session",
     type: "Single Session",
     duration: "45 Minutes",
-    description: "A private consultation and introductory movement/vocal evaluation directly with Dr. Malavika. We assess posture, flexibility, or voice range, discuss your creative goals, and map out your personalized roadmap.",
+    description: "A consultation and introductory movement/vocal evaluation directly with Dr. Malavika. We assess posture, flexibility, or voice range, discuss your creative goals, and map out your personalized roadmap.",
     inclusions: [
-      "Live 1-on-1 private video session with Dr. Malavika",
+      "Live private video session with Dr. Malavika",
       "Goal setting & artistic level assessment",
       "Custom curriculum recommendations",
       "Zero-obligation trial booking"
     ],
-    idealFor: "New students curious about private dance, vocal, or yoga coaching.",
+    idealFor: "New students curious about dance, vocal, or yoga coaching.",
     badge: "Recommended Start",
     cancellation: "Free reschedule up to 24 hours prior."
   },
   {
     id: "pkg-monthly",
-    title: "Monthly 1-to-1 Mentorship",
+    title: "Monthly Dedicated Mentorship",
     type: "Personal Coaching",
     duration: "4 or 8 Sessions / Month (60 mins each)",
-    description: "Continuous one-on-one personal coaching tailored to your individual pace. Lessons adapt weekly to your progress, with custom video feedback and practice assignments.",
+    description: "Continuous personal coaching tailored to your individual pace. Lessons adapt weekly to your progress, with custom video feedback and practice assignments.",
     inclusions: [
-      "Weekly live 1-to-1 private coaching sessions",
+      "Weekly live coaching sessions",
       "Custom video drill recordings for home practice",
       "Direct WhatsApp check-ins for questions",
       "Flexible international scheduling across time zones"
@@ -900,7 +900,7 @@ export const LESSON_PACKAGES = [
     id: "pkg-diploma-stage",
     title: "Diploma & Stage Performance Track",
     type: "Intensive Masterclass",
-    duration: "Comprehensive 1-to-1 Programme",
+    duration: "Comprehensive Syllabus Programme",
     description: "A rigorous private training pathway leading to accredited Bharatanatyam Diploma certification, Arangetram preparation, or custom stage choreography for high-stakes performances.",
     inclusions: [
       "Full classical Margam / accredited diploma syllabus",
@@ -916,8 +916,8 @@ export const LESSON_PACKAGES = [
 
 export const FAQS = [
   {
-    question: "How does the 1-to-1 Online Trial Class work?",
-    answer: "Your trial class is a private 45-minute video session directly with Dr. Malavika M. Sunil. We start by discussing your background, interests, and schedule, followed by a personalized movement or vocal exercise to assess your baseline. Afterward, Dr. Malavika recommends a personalized lesson roadmap with zero commitment."
+    question: "How does the Online Trial Class work?",
+    answer: "Your trial class is a dedicated 45-minute video session directly with Dr. Malavika M. Sunil. We start by discussing your background, interests, and schedule, followed by a personalized movement or vocal exercise to assess your baseline. Afterward, Dr. Malavika recommends a personalized lesson roadmap with zero commitment."
   },
   {
     question: "What equipment or space do I need for online dance & music lessons?",
@@ -925,7 +925,7 @@ export const FAQS = [
   },
   {
     question: "Do you teach complete beginners and adult dancers?",
-    answer: "Yes, absolutely! Many of Dr. Malavika's 1-to-1 students are adult professionals who have never danced or sung before, or who are returning after decades away. Because lessons are strictly 1-to-1, there is zero peer judgment—we progress at your exact personal rhythm."
+    answer: "Yes, absolutely! Many of Dr. Malavika's students are adult professionals who have never danced or sung before, or who are returning after decades away. We provide personalized guidance and a supportive environment—progressing at your exact personal rhythm."
   },
   {
     question: "How does flexible scheduling work across international time zones?",
@@ -933,11 +933,11 @@ export const FAQS = [
   },
   {
     question: "What is your rescheduling and cancellation policy?",
-    answer: "We understand that life happens. You can reschedule any 1-to-1 private session free of charge as long as you give at least 24 hours notice. Your credit remains valid for your rescheduled date."
+    answer: "We understand that life happens. You can reschedule any private session free of charge as long as you give at least 24 hours notice. Your credit remains valid for your rescheduled date."
   },
   {
     question: "Do I receive lesson recordings for home practice?",
-    answer: "Yes! After each 1-to-1 lesson, Dr. Malavika provides key takeaway notes and brief video demonstration clips so you can practice with precision between sessions."
+    answer: "Yes! After each lesson, Dr. Malavika provides key takeaway notes and brief video demonstration clips so you can practice with precision between sessions."
   }
 ];
 
@@ -950,14 +950,14 @@ export const ACADEMY_INFO = {
   phone: "+91 79942 59815",
   directPhone: "+91 79942 59815",
   whatsappNumber: "+917994259815",
-  whatsappDefaultMsg: "Hello Dr. Malavika! I would like to book a 1-to-1 trial session for private dance / music coaching.",
+  whatsappDefaultMsg: "Hello Dr. Malavika! I would like to book a trial session for dance / music coaching.",
   email: "info@malavikasunil.com",
   adminEmail: "malavika@malavikasunil.com",
   websiteUrl: "https://dancingragas.vercel.app/",
   instagramUrl: "https://www.instagram.com/dancingragasbymalavika/",
   instagramHandle: "@dancingragasbymalavika",
   hours: {
-    weekdays: "Monday – Friday: Flexible Online 1:1 Slots",
+    weekdays: "Monday – Friday: Flexible Online Slots",
     saturday: "Saturday: Dedicated Masterclasses",
     sunday: "Sunday: Private Vocal & Choreography Sessions"
   },
@@ -966,7 +966,7 @@ export const ACADEMY_INFO = {
       name: "Private Studio & Online Global Coaching",
       address: "Worldwide Online & Kerala / Bangalore",
       phone: "+91 79942 59815",
-      features: "1-to-1 Live Video Coaching, High-Fidelity Audio Tanpura, Anatomical Posture Correction"
+      features: "Live Video Coaching, High-Fidelity Audio Tanpura, Anatomical Posture Correction"
     }
   ],
   stats: [
@@ -1101,12 +1101,12 @@ export const PERFORMANCE_REELS = [
   {
     id: "reel-08",
     reelNumber: "08",
-    title: "1-to-1 Private Mentorship Studio",
+    title: "Private Mentorship & Studio Classes",
     category: "Online Academy",
     description: "Dedicated personal attention, immediate mudra correction, and international flexible scheduling.",
     videoUrl: "/videos/performance.mp4",
     posterImage: "/images/malavika_portrait.jpg",
-    tag: "1-to-1 Studio",
+    tag: "Studio Academy",
     duration: "Private Lesson",
     instagramUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     likes: "2.9k",

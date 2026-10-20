@@ -77,13 +77,13 @@ export default function Home() {
       setIsSubmitting(false);
       setSubmittedSuccess(true);
       playGhungrooChime();
-      showToast("Your 1-to-1 trial request has been submitted! Dr. Malavika will confirm your slot shortly.", "success");
+      showToast("Your trial request has been submitted! Dr. Malavika will confirm your slot shortly.", "success");
     }, 600);
   };
 
   const openWhatsAppBooking = () => {
     playGhungrooChime();
-    const msg = `Hello Dr. Malavika! I would like to book a 1-to-1 trial session.%0A%0A*Name:* ${formData.name || "Student"}%0A*Discipline:* ${formData.discipline}%0A*Level:* ${formData.level}%0A*Preferred Time:* ${formData.preferredTime}`;
+    const msg = `Hello Dr. Malavika! I would like to book a trial session.%0A%0A*Name:* ${formData.name || "Student"}%0A*Discipline:* ${formData.discipline}%0A*Level:* ${formData.level}%0A*Preferred Time:* ${formData.preferredTime}`;
     const url = `https://wa.me/${academyInfo.whatsappNumber.replace(/[^0-9]/g, "")}?text=${msg}`;
     window.open(url, "_blank");
   };
@@ -136,7 +136,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-2">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#151515]/90 backdrop-blur-md text-[#D4AF37] border border-[#B99A63]/60 text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-xl">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  <span>Strictly Limited 1-to-1 Studio Cohorts · 2026/27</span>
+                  <span>Studio Cohorts &amp; Masterclasses · 2026/27</span>
                 </div>
 
                 <span className="hidden sm:inline-block text-[11px] font-mono tracking-wider text-[#B99A63]/80 italic">
@@ -191,7 +191,7 @@ export default function Home() {
           {/* 4 Value Pillars Banner: Spans full width gracefully across both mobile and desktop */}
           <div className="pt-4 xs:pt-6 sm:pt-8 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4">
             {[
-              { title: "Online 1-to-1", desc: "Live, personalised lessons worldwide.", tag: "Global" },
+              { title: "Global Classes", desc: "Live, interactive lessons worldwide.", tag: "Global" },
               { title: "Personal Coaching", desc: "Syllabus tailored to your anatomy.", tag: "Doctor-Led" },
               { title: "Flexible Timing", desc: "Request times around your routine.", tag: "Self-Paced" },
               { title: "Dance & Music", desc: "Bharatanatyam, Carnatic & Yoga.", tag: "Living Lineage" }
@@ -252,7 +252,7 @@ export default function Home() {
         <GoldDivider />
       </div>
       {/* ─────────────────────────────────────────────────────────────
-          5. THE 1-TO-1 EXPERIENCE: The Process Explained
+          5. THE LEARNING EXPERIENCE: The Process Explained
       ───────────────────────────────────────────────────────────── */}
       <section className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
@@ -261,10 +261,10 @@ export default function Home() {
               Personalized Journey
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151515] font-serif-luxury">
-              The 1-to-1 Experience
+              The Learning Experience
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
-              How private online mentorship works — from your first trial consultation to stage mastery.
+              How our guided mentorship works — from your first trial consultation to stage mastery.
             </p>
           </AnimatedSection>
 
@@ -287,8 +287,8 @@ export default function Home() {
               },
               {
                 step: "04",
-                title: "Live 1-to-1 Lesson",
-                desc: "Direct, undivided attention with Dr. Malavika. Immediate correction of mudras, tala rhythm, and shruti."
+                title: "Live Guided Lesson",
+                desc: "Direct guidance with Dr. Malavika. Immediate correction of mudras, tala rhythm, and shruti."
               },
               {
                 step: "05",
@@ -324,7 +324,7 @@ export default function Home() {
       />
 
       {/* ─────────────────────────────────────────────────────────────
-          8. STUDENT TESTIMONIALS: Genuine 1-to-1 Feedback
+          8. STUDENT TESTIMONIALS: Genuine Student Feedback
       ───────────────────────────────────────────────────────────── */}
       <section id="testimonials" className="py-10 xs:py-12 sm:py-16 lg:py-20 px-4 sm:px-8 border-b border-[#A9A49D]/20 bg-[#FAF7F2]">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
@@ -400,7 +400,7 @@ export default function Home() {
             </span>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F0E8] font-serif-luxury">
-              Book a 1-to-1 Trial Session
+              Book a Trial Session
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">

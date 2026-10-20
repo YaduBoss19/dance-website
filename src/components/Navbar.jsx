@@ -211,7 +211,7 @@ export default function Navbar() {
                     className="silk-zari-btn w-full py-3.5 rounded-full bg-[#B99A63] text-[#151515] font-extrabold text-sm text-center shadow-md shadow-[#B99A63]/25 flex items-center justify-center gap-2 cursor-pointer tap-bounce"
                   >
                     <Sparkles className="w-4 h-4 text-[#151515]" />
-                    <span>Book a 1-to-1 Trial Session</span>
+                    <span>Book a Free Trial Session</span>
                   </button>
                 </div>
               </div>

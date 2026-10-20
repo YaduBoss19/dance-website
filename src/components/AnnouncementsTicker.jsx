@@ -11,7 +11,7 @@ export default function AnnouncementsTicker({ onAnnouncementClick }) {
   const announcements = [
     {
       id: "cohort-admissions",
-      text: "Admissions Open: Limited 1-to-1 Studio Cohorts for 2026/27 – Reserve your masterclass slot",
+      text: "Admissions Open: Studio Cohorts & Masterclasses for 2026/27 – Reserve your slot",
       tag: "Admissions",
       target: "academy-events"
     },
@@ -35,7 +35,7 @@ export default function AnnouncementsTicker({ onAnnouncementClick }) {
     },
     {
       id: "global-flexibility",
-      text: "Global Timezone Scheduling: Live online 1-to-1 private coaching across USA, UK, Europe, UAE & India",
+      text: "Global Timezone Scheduling: Live online and studio coaching across USA, UK, Europe, UAE & India",
       tag: "Global",
       target: "academy-events"
     }
