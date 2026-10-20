@@ -315,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          7. GALLERY & ACHIEVEMENTS: Two-Panel Cinematic Hero + Infinite Reels
+          7. THE PERFORMANCE ARCHIVE: YouTube-Style Video Gallery & Achievements
       ───────────────────────────────────────────────────────────── */}
       <CinematicReelsShowcase
         onExploreClick={() => scrollToSection("services-section")}
