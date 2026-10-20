@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import AnimatedSection from "./AnimatedSection";
+import SociableKitInstagramFeed from "./SociableKitInstagramFeed";
 import { playGhungrooChime } from "../utils/talamAudio";
 import {
   Play,
@@ -896,6 +897,20 @@ export default function CinematicReelsShowcase({
   // Instagram wall filter
   const [wallFilter, setWallFilter] = useState("all");
 
+  // Instagram view mode: "embed" (live embedded feed) | "grid" (curated card grid)
+  const [instagramViewMode, setInstagramViewMode] = useState("embed");
+
+  // Process official Instagram embeds if script is loaded
+  useEffect(() => {
+    if (window.instgrm && window.instgrm.Embeds) {
+      try {
+        window.instgrm.Embeds.process();
+      } catch {
+        // gracefully ignore
+      }
+    }
+  }, [instagramViewMode]);
+
   const featuredPlayerRef = useRef(null);
   const videoElementRef = useRef(null);
 
@@ -1577,23 +1592,23 @@ export default function CinematicReelsShowcase({
 
 
         {/* ═══════════════════════════════════════════════════════════════
-            7. INSTAGRAM REELS & POSTS WALL (@dancingragasbymalavika)
+            7. LIVE EMBEDDED INSTAGRAM FEED & REELS (@dancingragasbymalavika)
         ═══════════════════════════════════════════════════════════════ */}
         <div className="pt-12 border-t border-[#A9A49D]/20 space-y-8 text-left">
-          {/* Wall Header & Filter Pills */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {/* Wall Header & Mode Switcher */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-                  Native Archival Feed
+                  Official Instagram Broadcast
                 </span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
-                Instagram Performance Wall
+                Live Instagram Margam &amp; Reels
               </h3>
               <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Official recitals, workshops, and classical posts from{" "}
+                Streamed directly from{" "}
                 <a
                   href="https://www.instagram.com/dancingragasbymalavika/"
                   target="_blank"
@@ -1605,95 +1620,138 @@ export default function CinematicReelsShowcase({
               </p>
             </div>
 
-            {/* Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+            {/* Mode Switcher Tabs */}
+            <div className="flex items-center gap-2 p-1 rounded-2xl bg-[#1E1B1B] border border-[#B99A63]/30 w-fit">
               <button
                 type="button"
-                onClick={() => setWallFilter("all")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "all"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                onClick={() => {
+                  playGhungrooChime();
+                  setInstagramViewMode("embed");
+                }}
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                  instagramViewMode === "embed"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
                 }`}
               >
-                All ({INSTAGRAM_WALL_ITEMS.length})
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Live Embedded Feed</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => setWallFilter("reels")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "reels"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                onClick={() => {
+                  playGhungrooChime();
+                  setInstagramViewMode("grid");
+                }}
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce ${
+                  instagramViewMode === "grid"
+                    ? "bg-[#B99A63] text-[#151515] shadow-md"
+                    : "text-slate-400 hover:text-white"
                 }`}
               >
                 <Video className="w-3.5 h-3.5" />
-                <span>Reels</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setWallFilter("stage")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "stage"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
-                }`}
-              >
-                Stage Shows
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setWallFilter("workshops")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "workshops"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
-                }`}
-              >
-                Workshops
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setWallFilter("music")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "music"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
-                }`}
-              >
-                Music
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setWallFilter("photos")}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
-                  wallFilter === "photos"
-                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
-                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
-                }`}
-              >
-                <Camera className="w-3.5 h-3.5" />
-                <span>Photos</span>
+                <span>Archival Cards ({INSTAGRAM_WALL_ITEMS.length})</span>
               </button>
             </div>
           </div>
 
-          {/* 3-Column Instagram Reel Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {filteredWallItems.map((item) => (
-              <InstagramWallCard
-                key={item.id}
-                item={item}
-                onSelectVideo={handleSelectVideo}
-                onPhotoClick={onPhotoClick}
-              />
-            ))}
-          </div>
+          {/* VIEW MODE 1: LIVE EMBEDDED INSTAGRAM FEED */}
+          {instagramViewMode === "embed" ? (
+            <SociableKitInstagramFeed />
+          ) : (
+            /* VIEW MODE 2: CURATED CARDS GRID */
+            <div className="space-y-6">
+              {/* Filter Pills */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("all")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "all"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  All ({INSTAGRAM_WALL_ITEMS.length})
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("reels")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "reels"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  <Video className="w-3.5 h-3.5" />
+                  <span>Reels</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("stage")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "stage"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  Stage Shows
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("workshops")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "workshops"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  Workshops
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("music")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "music"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  Music
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setWallFilter("photos")}
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                    wallFilter === "photos"
+                      ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                      : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                  }`}
+                >
+                  <Camera className="w-3.5 h-3.5" />
+                  <span>Photos</span>
+                </button>
+              </div>
+
+              {/* 3-Column Instagram Reel Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                {filteredWallItems.map((item) => (
+                  <InstagramWallCard
+                    key={item.id}
+                    item={item}
+                    onSelectVideo={handleSelectVideo}
+                    onPhotoClick={onPhotoClick}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Follow Callout Strip */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#181616] via-[#24050B]/50 to-[#181616] border border-[#B99A63]/30">
