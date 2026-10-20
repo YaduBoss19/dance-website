@@ -29,11 +29,9 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { id: "about", label: "About & Journey", target: "about-artist" },
-    { id: "classes", label: "Courses & Services", target: "services-section" },
-    { id: "events", label: "Happenings", target: "academy-events" },
-    { id: "gallery", label: "Gallery", target: "gallery-section" },
-    { id: "contact", label: "Book Trial", target: "book-trial" }
+    { id: "about", label: "About", target: "about-artist" },
+    { id: "courses", label: "Courses", target: "services-section" },
+    { id: "gallery", label: "Gallery", target: "gallery-section" }
   ];
 
   const handleNavClick = (linkItem) => {
@@ -52,14 +50,12 @@ export default function Navbar() {
       }
     }
     // If not on home, or target not found, navigate to corresponding page
-    if (linkItem.id === "classes" || linkItem.id === "art-forms") {
+    if (linkItem.id === "courses" || linkItem.id === "classes") {
       navigateTo("courses");
     } else if (linkItem.id === "about" || linkItem.id === "journey") {
       navigateTo("about");
     } else if (linkItem.id === "gallery") {
       navigateTo("gallery");
-    } else if (linkItem.id === "contact") {
-      navigateTo("contact");
     } else {
       navigateTo("home");
     }
