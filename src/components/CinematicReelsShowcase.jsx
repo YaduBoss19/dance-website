@@ -1023,24 +1023,24 @@ export default function CinematicReelsShowcase({
         </AnimatedSection>
 
         {/* ═══════════════════════════════════════════════════════════════
-            2. FEATURED 3-CARD STAGE CAROUSEL (Center + Left & Right Peek with < >)
+            2. FEATURED 3-VIDEO STAGE (All 3 Videos Exact Same Size)
         ═══════════════════════════════════════════════════════════════ */}
         <div
           ref={featuredPlayerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative max-w-6xl mx-auto space-y-5"
+          className="relative max-w-7xl mx-auto space-y-6"
         >
-          {/* ── VIDEO STAGE ROW: PREV PEEK + CENTER MAIN VIDEO + NEXT PEEK ── */}
-          <div className="relative flex items-center justify-center w-full">
-            {/* ── LEFT PEEK CARD (Previous) ── */}
+          {/* ── 3 EQUAL-SIZE VIDEOS ROW: PREVIOUS | ACTIVE PLAYING | NEXT UP ── */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch w-full">
+            {/* ── 1. LEFT CARD (Previous Performance) ── */}
             {prevVideo && (
               <div
                 onClick={() => handleSelectVideo(prevVideo)}
-                className="hidden md:block absolute left-0 xl:-left-4 top-1/2 -translate-y-1/2 w-[260px] md:w-[300px] lg:w-[350px] xl:w-[390px] aspect-video rounded-3xl overflow-hidden opacity-45 hover:opacity-90 transition-all duration-300 cursor-pointer transform -translate-x-10 lg:-translate-x-14 xl:-translate-x-16 scale-90 hover:scale-95 z-10 select-none museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/60 shadow-2xl group"
+                className="group relative rounded-3xl overflow-hidden museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/50 hover:border-[#B99A63] transition-all duration-300 cursor-pointer shadow-xl order-2 md:order-1 flex flex-col justify-between"
                 title={`Previous: ${prevVideo.title}`}
               >
-                <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/35">
                   <img
                     src={prevVideo.thumbnail}
                     alt={prevVideo.title}
@@ -1048,180 +1048,203 @@ export default function CinematicReelsShowcase({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                  {/* Badge */}
-                  <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/85 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm">
-                    Previous
-                  </span>
+                  {/* Top Badges */}
+                  <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
+                    <span className="px-2.5 py-1 rounded-full bg-black/80 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm backdrop-blur-xs">
+                      Previous
+                    </span>
+                    <span className="px-2 py-0.5 rounded-md bg-black/75 text-slate-300 text-[10px] font-mono border border-white/10">
+                      {prevVideo.duration}
+                    </span>
+                  </div>
 
-                  {/* Play Icon Hint on Hover */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg">
-                      <ChevronLeft className="w-6 h-6 stroke-[3]" />
+                  {/* Single Sleek Transparent Navigation Arrow */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
+                      <ChevronLeft className="w-7 h-7 stroke-[2.5]" />
                     </div>
                   </div>
 
-                  <div className="absolute bottom-2.5 left-3 right-3 text-left">
+                  {/* Bottom Title & Category */}
+                  <div className="absolute bottom-2.5 left-3 right-3 text-left pointer-events-none">
                     <span className="text-xs sm:text-sm font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
                       {prevVideo.title}
                     </span>
-                    <span className="text-[10px] text-slate-300 font-mono">
-                      {prevVideo.duration}
+                    <span className="text-[10px] text-slate-300 truncate block">
+                      {prevVideo.category}
                     </span>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* ── CENTER ACTIVE FEATURED PLAYER (The Main Video) ── */}
-            <div className="relative z-20 w-full max-w-4xl mx-auto">
-              {/* Museum Frame Container — styled exactly like the Hero Section */}
-              <div className="museum-frame group relative p-1.5 sm:p-2.5 rounded-3xl bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all">
-                <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/45 shadow-inner">
-                  {videoError ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
-                      <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
-                      <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
-                        Video Stream Unavailable
-                      </h4>
-                      <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-                        The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
+            {/* ── 2. CENTER CARD: ACTIVE / FEATURED PERFORMANCE PLAYER ── */}
+            <div className="group relative rounded-3xl overflow-hidden museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all order-1 md:order-2 flex flex-col justify-between ring-2 ring-[#B99A63]/30">
+              <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/50 shadow-inner">
+                {videoError ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
+                    <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
+                    <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
+                      Video Stream Unavailable
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-400 max-w-md">
+                      The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVideoError(false);
+                        setIsPlaying(false);
+                      }}
+                      className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
+                    >
+                      Return to Thumbnail
+                    </button>
+                  </div>
+                ) : isPlaying ? (
+                  /* Active Video Playback */
+                  <div className="w-full h-full relative bg-black">
+                    {selectedVideo.youtubeId ? (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                        title={selectedVideo.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                      />
+                    ) : (
+                      <video
+                        ref={videoElementRef}
+                        src={selectedVideo.videoUrl}
+                        poster={selectedVideo.thumbnail}
+                        controls
+                        autoPlay
+                        playsInline
+                        onError={handleVideoError}
+                        onEnded={handleVideoEnded}
+                        className="w-full h-full object-contain bg-black"
+                      />
+                    )}
+                  </div>
+                ) : (
+                  /* High-Quality Video Thumbnail with Centered Play Button */
+                  <div
+                    onClick={handlePlayButtonClick}
+                    className="w-full h-full relative cursor-pointer group"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Play ${selectedVideo.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handlePlayButtonClick();
+                      }
+                    }}
+                  >
+                    <img
+                      src={selectedVideo.thumbnail}
+                      alt={selectedVideo.title}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                      loading="eager"
+                    />
+
+                    {/* Atmospheric Dark Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
+
+                    {/* Top Badges & Autoplay Toggle */}
+                    <div className="absolute top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-3 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                      <span className="px-2.5 py-1 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
+                        {selectedVideo.featuredBadge || selectedVideo.category}
+                      </span>
+
+                      <div className="flex items-center gap-1.5 pointer-events-auto">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setAutoPlayNext((prev) => !prev);
+                          }}
+                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase transition-all cursor-pointer backdrop-blur-md border ${
+                            autoPlayNext
+                              ? "bg-[#B99A63] text-[#151515] border-[#B99A63] shadow-sm hover:bg-[#cca86d]"
+                              : "bg-black/70 text-slate-400 border-white/10 hover:text-white"
+                          }`}
+                          title="Automatically play next video when current finishes"
+                        >
+                          <span className={`w-1.5 h-1.5 rounded-full ${autoPlayNext ? "bg-[#151515] animate-ping" : "bg-slate-500"}`} />
+                          <span>Autoplay {autoPlayNext ? "ON" : "OFF"}</span>
+                        </button>
+
+                        <span className="px-2 py-0.5 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-[10px] font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
+                          <Clock className="w-3 h-3 text-[#B99A63]" />
+                          {selectedVideo.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Centered Luxury Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-4 ring-[#B99A63]/30">
+                          <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
+                        </div>
+                        <span className="px-3 py-0.5 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[10px] sm:text-[11px] font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
+                          Play Performance
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Overlay Title Bar */}
+                    <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3 sm:left-3 sm:right-3 z-10 pointer-events-none text-left">
+                      <h3 className="text-sm sm:text-base font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
+                        {selectedVideo.title}
+                      </h3>
+                      <p className="text-[10px] sm:text-xs text-slate-300 truncate font-normal">
+                        {selectedVideo.subtitle}
                       </p>
+                    </div>
+
+                    {/* Mobile Only: Transparent Prev & Next Arrow Buttons on Center Video */}
+                    <div className="md:hidden absolute inset-y-0 left-2 flex items-center z-20 pointer-events-auto">
                       <button
                         type="button"
-                        onClick={() => {
-                          setVideoError(false);
-                          setIsPlaying(false);
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectVideo(prevVideo);
                         }}
-                        className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
+                        aria-label="Previous video"
+                        className="w-8 h-8 rounded-full bg-black/50 text-white/90 border border-white/20 flex items-center justify-center backdrop-blur-xs"
                       >
-                        Return to Thumbnail
+                        <ChevronLeft className="w-5 h-5" />
                       </button>
                     </div>
-                  ) : isPlaying ? (
-                    /* Active Video Playback */
-                    <div className="w-full h-full relative bg-black">
-                      {selectedVideo.youtubeId ? (
-                        <iframe
-                          src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
-                          title={selectedVideo.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full border-0"
-                        />
-                      ) : (
-                        <video
-                          ref={videoElementRef}
-                          src={selectedVideo.videoUrl}
-                          poster={selectedVideo.thumbnail}
-                          controls
-                          autoPlay
-                          playsInline
-                          onError={handleVideoError}
-                          onEnded={handleVideoEnded}
-                          className="w-full h-full object-contain bg-black"
-                        />
-                      )}
+                    <div className="md:hidden absolute inset-y-0 right-2 flex items-center z-20 pointer-events-auto">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectVideo(nextVideo);
+                        }}
+                        aria-label="Next video"
+                        className="w-8 h-8 rounded-full bg-black/50 text-white/90 border border-white/20 flex items-center justify-center backdrop-blur-xs"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
                     </div>
-                  ) : (
-                    /* High-Quality Video Thumbnail with Centered Play Button */
-                    <div
-                      onClick={handlePlayButtonClick}
-                      className="w-full h-full relative cursor-pointer group"
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Play ${selectedVideo.title}`}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          handlePlayButtonClick();
-                        }
-                      }}
-                    >
-                      <img
-                        src={selectedVideo.thumbnail}
-                        alt={selectedVideo.title}
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                        loading="eager"
-                      />
-
-                      {/* Atmospheric Dark Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
-                      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
-
-                      {/* Top Badges & Autoplay Toggle */}
-                      <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none z-10">
-                        <span className="px-3 py-1.5 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] sm:text-xs font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
-                          {selectedVideo.featuredBadge || selectedVideo.category}
-                        </span>
-
-                        <div className="flex items-center gap-2 pointer-events-auto">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setAutoPlayNext((prev) => !prev);
-                            }}
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all cursor-pointer backdrop-blur-md border ${
-                              autoPlayNext
-                                ? "bg-[#B99A63] text-[#151515] border-[#B99A63] shadow-sm hover:bg-[#cca86d]"
-                                : "bg-black/70 text-slate-400 border-white/10 hover:text-white"
-                            }`}
-                            title="Automatically play next video when current finishes"
-                          >
-                            <span className={`w-1.5 h-1.5 rounded-full ${autoPlayNext ? "bg-[#151515] animate-ping" : "bg-slate-500"}`} />
-                            <span>Autoplay {autoPlayNext ? "ON" : "OFF"}</span>
-                          </button>
-
-                          <span className="px-2 py-1 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-[11px] sm:text-xs font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
-                            <Clock className="w-3 h-3 text-[#B99A63]" />
-                            {selectedVideo.duration}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Centered Luxury Play Button */}
-                      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                        <div className="flex flex-col items-center gap-2 sm:gap-3">
-                          <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-6 ring-[#B99A63]/25">
-                            <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
-                          </div>
-                          <span className="px-3.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[11px] sm:text-xs font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
-                            Play Performance
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Auto-slideshow Indicator Badge when Idle */}
-                      <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-4 z-10 pointer-events-none hidden xs:block">
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase backdrop-blur-xs border border-white/10">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Auto-previewing Photos</span>
-                        </span>
-                      </div>
-
-                      {/* Bottom Overlay Title Bar */}
-                      <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 pointer-events-none text-left">
-                        <h3 className="text-base sm:text-xl font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
-                          {selectedVideo.title}
-                        </h3>
-                        <p className="text-[11px] sm:text-xs text-slate-300 truncate font-normal">
-                          {selectedVideo.subtitle}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* ── RIGHT PEEK CARD (Next) ── */}
+            {/* ── 3. RIGHT CARD (Next Performance) ── */}
             {nextVideo && (
               <div
                 onClick={() => handleSelectVideo(nextVideo)}
-                className="hidden md:block absolute right-0 xl:-right-4 top-1/2 -translate-y-1/2 w-[260px] md:w-[300px] lg:w-[350px] xl:w-[390px] aspect-video rounded-3xl overflow-hidden opacity-45 hover:opacity-90 transition-all duration-300 cursor-pointer transform translate-x-10 lg:translate-x-14 xl:translate-x-16 scale-90 hover:scale-95 z-10 select-none museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/60 shadow-2xl group"
+                className="group relative rounded-3xl overflow-hidden museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/50 hover:border-[#B99A63] transition-all duration-300 cursor-pointer shadow-xl order-3 md:order-3 flex flex-col justify-between"
                 title={`Next: ${nextVideo.title}`}
               >
-                <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/35">
                   <img
                     src={nextVideo.thumbnail}
                     alt={nextVideo.title}
@@ -1229,55 +1252,39 @@ export default function CinematicReelsShowcase({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                  {/* Badge */}
-                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/85 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm">
-                    Next Up
-                  </span>
+                  {/* Top Badges */}
+                  <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
+                    <span className="px-2 py-0.5 rounded-md bg-black/75 text-slate-300 text-[10px] font-mono border border-white/10">
+                      {nextVideo.duration}
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full bg-black/80 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm backdrop-blur-xs">
+                      Next Up
+                    </span>
+                  </div>
 
-                  {/* Play Icon Hint on Hover */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg">
-                      <ChevronRight className="w-6 h-6 stroke-[3]" />
+                  {/* Single Sleek Transparent Navigation Arrow */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
+                      <ChevronRight className="w-7 h-7 stroke-[2.5]" />
                     </div>
                   </div>
 
-                  <div className="absolute bottom-2.5 left-3 right-3 text-left">
+                  {/* Bottom Title & Category */}
+                  <div className="absolute bottom-2.5 left-3 right-3 text-left pointer-events-none">
                     <span className="text-xs sm:text-sm font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
                       {nextVideo.title}
                     </span>
-                    <span className="text-[10px] text-slate-300 font-mono">
-                      {nextVideo.duration}
+                    <span className="text-[10px] text-slate-300 truncate block">
+                      {nextVideo.category}
                     </span>
                   </div>
                 </div>
               </div>
             )}
-
-            {/* ── PREVIOUS BUTTON (<) IN THE EXACT VERTICAL MIDDLE OF VIDEO ── */}
-            <button
-              type="button"
-              onClick={() => handleSelectVideo(prevVideo)}
-              aria-label="Previous performance"
-              className="absolute left-1 sm:left-3 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#151515]/95 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border-2 border-[#B99A63] flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/50"
-              title="Previous performance"
-            >
-              <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
-            </button>
-
-            {/* ── NEXT BUTTON (>) IN THE EXACT VERTICAL MIDDLE OF VIDEO ── */}
-            <button
-              type="button"
-              onClick={() => handleSelectVideo(nextVideo)}
-              aria-label="Next performance"
-              className="absolute right-1 sm:right-3 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#151515]/95 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border-2 border-[#B99A63] flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/50"
-              title="Next performance"
-            >
-              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
-            </button>
           </div>
 
           {/* ── FEATURED VIDEO METADATA & ACTIONS BAR (YouTube Style, Below Video Row) ── */}
-          <div className="max-w-4xl mx-auto p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
+          <div className="w-full p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
             <div className="space-y-2 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded-full bg-[#B99A63]/20 text-[#D4AF37] border border-[#B99A63]/40 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
@@ -1338,6 +1345,70 @@ export default function CinematicReelsShowcase({
                   Book Trial
                 </button>
               )}
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            3. CONTINUOUS CLASSICAL STREAM (The Infinite Auto-Scrolling Marquee)
+            - Placed immediately after the 3-Video Stage per user requirement -
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className="pt-6 sm:pt-8 border-t border-[#A9A49D]/20 space-y-6 text-left">
+          {/* Header & Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#B99A63] animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
+                  Continuous Classical Stream
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
+                Infinite Photo Gallery &amp; Recital Stream
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Hover any video to preview live or click to load directly into the theater player above.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsMarqueePaused((prev) => !prev)}
+                className="px-3.5 py-1.5 rounded-xl bg-[#1E1B1B] hover:bg-[#252222] border border-[#B99A63]/40 text-xs font-semibold text-[#D4AF37] flex items-center gap-1.5 cursor-pointer tap-bounce transition-all shadow-sm"
+              >
+                {isMarqueePaused ? (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-[#D4AF37]" />
+                    <span>Resume Stream</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause className="w-3.5 h-3.5" />
+                    <span>Pause Stream</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Seamless Infinite Auto-Scrolling Track */}
+          <div className="overflow-hidden relative py-2 -mx-4 sm:mx-0 px-4 sm:px-0">
+            {/* Gradient Edge Masks for High-End Fade */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#121111] to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#121111] to-transparent z-20 pointer-events-none" />
+
+            <div
+              className={`flex gap-6 ${isMarqueePaused ? "pause-marquee" : "animate-infinite-marquee"}`}
+            >
+              {INFINITE_STREAM_ITEMS.concat(INFINITE_STREAM_ITEMS).map((item, idx) => (
+                <InfiniteStreamCard
+                  key={`${item.id}-${idx}`}
+                  item={item}
+                  onSelectVideo={handleSelectVideo}
+                  onPhotoClick={onPhotoClick}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -1503,68 +1574,7 @@ export default function CinematicReelsShowcase({
           </div>
         </div>
 
-        {/* ═══════════════════════════════════════════════════════════════
-            6. CONTINUOUS CLASSICAL STREAM (The Infinite Auto-Scrolling Marquee)
-        ═══════════════════════════════════════════════════════════════ */}
-        <div className="pt-10 border-t border-[#A9A49D]/20 space-y-6 text-left">
-          {/* Header & Controls */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#B99A63] animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
-                  Continuous Classical Stream
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
-                Infinite Photo Gallery &amp; Recital Stream
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Hover any video to preview live or click to load directly into the theater player above.
-              </p>
-            </div>
 
-            <div className="flex items-center gap-2 shrink-0">
-              <button
-                type="button"
-                onClick={() => setIsMarqueePaused((prev) => !prev)}
-                className="px-3.5 py-1.5 rounded-xl bg-[#1E1B1B] hover:bg-[#252222] border border-[#B99A63]/40 text-xs font-semibold text-[#D4AF37] flex items-center gap-1.5 cursor-pointer tap-bounce transition-all shadow-sm"
-              >
-                {isMarqueePaused ? (
-                  <>
-                    <Play className="w-3.5 h-3.5 fill-[#D4AF37]" />
-                    <span>Resume Stream</span>
-                  </>
-                ) : (
-                  <>
-                    <Pause className="w-3.5 h-3.5" />
-                    <span>Pause Stream</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Seamless Infinite Auto-Scrolling Track */}
-          <div className="overflow-hidden relative py-2 -mx-4 sm:mx-0 px-4 sm:px-0">
-            {/* Gradient Edge Masks for High-End Fade */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#121111] to-transparent z-20 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#121111] to-transparent z-20 pointer-events-none" />
-
-            <div
-              className={`flex gap-6 ${isMarqueePaused ? "pause-marquee" : "animate-infinite-marquee"}`}
-            >
-              {INFINITE_STREAM_ITEMS.concat(INFINITE_STREAM_ITEMS).map((item, idx) => (
-                <InfiniteStreamCard
-                  key={`${item.id}-${idx}`}
-                  item={item}
-                  onSelectVideo={handleSelectVideo}
-                  onPhotoClick={onPhotoClick}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* ═══════════════════════════════════════════════════════════════
             7. INSTAGRAM REELS & POSTS WALL (@dancingragasbymalavika)
