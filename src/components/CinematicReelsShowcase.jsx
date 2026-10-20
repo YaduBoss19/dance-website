@@ -1029,15 +1029,15 @@ export default function CinematicReelsShowcase({
           ref={featuredPlayerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative max-w-6xl mx-auto"
+          className="relative max-w-6xl mx-auto space-y-5"
         >
-          {/* Stage Wrapper */}
-          <div className="relative flex items-center justify-center py-2 sm:py-4">
+          {/* ── VIDEO STAGE ROW: PREV PEEK + CENTER MAIN VIDEO + NEXT PEEK ── */}
+          <div className="relative flex items-center justify-center w-full">
             {/* ── LEFT PEEK CARD (Previous) ── */}
             {prevVideo && (
               <div
                 onClick={() => handleSelectVideo(prevVideo)}
-                className="hidden lg:block absolute left-0 w-[240px] xl:w-[270px] aspect-video rounded-3xl overflow-hidden opacity-40 hover:opacity-85 transition-all duration-300 cursor-pointer transform -translate-x-6 xl:-translate-x-10 scale-90 z-10 select-none museum-frame p-1.5 bg-[#151515] border-2 border-[#B99A63]/50 shadow-2xl hover:scale-95 group"
+                className="hidden md:block absolute left-0 xl:-left-4 top-1/2 -translate-y-1/2 w-[260px] md:w-[300px] lg:w-[350px] xl:w-[390px] aspect-video rounded-3xl overflow-hidden opacity-45 hover:opacity-90 transition-all duration-300 cursor-pointer transform -translate-x-10 lg:-translate-x-14 xl:-translate-x-16 scale-90 hover:scale-95 z-10 select-none museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/60 shadow-2xl group"
                 title={`Previous: ${prevVideo.title}`}
               >
                 <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
@@ -1047,18 +1047,33 @@ export default function CinematicReelsShowcase({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/80 text-[#D4AF37] text-[9px] font-bold uppercase tracking-wider border border-white/10">
+
+                  {/* Badge */}
+                  <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/85 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm">
                     Previous
                   </span>
-                  <span className="absolute bottom-2 left-2 right-2 text-[11px] font-bold font-serif-luxury text-[#F5F0E8] truncate">
-                    {prevVideo.title}
-                  </span>
+
+                  {/* Play Icon Hint on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg">
+                      <ChevronLeft className="w-6 h-6 stroke-[3]" />
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-2.5 left-3 right-3 text-left">
+                    <span className="text-xs sm:text-sm font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
+                      {prevVideo.title}
+                    </span>
+                    <span className="text-[10px] text-slate-300 font-mono">
+                      {prevVideo.duration}
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* ── CENTER ACTIVE FEATURED PLAYER ── */}
-            <div className="relative z-20 w-full max-w-4xl mx-auto space-y-4">
+            {/* ── CENTER ACTIVE FEATURED PLAYER (The Main Video) ── */}
+            <div className="relative z-20 w-full max-w-4xl mx-auto">
               {/* Museum Frame Container — styled exactly like the Hero Section */}
               <div className="museum-frame group relative p-1.5 sm:p-2.5 rounded-3xl bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all">
                 <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/45 shadow-inner">
@@ -1197,78 +1212,13 @@ export default function CinematicReelsShowcase({
                   )}
                 </div>
               </div>
-
-              {/* Featured Video Metadata & Actions Bar (YouTube Style) */}
-              <div className="p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
-                <div className="space-y-2 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#B99A63]/20 text-[#D4AF37] border border-[#B99A63]/40 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
-                      {selectedVideo.category}
-                    </span>
-                    <span className="text-xs text-slate-400 flex items-center gap-1">
-                      <Eye className="w-3 h-3 text-[#B99A63]" />
-                      {selectedVideo.views} views
-                    </span>
-                    <span className="text-xs text-slate-400">• {selectedVideo.date}</span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif-luxury text-[#F5F0E8]">
-                    {selectedVideo.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-3xl">
-                    {selectedVideo.description}
-                  </p>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="flex items-center gap-2 shrink-0 pt-1 md:pt-0">
-                  <a
-                    href="https://www.instagram.com/dancingragasbymalavika/reels/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => playGhungrooChime()}
-                    className="px-3.5 py-2 rounded-full bg-gradient-to-r from-purple-700/80 via-pink-700/80 to-amber-600/80 hover:brightness-110 text-white text-xs font-bold flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer tap-bounce shadow-md"
-                  >
-                    <InstagramIcon className="w-3.5 h-3.5" />
-                    <span>Instagram Archive</span>
-                    <ExternalLink className="w-3 h-3 opacity-80" />
-                  </a>
-
-                  {onMeetArtistClick && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        playGhungrooChime();
-                        onMeetArtistClick();
-                      }}
-                      className="px-3.5 py-2 rounded-full bg-[#1F1C1C] hover:bg-[#2A2626] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
-                    >
-                      Meet Dr. Malavika
-                    </button>
-                  )}
-
-                  {onExploreClick && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        playGhungrooChime();
-                        onExploreClick();
-                      }}
-                      className="px-4 py-2 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
-                    >
-                      Book Trial
-                    </button>
-                  )}
-                </div>
-              </div>
             </div>
 
             {/* ── RIGHT PEEK CARD (Next) ── */}
             {nextVideo && (
               <div
                 onClick={() => handleSelectVideo(nextVideo)}
-                className="hidden lg:block absolute right-0 w-[240px] xl:w-[270px] aspect-video rounded-3xl overflow-hidden opacity-40 hover:opacity-85 transition-all duration-300 cursor-pointer transform translate-x-6 xl:translate-x-10 scale-90 z-10 select-none museum-frame p-1.5 bg-[#151515] border-2 border-[#B99A63]/50 shadow-2xl hover:scale-95 group"
+                className="hidden md:block absolute right-0 xl:-right-4 top-1/2 -translate-y-1/2 w-[260px] md:w-[300px] lg:w-[350px] xl:w-[390px] aspect-video rounded-3xl overflow-hidden opacity-45 hover:opacity-90 transition-all duration-300 cursor-pointer transform translate-x-10 lg:translate-x-14 xl:translate-x-16 scale-90 hover:scale-95 z-10 select-none museum-frame p-1.5 sm:p-2 bg-[#151515] border-2 border-[#B99A63]/60 shadow-2xl group"
                 title={`Next: ${nextVideo.title}`}
               >
                 <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
@@ -1278,37 +1228,117 @@ export default function CinematicReelsShowcase({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <span className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/80 text-[#D4AF37] text-[9px] font-bold uppercase tracking-wider border border-white/10">
+
+                  {/* Badge */}
+                  <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/85 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm">
                     Next Up
                   </span>
-                  <span className="absolute bottom-2 left-2 right-2 text-[11px] font-bold font-serif-luxury text-[#F5F0E8] truncate">
-                    {nextVideo.title}
-                  </span>
+
+                  {/* Play Icon Hint on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg">
+                      <ChevronRight className="w-6 h-6 stroke-[3]" />
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-2.5 left-3 right-3 text-left">
+                    <span className="text-xs sm:text-sm font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
+                      {nextVideo.title}
+                    </span>
+                    <span className="text-[10px] text-slate-300 font-mono">
+                      {nextVideo.duration}
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* ── PREVIOUS BUTTON (<) ── */}
+            {/* ── PREVIOUS BUTTON (<) IN THE EXACT VERTICAL MIDDLE OF VIDEO ── */}
             <button
               type="button"
               onClick={() => handleSelectVideo(prevVideo)}
               aria-label="Previous performance"
-              className="absolute left-0 sm:left-2 lg:left-8 top-1/2 -translate-y-12 sm:-translate-y-16 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#151515]/90 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border border-[#B99A63]/70 flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/40"
+              className="absolute left-1 sm:left-3 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#151515]/95 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border-2 border-[#B99A63] flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/50"
               title="Previous performance"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
             </button>
 
-            {/* ── NEXT BUTTON (>) ── */}
+            {/* ── NEXT BUTTON (>) IN THE EXACT VERTICAL MIDDLE OF VIDEO ── */}
             <button
               type="button"
               onClick={() => handleSelectVideo(nextVideo)}
               aria-label="Next performance"
-              className="absolute right-0 sm:right-2 lg:right-8 top-1/2 -translate-y-12 sm:-translate-y-16 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#151515]/90 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border border-[#B99A63]/70 flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/40"
+              className="absolute right-1 sm:right-3 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#151515]/95 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border-2 border-[#B99A63] flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/50"
               title="Next performance"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
             </button>
+          </div>
+
+          {/* ── FEATURED VIDEO METADATA & ACTIONS BAR (YouTube Style, Below Video Row) ── */}
+          <div className="max-w-4xl mx-auto p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
+            <div className="space-y-2 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#B99A63]/20 text-[#D4AF37] border border-[#B99A63]/40 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+                  {selectedVideo.category}
+                </span>
+                <span className="text-xs text-slate-400 flex items-center gap-1">
+                  <Eye className="w-3 h-3 text-[#B99A63]" />
+                  {selectedVideo.views} views
+                </span>
+                <span className="text-xs text-slate-400">• {selectedVideo.date}</span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif-luxury text-[#F5F0E8]">
+                {selectedVideo.title}
+              </h3>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-3xl">
+                {selectedVideo.description}
+              </p>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="flex items-center gap-2 shrink-0 pt-1 md:pt-0">
+              <a
+                href="https://www.instagram.com/dancingragasbymalavika/reels/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => playGhungrooChime()}
+                className="px-3.5 py-2 rounded-full bg-gradient-to-r from-purple-700/80 via-pink-700/80 to-amber-600/80 hover:brightness-110 text-white text-xs font-bold flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer tap-bounce shadow-md"
+              >
+                <InstagramIcon className="w-3.5 h-3.5" />
+                <span>Instagram Archive</span>
+                <ExternalLink className="w-3 h-3 opacity-80" />
+              </a>
+
+              {onMeetArtistClick && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    playGhungrooChime();
+                    onMeetArtistClick();
+                  }}
+                  className="px-3.5 py-2 rounded-full bg-[#1F1C1C] hover:bg-[#2A2626] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
+                >
+                  Meet Dr. Malavika
+                </button>
+              )}
+
+              {onExploreClick && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    playGhungrooChime();
+                    onExploreClick();
+                  }}
+                  className="px-4 py-2 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
+                >
+                  Book Trial
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
