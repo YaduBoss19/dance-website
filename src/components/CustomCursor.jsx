@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import GoldenCursorTrail from "./GoldenCursorTrail";
 
 /**
  * Luxury Golden Magnetic Follower Cursor (Desktop pointer only).
@@ -97,6 +98,9 @@ export default function CustomCursor() {
 
   return (
     <>
+      {/* Luxury Golden Dust Micro-Trail */}
+      <GoldenCursorTrail />
+
       {/* Thatte Mettu Golden Foot-Stamp Shockwave Ripples */}
       {ripples.map((rip) => (
         <span

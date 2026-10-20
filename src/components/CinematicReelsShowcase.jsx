@@ -878,6 +878,134 @@ function InstagramWallCard({ item, onSelectVideo, onPhotoClick }) {
   );
 }
 
+/**
+ * Archive Video Card with silent autoplaying hover teaser loop
+ */
+function ArchiveVideoGridCard({ video, isCurrent, onSelectVideo }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    let timeoutId;
+    if (isHovered && video.videoUrl) {
+      // 120ms gentle delay to prevent eager trigger when cursor quickly sweeps across
+      timeoutId = setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(() => {});
+        }
+      }, 120);
+    } else if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+    return () => clearTimeout(timeoutId);
+  }, [isHovered, video.videoUrl]);
+
+  return (
+    <div
+      onClick={() => onSelectVideo(video)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`group rounded-2xl overflow-hidden bg-[#181616] border transition-all duration-300 cursor-pointer tap-bounce flex flex-col justify-between shadow-lg ${
+        isCurrent
+          ? "border-[#B99A63] ring-2 ring-[#B99A63]/50 shadow-[#B99A63]/15"
+          : "border-[#B99A63]/25 hover:border-[#B99A63]/70 hover:shadow-2xl"
+      }`}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelectVideo(video);
+        }
+      }}
+    >
+      {/* 16:9 Thumbnail & Video Hover Teaser Container */}
+      <div className="relative aspect-video w-full overflow-hidden bg-black/40">
+        <img
+          src={video.thumbnail}
+          alt={video.title}
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+            isHovered && video.videoUrl ? "opacity-0" : "opacity-100"
+          }`}
+          loading="lazy"
+        />
+
+        {/* 3-Second Silent Autoplay Video Teaser Loop on Desktop Hover */}
+        {video.videoUrl && (
+          <video
+            ref={videoRef}
+            src={video.videoUrl}
+            muted
+            loop
+            playsInline
+            preload="none"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+
+        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/75 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-white/10 backdrop-blur-xs">
+          {video.category}
+        </span>
+
+        {isHovered && video.videoUrl ? (
+          <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-[#B99A63] text-[#151515] font-mono text-[10px] font-bold tracking-wider uppercase shadow flex items-center gap-1 animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#151515]" />
+            Preview
+          </span>
+        ) : (
+          <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/90 text-white font-mono text-[10px] font-bold tracking-wide border border-white/10">
+            {video.duration}
+          </span>
+        )}
+
+        {/* Play icon: subtley visible on mobile touch, highlighted on hover */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-opacity bg-black/20 sm:bg-black/30 ${
+            isHovered ? "opacity-0 pointer-events-none" : "opacity-80 sm:opacity-0 sm:group-hover:opacity-100"
+          }`}
+        >
+          <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+            <Play className="w-4 h-4 fill-[#151515] translate-x-0.5" />
+          </div>
+        </div>
+
+        {isCurrent && (
+          <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#B99A63] text-[#151515] text-[10px] font-bold tracking-wider uppercase shadow-md flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#151515] animate-ping" />
+            <span>Active</span>
+          </div>
+        )}
+      </div>
+
+      {/* Card Content & Metadata */}
+      <div className="p-3.5 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
+        <div>
+          <h4 className="text-sm sm:text-base font-bold font-serif-luxury text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors line-clamp-2 leading-snug">
+            {video.title}
+          </h4>
+          <p className="text-xs text-slate-400 line-clamp-2 font-normal mt-1 leading-relaxed">
+            {video.description}
+          </p>
+        </div>
+
+        <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
+          <span className="flex items-center gap-1">
+            <Eye className="w-3 h-3 text-[#B99A63]" />
+            {video.views}
+          </span>
+          <span>{video.date}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CinematicReelsShowcase({
   onExploreClick,
   onMeetArtistClick,
@@ -1447,83 +1575,14 @@ export default function CinematicReelsShowcase({
             4. RESPONSIVE VIDEO THUMBNAIL GRID (Desktop 3-4, Tablet 2, Mobile 1-2)
         ═══════════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 text-left">
-          {filteredVideos.map((video) => {
-            const isCurrent = selectedVideo.id === video.id;
-
-            return (
-              <div
-                key={video.id}
-                onClick={() => handleSelectVideo(video)}
-                className={`group rounded-2xl overflow-hidden bg-[#181616] border transition-all duration-300 cursor-pointer tap-bounce flex flex-col justify-between shadow-lg ${
-                  isCurrent
-                    ? "border-[#B99A63] ring-2 ring-[#B99A63]/50 shadow-[#B99A63]/15"
-                    : "border-[#B99A63]/25 hover:border-[#B99A63]/70 hover:shadow-2xl"
-                }`}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handleSelectVideo(video);
-                  }
-                }}
-              >
-                {/* 16:9 Thumbnail Container */}
-                <div className="relative aspect-video w-full overflow-hidden bg-black/40">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
-
-                  <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/75 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-white/10 backdrop-blur-xs">
-                    {video.category}
-                  </span>
-
-                  <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/90 text-white font-mono text-[10px] font-bold tracking-wide border border-white/10">
-                    {video.duration}
-                  </span>
-
-                  {/* Play icon: subtley visible on mobile touch, highlighted on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity bg-black/20 sm:bg-black/30">
-                    <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
-                      <Play className="w-4 h-4 fill-[#151515] translate-x-0.5" />
-                    </div>
-                  </div>
-
-                  {isCurrent && (
-                    <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#B99A63] text-[#151515] text-[10px] font-bold tracking-wider uppercase shadow-md flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#151515] animate-ping" />
-                      <span>Active</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Card Content & Metadata */}
-                <div className="p-3.5 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h4 className="text-sm sm:text-base font-bold font-serif-luxury text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors line-clamp-2 leading-snug">
-                      {video.title}
-                    </h4>
-                    <p className="text-xs text-slate-400 line-clamp-2 font-normal mt-1 leading-relaxed">
-                      {video.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
-                    <span className="flex items-center gap-1">
-                      <Eye className="w-3 h-3 text-[#B99A63]" />
-                      {video.views}
-                    </span>
-                    <span>{video.date}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {filteredVideos.map((video) => (
+            <ArchiveVideoGridCard
+              key={video.id}
+              video={video}
+              isCurrent={selectedVideo.id === video.id}
+              onSelectVideo={handleSelectVideo}
+            />
+          ))}
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════

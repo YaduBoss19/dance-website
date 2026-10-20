@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 /**
  * Sacred Temple Yantra & Nataraja Mandala Vector.
- * Features counter-rotating concentric geometry that adds hypnotic sacred depth
- * to the background of section transitions.
+ * Features counter-rotating concentric geometry and hardware-accelerated
+ * subtle parallax scroll effect for divine aesthetic depth.
  */
-export default function SacredMandalaScroll({ className = "", size = 480 }) {
+export default function SacredMandalaScroll({ className = "", size = 480, parallaxSpeed = 0.05 }) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let rafId;
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const yOffset = scrollY * parallaxSpeed;
+      const rot = (scrollY * 0.012) % 360;
+      containerRef.current.style.transform = `translate3d(0, ${yOffset}px, 0) rotate(${rot}deg)`;
+    };
+
+    const onScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [parallaxSpeed]);
+
   return (
     <div
-      className={`pointer-events-none select-none overflow-hidden flex items-center justify-center opacity-[0.07] ${className}`}
+      ref={containerRef}
+      className={`pointer-events-none select-none overflow-hidden flex items-center justify-center opacity-[0.07] will-change-transform transition-transform duration-100 ease-out ${className}`}
       aria-hidden="true"
     >
       <svg
