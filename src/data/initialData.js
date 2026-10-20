@@ -953,6 +953,7 @@ export const ACADEMY_INFO = {
   whatsappDefaultMsg: "Hello Dr. Malavika! I would like to book a 1-to-1 trial session for private dance / music coaching.",
   email: "info@malavikasunil.com",
   adminEmail: "malavika@malavikasunil.com",
+  websiteUrl: "https://dancingragas.vercel.app/",
   instagramUrl: "https://www.instagram.com/dancingragasbymalavika/",
   instagramHandle: "@dancingragasbymalavika",
   hours: {

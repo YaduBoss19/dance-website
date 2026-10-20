@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dancingragas.vercel.app/sitemap.xml
