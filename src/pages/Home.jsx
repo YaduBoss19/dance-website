@@ -117,8 +117,9 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-opacity duration-1000"
         />
 
-        {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/95 via-[#24050B]/85 to-[#151515]/65 pointer-events-none z-10" />
+        {/* Multi-Stop Luxury Dual-Tone Gradient Vignette Overlay (Ensures crystal-clear text contrast on mobile & desktop) */}
+        <div className="absolute inset-0 bg-[#151515]/70 sm:bg-transparent pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/95 via-[#151515]/80 to-[#151515]/50 sm:bg-gradient-to-r sm:from-[#151515]/95 sm:via-[#24050B]/85 sm:to-[#151515]/65 pointer-events-none z-10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.15)_0%,rgba(21,21,21,0.8)_85%)] pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F5F0E8] via-[#151515]/80 to-transparent pointer-events-none z-10" />
 
@@ -143,14 +144,14 @@ export default function Home() {
                 </span>
               </div>
 
-              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-lg">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#F5F0E8] leading-[1.08] font-serif-luxury drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                 Your Passion. <br />
                 Your Pace. <br />
                 <span className="italic text-[#D4AF37]">Your Personal Coach.</span>
               </h1>
 
-              <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
-                A personal space for dance, music and creative expression. Master Bharatanatyam, Carnatic music or bespoke choreography , through <strong>online group classes</strong> or <strong>one on one personalized sessions</strong> mentored personally by <strong>Dr Malavika M Sunil</strong>.
+              <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-100 leading-relaxed max-w-xl font-normal drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
+                A personal space for dance, music, and creative expression. Master Bharatanatyam, Carnatic music, or bespoke choreography, through <strong>online group classes</strong> or <strong>1-on-1 personalized sessions</strong> mentored personally by <strong>Dr. Malavika M. Sunil</strong>.
               </p>
 
               {/* Two Required Prominent CTAs: Explore Classes & Meet the Artist */}

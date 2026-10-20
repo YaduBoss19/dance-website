@@ -15,6 +15,7 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Diploma & Certification",
     image: "/images/malavika_dance_stage.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/malavika_dance_stage.jpg",
       "/images/stage_shows/stage_02.jpg",
@@ -43,6 +44,7 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Practical Training",
     image: "/images/malavika_dance_pose.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/malavika_dance_pose.jpg",
       "/images/stage_shows/stage_04.jpg",
@@ -71,6 +73,7 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Vocal & Theory",
     image: "/images/music_and_dance/music_01.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/music_and_dance/music_01.jpg",
       "/images/music_and_dance/music_02.jpg",
@@ -99,6 +102,7 @@ export const INITIAL_COURSES = [
     frequency: "2 sessions / week (Online)",
     badge: "Grace & Vibrancy",
     image: "/images/stage_shows/stage_03.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/stage_shows/stage_03.jpg",
       "/images/stage_shows/stage_09.jpg",
@@ -127,6 +131,7 @@ export const INITIAL_COURSES = [
     frequency: "Scheduled sessions + daily guidance",
     badge: "Yoga & Nutrition",
     image: "/images/malavika_portrait.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/malavika_portrait.jpg",
       "/images/stage_shows/stage_11.jpg",
@@ -157,6 +162,7 @@ export const INITIAL_COURSES = [
     frequency: "Rehearsal cycles + dress rehearsal",
     badge: "Stage & Cultural",
     image: "/images/stage_shows/stage_01.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/stage_shows/stage_01.jpg",
       "/images/stage_shows/stage_13.jpg",
@@ -185,6 +191,7 @@ export const INITIAL_COURSES = [
     frequency: "Flexible schedule (Online / In-person)",
     badge: "Weddings & Sangeet",
     image: "/images/stage_shows/stage_07.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/stage_shows/stage_07.jpg",
       "/images/stage_shows/stage_19.jpg",
@@ -213,6 +220,7 @@ export const INITIAL_COURSES = [
     frequency: "Single-day event",
     badge: "1-Day Intensive",
     image: "/images/workshops/workshop_01.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/workshops/workshop_01.jpg",
       "/images/workshops/workshop_02.jpg",
@@ -241,6 +249,7 @@ export const INITIAL_COURSES = [
     frequency: "Multi-day intensive residency",
     badge: "3-Day Masterclass",
     image: "/images/workshops/workshop_03.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/workshops/workshop_03.jpg",
       "/images/workshops/workshop_06.jpg",
@@ -269,6 +278,7 @@ export const INITIAL_COURSES = [
     frequency: "Rigorous rehearsal schedule",
     badge: "Championship Level",
     image: "/images/stage_shows/stage_10.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/stage_shows/stage_10.jpg",
       "/images/stage_shows/stage_22.jpg",
@@ -297,6 +307,7 @@ export const INITIAL_COURSES = [
     frequency: "Tailored to event timeline",
     badge: "Corporate & Galas",
     image: "/images/stage_shows/stage_06.jpg",
+    instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
       "/images/stage_shows/stage_06.jpg",
       "/images/stage_shows/stage_08.jpg",

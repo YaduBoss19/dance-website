@@ -19,7 +19,8 @@ import {
   GraduationCap,
   ChevronDown,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ExternalLink
 } from "lucide-react";
 
 // Visual themes & prefilled WhatsApp messages for each of the 11 courses & services
@@ -106,12 +107,30 @@ const SERVICE_THEMES = {
   }
 };
 
+function InstagramIcon({ className = "w-3 h-3" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
 /**
  * In-Drawer Auto-Slideshow Component
  * Begins playing automatically when expanded.
  * User can pause on hover or tap to navigate slides manually.
  */
-function CourseSlideshow({ images = [], title = "" }) {
+function CourseSlideshow({ images = [], title = "", instagramUrl = "" }) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -149,15 +168,36 @@ function CourseSlideshow({ images = [], title = "" }) {
         </div>
       ))}
 
-      {/* Top Slide Counter Badge & Live Indicator */}
+      {/* Top Slide Counter Badge & Instagram Reel Badge */}
       <div className="absolute top-2.5 left-2.5 right-2.5 z-20 flex items-center justify-between gap-2">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#151515]/85 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-[#B99A63]/40 backdrop-blur-xs shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Live Slideshow</span>
-        </span>
-        <span className="px-2.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[10px] font-bold tracking-widest border border-white/10 backdrop-blur-xs">
-          {String(currentIdx + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
-        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#151515]/85 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-[#B99A63]/40 backdrop-blur-xs shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="hidden xs:inline">Live Slideshow</span>
+            <span className="xs:hidden">Live</span>
+          </span>
+          <span className="px-2 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[10px] font-bold tracking-widest border border-white/10 backdrop-blur-xs">
+            {String(currentIdx + 1).padStart(2, "0")}/{String(images.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {instagramUrl && (
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.stopPropagation();
+              playGhungrooChime();
+            }}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:brightness-110 text-white text-[10px] font-bold tracking-wide shadow-md border border-white/25 transition-all hover:scale-105 active:scale-95 cursor-pointer tap-bounce backdrop-blur-xs shrink-0"
+            title="Watch real dance reels & performances on Instagram"
+          >
+            <InstagramIcon className="w-3 h-3 text-white fill-white/20 shrink-0" />
+            <span>Watch Reel</span>
+            <ExternalLink className="w-2.5 h-2.5 opacity-90 shrink-0" />
+          </a>
+        )}
       </div>
 
       {/* Next / Previous Controls */}
@@ -307,7 +347,11 @@ function CourseAccordionItem({
         <div className="px-3.5 pb-4 sm:px-5 sm:pb-5 pt-2 border-t border-slate-100 animate-fadeIn space-y-3.5">
           {/* Live Photo Slideshow */}
           <div>
-            <CourseSlideshow images={slideImages} title={course.title} />
+            <CourseSlideshow
+              images={slideImages}
+              title={course.title}
+              instagramUrl={course.instagramReelUrl}
+            />
             <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1.5 px-1">
               <span>✦ Slideshow starts automatically</span>
               <span>Tap or hover to pause</span>
