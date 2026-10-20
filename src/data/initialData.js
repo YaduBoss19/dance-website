@@ -20,7 +20,7 @@ export const INITIAL_COURSES = [
       "/images/malavika_dance_stage.jpg",
       "/images/stage_shows/stage_02.jpg",
       "/images/stage_shows/stage_05.jpg",
-      "/images/malavika_classical.jpg"
+      "/images/stage_shows/stage_01.jpg"
     ],
     description: "A structured program combining practical Bharatanatyam training with theoretical lessons aligned with the prescribed syllabus. The course includes yearly examinations and certification, providing students with a systematic learning experience.",
     syllabus: [
@@ -49,7 +49,7 @@ export const INITIAL_COURSES = [
       "/images/malavika_dance_pose.jpg",
       "/images/stage_shows/stage_04.jpg",
       "/images/stage_shows/stage_08.jpg",
-      "/images/malavika_temple.jpg"
+      "/images/stage_shows/stage_03.jpg"
     ],
     description: "Practical training in Bharatanatyam, complemented by basic theoretical lessons. Ideal for students who wish to learn and develop their classical dance skills without formal examinations or certification.",
     syllabus: [
