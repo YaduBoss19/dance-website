@@ -3,6 +3,7 @@ import AnimatedSection from "./AnimatedSection";
 import { playGhungrooChime } from "../utils/talamAudio";
 import {
   Play,
+  Pause,
   Sparkles,
   Clock,
   Eye,
@@ -12,7 +13,13 @@ import {
   GraduationCap,
   Calendar,
   ExternalLink,
-  AlertCircle
+  AlertCircle,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  MessageCircle,
+  Camera,
+  Video
 } from "lucide-react";
 
 function InstagramIcon({ className = "w-3.5 h-3.5" }) {
@@ -321,10 +328,560 @@ const CREDENTIAL_HIGHLIGHTS = [
   }
 ];
 
+// Continuous Classical Stream Items (Infinite Marquee)
+const INFINITE_STREAM_ITEMS = [
+  {
+    id: "stream-01",
+    type: "video",
+    title: "Live Stage Bharatanatyam Recital",
+    subtitle: "Rhythmic Footwork & Temple Silk Adornment",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_01.jpg",
+    videoUrl: "/videos/recital_live_01.mp4",
+    duration: "Live Recital",
+    badge: "Stage Recital"
+  },
+  {
+    id: "stream-02",
+    type: "video",
+    title: "International Classical Workshop",
+    subtitle: "Adavu Precision, Mudras & Aramandi",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_01.jpg",
+    videoUrl: "/videos/workshop_reel.mp4",
+    duration: "Masterclass",
+    badge: "Workshop Reel"
+  },
+  {
+    id: "stream-03",
+    type: "photo",
+    title: "Youth Classical Dance Workshop",
+    subtitle: "Adavu Drills & Student Formations",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_02.jpg",
+    duration: "Workshop",
+    badge: "Foundation Drills"
+  },
+  {
+    id: "stream-04",
+    type: "video",
+    title: "Auditorium Stage Choreography",
+    subtitle: "Intricate Rhythm & Dynamic Grace",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_03.jpg",
+    videoUrl: "/videos/recital_live_02.mp4",
+    duration: "Auditorium",
+    badge: "Live Choreography"
+  },
+  {
+    id: "stream-05",
+    type: "photo",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    subtitle: "16+ Yrs Hereditary Vocal Lineage",
+    category: "Music & Dance",
+    imageUrl: "/images/music_and_dance/music_01.jpg",
+    duration: "16+ Yrs",
+    badge: "Hereditary Shruti"
+  },
+  {
+    id: "stream-06",
+    type: "photo",
+    title: "Temple Recital & Salangai Bells",
+    subtitle: "Alarippu Invocation to Nataraja",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    duration: "Classical Pose",
+    badge: "Sacred Mudra"
+  },
+  {
+    id: "stream-07",
+    type: "photo",
+    title: "Mudra & Abhinaya Masterclass",
+    subtitle: "Navarasa & Hastha Mudras Training",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_03.jpg",
+    duration: "Dr. Malavika",
+    badge: "Mudra Workshop"
+  },
+  {
+    id: "stream-08",
+    type: "video",
+    title: "Tbilisi International Residency",
+    subtitle: "20+ Productions Across Georgia",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_06.jpg",
+    videoUrl: "/videos/performance.mp4",
+    duration: "Stage Symphony",
+    badge: "Tbilisi Concert"
+  },
+  {
+    id: "stream-09",
+    type: "photo",
+    title: "Music & Dance Synergy Session",
+    subtitle: "Connecting Tala with Nritta",
+    category: "Music & Dance",
+    imageUrl: "/images/music_and_dance/music_03.jpg",
+    duration: "Carnatic & Dance",
+    badge: "Synergy"
+  },
+  {
+    id: "stream-10",
+    type: "photo",
+    title: "Classical Silk & Stage Presence",
+    subtitle: "Auditorium Performance Splendor",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_08.jpg",
+    duration: "Live Concert",
+    badge: "Aramandi Poise"
+  },
+  {
+    id: "stream-11",
+    type: "photo",
+    title: "Institutional Workshop Intensive",
+    subtitle: "Student Ensemble Synchrony",
+    category: "Workshops",
+    imageUrl: "/images/workshops/workshop_06.jpg",
+    duration: "Ensemble",
+    badge: "Group Masterclass"
+  },
+  {
+    id: "stream-12",
+    type: "photo",
+    title: "Physician & Classical Dancer",
+    subtitle: "MBBS Graduation & Dance Synthesis",
+    category: "Doctor & Dancer",
+    imageUrl: "/images/malavika_portrait.jpg",
+    duration: "MBBS Doctor",
+    badge: "Medical Graduate"
+  },
+  {
+    id: "stream-13",
+    type: "video",
+    title: "Solo Classical Stage Recital & Abhinaya",
+    subtitle: "Rhythmic Footwork & Expressive Bhava",
+    category: "Stage Shows",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    videoUrl: "/videos/recital_live_03.mp4",
+    duration: "Solo Stage",
+    badge: "Solo Recital"
+  }
+];
+
+// Curated collection of verified Instagram Posts & Reels for @dancingragasbymalavika
+const INSTAGRAM_WALL_ITEMS = [
+  {
+    id: "insta-01",
+    type: "reel",
+    category: "stage",
+    title: "Live Stage Bharatanatyam Recital",
+    caption:
+      "Rooted in 21 years of sacred Bharatanatyam discipline. Captivating live stage recital showcasing rhythmic footwork, temple silk, and expressive Abhinaya. #dancingragas #bharatanatyam #stageperformance",
+    imageUrl: "/images/stage_shows/stage_01.jpg",
+    videoUrl: "/videos/recital_live_01.mp4",
+    audio: "Live Stage Bells & Nattuvangam · dancingragasbymalavika",
+    likes: "3.4k",
+    comments: "186",
+    views: "48.2k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-02",
+    type: "reel",
+    category: "workshops",
+    title: "International Classical Workshop",
+    caption:
+      "Immersive masterclass coaching students on Araimandi posture, mudras, and rhythmic footwork. Empowering the next generation of classical dancers. #danceworkshop #masterclass #classicaldance",
+    imageUrl: "/images/workshops/workshop_01.jpg",
+    videoUrl: "/videos/workshop_reel.mp4",
+    audio: "Workshop Rhythm Drills · Dr. Malavika",
+    likes: "2.9k",
+    comments: "145",
+    views: "39.5k",
+    tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-03",
+    type: "reel",
+    category: "stage",
+    title: "Auditorium Stage Choreography",
+    caption:
+      "Dynamic stage choreography presenting intricate rhythm patterns and classical grace under dramatic auditorium illumination. #stageshow #choreography #dr_malavika",
+    imageUrl: "/images/stage_shows/stage_03.jpg",
+    videoUrl: "/videos/recital_live_02.mp4",
+    audio: "Auditorium Symphony · dancingragasbymalavika",
+    likes: "4.1k",
+    comments: "220",
+    views: "53.7k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-04",
+    type: "post",
+    category: "workshops",
+    title: "Institutional Dance Workshop & Training",
+    caption:
+      "Hands-on foundation training in classical posture, balance, and rhythm during an academy institutional workshop. #workshops #dancetraining #foundations",
+    imageUrl: "/images/workshops/workshop_02.jpg",
+    audio: "Classical Sitar & Tanpura Drone",
+    likes: "2.5k",
+    comments: "94",
+    views: "33.1k",
+    tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-05",
+    type: "reel",
+    category: "music",
+    title: "Carnatic Vocal & Shruti Sadhana",
+    caption:
+      "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment, swara riyaz, and raga bhava. #carnaticmusic #vocal #shruti #ragas",
+    imageUrl: "/images/music_and_dance/music_01.jpg",
+    videoUrl: "/videos/performance.mp4",
+    audio: "Raga Mayamalavagowla Alapana · Dr. Malavika",
+    likes: "2.2k",
+    comments: "112",
+    views: "31.5k",
+    tag: "Music & Dance",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-06",
+    type: "post",
+    category: "workshops",
+    title: "Expressions & Mudras Masterclass",
+    caption:
+      "Deep dive into Hastha Mudras and expressive Abhinaya storytelling with Dr. Malavika M. Sunil. #mudras #abhinaya #masterclass",
+    imageUrl: "/images/workshops/workshop_03.jpg",
+    audio: "Abhinaya Classical Tanpura",
+    likes: "3.2k",
+    comments: "138",
+    views: "41.0k",
+    tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-07",
+    type: "post",
+    category: "stage",
+    title: "Temple Recital & Salangai Bells",
+    caption:
+      "Sacred temple recital invoking Lord Nataraja with traditional brass salangai rhythm and silk adornment. #templedance #nataraja #salangai",
+    imageUrl: "/images/stage_shows/stage_05.jpg",
+    audio: "Sacred Temple Nadaswaram & Chimes",
+    likes: "3.8k",
+    comments: "174",
+    views: "44.6k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-08",
+    type: "post",
+    category: "music",
+    title: "Music & Dance Synergy Masterclass",
+    caption:
+      "Integrating Carnatic rhythmic tala structures with Bharatanatyam nritta steps in dedicated studio sessions. #carnaticdance #talam #synergy",
+    imageUrl: "/images/music_and_dance/music_03.jpg",
+    audio: "Tala Swara Riyaz · Dr. Malavika",
+    likes: "2.8k",
+    comments: "122",
+    views: "37.4k",
+    tag: "Music & Dance",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-09",
+    type: "post",
+    category: "stage",
+    title: "Tbilisi International Stage Production",
+    caption:
+      "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art worldwide. #tbilisi #globaldance #culturaldiplomacy",
+    imageUrl: "/images/stage_shows/stage_06.jpg",
+    audio: "Live Stage Symphony · Tbilisi Concert",
+    likes: "4.5k",
+    comments: "210",
+    views: "59.2k",
+    tag: "Stage Shows",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  },
+  {
+    id: "insta-10",
+    type: "post",
+    category: "workshops",
+    title: "Student Ensemble Workshop & Choreography",
+    caption:
+      "Students collaborating on group formations and stage transitions during an intensive weekend masterclass. #ensemble #groupchoreography #workshops",
+    imageUrl: "/images/workshops/workshop_06.jpg",
+    audio: "Ensemble Footwork Rhythms",
+    likes: "2.7k",
+    comments: "105",
+    views: "35.3k",
+    tag: "Workshops",
+    instagramUrl: "https://www.instagram.com/dancingragasbymalavika/"
+  }
+];
+
+// Single card inside the infinite auto-scrolling stream
+function InfiniteStreamCard({ item, onSelectVideo, onPhotoClick }) {
+  const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (item.type === "video" && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlayingPreview(true)).catch(() => {});
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (item.type === "video" && videoRef.current) {
+      setIsPlayingPreview(false);
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const handleClick = () => {
+    if (item.type === "video") {
+      onSelectVideo({
+        id: item.id,
+        title: item.title,
+        subtitle: item.subtitle,
+        category: item.category,
+        duration: item.duration,
+        views: "18.4K",
+        date: "2026",
+        thumbnail: item.imageUrl,
+        videoUrl: item.videoUrl,
+        description: item.subtitle,
+        featuredBadge: item.badge
+      });
+    } else if (onPhotoClick) {
+      onPhotoClick({
+        id: item.id,
+        title: item.title,
+        url: item.imageUrl,
+        category: item.category,
+        caption: item.subtitle
+      });
+    }
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      className="w-[280px] sm:w-[320px] shrink-0 rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 cursor-pointer flex flex-col justify-between select-none relative tap-bounce"
+    >
+      <div className="aspect-[16/11] bg-[#0d0d0d] relative overflow-hidden">
+        {item.type === "video" && (
+          <video
+            ref={videoRef}
+            src={item.videoUrl || "/videos/performance.mp4"}
+            poster={item.imageUrl}
+            muted
+            loop
+            playsInline
+            className={`w-full h-full object-cover transition-opacity duration-500 absolute inset-0 ${
+              isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
+            }`}
+          />
+        )}
+
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className={`w-full h-full object-cover transition-transform duration-700 ${
+            isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
+          }`}
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/90 via-transparent to-black/20 pointer-events-none" />
+
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10 pointer-events-none">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/40 backdrop-blur-md shadow-xs">
+            {item.category}
+          </span>
+          {item.type === "video" && (
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-600 text-white flex items-center gap-1 shadow-xs">
+              <Play className="w-2.5 h-2.5 fill-white" />
+              <span>Video</span>
+            </span>
+          )}
+        </div>
+
+        <span className="absolute bottom-2.5 right-3 px-2 py-0.5 rounded bg-black/80 text-white font-mono text-[10px] font-bold backdrop-blur-xs border border-white/10 z-10">
+          {item.duration}
+        </span>
+      </div>
+
+      <div className="p-4 space-y-1 text-left bg-[#181616]">
+        <h4 className="text-sm font-bold font-serif-luxury text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors truncate">
+          {item.title}
+        </h4>
+        <p className="text-xs text-slate-400 truncate font-normal">
+          {item.subtitle}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// Single Instagram Reel Card with Hover Video Play
+function InstagramWallCard({ item, onSelectVideo, onPhotoClick }) {
+  const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+  const videoRef = useRef(null);
+
+  const isVideoItem = Boolean(item.videoUrl && item.type === "reel");
+
+  const handleMouseEnter = () => {
+    if (isVideoItem && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlayingPreview(true)).catch(() => {});
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsPlayingPreview(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const handleCardClick = () => {
+    if (isVideoItem) {
+      onSelectVideo({
+        id: item.id,
+        title: item.title,
+        subtitle: item.caption,
+        category: item.tag || item.category,
+        duration: "Reel",
+        views: item.views,
+        date: "2026",
+        thumbnail: item.imageUrl,
+        videoUrl: item.videoUrl,
+        description: item.caption,
+        featuredBadge: "Instagram Reel"
+      });
+    } else if (onPhotoClick) {
+      onPhotoClick({
+        id: item.id,
+        title: item.title,
+        url: item.imageUrl,
+        category: item.tag || item.category,
+        caption: item.caption
+      });
+    }
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleCardClick}
+      className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between cursor-pointer tap-bounce select-none"
+    >
+      <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
+        {isVideoItem && (
+          <video
+            ref={videoRef}
+            src={item.videoUrl || "/videos/performance.mp4"}
+            poster={item.imageUrl}
+            muted
+            loop
+            playsInline
+            className={`w-full h-full object-cover transition-all duration-500 absolute inset-0 ${
+              isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
+            }`}
+          />
+        )}
+
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className={`w-full h-full object-cover transition-transform duration-700 ${
+            isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
+          }`}
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/25 pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/40 backdrop-blur-md shadow-xs">
+            {item.tag || item.category}
+          </span>
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-white flex items-center gap-1 shadow-xs">
+            <InstagramIcon className="w-3 h-3" />
+            <span>{isVideoItem ? "Reel" : "Post"}</span>
+          </span>
+        </div>
+
+        {/* Views */}
+        <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 text-[11px] font-semibold text-white/90 drop-shadow-md">
+          <Eye className="w-3.5 h-3.5 text-[#B99A63]" />
+          <span>{item.views}</span>
+        </div>
+      </div>
+
+      {/* Card Info & Caption */}
+      <div className="p-4 space-y-2.5 text-left bg-[#181616]">
+        <h4 className="text-sm font-bold font-serif-luxury text-[#F5F0E8] group-hover:text-[#D4AF37] transition-colors truncate">
+          {item.title}
+        </h4>
+        <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          {item.caption}
+        </p>
+
+        <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1 text-rose-400">
+              <Heart className="w-3 h-3 fill-rose-400" />
+              {item.likes}
+            </span>
+            <span className="flex items-center gap-1">
+              <MessageCircle className="w-3 h-3" />
+              {item.comments}
+            </span>
+          </div>
+
+          <a
+            href={item.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.stopPropagation();
+              playGhungrooChime();
+            }}
+            className="text-[10px] font-bold text-[#D4AF37] hover:underline flex items-center gap-0.5"
+          >
+            <span>Watch</span>
+            <ExternalLink className="w-2.5 h-2.5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CinematicReelsShowcase({
   onExploreClick,
   onMeetArtistClick,
-  _onPhotoClick
+  onPhotoClick
 }) {
   const [selectedVideo, setSelectedVideo] = useState(PERFORMANCE_ARCHIVE[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -332,6 +889,12 @@ export default function CinematicReelsShowcase({
   const [videoError, setVideoError] = useState(false);
   const [autoPlayNext, setAutoPlayNext] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Infinite marquee pause state
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
+
+  // Instagram wall filter
+  const [wallFilter, setWallFilter] = useState("all");
 
   const featuredPlayerRef = useRef(null);
   const videoElementRef = useRef(null);
@@ -342,14 +905,22 @@ export default function CinematicReelsShowcase({
       ? PERFORMANCE_ARCHIVE
       : PERFORMANCE_ARCHIVE.filter((vid) => vid.category === activeCategory);
 
+  // Calculate previous and next video items for the 3D Stage Carousel
+  const currentIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
+  const safeIdx = currentIdx >= 0 ? currentIdx : 0;
+  const prevIdx = (safeIdx - 1 + filteredVideos.length) % filteredVideos.length;
+  const nextIdx = (safeIdx + 1) % filteredVideos.length;
+  const prevVideo = filteredVideos[prevIdx];
+  const nextVideo = filteredVideos[nextIdx];
+
   // Auto-advance preview photo every 4.8 seconds when idle (not playing video and not hovered)
   useEffect(() => {
     if (isPlaying || isHovered || !filteredVideos || filteredVideos.length <= 1) return;
     const timer = setInterval(() => {
       setSelectedVideo((prev) => {
         const idx = filteredVideos.findIndex((v) => v.id === prev.id);
-        const nextIdx = (idx + 1) % filteredVideos.length;
-        return filteredVideos[nextIdx];
+        const nIdx = (idx + 1) % filteredVideos.length;
+        return filteredVideos[nIdx];
       });
     }, 4800);
     return () => clearInterval(timer);
@@ -362,7 +933,6 @@ export default function CinematicReelsShowcase({
     setSelectedVideo(video);
     setIsPlaying(true);
 
-    // Smooth scroll to the top of the featured player so user immediately sees playback
     if (featuredPlayerRef.current) {
       featuredPlayerRef.current.scrollIntoView({
         behavior: "smooth",
@@ -370,7 +940,6 @@ export default function CinematicReelsShowcase({
       });
     }
 
-    // Trigger video playback if HTML5 video ref is mounted
     setTimeout(() => {
       if (videoElementRef.current) {
         videoElementRef.current.currentTime = 0;
@@ -405,17 +974,25 @@ export default function CinematicReelsShowcase({
     setIsPlaying(false);
   };
 
-  // Automatically advance and play next video when current video finishes
   const handleVideoEnded = () => {
     if (!autoPlayNext) {
       setIsPlaying(false);
       return;
     }
-    const currentIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
-    const nextIdx = (currentIdx + 1) % filteredVideos.length;
-    const nextVideo = filteredVideos[nextIdx];
-    handleSelectVideo(nextVideo);
+    const cIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
+    const nIdx = (cIdx + 1) % filteredVideos.length;
+    handleSelectVideo(filteredVideos[nIdx]);
   };
+
+  // Filter Instagram wall items
+  const filteredWallItems = INSTAGRAM_WALL_ITEMS.filter((item) => {
+    if (wallFilter === "workshops") return item.category === "workshops";
+    if (wallFilter === "stage") return item.category === "stage";
+    if (wallFilter === "music") return item.category === "music";
+    if (wallFilter === "reels") return item.type === "reel";
+    if (wallFilter === "photos") return item.type === "post";
+    return true;
+  });
 
   return (
     <section
@@ -426,9 +1003,9 @@ export default function CinematicReelsShowcase({
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#3B0B14]/30 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#B99A63]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 space-y-8 sm:space-y-12">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-12 sm:space-y-16">
         {/* ═══════════════════════════════════════════════════════════════
-            1. SECTION HEADING (Strictly as specified)
+            1. SECTION HEADING
         ═══════════════════════════════════════════════════════════════ */}
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1F191A] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold tracking-widest uppercase shadow-lg">
@@ -446,217 +1023,292 @@ export default function CinematicReelsShowcase({
         </AnimatedSection>
 
         {/* ═══════════════════════════════════════════════════════════════
-            2. FEATURED 16:9 LANDSCAPE VIDEO PLAYER (Framed & Compact)
+            2. FEATURED 3-CARD STAGE CAROUSEL (Center + Left & Right Peek with < >)
         ═══════════════════════════════════════════════════════════════ */}
         <div
           ref={featuredPlayerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="max-w-4xl mx-auto space-y-4"
+          className="relative max-w-6xl mx-auto"
         >
-          {/* Museum Frame Container — Styled exactly like the Hero Section */}
-          <div className="museum-frame group relative p-1.5 sm:p-2.5 rounded-3xl bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all">
-            <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/45 shadow-inner">
-              {/* If video has an active error state */}
-              {videoError ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
-                  <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
-                  <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
-                    Video Stream Unavailable
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-                    The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setVideoError(false);
-                      setIsPlaying(false);
-                    }}
-                    className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
-                  >
-                    Return to Thumbnail
-                  </button>
-                </div>
-              ) : isPlaying ? (
-                /* Active Video Playback */
-                <div className="w-full h-full relative bg-black">
-                  {selectedVideo.youtubeId ? (
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
-                      title={selectedVideo.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
-                  ) : (
-                    <video
-                      ref={videoElementRef}
-                      src={selectedVideo.videoUrl}
-                      poster={selectedVideo.thumbnail}
-                      controls
-                      autoPlay
-                      playsInline
-                      onError={handleVideoError}
-                      onEnded={handleVideoEnded}
-                      className="w-full h-full object-contain bg-black"
-                    />
-                  )}
-                </div>
-              ) : (
-                /* High-Quality Video Thumbnail with Centered Play Button & Auto-previewing */
-                <div
-                  onClick={handlePlayButtonClick}
-                  className="w-full h-full relative cursor-pointer group"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Play ${selectedVideo.title}`}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handlePlayButtonClick();
-                    }
-                  }}
-                >
+          {/* Stage Wrapper */}
+          <div className="relative flex items-center justify-center py-2 sm:py-4">
+            {/* ── LEFT PEEK CARD (Previous) ── */}
+            {prevVideo && (
+              <div
+                onClick={() => handleSelectVideo(prevVideo)}
+                className="hidden lg:block absolute left-0 w-[240px] xl:w-[270px] aspect-video rounded-3xl overflow-hidden opacity-40 hover:opacity-85 transition-all duration-300 cursor-pointer transform -translate-x-6 xl:-translate-x-10 scale-90 z-10 select-none museum-frame p-1.5 bg-[#151515] border-2 border-[#B99A63]/50 shadow-2xl hover:scale-95 group"
+                title={`Previous: ${prevVideo.title}`}
+              >
+                <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
                   <img
-                    src={selectedVideo.thumbnail}
-                    alt={selectedVideo.title}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                    loading="eager"
+                    src={prevVideo.thumbnail}
+                    alt={prevVideo.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/80 text-[#D4AF37] text-[9px] font-bold uppercase tracking-wider border border-white/10">
+                    Previous
+                  </span>
+                  <span className="absolute bottom-2 left-2 right-2 text-[11px] font-bold font-serif-luxury text-[#F5F0E8] truncate">
+                    {prevVideo.title}
+                  </span>
+                </div>
+              </div>
+            )}
 
-                  {/* Atmospheric Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
-
-                  {/* Top Badges & Autoplay Toggle */}
-                  <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none z-10">
-                    <span className="px-3 py-1.5 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] sm:text-xs font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
-                      {selectedVideo.featuredBadge || selectedVideo.category}
-                    </span>
-
-                    <div className="flex items-center gap-2 pointer-events-auto">
+            {/* ── CENTER ACTIVE FEATURED PLAYER ── */}
+            <div className="relative z-20 w-full max-w-4xl mx-auto space-y-4">
+              {/* Museum Frame Container — styled exactly like the Hero Section */}
+              <div className="museum-frame group relative p-1.5 sm:p-2.5 rounded-3xl bg-[#151515] border-2 border-[#B99A63] shadow-2xl transition-all">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/45 shadow-inner">
+                  {videoError ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#181616]/95 z-20 space-y-3">
+                      <AlertCircle className="w-12 h-12 text-amber-500 animate-pulse" />
+                      <h4 className="text-lg font-bold font-serif-luxury text-[#F5F0E8]">
+                        Video Stream Unavailable
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-400 max-w-md">
+                        The requested performance recording is currently being archived. Please choose another recital from the gallery below or visit our Instagram archive.
+                      </p>
                       <button
                         type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setAutoPlayNext((prev) => !prev);
+                        onClick={() => {
+                          setVideoError(false);
+                          setIsPlaying(false);
                         }}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all cursor-pointer backdrop-blur-md border ${
-                          autoPlayNext
-                            ? "bg-[#B99A63] text-[#151515] border-[#B99A63] shadow-sm hover:bg-[#cca86d]"
-                            : "bg-black/70 text-slate-400 border-white/10 hover:text-white"
-                        }`}
-                        title="Automatically play next video when current finishes"
+                        className="px-4 py-2 rounded-full bg-[#B99A63] text-[#151515] font-bold text-xs hover:bg-[#cca86d] transition-all cursor-pointer"
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full ${autoPlayNext ? "bg-[#151515] animate-ping" : "bg-slate-500"}`} />
-                        <span>Autoplay {autoPlayNext ? "ON" : "OFF"}</span>
+                        Return to Thumbnail
                       </button>
-
-                      <span className="px-2 py-1 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-[11px] sm:text-xs font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
-                        <Clock className="w-3 h-3 text-[#B99A63]" />
-                        {selectedVideo.duration}
-                      </span>
                     </div>
-                  </div>
+                  ) : isPlaying ? (
+                    /* Active Video Playback */
+                    <div className="w-full h-full relative bg-black">
+                      {selectedVideo.youtubeId ? (
+                        <iframe
+                          src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                          title={selectedVideo.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full border-0"
+                        />
+                      ) : (
+                        <video
+                          ref={videoElementRef}
+                          src={selectedVideo.videoUrl}
+                          poster={selectedVideo.thumbnail}
+                          controls
+                          autoPlay
+                          playsInline
+                          onError={handleVideoError}
+                          onEnded={handleVideoEnded}
+                          className="w-full h-full object-contain bg-black"
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    /* High-Quality Video Thumbnail with Centered Play Button */
+                    <div
+                      onClick={handlePlayButtonClick}
+                      className="w-full h-full relative cursor-pointer group"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Play ${selectedVideo.title}`}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handlePlayButtonClick();
+                        }
+                      }}
+                    >
+                      <img
+                        src={selectedVideo.thumbnail}
+                        alt={selectedVideo.title}
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        loading="eager"
+                      />
 
-                  {/* Centered Luxury Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                    <div className="flex flex-col items-center gap-2 sm:gap-3">
-                      <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-6 ring-[#B99A63]/25">
-                        <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
+                      {/* Atmospheric Dark Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/95 via-[#121111]/40 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors pointer-events-none" />
+
+                      {/* Top Badges & Autoplay Toggle */}
+                      <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none z-10">
+                        <span className="px-3 py-1.5 rounded-full bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/50 text-[10px] sm:text-xs font-bold tracking-widest uppercase backdrop-blur-md shadow-md">
+                          {selectedVideo.featuredBadge || selectedVideo.category}
+                        </span>
+
+                        <div className="flex items-center gap-2 pointer-events-auto">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setAutoPlayNext((prev) => !prev);
+                            }}
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all cursor-pointer backdrop-blur-md border ${
+                              autoPlayNext
+                                ? "bg-[#B99A63] text-[#151515] border-[#B99A63] shadow-sm hover:bg-[#cca86d]"
+                                : "bg-black/70 text-slate-400 border-white/10 hover:text-white"
+                            }`}
+                            title="Automatically play next video when current finishes"
+                          >
+                            <span className={`w-1.5 h-1.5 rounded-full ${autoPlayNext ? "bg-[#151515] animate-ping" : "bg-slate-500"}`} />
+                            <span>Autoplay {autoPlayNext ? "ON" : "OFF"}</span>
+                          </button>
+
+                          <span className="px-2 py-1 rounded-md bg-black/80 text-[#F5F0E8] font-mono text-[11px] sm:text-xs font-semibold backdrop-blur-xs flex items-center gap-1 border border-white/10">
+                            <Clock className="w-3 h-3 text-[#B99A63]" />
+                            {selectedVideo.duration}
+                          </span>
+                        </div>
                       </div>
-                      <span className="px-3.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[11px] sm:text-xs font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
-                        Play Performance
-                      </span>
+
+                      {/* Centered Luxury Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                        <div className="flex flex-col items-center gap-2 sm:gap-3">
+                          <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 border-2 border-white/40 ring-6 ring-[#B99A63]/25">
+                            <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
+                          </div>
+                          <span className="px-3.5 py-1 rounded-full bg-[#151515]/85 text-[#F5F0E8] text-[11px] sm:text-xs font-bold tracking-wider border border-[#B99A63]/40 backdrop-blur-md shadow-md">
+                            Play Performance
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Auto-slideshow Indicator Badge when Idle */}
+                      <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-4 z-10 pointer-events-none hidden xs:block">
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase backdrop-blur-xs border border-white/10">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>Auto-previewing Photos</span>
+                        </span>
+                      </div>
+
+                      {/* Bottom Overlay Title Bar */}
+                      <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 pointer-events-none text-left">
+                        <h3 className="text-base sm:text-xl font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
+                          {selectedVideo.title}
+                        </h3>
+                        <p className="text-[11px] sm:text-xs text-slate-300 truncate font-normal">
+                          {selectedVideo.subtitle}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Auto-slideshow Indicator Badge when Idle */}
-                  <div className="absolute bottom-14 sm:bottom-16 left-3 sm:left-4 z-10 pointer-events-none hidden xs:block">
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase backdrop-blur-xs border border-white/10">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Auto-previewing Photos</span>
-                    </span>
-                  </div>
-
-                  {/* Bottom Overlay Title Bar */}
-                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10 pointer-events-none text-left">
-                    <h3 className="text-base sm:text-xl font-bold font-serif-luxury text-[#F5F0E8] drop-shadow-md truncate">
-                      {selectedVideo.title}
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-slate-300 truncate font-normal">
-                      {selectedVideo.subtitle}
-                    </p>
-                  </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-
-          {/* Featured Video Metadata & Actions Bar (YouTube Style) */}
-          <div className="p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
-            <div className="space-y-2 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-[#B99A63]/20 text-[#D4AF37] border border-[#B99A63]/40 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
-                  {selectedVideo.category}
-                </span>
-                <span className="text-xs text-slate-400 flex items-center gap-1">
-                  <Eye className="w-3 h-3 text-[#B99A63]" />
-                  {selectedVideo.views} views
-                </span>
-                <span className="text-xs text-slate-400">• {selectedVideo.date}</span>
               </div>
 
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif-luxury text-[#F5F0E8]">
-                {selectedVideo.title}
-              </h3>
+              {/* Featured Video Metadata & Actions Bar (YouTube Style) */}
+              <div className="p-4 sm:p-6 rounded-2xl bg-[#181616] border border-[#B99A63]/25 flex flex-col md:flex-row md:items-start justify-between gap-4 text-left shadow-lg">
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#B99A63]/20 text-[#D4AF37] border border-[#B99A63]/40 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+                      {selectedVideo.category}
+                    </span>
+                    <span className="text-xs text-slate-400 flex items-center gap-1">
+                      <Eye className="w-3 h-3 text-[#B99A63]" />
+                      {selectedVideo.views} views
+                    </span>
+                    <span className="text-xs text-slate-400">• {selectedVideo.date}</span>
+                  </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-3xl">
-                {selectedVideo.description}
-              </p>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif-luxury text-[#F5F0E8]">
+                    {selectedVideo.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-3xl">
+                    {selectedVideo.description}
+                  </p>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="flex items-center gap-2 shrink-0 pt-1 md:pt-0">
+                  <a
+                    href="https://www.instagram.com/dancingragasbymalavika/reels/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playGhungrooChime()}
+                    className="px-3.5 py-2 rounded-full bg-gradient-to-r from-purple-700/80 via-pink-700/80 to-amber-600/80 hover:brightness-110 text-white text-xs font-bold flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer tap-bounce shadow-md"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5" />
+                    <span>Instagram Archive</span>
+                    <ExternalLink className="w-3 h-3 opacity-80" />
+                  </a>
+
+                  {onMeetArtistClick && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        playGhungrooChime();
+                        onMeetArtistClick();
+                      }}
+                      className="px-3.5 py-2 rounded-full bg-[#1F1C1C] hover:bg-[#2A2626] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
+                    >
+                      Meet Dr. Malavika
+                    </button>
+                  )}
+
+                  {onExploreClick && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        playGhungrooChime();
+                        onExploreClick();
+                      }}
+                      className="px-4 py-2 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
+                    >
+                      Book Trial
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="flex items-center gap-2 shrink-0 pt-1 md:pt-0">
-              <a
-                href="https://www.instagram.com/dancingragasbymalavika/reels/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => playGhungrooChime()}
-                className="px-3.5 py-2 rounded-full bg-gradient-to-r from-purple-700/80 via-pink-700/80 to-amber-600/80 hover:brightness-110 text-white text-xs font-bold flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer tap-bounce shadow-md"
+            {/* ── RIGHT PEEK CARD (Next) ── */}
+            {nextVideo && (
+              <div
+                onClick={() => handleSelectVideo(nextVideo)}
+                className="hidden lg:block absolute right-0 w-[240px] xl:w-[270px] aspect-video rounded-3xl overflow-hidden opacity-40 hover:opacity-85 transition-all duration-300 cursor-pointer transform translate-x-6 xl:translate-x-10 scale-90 z-10 select-none museum-frame p-1.5 bg-[#151515] border-2 border-[#B99A63]/50 shadow-2xl hover:scale-95 group"
+                title={`Next: ${nextVideo.title}`}
               >
-                <InstagramIcon className="w-3.5 h-3.5" />
-                <span>Instagram Archive</span>
-                <ExternalLink className="w-3 h-3 opacity-80" />
-              </a>
+                <div className="museum-frame-inner relative w-full h-full rounded-2xl overflow-hidden bg-[#181616] border border-[#B99A63]/40">
+                  <img
+                    src={nextVideo.thumbnail}
+                    alt={nextVideo.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <span className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/80 text-[#D4AF37] text-[9px] font-bold uppercase tracking-wider border border-white/10">
+                    Next Up
+                  </span>
+                  <span className="absolute bottom-2 left-2 right-2 text-[11px] font-bold font-serif-luxury text-[#F5F0E8] truncate">
+                    {nextVideo.title}
+                  </span>
+                </div>
+              </div>
+            )}
 
-              {onMeetArtistClick && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    playGhungrooChime();
-                    onMeetArtistClick();
-                  }}
-                  className="px-3.5 py-2 rounded-full bg-[#1F1C1C] hover:bg-[#2A2626] border border-[#B99A63]/40 text-[#D4AF37] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
-                >
-                  Meet Dr. Malavika
-                </button>
-              )}
+            {/* ── PREVIOUS BUTTON (<) ── */}
+            <button
+              type="button"
+              onClick={() => handleSelectVideo(prevVideo)}
+              aria-label="Previous performance"
+              className="absolute left-0 sm:left-2 lg:left-8 top-1/2 -translate-y-12 sm:-translate-y-16 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#151515]/90 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border border-[#B99A63]/70 flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/40"
+              title="Previous performance"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
 
-              {onExploreClick && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    playGhungrooChime();
-                    onExploreClick();
-                  }}
-                  className="px-4 py-2 rounded-full bg-[#B99A63] hover:bg-[#cca86d] text-[#151515] text-xs font-bold transition-all cursor-pointer tap-bounce shadow-md"
-                >
-                  Book Trial
-                </button>
-              )}
-            </div>
+            {/* ── NEXT BUTTON (>) ── */}
+            <button
+              type="button"
+              onClick={() => handleSelectVideo(nextVideo)}
+              aria-label="Next performance"
+              className="absolute right-0 sm:right-2 lg:right-8 top-1/2 -translate-y-12 sm:-translate-y-16 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#151515]/90 hover:bg-[#B99A63] text-[#D4AF37] hover:text-[#151515] border border-[#B99A63]/70 flex items-center justify-center shadow-2xl transition-all cursor-pointer tap-bounce backdrop-blur-md hover:scale-110 active:scale-95 ring-4 ring-black/40"
+              title="Next performance"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
           </div>
         </div>
 
@@ -729,27 +1381,22 @@ export default function CinematicReelsShowcase({
                     loading="lazy"
                   />
 
-                  {/* Gradient Scrim */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
 
-                  {/* Top-Left Category Badge */}
                   <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/75 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-white/10 backdrop-blur-xs">
                     {video.category}
                   </span>
 
-                  {/* Duration Pill in Bottom Right (YouTube Style) */}
                   <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/90 text-white font-mono text-[10px] font-bold tracking-wide border border-white/10">
                     {video.duration}
                   </span>
 
-                  {/* Hover Play Icon Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
                     <div className="w-10 h-10 rounded-full bg-[#B99A63] text-[#151515] flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                       <Play className="w-4 h-4 fill-[#151515] translate-x-0.5" />
                     </div>
                   </div>
 
-                  {/* Active "Now Playing" Marker */}
                   {isCurrent && (
                     <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#B99A63] text-[#151515] text-[10px] font-bold tracking-wider uppercase shadow-md flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#151515] animate-ping" />
@@ -769,7 +1416,6 @@ export default function CinematicReelsShowcase({
                     </p>
                   </div>
 
-                  {/* Bottom Stats Strip */}
                   <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
                     <span className="flex items-center gap-1">
                       <Eye className="w-3 h-3 text-[#B99A63]" />
@@ -824,6 +1470,218 @@ export default function CinematicReelsShowcase({
                 );
               })}
             </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            6. CONTINUOUS CLASSICAL STREAM (The Infinite Auto-Scrolling Marquee)
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className="pt-10 border-t border-[#A9A49D]/20 space-y-6 text-left">
+          {/* Header & Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#B99A63] animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#B99A63]">
+                  Continuous Classical Stream
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
+                Infinite Photo Gallery &amp; Recital Stream
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Hover any video to preview live or click to load directly into the theater player above.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsMarqueePaused((prev) => !prev)}
+                className="px-3.5 py-1.5 rounded-xl bg-[#1E1B1B] hover:bg-[#252222] border border-[#B99A63]/40 text-xs font-semibold text-[#D4AF37] flex items-center gap-1.5 cursor-pointer tap-bounce transition-all shadow-sm"
+              >
+                {isMarqueePaused ? (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-[#D4AF37]" />
+                    <span>Resume Stream</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause className="w-3.5 h-3.5" />
+                    <span>Pause Stream</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Seamless Infinite Auto-Scrolling Track */}
+          <div className="overflow-hidden relative py-2 -mx-4 sm:mx-0 px-4 sm:px-0">
+            {/* Gradient Edge Masks for High-End Fade */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#121111] to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#121111] to-transparent z-20 pointer-events-none" />
+
+            <div
+              className={`flex gap-6 ${isMarqueePaused ? "pause-marquee" : "animate-infinite-marquee"}`}
+            >
+              {INFINITE_STREAM_ITEMS.concat(INFINITE_STREAM_ITEMS).map((item, idx) => (
+                <InfiniteStreamCard
+                  key={`${item.id}-${idx}`}
+                  item={item}
+                  onSelectVideo={handleSelectVideo}
+                  onPhotoClick={onPhotoClick}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            7. INSTAGRAM REELS & POSTS WALL (@dancingragasbymalavika)
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className="pt-12 border-t border-[#A9A49D]/20 space-y-8 text-left">
+          {/* Wall Header & Filter Pills */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+                  Native Archival Feed
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold font-serif-luxury text-[#F5F0E8] mt-1">
+                Instagram Performance Wall
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Official recitals, workshops, and classical posts from{" "}
+                <a
+                  href="https://www.instagram.com/dancingragasbymalavika/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:underline font-semibold"
+                >
+                  @dancingragasbymalavika
+                </a>
+              </p>
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+              <button
+                type="button"
+                onClick={() => setWallFilter("all")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "all"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                All ({INSTAGRAM_WALL_ITEMS.length})
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setWallFilter("reels")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "reels"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                <Video className="w-3.5 h-3.5" />
+                <span>Reels</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setWallFilter("stage")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "stage"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                Stage Shows
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setWallFilter("workshops")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "workshops"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                Workshops
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setWallFilter("music")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "music"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                Music
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setWallFilter("photos")}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer tap-bounce whitespace-nowrap ${
+                  wallFilter === "photos"
+                    ? "bg-[#B99A63] text-[#151515] shadow-sm"
+                    : "bg-[#1E1B1B] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>Photos</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 3-Column Instagram Reel Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {filteredWallItems.map((item) => (
+              <InstagramWallCard
+                key={item.id}
+                item={item}
+                onSelectVideo={handleSelectVideo}
+                onPhotoClick={onPhotoClick}
+              />
+            ))}
+          </div>
+
+          {/* Follow Callout Strip */}
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#181616] via-[#24050B]/50 to-[#181616] border border-[#B99A63]/30">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center shrink-0 text-white font-bold text-xs shadow-md">
+                ig
+              </div>
+              <div className="text-left">
+                <h4 className="text-sm font-bold font-serif-luxury text-[#F5F0E8]">
+                  Join 10,000+ Classical Dance Enthusiasts
+                </h4>
+                <p className="text-xs text-slate-400">
+                  Follow @dancingragasbymalavika for daily practice tips, raga sadhana &amp; stage clips
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="https://www.instagram.com/dancingragasbymalavika/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => playGhungrooChime()}
+              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:brightness-110 text-white font-bold text-xs shadow-lg flex items-center gap-2 cursor-pointer tap-bounce shrink-0"
+            >
+              <InstagramIcon className="w-4 h-4" />
+              <span>Follow on Instagram</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </div>
