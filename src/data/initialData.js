@@ -14,10 +14,10 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Diploma & Certification",
-    image: "/images/malavika_dance_stage.jpg",
+    image: "/images/courses/diploma_bharatanatyam.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/malavika_dance_stage.jpg",
+      "/images/courses/diploma_bharatanatyam.jpg",
       "/images/stage_shows/stage_02.jpg",
       "/images/stage_shows/stage_05.jpg",
       "/images/stage_shows/stage_01.jpg"
@@ -43,10 +43,10 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Practical Training",
-    image: "/images/malavika_dance_pose.jpg",
+    image: "/images/courses/non_diploma_bharatanatyam.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/malavika_dance_pose.jpg",
+      "/images/courses/non_diploma_bharatanatyam.jpg",
       "/images/stage_shows/stage_04.jpg",
       "/images/stage_shows/stage_08.jpg",
       "/images/stage_shows/stage_03.jpg"
@@ -72,10 +72,10 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Vocal & Theory",
-    image: "/images/music_and_dance/music_01.jpg",
+    image: "/images/courses/carnatic_music.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/music_and_dance/music_01.jpg",
+      "/images/courses/carnatic_music.jpg",
       "/images/music_and_dance/music_02.jpg",
       "/images/music_and_dance/music_03.jpg",
       "/images/malavika_vocal.jpg"
@@ -101,10 +101,10 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Grace & Vibrancy",
-    image: "/images/stage_shows/stage_03.jpg",
+    image: "/images/courses/bollywood_dance.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/stage_shows/stage_03.jpg",
+      "/images/courses/bollywood_dance.jpg",
       "/images/stage_shows/stage_09.jpg",
       "/images/stage_shows/stage_12.jpg",
       "/images/stage_shows/stage_15.jpg"
@@ -130,10 +130,10 @@ export const INITIAL_COURSES = [
     duration: "60-Day Guided Journey",
     frequency: "Scheduled sessions + daily guidance",
     badge: "Yoga & Nutrition",
-    image: "/images/malavika_portrait.jpg",
+    image: "/images/courses/fitness_program.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/malavika_portrait.jpg",
+      "/images/courses/fitness_program.jpg",
       "/images/stage_shows/stage_11.jpg",
       "/images/stage_shows/stage_14.jpg",
       "/images/stage_shows/stage_16.jpg"
@@ -161,10 +161,10 @@ export const INITIAL_COURSES = [
     duration: "Project-based timeline",
     frequency: "Rehearsal cycles + dress rehearsal",
     badge: "Stage & Cultural",
-    image: "/images/stage_shows/stage_01.jpg",
+    image: "/images/courses/service_stage_show.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/stage_shows/stage_01.jpg",
+      "/images/courses/service_stage_show.jpg",
       "/images/stage_shows/stage_13.jpg",
       "/images/stage_shows/stage_17.jpg",
       "/images/stage_shows/stage_18.jpg"
@@ -190,10 +190,10 @@ export const INITIAL_COURSES = [
     duration: "Custom sessions per song",
     frequency: "Flexible schedule (Online / In-person)",
     badge: "Weddings & Sangeet",
-    image: "/images/stage_shows/stage_07.jpg",
+    image: "/images/courses/service_wedding.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/stage_shows/stage_07.jpg",
+      "/images/courses/service_wedding.jpg",
       "/images/stage_shows/stage_19.jpg",
       "/images/stage_shows/stage_20.jpg",
       "/images/stage_shows/stage_21.jpg"
@@ -219,10 +219,10 @@ export const INITIAL_COURSES = [
     duration: "Full Day / Half Day Intensive",
     frequency: "Single-day event",
     badge: "1-Day Intensive",
-    image: "/images/workshops/workshop_01.jpg",
+    image: "/images/courses/service_workshop_1day.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/workshops/workshop_01.jpg",
+      "/images/courses/service_workshop_1day.jpg",
       "/images/workshops/workshop_02.jpg",
       "/images/workshops/workshop_04.jpg",
       "/images/workshops/workshop_05.jpg"
@@ -248,10 +248,10 @@ export const INITIAL_COURSES = [
     duration: "3 Consecutive Days",
     frequency: "Multi-day intensive residency",
     badge: "3-Day Masterclass",
-    image: "/images/workshops/workshop_03.jpg",
+    image: "/images/courses/service_workshop_3day.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/workshops/workshop_03.jpg",
+      "/images/courses/service_workshop_3day.jpg",
       "/images/workshops/workshop_06.jpg",
       "/images/workshops/workshop_07.jpg",
       "/images/workshops/workshop_08.jpg"
@@ -277,10 +277,10 @@ export const INITIAL_COURSES = [
     duration: "Targeted competition prep",
     frequency: "Rigorous rehearsal schedule",
     badge: "Championship Level",
-    image: "/images/stage_shows/stage_10.jpg",
+    image: "/images/courses/service_competition.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/stage_shows/stage_10.jpg",
+      "/images/courses/service_competition.jpg",
       "/images/stage_shows/stage_22.jpg",
       "/images/stage_shows/stage_02.jpg",
       "/images/stage_shows/stage_14.jpg"
@@ -306,10 +306,10 @@ export const INITIAL_COURSES = [
     duration: "Flexible corporate rehearsal schedules",
     frequency: "Tailored to event timeline",
     badge: "Corporate & Galas",
-    image: "/images/stage_shows/stage_06.jpg",
+    image: "/images/courses/service_corporate.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/stage_shows/stage_06.jpg",
+      "/images/courses/service_corporate.jpg",
       "/images/stage_shows/stage_08.jpg",
       "/images/stage_shows/stage_17.jpg",
       "/images/workshops/workshop_01.jpg"

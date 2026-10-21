@@ -41,16 +41,22 @@ export default function CourseDetailsModal() {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Hero Image */}
-        <div className="relative h-64 sm:h-72 w-full overflow-hidden rounded-t-3xl bg-slate-900">
+        {/* Modal Hero Image (Approach B: Full uncropped letterbox) */}
+        <div className="relative h-64 sm:h-72 w-full overflow-hidden rounded-t-3xl bg-[#0f0e0d] flex items-center justify-center">
+          <img
+            src={course.image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+            aria-hidden="true"
+          />
           <img
             src={course.image}
             alt={course.title}
-            className="w-full h-full object-cover"
+            className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none z-10" />
 
-          <div className="absolute bottom-6 left-6 right-6">
+          <div className="absolute bottom-6 left-6 right-6 z-20">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-slate-900 backdrop-blur-md">
                 {course.category}

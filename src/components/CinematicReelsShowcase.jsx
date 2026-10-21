@@ -51,7 +51,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "14:20",
     views: "18.4K",
     date: "Oct 2026",
-    thumbnail: "/images/malavika_dance_stage.jpg",
+    thumbnail: "/images/gallery/gallery_01.jpg",
     videoUrl: "/videos/performance.mp4",
     description:
       "A full-length live Margam stage performance featuring intricate Adavu footwork, crisp Aramandi stance, and evocative Abhinaya in traditional temple silk attire.",
@@ -65,7 +65,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "18:45",
     views: "12.8K",
     date: "Sep 2026",
-    thumbnail: "/images/stage_shows/stage_01.jpg",
+    thumbnail: "/images/gallery/gallery_02.jpg",
     videoUrl: "/videos/recital_live_01.mp4",
     description:
       "Dr. Malavika presents the cornerstone of the Bharatanatyam Margam — the Varnam — harmonizing brisk rhythmic jathis with nuanced emotional storytelling.",
@@ -79,7 +79,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "08:15",
     views: "9.6K",
     date: "Aug 2026",
-    thumbnail: "/images/malavika_dance_pose.jpg",
+    thumbnail: "/images/gallery/gallery_03.jpg",
     videoUrl: "/videos/recital_live_03.mp4",
     description:
       "The traditional opening prayer piece of the Margam repertoire, showcasing precise eye gestures (Drishti Bhedas), neck movements, and foundational postures.",
@@ -95,7 +95,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "16:30",
     views: "11.2K",
     date: "Oct 2026",
-    thumbnail: "/images/music_and_dance/music_01.jpg",
+    thumbnail: "/images/gallery/gallery_04.jpg",
     videoUrl: "/videos/performance.mp4",
     description:
       "Rooted in hereditary musical lineage, this session demonstrates foundational Sa-Pa-Sa' Tanpura alignment, Sarali Varisais, and soulful raga elaboration.",
@@ -109,7 +109,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "21:10",
     views: "8.7K",
     date: "Sep 2026",
-    thumbnail: "/images/malavika_vocal.jpg",
+    thumbnail: "/images/gallery/gallery_05.jpg",
     videoUrl: "/videos/recital_live_02.mp4",
     description:
       "Live acoustic vocal recital featuring classic Purandara Dasa and Tyagaraja compositions with pure Shruti discipline and tala clarity.",
@@ -123,7 +123,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "11:45",
     views: "7.9K",
     date: "Aug 2026",
-    thumbnail: "/images/music_and_dance/music_03.jpg",
+    thumbnail: "/images/gallery/gallery_06.jpg",
     videoUrl: "/videos/recital_live_01.mp4",
     description:
       "Exploring the vital bridge between Carnatic rhythmic calculation and dancer footwork across the 7 principal Tala cycles.",
@@ -139,7 +139,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "24:50",
     views: "22.1K",
     date: "Oct 2026",
-    thumbnail: "/images/stage_shows/stage_03.jpg",
+    thumbnail: "/images/gallery/gallery_07.jpg",
     videoUrl: "/videos/recital_live_02.mp4",
     description:
       "An ensemble stage choreography under theatrical illumination, highlighting spatial blocking, dynamic spins (chakkars), and synchrony.",
@@ -153,7 +153,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "29:15",
     views: "26.3K",
     date: "Sep 2026",
-    thumbnail: "/images/stage_shows/stage_06.jpg",
+    thumbnail: "/images/gallery/gallery_08.jpg",
     videoUrl: "/videos/performance.mp4",
     description:
       "Highlights from 20+ stage productions directed and choreographed across Georgia and international venues, introducing classical Indian arts to global audiences.",
@@ -167,7 +167,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "10:15",
     views: "15.4K",
     date: "Aug 2026",
-    thumbnail: "/images/stage_shows/stage_05.jpg",
+    thumbnail: "/images/gallery/gallery_09.jpg",
     videoUrl: "/videos/recital_live_03.mp4",
     description:
       "The high-energy finale of the Bharatanatyam Margam repertoire celebrating crisp footwork, statuesque poses, and joyous musical energy.",
@@ -183,7 +183,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "15:20",
     views: "14.6K",
     date: "Oct 2026",
-    thumbnail: "/images/workshops/workshop_01.jpg",
+    thumbnail: "/images/gallery/gallery_10.jpg",
     videoUrl: "/videos/workshop_reel.mp4",
     description:
       "Hands-on masterclass focusing on core Bharatanatyam posture, knee angles, spine alignment, and group stage movement drills.",
@@ -197,7 +197,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "13:40",
     views: "10.8K",
     date: "Sep 2026",
-    thumbnail: "/images/workshops/workshop_02.jpg",
+    thumbnail: "/images/gallery/gallery_11.jpg",
     videoUrl: "/videos/workshop_reel.mp4",
     description:
       "Highlights from a multi-day youth intensive focusing on Adavu discipline, hand gestures (Hastha Mudras), and musical ear training.",
@@ -211,7 +211,7 @@ const PERFORMANCE_ARCHIVE = [
     duration: "19:30",
     views: "16.9K",
     date: "Jul 2026",
-    thumbnail: "/images/workshops/workshop_03.jpg",
+    thumbnail: "/images/gallery/gallery_12.jpg",
     videoUrl: "/videos/recital_live_01.mp4",
     description:
       "A clinical breakdown of the Natyashastra's nine emotional states (Rasas) for stage performers, taught with anatomical and somatic awareness.",
@@ -476,7 +476,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Live Stage Bharatanatyam Recital",
     caption:
       "Rooted in 21 years of sacred Bharatanatyam discipline. Captivating live stage recital showcasing rhythmic footwork, temple silk, and expressive Abhinaya. #dancingragas #bharatanatyam #stageperformance",
-    imageUrl: "/images/stage_shows/stage_01.jpg",
+    imageUrl: "/images/instagram/insta_01.jpg",
     videoUrl: "/videos/recital_live_01.mp4",
     audio: "Live Stage Bells & Nattuvangam · dancingragasbymalavika",
     likes: "3.4k",
@@ -492,7 +492,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "International Classical Workshop",
     caption:
       "Immersive masterclass coaching students on Araimandi posture, mudras, and rhythmic footwork. Empowering the next generation of classical dancers. #danceworkshop #masterclass #classicaldance",
-    imageUrl: "/images/workshops/workshop_01.jpg",
+    imageUrl: "/images/instagram/insta_02.jpg",
     videoUrl: "/videos/workshop_reel.mp4",
     audio: "Workshop Rhythm Drills · Dr. Malavika",
     likes: "2.9k",
@@ -508,7 +508,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Auditorium Stage Choreography",
     caption:
       "Dynamic stage choreography presenting intricate rhythm patterns and classical grace under dramatic auditorium illumination. #stageshow #choreography #dr_malavika",
-    imageUrl: "/images/stage_shows/stage_03.jpg",
+    imageUrl: "/images/instagram/insta_03.jpg",
     videoUrl: "/videos/recital_live_02.mp4",
     audio: "Auditorium Symphony · dancingragasbymalavika",
     likes: "4.1k",
@@ -524,7 +524,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Institutional Dance Workshop & Training",
     caption:
       "Hands-on foundation training in classical posture, balance, and rhythm during an academy institutional workshop. #workshops #dancetraining #foundations",
-    imageUrl: "/images/workshops/workshop_02.jpg",
+    imageUrl: "/images/instagram/insta_06.jpg",
     audio: "Classical Sitar & Tanpura Drone",
     likes: "2.5k",
     comments: "94",
@@ -539,7 +539,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Carnatic Vocal & Shruti Sadhana",
     caption:
       "16+ years of hereditary vocal lineage under mother Resmi Narayanan. Daily shruti alignment, swara riyaz, and raga bhava. #carnaticmusic #vocal #shruti #ragas",
-    imageUrl: "/images/music_and_dance/music_01.jpg",
+    imageUrl: "/images/instagram/insta_04.jpg",
     videoUrl: "/videos/performance.mp4",
     audio: "Raga Mayamalavagowla Alapana · Dr. Malavika",
     likes: "2.2k",
@@ -555,7 +555,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Expressions & Mudras Masterclass",
     caption:
       "Deep dive into Hastha Mudras and expressive Abhinaya storytelling with Dr. Malavika M. Sunil. #mudras #abhinaya #masterclass",
-    imageUrl: "/images/workshops/workshop_03.jpg",
+    imageUrl: "/images/instagram/insta_09.jpg",
     audio: "Abhinaya Classical Tanpura",
     likes: "3.2k",
     comments: "138",
@@ -570,7 +570,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Temple Recital & Salangai Bells",
     caption:
       "Sacred temple recital invoking Lord Nataraja with traditional brass salangai rhythm and silk adornment. #templedance #nataraja #salangai",
-    imageUrl: "/images/stage_shows/stage_05.jpg",
+    imageUrl: "/images/instagram/insta_05.jpg",
     audio: "Sacred Temple Nadaswaram & Chimes",
     likes: "3.8k",
     comments: "174",
@@ -585,7 +585,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Music & Dance Synergy Masterclass",
     caption:
       "Integrating Carnatic rhythmic tala structures with Bharatanatyam nritta steps in dedicated studio sessions. #carnaticdance #talam #synergy",
-    imageUrl: "/images/music_and_dance/music_03.jpg",
+    imageUrl: "/images/instagram/insta_08.jpg",
     audio: "Tala Swara Riyaz · Dr. Malavika",
     likes: "2.8k",
     comments: "122",
@@ -600,7 +600,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Tbilisi International Stage Production",
     caption:
       "International cultural bridge in Georgia: 20+ stage productions and university workshops sharing Indian classical art worldwide. #tbilisi #globaldance #culturaldiplomacy",
-    imageUrl: "/images/stage_shows/stage_06.jpg",
+    imageUrl: "/images/instagram/insta_07.jpg",
     audio: "Live Stage Symphony · Tbilisi Concert",
     likes: "4.5k",
     comments: "210",
@@ -615,7 +615,7 @@ const INSTAGRAM_WALL_ITEMS = [
     title: "Student Ensemble Workshop & Choreography",
     caption:
       "Students collaborating on group formations and stage transitions during an intensive weekend masterclass. #ensemble #groupchoreography #workshops",
-    imageUrl: "/images/workshops/workshop_06.jpg",
+    imageUrl: "/images/instagram/insta_10.jpg",
     audio: "Ensemble Footwork Rhythms",
     likes: "2.7k",
     comments: "105",
@@ -682,6 +682,14 @@ function InfiniteStreamCard({ item, onSelectVideo, onPhotoClick }) {
       className="w-[230px] sm:w-[320px] shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 cursor-pointer flex flex-col justify-between select-none relative tap-bounce"
     >
       <div className="aspect-[16/11] bg-[#0d0d0d] relative overflow-hidden">
+        {/* Approach B: Ambient blurred glow backdrop */}
+        <img
+          src={item.imageUrl}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+          aria-hidden="true"
+        />
+
         {item.type === "video" && (
           <video
             ref={videoRef}
@@ -690,22 +698,23 @@ function InfiniteStreamCard({ item, onSelectVideo, onPhotoClick }) {
             muted
             loop
             playsInline
-            className={`w-full h-full object-cover transition-opacity duration-500 absolute inset-0 ${
+            className={`w-full h-full object-contain bg-black/80 transition-opacity duration-500 absolute inset-0 z-10 ${
               isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
             }`}
           />
         )}
 
+        {/* Approach B: Uncropped full foreground photo */}
         <img
           src={item.imageUrl}
           alt={item.title}
-          className={`w-full h-full object-cover transition-transform duration-700 ${
+          className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-transform duration-700 ${
             isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
           }`}
           loading="lazy"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/90 via-transparent to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/90 via-transparent to-black/20 pointer-events-none z-10" />
 
         <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex items-center gap-1.5 z-10 pointer-events-none">
           <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold bg-[#151515]/90 text-[#D4AF37] border border-[#B99A63]/40 backdrop-blur-md shadow-xs">
@@ -794,7 +803,16 @@ function InstagramWallCard({ item, onSelectVideo, onPhotoClick }) {
       onClick={handleCardClick}
       className="rounded-3xl overflow-hidden bg-[#1E1B1B] border border-[#B99A63]/30 shadow-xl group hover:border-[#B99A63] transition-all duration-300 flex flex-col justify-between cursor-pointer tap-bounce select-none"
     >
-      <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden">
+      {/* Card Media (Approach B: Full uncropped letterbox with ambient backdrop) */}
+      <div className="aspect-[4/5] bg-[#0d0d0d] relative overflow-hidden flex items-center justify-center">
+        {/* Ambient blurred glow so background looks luxurious and natural */}
+        <img
+          src={item.imageUrl}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+          aria-hidden="true"
+        />
+
         {isVideoItem && (
           <video
             ref={videoRef}
@@ -803,22 +821,23 @@ function InstagramWallCard({ item, onSelectVideo, onPhotoClick }) {
             muted
             loop
             playsInline
-            className={`w-full h-full object-cover transition-all duration-500 absolute inset-0 ${
+            className={`w-full h-full object-contain bg-black/80 transition-all duration-500 absolute inset-0 z-10 ${
               isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
             }`}
           />
         )}
 
+        {/* Main uncropped photo: 100% full view, zero face cropping */}
         <img
           src={item.imageUrl}
           alt={item.title}
-          className={`w-full h-full object-cover transition-transform duration-700 ${
+          className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-transform duration-700 ${
             isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
           }`}
           loading="lazy"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/25 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/25 pointer-events-none z-10" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
@@ -921,12 +940,21 @@ function ArchiveVideoGridCard({ video, isCurrent, onSelectVideo }) {
         }
       }}
     >
-      {/* 16:9 Thumbnail & Video Hover Teaser Container */}
-      <div className="relative aspect-video w-full overflow-hidden bg-black/40">
+      {/* 16:9 Thumbnail & Video Hover Teaser Container (Approach B: Full Uncropped Letterbox) */}
+      <div className="relative aspect-video w-full overflow-hidden bg-[#0f0e0d] flex items-center justify-center">
+        {/* Ambient blurred backdrop for luxury framing */}
+        <img
+          src={video.thumbnail}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Uncropped foreground photo: 100% visible, zero face cropping */}
         <img
           src={video.thumbnail}
           alt={video.title}
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+          className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-all duration-500 group-hover:scale-105 ${
             isHovered && video.videoUrl ? "opacity-0" : "opacity-100"
           }`}
           loading="lazy"
@@ -941,32 +969,32 @@ function ArchiveVideoGridCard({ video, isCurrent, onSelectVideo }) {
             loop
             playsInline
             preload="none"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
+            className={`absolute inset-0 z-10 w-full h-full object-contain bg-black/80 transition-opacity duration-300 pointer-events-none ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           />
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none z-10" />
 
-        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/75 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-white/10 backdrop-blur-xs">
+        <span className="absolute top-2 left-2 z-20 px-2 py-0.5 rounded-full bg-black/75 text-[#D4AF37] text-[10px] font-bold tracking-wider uppercase border border-white/10 backdrop-blur-xs">
           {video.category}
         </span>
 
         {isHovered && video.videoUrl ? (
-          <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-[#B99A63] text-[#151515] font-mono text-[10px] font-bold tracking-wider uppercase shadow flex items-center gap-1 animate-pulse">
+          <span className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded bg-[#B99A63] text-[#151515] font-mono text-[10px] font-bold tracking-wider uppercase shadow flex items-center gap-1 animate-pulse">
             <span className="w-1.5 h-1.5 rounded-full bg-[#151515]" />
             Preview
           </span>
         ) : (
-          <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/90 text-white font-mono text-[10px] font-bold tracking-wide border border-white/10">
+          <span className="absolute bottom-2 right-2 z-20 px-1.5 py-0.5 rounded bg-black/90 text-white font-mono text-[10px] font-bold tracking-wide border border-white/10">
             {video.duration}
           </span>
         )}
 
         {/* Play icon: subtley visible on mobile touch, highlighted on hover */}
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity bg-black/20 sm:bg-black/30 ${
+          className={`absolute inset-0 z-20 flex items-center justify-center transition-opacity bg-black/20 sm:bg-black/30 ${
             isHovered ? "opacity-0 pointer-events-none" : "opacity-80 sm:opacity-0 sm:group-hover:opacity-100"
           }`}
         >
@@ -1163,13 +1191,19 @@ export default function CinematicReelsShowcase({
                 className="group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2 bg-[#151515]/70 backdrop-blur-md border-2 border-[#B99A63]/40 hover:border-[#B99A63] opacity-85 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl order-2 md:order-1 col-span-1 md:col-span-3 flex flex-col justify-between"
                 title={`Previous: ${prevVideo.title}`}
               >
-                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#181616]/75 border border-[#B99A63]/30">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
+                  <img
+                    src={prevVideo.thumbnail}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+                    aria-hidden="true"
+                  />
                   <img
                     src={prevVideo.thumbnail}
                     alt={prevVideo.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-10" />
 
                   {/* Top Badges */}
                   <div className="absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 flex items-center justify-between z-10 pointer-events-none">
@@ -1266,14 +1300,20 @@ export default function CinematicReelsShowcase({
                   >
                     <img
                       src={selectedVideo.thumbnail}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+                      aria-hidden="true"
+                    />
+                    <img
+                      src={selectedVideo.thumbnail}
                       alt={selectedVideo.title}
-                      className="w-full h-full object-cover transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+                      className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-all duration-700 opacity-95 group-hover:opacity-100 group-hover:scale-105"
                       loading="eager"
                     />
 
                     {/* Atmospheric Dark Translucent Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/80 via-[#121111]/30 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121111]/80 via-[#121111]/30 to-transparent pointer-events-none z-10" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors pointer-events-none z-10" />
 
                     {/* Top Badges & Autoplay Toggle */}
                     <div className="absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 flex items-center justify-between pointer-events-none z-10">
@@ -1367,13 +1407,19 @@ export default function CinematicReelsShowcase({
                 className="group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2 bg-[#151515]/70 backdrop-blur-md border-2 border-[#B99A63]/40 hover:border-[#B99A63] opacity-85 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl order-3 md:order-3 col-span-1 md:col-span-3 flex flex-col justify-between"
                 title={`Next: ${nextVideo.title}`}
               >
-                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#181616]/75 border border-[#B99A63]/30">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
+                  <img
+                    src={nextVideo.thumbnail}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+                    aria-hidden="true"
+                  />
                   <img
                     src={nextVideo.thumbnail}
                     alt={nextVideo.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-10" />
 
                   {/* Top Badges */}
                   <div className="absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 flex items-center justify-between z-10 pointer-events-none">

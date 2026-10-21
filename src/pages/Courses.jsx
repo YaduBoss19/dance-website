@@ -231,18 +231,24 @@ export default function Courses() {
                       : "border-slate-200"
                   }`}
                 >
-                  {/* Top Image Banner */}
-                  <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-900 hover-img-zoom">
+                  {/* Top Image Banner (Approach B: Full uncropped letterbox) */}
+                  <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-[#0f0e0d] flex items-center justify-center">
+                    <img
+                      src={course.image}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+                      aria-hidden="true"
+                    />
                     <img
                       src={course.image}
                       alt={course.title}
-                      className="w-full h-full object-cover"
+                      className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none z-10" />
 
                     {/* Top Badges */}
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
                       <span className="px-3 py-1 rounded-full text-xs font-black bg-white text-slate-900 shadow-sm backdrop-blur-md">
                         {course.category}
                       </span>

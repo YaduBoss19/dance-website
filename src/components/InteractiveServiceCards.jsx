@@ -154,17 +154,25 @@ function CourseSlideshow({ images = [], title = "", instagramUrl = "" }) {
       {images.map((imgSrc, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out bg-[#0f0e0d] flex items-center justify-center ${
             idx === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
           }`}
         >
+          {/* Approach B: Luxury ambient feathered blurred background */}
+          <img
+            src={imgSrc}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+            aria-hidden="true"
+          />
+          {/* Approach B: Full uncropped photo — face, crown & mudras 100% visible */}
           <img
             src={imgSrc}
             alt={`${title} photo ${idx + 1}`}
-            className="w-full h-full object-cover"
+            className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/80 via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/75 via-transparent to-black/20 pointer-events-none z-10" />
         </div>
       ))}
 
@@ -287,16 +295,22 @@ function CourseAccordionItem({
         className="w-full p-3 sm:p-3.5 md:p-4 flex items-center justify-between gap-3 text-left cursor-pointer transition-colors"
       >
         <div className="flex items-center gap-3 min-w-0">
-          {/* Compact Photo Thumbnail with Museum Frame */}
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 bg-[#151515] relative border border-[#B99A63]/40 shadow-xs">
+          {/* Compact Photo Thumbnail with Museum Frame (Approach B: Uncropped full view) */}
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 bg-[#0f0e0d] relative border border-[#B99A63]/40 shadow-xs flex items-center justify-center">
+            <img
+              src={course.image}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-md opacity-35 scale-110 pointer-events-none"
+              aria-hidden="true"
+            />
             <img
               src={course.image}
               alt={course.title}
-              className="w-full h-full object-cover"
+              className="relative z-10 w-full h-full object-contain"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/15" />
-            <div className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-[#151515] text-[#D4AF37] flex items-center justify-center border border-[#B99A63]/40">
+            <div className="absolute inset-0 bg-black/15 pointer-events-none z-10" />
+            <div className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-[#151515] text-[#D4AF37] flex items-center justify-center border border-[#B99A63]/40 z-20">
               <Icon className="w-2.5 h-2.5" />
             </div>
           </div>

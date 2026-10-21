@@ -39,6 +39,14 @@ function GalleryCard({ item, idx, onOpenLightbox }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Approach B: Luxury ambient blurred glow backdrop */}
+      <img
+        src={item.url}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Video for hover playback */}
       {item.type === "video" && (
         <video
@@ -48,24 +56,24 @@ function GalleryCard({ item, idx, onOpenLightbox }) {
           muted
           loop
           playsInline
-          className={`w-full h-full object-cover transition-opacity duration-500 absolute inset-0 ${
+          className={`w-full h-full object-contain bg-black/80 transition-opacity duration-500 absolute inset-0 z-10 ${
             isPlayingPreview ? "opacity-100 scale-105" : "opacity-0"
           }`}
         />
       )}
 
-      {/* Static image */}
+      {/* Static image (Approach B: Full uncropped view) */}
       <img
         src={item.url}
         alt={item.title}
-        className={`w-full h-full object-cover transition-transform duration-700 ${
+        className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-transform duration-700 ${
           isPlayingPreview ? "opacity-0" : "opacity-100 group-hover:scale-105"
         }`}
         loading="lazy"
       />
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/95 via-[#151515]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/95 via-[#151515]/30 to-transparent pointer-events-none z-10" />
 
       {/* Top media pill */}
       <div className="absolute top-4 left-4 flex items-center gap-2 z-10 pointer-events-none">
