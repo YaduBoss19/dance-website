@@ -80,6 +80,14 @@ export default function VideoPerformanceShowcase({
           />
         ) : (
           <>
+            {/* Approach B: Ambient blurred backdrop */}
+            <img
+              src={posterImage}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
+              aria-hidden="true"
+            />
+
             <video
               ref={videoRef}
               src={videoSrc}
@@ -89,7 +97,7 @@ export default function VideoPerformanceShowcase({
               onError={handleVideoError}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
-              className="w-full h-full object-cover"
+              className="relative z-10 w-full h-full object-contain bg-black/40"
             />
 
             {/* Error Overlay Fallback */}
