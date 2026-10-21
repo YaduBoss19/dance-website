@@ -16,6 +16,8 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Heart,
   MessageCircle,
   Camera,
@@ -1052,6 +1054,10 @@ export default function CinematicReelsShowcase({
   // Instagram wall filter
   const [wallFilter, setWallFilter] = useState("all");
 
+  // Expand/collapse states: 2 rows for videos, 1 row for Instagram by default
+  const [showAllVideos, setShowAllVideos] = useState(false);
+  const [showAllInstagram, setShowAllInstagram] = useState(false);
+
   const featuredPlayerRef = useRef(null);
   const videoElementRef = useRef(null);
 
@@ -1060,6 +1066,9 @@ export default function CinematicReelsShowcase({
     activeCategory === "All Videos"
       ? PERFORMANCE_ARCHIVE
       : PERFORMANCE_ARCHIVE.filter((vid) => vid.category === activeCategory);
+
+  // Slice to 2 rows (8 items on a 4-col grid) unless expanded
+  const visibleVideos = showAllVideos ? filteredVideos : filteredVideos.slice(0, 8);
 
   // Calculate previous and next video items for the 3D Stage Carousel
   const currentIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
@@ -1149,6 +1158,9 @@ export default function CinematicReelsShowcase({
     if (wallFilter === "photos") return item.type === "post";
     return true;
   });
+
+  // Slice to 1st row only (3 items on a 3-col grid) unless expanded
+  const visibleWallItems = showAllInstagram ? filteredWallItems : filteredWallItems.slice(0, 3);
 
   return (
     <section
@@ -1618,17 +1630,52 @@ export default function CinematicReelsShowcase({
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
-            4. RESPONSIVE VIDEO THUMBNAIL GRID (Desktop 3-4, Tablet 2, Mobile 1-2)
+            4. RESPONSIVE VIDEO THUMBNAIL GRID (Default 2 Rows; Click here for more)
         ═══════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 text-left">
-          {filteredVideos.map((video) => (
-            <ArchiveVideoGridCard
-              key={video.id}
-              video={video}
-              isCurrent={selectedVideo.id === video.id}
-              onSelectVideo={handleSelectVideo}
-            />
-          ))}
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 text-left">
+            {visibleVideos.map((video) => (
+              <ArchiveVideoGridCard
+                key={video.id}
+                video={video}
+                isCurrent={selectedVideo.id === video.id}
+                onSelectVideo={handleSelectVideo}
+              />
+            ))}
+          </div>
+
+          {/* "Click here for more" / "Show Less" Button for Video Grid */}
+          {!showAllVideos && filteredVideos.length > 8 && (
+            <div className="pt-2 flex justify-center">
+              <button
+                type="button"
+                onClick={() => {
+                  playGhungrooChime();
+                  setShowAllVideos(true);
+                }}
+                className="silk-zari-btn px-6 py-2.5 rounded-full bg-[#181616] hover:bg-[#25201b] text-[#D4AF37] hover:text-white border border-[#B99A63]/50 hover:border-[#B99A63] text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2 cursor-pointer tap-bounce"
+              >
+                <span>Click here for more</span>
+                <ChevronDown className="w-4 h-4 text-[#D4AF37]" />
+              </button>
+            </div>
+          )}
+
+          {showAllVideos && filteredVideos.length > 8 && (
+            <div className="pt-2 flex justify-center">
+              <button
+                type="button"
+                onClick={() => {
+                  playGhungrooChime();
+                  setShowAllVideos(false);
+                }}
+                className="px-6 py-2.5 rounded-full bg-[#181616] hover:bg-[#25201b] text-slate-300 hover:text-white border border-white/10 hover:border-[#B99A63]/50 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2 cursor-pointer tap-bounce"
+              >
+                <span>Show Less</span>
+                <ChevronUp className="w-4 h-4 text-slate-400" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -1798,16 +1845,51 @@ export default function CinematicReelsShowcase({
               </button>
             </div>
 
-            {/* 3-Column Instagram Reel Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-              {filteredWallItems.map((item) => (
-                <InstagramWallCard
-                  key={item.id}
-                  item={item}
-                  onSelectVideo={handleSelectVideo}
-                  onPhotoClick={onPhotoClick}
-                />
-              ))}
+            {/* 3-Column Instagram Reel Cards Grid (Default 1st row only; Click here for more) */}
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                {visibleWallItems.map((item) => (
+                  <InstagramWallCard
+                    key={item.id}
+                    item={item}
+                    onSelectVideo={handleSelectVideo}
+                    onPhotoClick={onPhotoClick}
+                  />
+                ))}
+              </div>
+
+              {/* "Click here for more" / "Show Less" Button for Instagram Grid */}
+              {!showAllInstagram && filteredWallItems.length > 3 && (
+                <div className="pt-2 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playGhungrooChime();
+                      setShowAllInstagram(true);
+                    }}
+                    className="silk-zari-btn px-6 py-2.5 rounded-full bg-[#181616] hover:bg-[#25201b] text-[#D4AF37] hover:text-white border border-[#B99A63]/50 hover:border-[#B99A63] text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2 cursor-pointer tap-bounce"
+                  >
+                    <span>Click here for more</span>
+                    <ChevronDown className="w-4 h-4 text-[#D4AF37]" />
+                  </button>
+                </div>
+              )}
+
+              {showAllInstagram && filteredWallItems.length > 3 && (
+                <div className="pt-2 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playGhungrooChime();
+                      setShowAllInstagram(false);
+                    }}
+                    className="px-6 py-2.5 rounded-full bg-[#181616] hover:bg-[#25201b] text-slate-300 hover:text-white border border-white/10 hover:border-[#B99A63]/50 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2 cursor-pointer tap-bounce"
+                  >
+                    <span>Show Less</span>
+                    <ChevronUp className="w-4 h-4 text-slate-400" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
