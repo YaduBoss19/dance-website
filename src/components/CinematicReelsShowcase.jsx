@@ -1227,31 +1227,31 @@ export default function CinematicReelsShowcase({
           onTouchEnd={handleTouchEnd}
           className="relative max-w-7xl mx-auto space-y-4 sm:space-y-6 select-none"
         >
-          {/* ── 3-CARD STAGE: PREVIOUS (Mobile: ~17% width, PC: 3 cols) | MAIN FEATURED PLAYER (Mobile: ~64% width, PC: 6 cols) | NEXT UP (Mobile: ~17% width, PC: 3 cols) ── */}
-          <div className="flex flex-row items-center justify-between gap-1.5 xs:gap-2.5 sm:gap-4 md:grid md:grid-cols-12 md:gap-4 lg:gap-6 w-full">
-            {/* ── 1. LEFT CARD (Previous Performance - Mobile: 17% / PC: 3 cols) ── */}
+          {/* ── 3-CARD STAGE: PC SHOWS 3-PANEL THEATRE (3 cols - 6 cols - 3 cols) | MOBILE SHOWS 1 BIG DISPLAY WITH SWIPE ── */}
+          <div className="w-full md:grid md:grid-cols-12 md:gap-4 lg:gap-6 items-center">
+            {/* ── 1. LEFT CARD (Previous Performance - Hidden on mobile, 3 cols on PC) ── */}
             {prevVideo && (
               <div
                 onClick={() => handleSelectVideo(prevVideo)}
-                className="group relative rounded-xl xs:rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-0.5 sm:p-2 bg-[#151515]/75 backdrop-blur-md border border-[#B99A63]/40 hover:border-[#B99A63] opacity-75 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl w-[17%] xs:w-[18%] sm:w-[20%] md:w-auto md:col-span-3 shrink-0 h-[100px] xs:h-[120px] sm:h-[150px] md:h-auto flex flex-col justify-between active:scale-95"
+                className="hidden md:flex group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2 bg-[#151515]/70 backdrop-blur-md border-2 border-[#B99A63]/40 hover:border-[#B99A63] opacity-85 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl col-span-3 flex-col justify-between"
                 title={`Previous: ${prevVideo.title}`}
               >
-                <div className="museum-frame-inner relative h-full md:aspect-video w-full rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
                   <img
                     src={prevVideo.thumbnail}
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover blur-md sm:blur-xl opacity-40 scale-110 pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
                     aria-hidden="true"
                   />
                   <img
                     src={prevVideo.thumbnail}
                     alt={prevVideo.title}
-                    className="relative z-10 w-full h-full object-cover sm:object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 pointer-events-none z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-10" />
 
-                  {/* Top Badges (Desktop / Tablet only) */}
-                  <div className="hidden sm:flex absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 items-center justify-between z-10 pointer-events-none">
+                  {/* Top Badges */}
+                  <div className="absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 flex items-center justify-between z-10 pointer-events-none">
                     <span className="px-1.5 py-0.5 sm:px-2 rounded-full bg-black/80 text-[#D4AF37] text-[8px] sm:text-[10px] font-bold uppercase tracking-wider border border-[#B99A63]/40 shadow-sm backdrop-blur-xs">
                       Previous
                     </span>
@@ -1261,14 +1261,14 @@ export default function CinematicReelsShowcase({
                   </div>
 
                   {/* Single Sleek Transparent Navigation Arrow */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-15">
-                    <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-11 sm:h-11 rounded-full bg-black/60 sm:bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
-                      <ChevronLeft className="w-3.5 h-3.5 sm:w-6 sm:h-6 stroke-[2.5]" />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
+                      <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.5]" />
                     </div>
                   </div>
 
-                  {/* Bottom Title & Category (Desktop / Tablet only) */}
-                  <div className="hidden sm:block absolute bottom-1.5 left-2 right-2 sm:bottom-2 sm:left-2.5 sm:right-2.5 text-left pointer-events-none">
+                  {/* Bottom Title & Category */}
+                  <div className="absolute bottom-1.5 left-2 right-2 sm:bottom-2 sm:left-2.5 sm:right-2.5 text-left pointer-events-none">
                     <span className="text-[10px] sm:text-xs font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
                       {prevVideo.title}
                     </span>
@@ -1280,8 +1280,8 @@ export default function CinematicReelsShowcase({
               </div>
             )}
 
-            {/* ── 2. CENTER CARD: MAIN FEATURED PLAYER (Mobile: ~64% width, PC: 6 cols) ── */}
-            <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2.5 bg-[#151515]/75 backdrop-blur-md border-2 border-[#B99A63] shadow-2xl transition-all flex-1 min-w-0 md:w-auto md:col-span-6 flex flex-col justify-between ring-2 sm:ring-4 ring-[#B99A63]/25">
+            {/* ── 2. CENTER CARD: MAIN BIG FEATURED PLAYER (Full Width on Mobile, 6 cols on PC) ── */}
+            <div className="w-full col-span-12 md:col-span-6 group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2.5 bg-[#151515]/75 backdrop-blur-md border-2 border-[#B99A63] shadow-2xl transition-all flex flex-col justify-between ring-2 sm:ring-4 ring-[#B99A63]/25">
               <div
                 key={selectedVideo.id}
                 className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#181616]/75 backdrop-blur-sm border border-[#B99A63]/50 shadow-inner transition-all duration-500 ease-out animate-in fade-in zoom-in-[0.98]"
@@ -1396,20 +1396,48 @@ export default function CinematicReelsShowcase({
 
                     {/* Centered Luxury Play Button with Breathing Golden Halo */}
                     <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                      <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <div className="flex flex-col items-center gap-1.5 sm:gap-2">
                         <div className="relative">
                           {/* Golden Breathing Pulse Rings */}
                           <span className="absolute -inset-2 rounded-full bg-[#B99A63]/30 animate-ping opacity-60 pointer-events-none" />
                           <span className="absolute -inset-3.5 rounded-full bg-gradient-to-r from-[#B99A63]/25 via-[#D4AF37]/35 to-[#B99A63]/25 blur-md animate-pulse pointer-events-none" />
 
-                          <div className="relative w-10 h-10 xs:w-12 xs:h-12 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-[0_0_30px_rgba(185,154,99,0.5)] transition-all duration-300 group-hover:scale-110 border-2 border-white/50 ring-2 sm:ring-4 ring-[#B99A63]/40">
-                            <Play className="w-4 h-4 xs:w-5 xs:h-5 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
+                          <div className="relative w-12 h-12 xs:w-14 xs:h-14 sm:w-18 sm:h-18 rounded-full bg-[#B99A63] group-hover:bg-[#cca86d] text-[#151515] flex items-center justify-center shadow-[0_0_30px_rgba(185,154,99,0.5)] transition-all duration-300 group-hover:scale-110 border-2 border-white/50 ring-2 sm:ring-4 ring-[#B99A63]/40">
+                            <Play className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 fill-[#151515] translate-x-0.5" />
                           </div>
                         </div>
-                        <span className="px-2 xs:px-2.5 sm:px-3.5 py-0.5 rounded-full bg-[#151515]/90 text-[#F5F0E8] text-[8px] xs:text-[9px] sm:text-[11px] font-bold tracking-wider border border-[#B99A63]/50 backdrop-blur-md shadow-lg">
+                        <span className="px-2.5 xs:px-3 sm:px-3.5 py-0.5 rounded-full bg-[#151515]/90 text-[#F5F0E8] text-[9px] xs:text-[10px] sm:text-[11px] font-bold tracking-wider border border-[#B99A63]/50 backdrop-blur-md shadow-lg">
                           Play Performance
                         </span>
                       </div>
+                    </div>
+
+                    {/* Mobile Only: Left & Right Floating Quick-Nav Chevrons */}
+                    <div className="md:hidden absolute inset-y-0 left-2 flex items-center z-20 pointer-events-auto">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectVideo(prevVideo);
+                        }}
+                        aria-label="Previous performance"
+                        className="w-8 h-8 rounded-full bg-black/60 active:bg-black/90 text-white/90 border border-white/25 flex items-center justify-center backdrop-blur-md active:scale-90 transition-transform shadow-lg"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="md:hidden absolute inset-y-0 right-2 flex items-center z-20 pointer-events-auto">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectVideo(nextVideo);
+                        }}
+                        aria-label="Next performance"
+                        className="w-8 h-8 rounded-full bg-black/60 active:bg-black/90 text-white/90 border border-white/25 flex items-center justify-center backdrop-blur-md active:scale-90 transition-transform shadow-lg"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
                     </div>
 
                     {/* Bottom Overlay Title Bar */}
@@ -1424,31 +1452,55 @@ export default function CinematicReelsShowcase({
                   </div>
                 )}
               </div>
+
+              {/* Mobile Only: Bottom Swipe Helper & Quick Prev/Next Navigation */}
+              <div className="md:hidden flex items-center justify-between px-2 pt-2 text-slate-400 text-xs">
+                <button
+                  type="button"
+                  onClick={() => handleSelectVideo(prevVideo)}
+                  className="flex items-center gap-1 text-[11px] font-semibold text-[#B99A63] active:scale-95 transition-transform"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" /> Prev
+                </button>
+                <div className="text-[10px] tracking-wider text-slate-400 flex items-center gap-1.5 uppercase font-mono">
+                  <span>Swipe ◀ ▶</span>
+                  <span className="text-[#B99A63] font-bold">
+                    {safeIdx + 1} / {filteredVideos.length}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleSelectVideo(nextVideo)}
+                  className="flex items-center gap-1 text-[11px] font-semibold text-[#B99A63] active:scale-95 transition-transform"
+                >
+                  Next <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
 
-            {/* ── 3. RIGHT CARD (Next Performance - Mobile: 17% / PC: 3 cols) ── */}
+            {/* ── 3. RIGHT CARD (Next Performance - Hidden on mobile, 3 cols on PC) ── */}
             {nextVideo && (
               <div
                 onClick={() => handleSelectVideo(nextVideo)}
-                className="group relative rounded-xl xs:rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-0.5 sm:p-2 bg-[#151515]/70 backdrop-blur-md border border-[#B99A63]/40 hover:border-[#B99A63] opacity-75 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl w-[17%] xs:w-[18%] sm:w-[20%] md:w-auto md:col-span-3 shrink-0 h-[100px] xs:h-[120px] sm:h-[150px] md:h-auto flex flex-col justify-between active:scale-95"
+                className="hidden md:flex group relative rounded-2xl sm:rounded-3xl overflow-hidden museum-frame p-1 sm:p-2 bg-[#151515]/70 backdrop-blur-md border-2 border-[#B99A63]/40 hover:border-[#B99A63] opacity-85 hover:opacity-100 transition-all duration-300 cursor-pointer shadow-xl col-span-3 flex-col justify-between"
                 title={`Next: ${nextVideo.title}`}
               >
-                <div className="museum-frame-inner relative h-full md:aspect-video w-full rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
+                <div className="museum-frame-inner relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#0f0e0d] border border-[#B99A63]/30 flex items-center justify-center">
                   <img
                     src={nextVideo.thumbnail}
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover blur-md sm:blur-xl opacity-40 scale-110 pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none"
                     aria-hidden="true"
                   />
                   <img
                     src={nextVideo.thumbnail}
                     alt={nextVideo.title}
-                    className="relative z-10 w-full h-full object-cover sm:object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 pointer-events-none z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-10" />
 
-                  {/* Top Badges (Desktop / Tablet only) */}
-                  <div className="hidden sm:flex absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 items-center justify-between z-10 pointer-events-none">
+                  {/* Top Badges */}
+                  <div className="absolute top-1.5 left-1.5 right-1.5 sm:top-2 sm:left-2 sm:right-2 flex items-center justify-between z-10 pointer-events-none">
                     <span className="px-1 py-0.5 sm:px-1.5 rounded-md bg-black/75 text-slate-300 text-[8px] sm:text-[10px] font-mono border border-white/10">
                       {nextVideo.duration}
                     </span>
@@ -1458,14 +1510,14 @@ export default function CinematicReelsShowcase({
                   </div>
 
                   {/* Single Sleek Transparent Navigation Arrow */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-15">
-                    <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-11 sm:h-11 rounded-full bg-black/60 sm:bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
-                      <ChevronRight className="w-3.5 h-3.5 sm:w-6 sm:h-6 stroke-[2.5]" />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/40 group-hover:bg-black/75 text-white/90 group-hover:text-[#D4AF37] border border-white/25 group-hover:border-[#B99A63] backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110">
+                      <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.5]" />
                     </div>
                   </div>
 
-                  {/* Bottom Title & Category (Desktop / Tablet only) */}
-                  <div className="hidden sm:block absolute bottom-1.5 left-2 right-2 sm:bottom-2 sm:left-2.5 sm:right-2.5 text-left pointer-events-none">
+                  {/* Bottom Title & Category */}
+                  <div className="absolute bottom-1.5 left-2 right-2 sm:bottom-2 sm:left-2.5 sm:right-2.5 text-left pointer-events-none">
                     <span className="text-[10px] sm:text-xs font-bold font-serif-luxury text-[#F5F0E8] truncate block drop-shadow-md">
                       {nextVideo.title}
                     </span>
