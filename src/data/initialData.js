@@ -14,13 +14,13 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Diploma & Certification",
-    image: "/images/courses/diploma_bharatanatyam.jpg",
+    image: "/images/courses/Courses/bharatanatyam_diploma/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/diploma_bharatanatyam.jpg",
-      "/images/stage_shows/stage_02.jpg",
-      "/images/stage_shows/stage_05.jpg",
-      "/images/stage_shows/stage_01.jpg"
+      "/images/courses/Courses/bharatanatyam_diploma/main.jpg",
+      "/images/courses/Courses/bharatanatyam_diploma/slide_01.jpg",
+      "/images/courses/Courses/bharatanatyam_diploma/slide_02.jpg",
+      "/images/courses/Courses/bharatanatyam_diploma/slide_03.jpg"
     ],
     description: "A structured program combining practical Bharatanatyam training with theoretical lessons aligned with the prescribed syllabus. The course includes yearly examinations and certification, providing students with a systematic learning experience.",
     syllabus: [
@@ -43,13 +43,13 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Practical Training",
-    image: "/images/courses/non_diploma_bharatanatyam.jpg",
+    image: "/images/courses/Courses/bharatanatyam_non_diploma/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/non_diploma_bharatanatyam.jpg",
-      "/images/stage_shows/stage_04.jpg",
-      "/images/stage_shows/stage_08.jpg",
-      "/images/stage_shows/stage_03.jpg"
+      "/images/courses/Courses/bharatanatyam_non_diploma/main.jpg",
+      "/images/courses/Courses/bharatanatyam_non_diploma/slide_01.jpg",
+      "/images/courses/Courses/bharatanatyam_non_diploma/slide_02.jpg",
+      "/images/courses/Courses/bharatanatyam_non_diploma/slide_03.jpg"
     ],
     description: "Practical training in Bharatanatyam, complemented by basic theoretical lessons. Ideal for students who wish to learn and develop their classical dance skills without formal examinations or certification.",
     syllabus: [
@@ -72,13 +72,13 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Vocal & Theory",
-    image: "/images/courses/carnatic_music.jpg",
+    image: "/images/courses/Courses/carnatic_music/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/carnatic_music.jpg",
-      "/images/music_and_dance/music_02.jpg",
-      "/images/music_and_dance/music_03.jpg",
-      "/images/malavika_vocal.jpg"
+      "/images/courses/Courses/carnatic_music/main.jpg",
+      "/images/courses/Courses/carnatic_music/slide_01.jpg",
+      "/images/courses/Courses/carnatic_music/slide_02.jpg",
+      "/images/courses/Courses/carnatic_music/slide_03.jpg"
     ],
     description: "Comprehensive Carnatic music training, from foundational concepts to advanced levels, incorporating both practical vocal training and theoretical sessions to develop musical knowledge and proficiency.",
     syllabus: [
@@ -101,13 +101,13 @@ export const INITIAL_COURSES = [
     duration: "60 mins per session",
     frequency: "2 sessions / week (Online)",
     badge: "Grace & Vibrancy",
-    image: "/images/courses/bollywood_dance.jpg",
+    image: "/images/courses/Courses/bollywood_dance/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/bollywood_dance.jpg",
-      "/images/stage_shows/stage_09.jpg",
-      "/images/stage_shows/stage_12.jpg",
-      "/images/stage_shows/stage_15.jpg"
+      "/images/courses/Courses/bollywood_dance/main.jpg",
+      "/images/courses/Courses/bollywood_dance/slide_01.jpg",
+      "/images/courses/Courses/bollywood_dance/slide_02.jpg",
+      "/images/courses/Courses/bollywood_dance/slide_03.jpg"
     ],
     description: "Learn engaging choreographies set to a variety of songs, blending the grace of semi-classical movements with the vibrancy of Bollywood dance. Designed to enhance expression, rhythm, coordination, and performance skills.",
     syllabus: [
@@ -130,13 +130,13 @@ export const INITIAL_COURSES = [
     duration: "60-Day Guided Journey",
     frequency: "Scheduled sessions + daily guidance",
     badge: "Yoga & Nutrition",
-    image: "/images/courses/fitness_program.jpg",
+    image: "/images/courses/Courses/fitness_program/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/fitness_program.jpg",
-      "/images/stage_shows/stage_11.jpg",
-      "/images/stage_shows/stage_14.jpg",
-      "/images/stage_shows/stage_16.jpg"
+      "/images/courses/Courses/fitness_program/main.jpg",
+      "/images/courses/Courses/fitness_program/slide_01.jpg",
+      "/images/courses/Courses/fitness_program/slide_02.jpg",
+      "/images/courses/Courses/fitness_program/slide_03.jpg"
     ],
     description: "A holistic fitness program combining guided yoga sessions, dance-based workouts, and personalised dietary guidance. Designed to help participants build a consistent fitness routine and work towards their individual wellness goals.",
     syllabus: [
@@ -161,13 +161,13 @@ export const INITIAL_COURSES = [
     duration: "Project-based timeline",
     frequency: "Rehearsal cycles + dress rehearsal",
     badge: "Stage & Cultural",
-    image: "/images/courses/service_stage_show.jpg",
+    image: "/images/courses/Services/stage_shows/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_stage_show.jpg",
-      "/images/stage_shows/stage_13.jpg",
-      "/images/stage_shows/stage_17.jpg",
-      "/images/stage_shows/stage_18.jpg"
+      "/images/courses/Services/stage_shows/main.jpg",
+      "/images/courses/Services/stage_shows/slide_01.jpg",
+      "/images/courses/Services/stage_shows/slide_02.jpg",
+      "/images/courses/Services/stage_shows/slide_03.jpg"
     ],
     description: "Tailored choreography for cultural programs, stage performances, celebrations, and special events. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
@@ -190,13 +190,13 @@ export const INITIAL_COURSES = [
     duration: "Custom sessions per song",
     frequency: "Flexible schedule (Online / In-person)",
     badge: "Weddings & Sangeet",
-    image: "/images/courses/service_wedding.jpg",
+    image: "/images/courses/Services/wedding_choreography/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_wedding.jpg",
-      "/images/stage_shows/stage_19.jpg",
-      "/images/stage_shows/stage_20.jpg",
-      "/images/stage_shows/stage_21.jpg"
+      "/images/courses/Services/wedding_choreography/main.jpg",
+      "/images/courses/Services/wedding_choreography/slide_01.jpg",
+      "/images/courses/Services/wedding_choreography/slide_02.jpg",
+      "/images/courses/Services/wedding_choreography/slide_03.jpg"
     ],
     description: "Specially curated dance performances for weddings, including solo performances, couple dances, and group choreography for family and friends. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
@@ -219,13 +219,13 @@ export const INITIAL_COURSES = [
     duration: "Full Day / Half Day Intensive",
     frequency: "Single-day event",
     badge: "1-Day Intensive",
-    image: "/images/courses/service_workshop_1day.jpg",
+    image: "/images/courses/Services/workshops_1day/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_workshop_1day.jpg",
-      "/images/workshops/workshop_02.jpg",
-      "/images/workshops/workshop_04.jpg",
-      "/images/workshops/workshop_05.jpg"
+      "/images/courses/Services/workshops_1day/main.jpg",
+      "/images/courses/Services/workshops_1day/slide_01.jpg",
+      "/images/courses/Services/workshops_1day/slide_02.jpg",
+      "/images/courses/Services/workshops_1day/slide_03.jpg"
     ],
     description: "Intensive, engaging dance workshops designed for schools, colleges, institutions, and other organisations. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
@@ -248,13 +248,13 @@ export const INITIAL_COURSES = [
     duration: "3 Consecutive Days",
     frequency: "Multi-day intensive residency",
     badge: "3-Day Masterclass",
-    image: "/images/courses/service_workshop_3day.jpg",
+    image: "/images/courses/Services/workshops_3day/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_workshop_3day.jpg",
-      "/images/workshops/workshop_06.jpg",
-      "/images/workshops/workshop_07.jpg",
-      "/images/workshops/workshop_08.jpg"
+      "/images/courses/Services/workshops_3day/main.jpg",
+      "/images/courses/Services/workshops_3day/slide_01.jpg",
+      "/images/courses/Services/workshops_3day/slide_02.jpg",
+      "/images/courses/Services/workshops_3day/slide_03.jpg"
     ],
     description: "Structured multi-day workshops offering focused dance training, choreography, and performance development. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
@@ -277,13 +277,13 @@ export const INITIAL_COURSES = [
     duration: "Targeted competition prep",
     frequency: "Rigorous rehearsal schedule",
     badge: "Championship Level",
-    image: "/images/courses/service_competition.jpg",
+    image: "/images/courses/Services/competition_choreography/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_competition.jpg",
-      "/images/stage_shows/stage_22.jpg",
-      "/images/stage_shows/stage_02.jpg",
-      "/images/stage_shows/stage_14.jpg"
+      "/images/courses/Services/competition_choreography/main.jpg",
+      "/images/courses/Services/competition_choreography/slide_01.jpg",
+      "/images/courses/Services/competition_choreography/slide_02.jpg",
+      "/images/courses/Services/competition_choreography/slide_03.jpg"
     ],
     description: "Customised choreography for solo, duet, and group dance competitions, tailored to the theme, song selection, and performance requirements. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [
@@ -306,13 +306,13 @@ export const INITIAL_COURSES = [
     duration: "Flexible corporate rehearsal schedules",
     frequency: "Tailored to event timeline",
     badge: "Corporate & Galas",
-    image: "/images/courses/service_corporate.jpg",
+    image: "/images/courses/Services/corporate_events/main.jpg",
     instagramReelUrl: "https://www.instagram.com/dancingragasbymalavika/reels/",
     images: [
-      "/images/courses/service_corporate.jpg",
-      "/images/stage_shows/stage_08.jpg",
-      "/images/stage_shows/stage_17.jpg",
-      "/images/workshops/workshop_01.jpg"
+      "/images/courses/Services/corporate_events/main.jpg",
+      "/images/courses/Services/corporate_events/slide_01.jpg",
+      "/images/courses/Services/corporate_events/slide_02.jpg",
+      "/images/courses/Services/corporate_events/slide_03.jpg"
     ],
     description: "Choreography and performance preparation for corporate celebrations, annual functions, cultural events, and special occasions. Every service is customised to suit the event, participants, and creative vision, ensuring a memorable and engaging performance experience.",
     syllabus: [

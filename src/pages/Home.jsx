@@ -108,7 +108,7 @@ export default function Home() {
         {/* Full-Bleed Ambient Performance Video Background */}
         <video
           src="/videos/performance.mp4"
-          poster="/images/malavika_dance_stage.jpg"
+          poster="/images/hero/hero_slide_01.jpg"
           autoPlay
           muted
           loop

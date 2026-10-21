@@ -3,28 +3,28 @@ import React, { useState, useEffect, useRef } from "react";
 const HERO_SLIDES = [
   {
     id: "slide-stage",
-    image: "/images/malavika_dance_stage.jpg",
+    image: "/images/hero/hero_slide_01.jpg",
     alt: "Dr. Malavika M. Sunil — Classical Bharatanatyam Margam",
     title: "Dr. Malavika M. Sunil",
     role: "Classical Bharatanatyam Margam"
   },
   {
     id: "slide-pose",
-    image: "/images/malavika_dance_pose.jpg",
+    image: "/images/hero/hero_slide_02.jpg",
     alt: "Dr. Malavika M. Sunil — Sacred Mudras and Classical Natya",
     title: "Dr. Malavika M. Sunil",
     role: "Sacred Mudras & Abhinaya"
   },
   {
     id: "slide-portrait",
-    image: "/images/malavika_portrait.jpg",
+    image: "/images/hero/hero_slide_03.jpg",
     alt: "Dr. Malavika M. Sunil — MBBS Physician and Classical Dancer",
     title: "Dr. Malavika M. Sunil",
     role: "MBBS Physician & Movement Mentor"
   },
   {
     id: "slide-vocal",
-    image: "/images/malavika_vocal.jpg",
+    image: "/images/hero/hero_slide_04.jpg",
     alt: "Dr. Malavika M. Sunil — Carnatic Vocal Music Lineage",
     title: "Dr. Malavika M. Sunil",
     role: "Carnatic Vocal & Shruti Sadhana"
@@ -103,9 +103,25 @@ export default function HeroSlideshow({ onPhotoClick }) {
       <div className="museum-frame group shadow-2xl relative">
         <div
           onClick={handleSlideClick}
-          className="museum-frame-inner w-full aspect-[2/3] bg-[#151515] relative overflow-hidden rounded-2xl cursor-pointer"
+          className="museum-frame-inner w-full aspect-[2/3] bg-[#0f0e0d] relative overflow-hidden rounded-2xl cursor-pointer flex items-center justify-center"
         >
-          {/* Images with Smooth Fade Transition */}
+          {/* Ambient blurred glow background so sides look luxurious & intentional */}
+          {HERO_SLIDES.map((slide, idx) => {
+            const isVisible = idx === activeIdx;
+            return (
+              <img
+                key={`blur-${slide.id}`}
+                src={slide.image}
+                alt=""
+                className={`absolute inset-0 w-full h-full object-cover blur-xl opacity-35 scale-110 pointer-events-none transition-opacity duration-700 ${
+                  isVisible ? "opacity-35" : "opacity-0"
+                }`}
+                aria-hidden="true"
+              />
+            );
+          })}
+
+          {/* Full uncropped foreground images — Zero face/crown clipping */}
           {HERO_SLIDES.map((slide, idx) => {
             const isVisible = idx === activeIdx;
             return (
@@ -113,7 +129,7 @@ export default function HeroSlideshow({ onPhotoClick }) {
                 key={slide.id}
                 src={slide.image}
                 alt={slide.alt}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-all duration-700 ${
                   isVisible
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-105 pointer-events-none"
