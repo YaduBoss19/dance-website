@@ -1058,6 +1058,18 @@ export default function CinematicReelsShowcase({
   const [showAllVideos, setShowAllVideos] = useState(false);
   const [showAllInstagram, setShowAllInstagram] = useState(false);
 
+  // Responsive device check for mobile vs desktop slice limits
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== "undefined" && window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Touch swipe gesture support for mobile 3-panel stage
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
@@ -1071,8 +1083,9 @@ export default function CinematicReelsShowcase({
       ? PERFORMANCE_ARCHIVE
       : PERFORMANCE_ARCHIVE.filter((vid) => vid.category === activeCategory);
 
-  // Slice to 2 rows (8 items on a 4-col grid) unless expanded
-  const visibleVideos = showAllVideos ? filteredVideos : filteredVideos.slice(0, 8);
+  // On mobile: 2 rows of 2 items = 4 videos. On PC: 2 rows of 4 items = 8 videos.
+  const videoLimit = isMobile ? 4 : 8;
+  const visibleVideos = showAllVideos ? filteredVideos : filteredVideos.slice(0, videoLimit);
 
   // Calculate previous and next video items for the 3D Stage Carousel
   const currentIdx = filteredVideos.findIndex((v) => v.id === selectedVideo.id);
@@ -1189,8 +1202,9 @@ export default function CinematicReelsShowcase({
     return true;
   });
 
-  // Slice to 1st row only (3 items on a 3-col grid) unless expanded
-  const visibleWallItems = showAllInstagram ? filteredWallItems : filteredWallItems.slice(0, 3);
+  // On mobile: 2 rows of 2 items = 4 posts. On PC: 1st row = 3 posts.
+  const instaLimit = isMobile ? 4 : 3;
+  const visibleWallItems = showAllInstagram ? filteredWallItems : filteredWallItems.slice(0, instaLimit);
 
   return (
     <section
@@ -1412,8 +1426,8 @@ export default function CinematicReelsShowcase({
                       </div>
                     </div>
 
-                    {/* Mobile Only: Left & Right Floating Quick-Nav Chevrons */}
-                    <div className="md:hidden absolute inset-y-0 left-2 flex items-center z-20 pointer-events-auto">
+                    {/* Mobile Only: Transparent Glass Side Arrow Buttons (Click to navigate without text) */}
+                    <div className="md:hidden absolute inset-y-0 left-2 flex items-center z-25 pointer-events-auto">
                       <button
                         type="button"
                         onClick={(e) => {
@@ -1421,12 +1435,12 @@ export default function CinematicReelsShowcase({
                           handleSelectVideo(prevVideo);
                         }}
                         aria-label="Previous performance"
-                        className="w-8 h-8 rounded-full bg-black/60 active:bg-black/90 text-white/90 border border-white/25 flex items-center justify-center backdrop-blur-md active:scale-90 transition-transform shadow-lg"
+                        className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 active:bg-[#B99A63]/30 text-white/95 border border-white/25 active:border-[#B99A63] flex items-center justify-center backdrop-blur-md active:scale-90 transition-all shadow-xl cursor-pointer"
                       >
-                        <ChevronLeft className="w-4 h-4" />
+                        <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                       </button>
                     </div>
-                    <div className="md:hidden absolute inset-y-0 right-2 flex items-center z-20 pointer-events-auto">
+                    <div className="md:hidden absolute inset-y-0 right-2 flex items-center z-25 pointer-events-auto">
                       <button
                         type="button"
                         onClick={(e) => {
@@ -1434,9 +1448,9 @@ export default function CinematicReelsShowcase({
                           handleSelectVideo(nextVideo);
                         }}
                         aria-label="Next performance"
-                        className="w-8 h-8 rounded-full bg-black/60 active:bg-black/90 text-white/90 border border-white/25 flex items-center justify-center backdrop-blur-md active:scale-90 transition-transform shadow-lg"
+                        className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 active:bg-[#B99A63]/30 text-white/95 border border-white/25 active:border-[#B99A63] flex items-center justify-center backdrop-blur-md active:scale-90 transition-all shadow-xl cursor-pointer"
                       >
-                        <ChevronRight className="w-4 h-4" />
+                        <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                       </button>
                     </div>
 
@@ -1451,30 +1465,6 @@ export default function CinematicReelsShowcase({
                     </div>
                   </div>
                 )}
-              </div>
-
-              {/* Mobile Only: Bottom Swipe Helper & Quick Prev/Next Navigation */}
-              <div className="md:hidden flex items-center justify-between px-2 pt-2 text-slate-400 text-xs">
-                <button
-                  type="button"
-                  onClick={() => handleSelectVideo(prevVideo)}
-                  className="flex items-center gap-1 text-[11px] font-semibold text-[#B99A63] active:scale-95 transition-transform"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" /> Prev
-                </button>
-                <div className="text-[10px] tracking-wider text-slate-400 flex items-center gap-1.5 uppercase font-mono">
-                  <span>Swipe ◀ ▶</span>
-                  <span className="text-[#B99A63] font-bold">
-                    {safeIdx + 1} / {filteredVideos.length}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleSelectVideo(nextVideo)}
-                  className="flex items-center gap-1 text-[11px] font-semibold text-[#B99A63] active:scale-95 transition-transform"
-                >
-                  Next <ChevronRight className="w-3.5 h-3.5" />
-                </button>
               </div>
             </div>
 
@@ -1696,10 +1686,10 @@ export default function CinematicReelsShowcase({
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
-            4. RESPONSIVE VIDEO THUMBNAIL GRID (Default 2 Rows; Click here for more)
+            4. RESPONSIVE VIDEO THUMBNAIL GRID (Default 2 Rows: 2 per row on Mobile, 4 per row on PC; Click here for more)
         ═══════════════════════════════════════════════════════════════ */}
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 text-left">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 text-left">
             {visibleVideos.map((video) => (
               <ArchiveVideoGridCard
                 key={video.id}
@@ -1711,7 +1701,7 @@ export default function CinematicReelsShowcase({
           </div>
 
           {/* "Click here for more" / "Show Less" Button for Video Grid */}
-          {!showAllVideos && filteredVideos.length > 8 && (
+          {!showAllVideos && filteredVideos.length > videoLimit && (
             <div className="pt-2 flex justify-center">
               <button
                 type="button"
@@ -1727,7 +1717,7 @@ export default function CinematicReelsShowcase({
             </div>
           )}
 
-          {showAllVideos && filteredVideos.length > 8 && (
+          {showAllVideos && filteredVideos.length > videoLimit && (
             <div className="pt-2 flex justify-center">
               <button
                 type="button"
@@ -1911,9 +1901,9 @@ export default function CinematicReelsShowcase({
               </button>
             </div>
 
-            {/* 3-Column Instagram Reel Cards Grid (Default 1st row only; Click here for more) */}
+            {/* Instagram Reel & Photo Cards Grid (Default: 2 rows of 2 on Mobile, 1st row of 3 on PC; Click here for more) */}
             <div className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-7">
                 {visibleWallItems.map((item) => (
                   <InstagramWallCard
                     key={item.id}
@@ -1925,7 +1915,7 @@ export default function CinematicReelsShowcase({
               </div>
 
               {/* "Click here for more" / "Show Less" Button for Instagram Grid */}
-              {!showAllInstagram && filteredWallItems.length > 3 && (
+              {!showAllInstagram && filteredWallItems.length > instaLimit && (
                 <div className="pt-2 flex justify-center">
                   <button
                     type="button"
@@ -1941,7 +1931,7 @@ export default function CinematicReelsShowcase({
                 </div>
               )}
 
-              {showAllInstagram && filteredWallItems.length > 3 && (
+              {showAllInstagram && filteredWallItems.length > instaLimit && (
                 <div className="pt-2 flex justify-center">
                   <button
                     type="button"
