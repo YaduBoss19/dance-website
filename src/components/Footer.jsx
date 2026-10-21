@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAcademy } from "../context/AcademyContext";
+import { playGhungrooChime } from "../utils/talamAudio";
 import {
   Phone,
   Mail,
@@ -14,8 +15,25 @@ import {
 const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
-  const { navigateTo, academyInfo, showToast } = useAcademy();
+  const { currentPage, navigateTo, academyInfo, showToast } = useAcademy();
   const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const handleNavClick = (target, pageId) => {
+    playGhungrooChime();
+    if (pageId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigateTo("home");
+      return;
+    }
+    if (currentPage === "home") {
+      const el = document.getElementById(target);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+    navigateTo(pageId);
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -114,13 +132,10 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#B99A63] mb-4">
               Navigation
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <button
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                    navigateTo("home");
-                  }}
+                  onClick={() => handleNavClick("top", "home")}
                   className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
                 >
                   Home
@@ -128,61 +143,26 @@ export default function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    const el = document.getElementById("meet-instructor");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                    else navigateTo("about");
-                  }}
+                  onClick={() => handleNavClick("about-artist", "about")}
                   className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
                 >
-                  Meet Dr. Malavika
+                  About
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    const el = document.getElementById("dance-lessons");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                    else navigateTo("courses");
-                  }}
+                  onClick={() => handleNavClick("services-section", "courses")}
                   className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
                 >
-                  Dance Lessons
+                  Courses
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    const el = document.getElementById("music-lessons");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                    else navigateTo("courses");
-                  }}
+                  onClick={() => handleNavClick("gallery-section", "gallery")}
                   className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
                 >
-                  Music & Yoga Lessons
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById("gallery-section");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                    else navigateTo("gallery");
-                  }}
-                  className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
-                >
-                  Gallery & Recitals
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById("faqs");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="hover:text-[#F5F0E8] transition-colors cursor-pointer"
-                >
-                  FAQs
+                  Gallery
                 </button>
               </li>
             </ul>
