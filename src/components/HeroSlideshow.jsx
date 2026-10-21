@@ -97,13 +97,13 @@ export default function HeroSlideshow({ onPhotoClick }) {
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative mx-auto w-full max-w-[230px] xs:max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px] select-none"
+      className="relative mx-auto w-full max-w-[200px] xs:max-w-[230px] sm:max-w-[270px] md:max-w-[290px] lg:max-w-[310px] xl:max-w-[330px] select-none"
     >
       {/* Museum Frame Container — Sized exactly to the 2:3 (682x1024) photo aspect ratio */}
       <div className="museum-frame group shadow-2xl relative">
         <div
           onClick={handleSlideClick}
-          className="museum-frame-inner w-full aspect-[2/3] bg-[#0f0e0d] relative overflow-hidden rounded-2xl cursor-pointer flex items-center justify-center"
+          className="museum-frame-inner w-full aspect-[2/3] bg-[#0f0e0d] relative overflow-hidden rounded-2xl cursor-pointer"
         >
           {/* Ambient blurred glow background so sides look luxurious & intentional */}
           {HERO_SLIDES.map((slide, idx) => {
@@ -121,7 +121,7 @@ export default function HeroSlideshow({ onPhotoClick }) {
             );
           })}
 
-          {/* Full uncropped foreground images — Zero face/crown clipping */}
+          {/* Full uncropped foreground images — Stacked absolutely to fit frame perfectly with zero cropping */}
           {HERO_SLIDES.map((slide, idx) => {
             const isVisible = idx === activeIdx;
             return (
@@ -129,9 +129,9 @@ export default function HeroSlideshow({ onPhotoClick }) {
                 key={slide.id}
                 src={slide.image}
                 alt={slide.alt}
-                className={`relative z-10 w-full h-full object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-all duration-700 ${
+                className={`absolute inset-0 z-10 w-full h-full object-contain object-center drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] transition-all duration-700 ${
                   isVisible
-                    ? "opacity-100 scale-100"
+                    ? "opacity-100 scale-100 pointer-events-auto"
                     : "opacity-0 scale-105 pointer-events-none"
                 }`}
               />

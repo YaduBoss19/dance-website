@@ -104,7 +104,7 @@ export default function Home() {
       {/* ─────────────────────────────────────────────────────────────
           1. CINEMATIC HERO SECTION: Full-Bleed Performance Video Background
       ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[100dvh] lg:min-h-[92vh] flex flex-col justify-center pt-10 xs:pt-12 sm:pt-16 lg:pt-20 pb-4 xs:pb-6 sm:pb-8 px-3.5 sm:px-6 lg:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
+      <section className="relative min-h-[100dvh] lg:min-h-[88vh] flex flex-col justify-center pt-8 xs:pt-10 sm:pt-14 lg:pt-16 pb-4 xs:pb-5 sm:pb-6 px-3.5 sm:px-6 lg:px-8 border-b border-[#B99A63]/30 overflow-hidden bg-[#151515] text-[#F5F0E8]">
         {/* Full-Bleed Ambient Performance Video Background */}
         <video
           src="/videos/performance.mp4"
