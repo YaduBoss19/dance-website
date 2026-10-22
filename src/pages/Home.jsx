@@ -311,7 +311,7 @@ export default function Home() {
               <AnimatedSection
                 key={t.id}
                 delay={idx * 80}
-                className="bg-white p-7 sm:p-9 rounded-3xl border border-[#B99A63]/30 hover:border-[#B99A63] shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between text-left relative overflow-hidden"
+                className="bg-white p-7 sm:p-9 rounded-3xl border border-[#B99A63]/30 hover:border-[#B99A63] shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between text-left relative overflow-hidden h-full"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
@@ -327,7 +327,7 @@ export default function Home() {
                     )}
                   </div>
 
-                  <p className="text-sm sm:text-base text-slate-800 italic leading-relaxed mb-6 font-serif-luxury">
+                  <p className="text-sm sm:text-base text-slate-800 italic leading-relaxed mb-6 font-serif-luxury whitespace-pre-line">
                     "{t.quote}"
                   </p>
                 </div>

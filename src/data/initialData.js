@@ -844,6 +844,28 @@ export const TESTIMONIALS = [
       "About my guru Malavika chechi ,she’s honestly so sweet, talented and friendly 🥹💗 Her choreographies are sooo good, and I love how she makes them according to our level so everyone can enjoy and learn comfortably. She’s super patient, supportive and makes every class such a fun vibe. Had such a great experience learning from her, literally amazing at what she does 💃🏻✨💕",
     stars: 5,
     tag: "Verified Student"
+  },
+  {
+    id: "t-2",
+    name: "Jyothirmai",
+    relation: "Dance Student • Tamil Nadu",
+    location: "Tamil Nadu",
+    avatar: "/images/testimonials/jyothirmai.jpg",
+    quote:
+      "It was a wonderful journey. Patience of our guide is what made me think I could try dancing in the first place. We had a wonderful moments in weekends ..from crying to smile on my face. It was challenging, it still is but I trust my mentor, in the hope of finding joy through dancing.\n\nThank you, It is my pleasure learning from you.",
+    stars: 5,
+    tag: "Verified Student"
+  },
+  {
+    id: "t-3",
+    name: "Praveshika",
+    relation: "Dance Student • Andhra Pradesh",
+    location: "Andhra Pradesh",
+    avatar: "/images/testimonials/praveshika.jpg",
+    quote:
+      "My dance journey with the Dancing Ragas was such a great experience! Their workshops helped me reconnect with a part of myself I hadn’t been in touch with for a long time. I love how inclusive the dance styles are, from classical and semi-classical to Bollywood, fusion and hip-hop. Getting the opportunity to perform at the NGO Diwali program and later at the ARJN n KDS concert was amazing! The fun practice sessions and getting to dance alongside such a talented group of girls made it even more special. It’s definitely one of my favourite memories from Georgia! ✨",
+    stars: 5,
+    tag: "Verified Student"
   }
 ];
 
