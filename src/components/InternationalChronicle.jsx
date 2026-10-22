@@ -33,7 +33,7 @@ const CHAPTERS = [
     summary:
       "Pursued her MBBS medical degree in Georgia while pioneering Indian classical arts in Eastern Europe. Conducted 15+ offline masterclasses, choreographed for Georgian television, judged university competitions, and produced 20+ live stage shows.",
     highlights: [
-      "Completed MBBS medical degree at Tbilisi State Medical University",
+      "Completed MBBS medical degree at ALTE University, Georgia",
       "Directed 20+ Indian classical stage productions in Georgia",
       "Choreographed for Georgian reality television dance series",
       "Organized 'Rhythmic Raga' & judged prestigious 'Ignite' competition at TSMU",

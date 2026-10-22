@@ -79,19 +79,15 @@ const MILESTONES = [
     year: "2018 – 2024",
     period: "Medical Science",
     title: "MBBS Physician & Certified Yoga Educator",
-    guru: "Tbilisi State Medical University, Georgia",
+    guru: "ALTE University, Georgia",
     institution: "Anatomical Kinesiology & Biomechanics",
     category: "Science",
     icon: Stethoscope,
     badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
     quote: "Understanding human anatomy transforms dance from repetitive strain into lifelong healing.",
     description:
-      "Graduated as a medical doctor (MBBS) in Georgia and qualified as a certified yoga instructor. Bridges ancient Indian classical techniques with clinical biomechanics—preventing knee and meniscus stress in Aramandi, rehabilitating dancer spine posture, and engineering safe vocal stamina.",
-    achievements: [
-      "Doctor of Medicine (MBBS) with deep training in musculoskeletal anatomy",
-      "Certified Yoga instructor specialising in alignment, flexibility & core stability",
-      "Pioneered injury-prevention coaching for dancers and vocal fatigue mitigation"
-    ]
+      "Completed her MBBS from ALTE University, Georgia. Graduated as a medical doctor (MBBS) in Georgia and qualified as a certified yoga instructor.",
+    achievements: []
   },
   {
     year: "2020 – Present",
@@ -212,20 +208,22 @@ export default function ArtisticJourneyTimeline() {
                 {activeMilestone.description}
               </p>
 
-              {/* Accolades checklist */}
-              <div className="space-y-2 pt-2">
-                <h4 className="text-xs font-bold tracking-widest uppercase text-[#B99A63]">
-                  Key Milestones & Impact:
-                </h4>
-                <ul className="space-y-1.5">
-                  {activeMilestone.achievements.map((ach, aIdx) => (
-                    <li key={aIdx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <ChevronRight className="w-3.5 h-3.5 text-[#B99A63] shrink-0 mt-0.5" />
-                      <span>{ach}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Accolades checklist (if any) */}
+              {activeMilestone.achievements && activeMilestone.achievements.length > 0 && (
+                <div className="space-y-2 pt-2">
+                  <h4 className="text-xs font-bold tracking-widest uppercase text-[#B99A63]">
+                    Key Milestones & Impact:
+                  </h4>
+                  <ul className="space-y-1.5">
+                    {activeMilestone.achievements.map((ach, aIdx) => (
+                      <li key={aIdx} className="flex items-start gap-2 text-xs text-slate-300">
+                        <ChevronRight className="w-3.5 h-3.5 text-[#B99A63] shrink-0 mt-0.5" />
+                        <span>{ach}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Quick Next/Prev Navigation */}
