@@ -836,30 +836,14 @@ export const INITIAL_ENQUIRIES = [
 export const TESTIMONIALS = [
   {
     id: "t-1",
-    name: "Dr. Rachel Montgomery",
-    relation: "Mother of Sophie (Ballet & Piano)",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
-    quote: "Aura Academy has been transformative for Sophie. She started shy at age 5 in Little Steps; now at age 9, she carries herself with radiant poise and just passed her Trinity Grade 2 Piano with distinction. The teachers care deeply about each child.",
+    name: "Semmalar Dharman",
+    relation: "Dance Student • Tamil Nadu",
+    location: "Tamil Nadu",
+    avatar: "/images/testimonials/semmalar_dharman.jpg",
+    quote:
+      "About my guru Malavika chechi ,she’s honestly so sweet, talented and friendly 🥹💗 Her choreographies are sooo good, and I love how she makes them according to our level so everyone can enjoy and learn comfortably. She’s super patient, supportive and makes every class such a fun vibe. Had such a great experience learning from her, literally amazing at what she does 💃🏻✨💕",
     stars: 5,
-    tag: "Parent of 9-year-old"
-  },
-  {
-    id: "t-2",
-    name: "Arjun Nair",
-    relation: "Adult Kathak & Vocals Student",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
-    quote: "I always believed learning Indian classical dance and music was only for childhood prodigies. Guru Priya and Guru Ananya proved me wrong! As a 34-year-old software engineer, class days are the happiest hours of my week. Absolutely welcoming to adults.",
-    stars: 5,
-    tag: "Adult Learner"
-  },
-  {
-    id: "t-3",
-    name: "Jessica & Tom Evans",
-    relation: "Parents of Leo (Hip-Hop & Drums)",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
-    quote: "The energy Marcus and Samuel bring to their classes is electrifying. Leo used to struggle with focus at school; the drum rhythm discipline and hip-hop coordination gave him confidence and friendships that changed everything.",
-    stars: 5,
-    tag: "Parent of 11-year-old"
+    tag: "Verified Student"
   }
 ];
 
