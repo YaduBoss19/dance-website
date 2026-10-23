@@ -371,10 +371,11 @@ export default function ContactUs() {
         <div className="space-y-3">
           {FAQS.map((faq, idx) => {
             const isOpen = faqOpenIndex === idx;
+            const faqNum = faq.number || String(idx + 1).padStart(2, "0");
             return (
               <AnimatedSection
                 key={idx}
-                delay={idx * 60}
+                delay={Math.min(idx * 30, 300)}
                 className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-xs text-left transition-all"
               >
                 <button
@@ -382,7 +383,12 @@ export default function ContactUs() {
                   className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left font-bold text-sm sm:text-base text-slate-900 hover:text-purple-700 transition-colors cursor-pointer tap-bounce"
                   aria-expanded={isOpen}
                 >
-                  <span>{faq.question}</span>
+                  <span className="flex items-center gap-3">
+                    <span className="text-purple-600 font-mono text-sm font-semibold shrink-0">
+                      {faqNum}
+                    </span>
+                    <span>{faq.question}</span>
+                  </span>
                   {isOpen ? (
                     <ChevronUp className="w-5 h-5 text-purple-600 shrink-0" />
                   ) : (
@@ -391,7 +397,7 @@ export default function ContactUs() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 animate-in fade-in duration-200">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 pl-10 sm:pl-11 animate-in fade-in duration-200">
                     {faq.answer}
                   </div>
                 )}
@@ -399,6 +405,15 @@ export default function ContactUs() {
             );
           })}
         </div>
+
+        {/* Ending note in quotes as requested */}
+        <AnimatedSection animation="fade-up" className="mt-8 sm:mt-10">
+          <div className="rounded-2xl bg-purple-50/70 border border-purple-200 p-6 sm:p-8 text-center shadow-xs">
+            <p className="text-sm sm:text-base italic font-serif text-slate-800 leading-relaxed max-w-2xl mx-auto">
+              &ldquo;Still have questions? Contact DancingRagas through our website or official social media page for enquiries about registrations, fees and batch availability.&rdquo;
+            </p>
+          </div>
+        </AnimatedSection>
       </section>
     </div>
   );

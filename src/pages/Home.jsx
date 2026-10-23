@@ -596,18 +596,22 @@ export default function Home() {
           <div className="space-y-4 text-left">
             {FAQS.map((faq, idx) => {
               const isOpen = openFaqIndex === idx;
+              const faqNum = faq.number || String(idx + 1).padStart(2, "0");
               return (
                 <AnimatedSection
                   key={idx}
-                  delay={idx * 40}
+                  delay={Math.min(idx * 25, 300)}
                   className="rounded-2xl bg-white border border-[#B99A63]/25 hover:border-[#B99A63]/50 overflow-hidden shadow-xs hover:shadow-md transition-all"
                 >
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
                     className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                   >
-                    <span className="text-base sm:text-lg font-bold text-[#151515] font-serif-luxury">
-                      {faq.question}
+                    <span className="flex items-center gap-3.5 text-base sm:text-lg font-bold text-[#151515] font-serif-luxury">
+                      <span className="text-[#B99A63] font-mono text-sm sm:text-base font-semibold shrink-0">
+                        {faqNum}
+                      </span>
+                      <span>{faq.question}</span>
                     </span>
                     <ChevronDown
                       className={`w-5 h-5 text-[#B99A63] shrink-0 transition-transform duration-300 ${
@@ -617,7 +621,7 @@ export default function Home() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pl-11 sm:pl-14">
                       {faq.answer}
                     </div>
                   )}
@@ -625,6 +629,39 @@ export default function Home() {
               );
             })}
           </div>
+
+          {/* Ending note card in quotes */}
+          <AnimatedSection animation="fade-up" className="pt-2">
+            <div className="rounded-2xl bg-gradient-to-r from-[#FAF5EC] via-white to-[#FAF5EC] border border-[#B99A63]/30 p-6 sm:p-8 text-center shadow-xs">
+              <p className="text-sm sm:text-base italic font-serif-luxury text-[#151515] leading-relaxed max-w-2xl mx-auto">
+                &ldquo;Still have questions? Contact DancingRagas through our website or official social media page for enquiries about registrations, fees and batch availability.&rdquo;
+              </p>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                <a
+                  href={`https://wa.me/${academyInfo?.whatsappNumber || "919074585672"}?text=${encodeURIComponent(
+                    "Hello Dr. Malavika! I have an enquiry regarding registrations, fees and batch availability."
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] text-white text-xs sm:text-sm font-semibold hover:bg-[#20ba59] transition-all shadow-xs"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Enquire via WhatsApp</span>
+                </a>
+                <a
+                  href={academyInfo?.instagramUrl || "https://www.instagram.com/dancingragasbymalavika/"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white text-xs sm:text-sm font-semibold hover:opacity-90 transition-all shadow-xs"
+                >
+                  <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-[9px] font-bold">
+                    ig
+                  </span>
+                  <span>Enquire on Instagram</span>
+                </a>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

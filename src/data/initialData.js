@@ -937,28 +937,94 @@ export const LESSON_PACKAGES = [
 
 export const FAQS = [
   {
-    question: "How does the Online Trial Class work?",
-    answer: "Your trial class is a dedicated 45-minute video session directly with Dr. Malavika M. Sunil. We start by discussing your background, interests, and schedule, followed by a personalized movement or vocal exercise to assess your baseline. Afterward, Dr. Malavika recommends a personalized lesson roadmap with zero commitment."
+    number: "01",
+    question: "What classes does DancingRagas offer?",
+    answer:
+      "We offer Bharatanatyam diploma and non-diploma programmes, Carnatic music classes, dance and fitness programmes, choreography services and workshops."
   },
   {
-    question: "What equipment or space do I need for online dance & music lessons?",
-    answer: "All you need is a laptop, tablet, or phone with a working camera, a stable internet connection, and enough floor space to step two paces forward, back, and sideways. For vocal lessons, a quiet room and headphones with a built-in mic work wonderfully. Tanpura accompaniment is provided by the instructor during the call."
+    number: "02",
+    question: "Can I join classes from outside Kerala or India?",
+    answer:
+      "Yes! Our online classes allow students to learn from anywhere, at their convenience, subject to batch schedules and availability."
   },
   {
-    question: "Do you teach complete beginners and adult dancers?",
-    answer: "Yes, absolutely! Many of Dr. Malavika's students are adult professionals who have never danced or sung before, or who are returning after decades away. We provide personalized guidance and a supportive environment—progressing at your exact personal rhythm."
+    number: "03",
+    question: "Do I need prior dance experience to join?",
+    answer:
+      "No. Beginners are welcome. We guide students according to their level, learning pace and programme requirements."
   },
   {
-    question: "How does flexible scheduling work across international time zones?",
-    answer: "Dr. Malavika coaches students across North America, Europe, the Middle East, and Asia. When you submit your booking request, you select your preferred time slots. We align time zones flexibly to fit your work, school, and family routines."
+    number: "04",
+    question: "What is the difference between the diploma and non-diploma Bharatanatyam programmes?",
+    answer:
+      "The diploma programme follows a structured syllabus with practical and theory classes, yearly examinations and a certificate, subject to programme requirements. The non-diploma programme includes practical classes and basic theory but does not include examinations or certification."
   },
   {
-    question: "What is your rescheduling and cancellation policy?",
-    answer: "We understand that life happens. You can reschedule any private session free of charge as long as you give at least 24 hours notice. Your credit remains valid for your rescheduled date."
+    number: "05",
+    question: "How do online classes work?",
+    answer:
+      "Classes are conducted online according to the batch schedule. Students receive guidance and learning materials as applicable to their programme."
   },
   {
-    question: "Do I receive lesson recordings for home practice?",
-    answer: "Yes! After each lesson, Dr. Malavika provides key takeaway notes and brief video demonstration clips so you can practice with precision between sessions."
+    number: "06",
+    question: "Will I receive notes, videos and study materials?",
+    answer:
+      "For the diploma programme, syllabus-related learning support, including notes and videos, is provided as applicable. Details will be shared during enrolment."
+  },
+  {
+    number: "07",
+    question: "Are there examinations and certificates?",
+    answer:
+      "Yearly examinations and certification are part of the diploma programme. Non-diploma Bharatanatyam classes do not include examinations or certificates."
+  },
+  {
+    number: "08",
+    question: "How do I register for a class?",
+    answer:
+      "You can contact DancingRagas through our website or official social media page to enquire about available batches, fees and registration."
+  },
+  {
+    number: "09",
+    question: "Are the classes suitable for children and adults?",
+    answer:
+      "We welcome enquiries from learners of different age groups. Batch availability and age suitability depend on the programme."
+  },
+  {
+    number: "10",
+    question: "Do you offer Carnatic music classes for beginners?",
+    answer:
+      "Yes. Carnatic music classes are available from basic to advanced levels, depending on the batch and availability."
+  },
+  {
+    number: "11",
+    question: "What fitness programmes do you offer?",
+    answer:
+      "We offer dance and yoga-based fitness programmes, with personalised diet guidance where included in the selected programme."
+  },
+  {
+    number: "12",
+    question: "Do you provide wedding and event choreography?",
+    answer:
+      "Yes! We offer wedding choreography, solo, duet and group competition choreography, stage performances, corporate event shows and workshops."
+  },
+  {
+    number: "13",
+    question: "Can I book a private workshop or a short-term dance workshop?",
+    answer:
+      "Yes. We offer one-day and three-day workshops, subject to availability. Contact us to discuss your requirements."
+  },
+  {
+    number: "14",
+    question: "How can I know the class fees and timings?",
+    answer:
+      "Fees, schedules and batch availability vary by programme. Please contact us for the latest details before registering."
+  },
+  {
+    number: "15",
+    question: "What if I miss an online class?",
+    answer:
+      "Please check the missed-class and recording policy for your selected batch at the time of enrolment, as arrangements may vary."
   }
 ];
 
