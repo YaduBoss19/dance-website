@@ -306,7 +306,7 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className={TESTIMONIALS.length === 1 ? "max-w-2xl mx-auto" : "grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"}>
+          <div className={TESTIMONIALS.length === 1 ? "max-w-2xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto"}>
             {TESTIMONIALS.map((t, idx) => (
               <AnimatedSection
                 key={t.id}
@@ -336,7 +336,7 @@ export default function Home() {
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[#B99A63]/50 shadow-sm shrink-0"
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover ${t.avatarPosition || "object-top"} border-2 border-[#B99A63]/50 shadow-md shrink-0`}
                     loading="lazy"
                   />
                   <div>
