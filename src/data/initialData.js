@@ -953,9 +953,9 @@ export const ACADEMY_INFO = {
   shortName: "Dr. Malavika M Sunil",
   tagline: "Your Passion. Your Pace. Your Personal Coach.",
   heroHeadline: "Move. Learn. Master.",
-  phone: "+91 79942 59815",
-  directPhone: "+91 79942 59815",
-  whatsappNumber: "+917994259815",
+  phone: "+91 90745 85672",
+  directPhone: "+91 90745 85672",
+  whatsappNumber: "+919074585672",
   whatsappDefaultMsg: "Hello Dr. Malavika! I would like to book a trial session for dance / music coaching.",
   email: "info@malavikasunil.com",
   adminEmail: "malavika@malavikasunil.com",
@@ -971,7 +971,7 @@ export const ACADEMY_INFO = {
     {
       name: "Private Studio & Online Global Coaching",
       address: "Worldwide Online & Kerala / Bangalore",
-      phone: "+91 79942 59815",
+      phone: "+91 90745 85672",
       features: "Live Video Coaching, High-Fidelity Audio Tanpura, Anatomical Posture Correction"
     }
   ],

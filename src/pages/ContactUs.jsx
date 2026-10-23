@@ -106,7 +106,7 @@ export default function ContactUs() {
               className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm tap-bounce"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              <span>Chat: +91 79942 59815</span>
+              <span>Chat: +91 90745 85672</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </button>
           </AnimatedSection>
